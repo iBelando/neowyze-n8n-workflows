@@ -1,431 +1,507 @@
 {
-  "0": {
-    "parameters": {
-      "httpMethod": "POST",
-      "path": "my-wedding/enviar-asistencia",
-      "options": {
-        "binaryPropertyName": "paymentReceipt"
-      }
-    },
-    "type": "n8n-nodes-base.webhook",
-    "typeVersion": 2,
-    "position": [
-      0,
-      0
-    ],
-    "id": "0b192919-5802-4367-ab2f-ee5f96ae93ef",
-    "name": "Webhook",
-    "webhookId": "6bd42921-3f16-4927-80c0-ec87d577b87f"
-  },
-  "1": {
-    "parameters": {
-      "operation": "upload",
-      "bucketName": "neowyze",
-      "fileName": "={{ $(\"Webhook\").item.json.body.fullName.split(\" \").join(\"-\").toLowerCase() }}.{{ $('Webhook').item.binary.paymentReceipt0.fileExtension }}",
-      "binaryPropertyName": "paymentReceipt0",
-      "additionalFields": {
-        "acl": "publicRead",
-        "parentFolderKey": "=my-wedding/{{ $('Webhook').item.json.body.client }}"
-      }
-    },
-    "type": "n8n-nodes-base.s3",
-    "typeVersion": 1,
-    "position": [
-      480,
-      -180
-    ],
-    "id": "d90b411c-3f53-49ed-98d4-2627659fcd0e",
-    "name": "Adjuntar Comprobante",
-    "credentials": {
-      "s3": {
-        "id": "OYivPvOG1HXd0Ysb",
-        "name": "S3 account"
-      }
-    }
-  },
-  "2": {
-    "parameters": {
-      "operation": "append",
-      "documentId": {
-        "__rl": true,
-        "value": "1eG7Xaeu0ksqAwYu2UCAfpwGHPaw2FErbIlu_NeG6q4o",
-        "mode": "list",
-        "cachedResultName": "My Wedding - Nacho y Estefi",
-        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1eG7Xaeu0ksqAwYu2UCAfpwGHPaw2FErbIlu_NeG6q4o/edit?usp=drivesdk"
-      },
-      "sheetName": {
-        "__rl": true,
-        "value": "gid=0",
-        "mode": "list",
-        "cachedResultName": "Sheet1",
-        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1eG7Xaeu0ksqAwYu2UCAfpwGHPaw2FErbIlu_NeG6q4o/edit#gid=0"
-      },
-      "columns": {
-        "mappingMode": "defineBelow",
-        "value": {
-          "Nombre y Apellido": "={{ $json.nombre_y_apellido }}",
-          "Asistirá": "={{ $json.asistira }}",
-          "Menú": "={{ $json.menu }}",
-          "Comprobante": "={{ $json.comprobante }}",
-          "Con Acompañantes": "={{ $json[\"con_acompañantes\"] }}",
-          "Acompañante 1": "={{ $json[\"acompañante_1\"] }}",
-          "Acompañante 2": "={{ $json[\"acompañante_2\"] }}",
-          "Acompañante 3": "={{ $json[\"acompañante_3\"] }}",
-          "Acompañante 4": "={{ $json[\"acompañante_4\"] }}",
-          "Acompañante 5": "={{ $json[\"acompañante_5\"] }}",
-          "Acompañante 10": "={{ $json[\"acompañante_10\"] }}",
-          "Acompañante 9": "={{ $json[\"acompañante_9\"] }}",
-          "Acompañante 8": "={{ $json[\"acompañante_8\"] }}",
-          "Acompañante 7": "={{ $json[\"acompañante_7\"] }}",
-          "Acompañante 6": "={{ $json[\"acompañante_6\"] }}",
-          "Comentarios": "={{ $json.comentarios }}"
-        },
-        "matchingColumns": [],
-        "schema": [
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
           {
-            "id": "Nombre y Apellido",
-            "displayName": "Nombre y Apellido",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Asistirá",
-            "displayName": "Asistirá",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Menú",
-            "displayName": "Menú",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Comprobante",
-            "displayName": "Comprobante",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Comentarios",
-            "displayName": "Comentarios",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Con Acompañantes",
-            "displayName": "Con Acompañantes",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Acompañante 1",
-            "displayName": "Acompañante 1",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Acompañante 2",
-            "displayName": "Acompañante 2",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Acompañante 3",
-            "displayName": "Acompañante 3",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Acompañante 4",
-            "displayName": "Acompañante 4",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Acompañante 5",
-            "displayName": "Acompañante 5",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Acompañante 6",
-            "displayName": "Acompañante 6",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Acompañante 7",
-            "displayName": "Acompañante 7",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Acompañante 8",
-            "displayName": "Acompañante 8",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Acompañante 9",
-            "displayName": "Acompañante 9",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          },
-          {
-            "id": "Acompañante 10",
-            "displayName": "Acompañante 10",
-            "required": false,
-            "defaultMatch": false,
-            "display": true,
-            "type": "string",
-            "canBeUsedToMatch": true,
-            "removed": false
-          }
-        ],
-        "attemptToConvertTypes": false,
-        "convertFieldsToString": false
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleSheets",
-    "typeVersion": 4.5,
-    "position": [
-      960,
-      0
-    ],
-    "id": "54eca80a-4fda-4006-bab5-0b52a9e787a6",
-    "name": "Google Sheets",
-    "credentials": {
-      "googleSheetsOAuth2Api": {
-        "id": "T3E1s6pusi5vT6TH",
-        "name": "Google Sheets account"
-      }
-    }
-  },
-  "3": {
-    "parameters": {
-      "assignments": {
-        "assignments": [
-          {
-            "id": "77f71f39-4d93-4873-8e33-a628253cc155",
-            "name": "nombre_y_apellido",
-            "value": "={{ $('Webhook').item.json.body.fullName }}",
-            "type": "string"
-          },
-          {
-            "id": "d19eac9d-8e60-4bbc-b7f0-b4e0ccc8dd25",
-            "name": "asistira",
-            "value": "={{ $('Webhook').item.json.body.assistance === \"asistiré\" ? \"Si\" : \"No\" }}",
-            "type": "string"
-          },
-          {
-            "id": "22ba279f-16c7-4b1e-807a-1afc3fda9869",
-            "name": "menu",
-            "value": "={{ $('Webhook').item.json.body.menuType }}",
-            "type": "string"
-          },
-          {
-            "id": "509b3156-eaa1-44a9-9eb5-d11ef8a1b87d",
-            "name": "con_acompañantes",
-            "value": "={{ $('Webhook').item.json.body.withCompanion === \"true\" ? \"Si\" : \"No\" }}",
-            "type": "string"
-          },
-          {
-            "id": "fe9ebee4-5d3c-406a-a6f3-761f13c98c52",
-            "name": "comprobante",
-            "value": "=https://sos.neowyze.tech/my-wedding/{{ $('Webhook').item.json.body.client }}/{{ $('Webhook').item.json.body.fullName.split(\" \").join(\"-\").toLowerCase() }}.{{ $('Webhook').item.binary.paymentReceipt0.fileExtension }}",
-            "type": "string"
-          },
-          {
-            "id": "87d24e29-b1a2-48dc-9c1a-73571d63a73d",
-            "name": "acompañante_1",
-            "value": "={{ $json.body[\"companions[0].companionFullName\"] ? `${$json.body[\"companions[0].companionFullName\"]}, Menu: ${$json.body[\"companions[0].companionMenuType\"]}` : \"-\" }}",
-            "type": "string"
-          },
-          {
-            "id": "d4b52047-5ec2-48af-b15d-5ec27d6ffb28",
-            "name": "acompañante_2",
-            "value": "={{ $json.body[\"companions[1].companionFullName\"] ? `${$json.body[\"companions[1].companionFullName\"]}, Menu: ${$json.body[\"companions[1].companionMenuType\"]}` : \"-\" }}",
-            "type": "string"
-          },
-          {
-            "id": "7cba36e4-5b5e-4181-9858-9dce3af26d7b",
-            "name": "acompañante_3",
-            "value": "={{ $json.body[\"companions[2].companionFullName\"] ? `${$json.body[\"companions[2].companionFullName\"]}, Menu: ${$json.body[\"companions[2].companionMenuType\"]}` : \"-\" }}",
-            "type": "string"
-          },
-          {
-            "id": "2ead9c17-9e45-42ae-9ab7-68d83b8fe995",
-            "name": "acompañante_4",
-            "value": "={{ $json.body[\"companions[3].companionFullName\"] ? `${$json.body[\"companions[3].companionFullName\"]}, Menu: ${$json.body[\"companions[3].companionMenuType\"]}` : \"-\" }}",
-            "type": "string"
-          },
-          {
-            "id": "6371380b-d590-4c10-8442-105c1c36322c",
-            "name": "acompañante_5",
-            "value": "={{ $json.body[\"companions[4].companionFullName\"] ? `${$json.body[\"companions[4].companionFullName\"]}, Menu: ${$json.body[\"companions[4].companionMenuType\"]}` : \"-\" }}",
-            "type": "string"
-          },
-          {
-            "id": "f83867a2-03e3-467d-9dfd-b523742b07c7",
-            "name": "acompañante_6",
-            "value": "={{ $json.body[\"companions[5].companionFullName\"] ? `${$json.body[\"companions[5].companionFullName\"]}, Menu: ${$json.body[\"companions[5].companionMenuType\"]}` : \"-\" }}",
-            "type": "string"
-          },
-          {
-            "id": "c9a8d42c-2ad0-4cc6-9931-6ed7b81fe726",
-            "name": "acompañante_7",
-            "value": "={{ $json.body[\"companions[6].companionFullName\"] ? `${$json.body[\"companions[6].companionFullName\"]}, Menu: ${$json.body[\"companions[6].companionMenuType\"]}` : \"-\" }}",
-            "type": "string"
-          },
-          {
-            "id": "825d3e47-9640-48d6-8275-7200c250bbfc",
-            "name": "=acompañante_8",
-            "value": "={{ $json.body[\"companions[7].companionFullName\"] ? `${$json.body[\"companions[7].companionFullName\"]}, Menu: ${$json.body[\"companions[7].companionMenuType\"]}` : \"-\" }}",
-            "type": "string"
-          },
-          {
-            "id": "7054f59d-429a-4dc7-8114-ffdaca6f5ff7",
-            "name": "acompañante_9",
-            "value": "={{ $json.body[\"companions[8].companionFullName\"] ? `${$json.body[\"companions[8].companionFullName\"]}, Menu: ${$json.body[\"companions[8].companionMenuType\"]}` : \"-\" }}",
-            "type": "string"
-          },
-          {
-            "id": "6c0e8389-2dda-462e-b65d-662d6781c382",
-            "name": "acompañante_10",
-            "value": "={{ $json.body[\"companions[9].companionFullName\"] ? `${$json.body[\"companions[9].companionFullName\"]}, Menu: ${$json.body[\"companions[9].companionMenuType\"]}` : \"-\" }}",
-            "type": "string"
-          },
-          {
-            "id": "62ab0632-9867-4fec-bef6-148069498c5b",
-            "name": "comentarios",
-            "value": "={{ $json.body.comments }}",
-            "type": "string"
+            "node": "If",
+            "type": "main",
+            "index": 0
           }
         ]
-      },
-      "options": {}
+      ]
     },
-    "type": "n8n-nodes-base.set",
-    "typeVersion": 3.4,
-    "position": [
-      700,
-      0
-    ],
-    "id": "a1b2f26b-115f-4ee2-8831-9f0426f1f893",
-    "name": "Edit Fields"
-  },
-  "4": {
-    "parameters": {
-      "conditions": {
-        "options": {
-          "caseSensitive": true,
-          "leftValue": "",
-          "typeValidation": "strict",
-          "version": 2
-        },
-        "conditions": [
+    "Adjuntar Comprobante": {
+      "main": [
+        [
           {
-            "id": "c49a37bd-8f4c-4342-8ace-9fd6a48badad",
-            "leftValue": "={{ $json.body.paymentReceipt }}",
-            "rightValue": "\"null\"",
-            "operator": {
-              "type": "string",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
-          },
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
           {
-            "id": "92c78b44-04c8-4a71-ad2e-2b1514a66620",
-            "leftValue": "={{ $json.body.paymentReceipt }}",
-            "rightValue": "\"null\"",
-            "operator": {
-              "type": "string",
-              "operation": "notEquals"
-            }
-          },
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
           {
-            "id": "584b6055-bf8a-4e74-af4a-472010d0a754",
-            "leftValue": "={{ $json.body.paymentReceipt }}",
-            "rightValue": "null",
-            "operator": {
-              "type": "string",
-              "operation": "notEquals"
-            }
+            "node": "Adjuntar Comprobante",
+            "type": "main",
+            "index": 0
           }
         ],
-        "combinator": "and"
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-16T15:04:35.280Z",
+  "id": "zVKNhtZlPjTgvyVt",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[MyWedding] Enviar Asistencia",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "my-wedding/enviar-asistencia",
+        "options": {
+          "binaryPropertyName": "paymentReceipt"
+        }
       },
-      "options": {}
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "0b192919-5802-4367-ab2f-ee5f96ae93ef",
+      "name": "Webhook",
+      "webhookId": "6bd42921-3f16-4927-80c0-ec87d577b87f"
     },
-    "type": "n8n-nodes-base.if",
-    "typeVersion": 2.2,
-    "position": [
-      220,
-      20
-    ],
-    "id": "80f2d55b-cbc7-4172-acd8-3543cf724bfc",
-    "name": "If"
-  }
+    {
+      "parameters": {
+        "operation": "upload",
+        "bucketName": "neowyze",
+        "fileName": "={{ $(\"Webhook\").item.json.body.fullName.split(\" \").join(\"-\").toLowerCase() }}.{{ $('Webhook').item.binary.paymentReceipt0.fileExtension }}",
+        "binaryPropertyName": "paymentReceipt0",
+        "additionalFields": {
+          "acl": "publicRead",
+          "parentFolderKey": "=my-wedding/{{ $('Webhook').item.json.body.client }}"
+        }
+      },
+      "type": "n8n-nodes-base.s3",
+      "typeVersion": 1,
+      "position": [
+        480,
+        -180
+      ],
+      "id": "d90b411c-3f53-49ed-98d4-2627659fcd0e",
+      "name": "Adjuntar Comprobante",
+      "credentials": {
+        "s3": {
+          "id": "OYivPvOG1HXd0Ysb",
+          "name": "S3 account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1eG7Xaeu0ksqAwYu2UCAfpwGHPaw2FErbIlu_NeG6q4o",
+          "mode": "list",
+          "cachedResultName": "My Wedding - Nacho y Estefi",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1eG7Xaeu0ksqAwYu2UCAfpwGHPaw2FErbIlu_NeG6q4o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1eG7Xaeu0ksqAwYu2UCAfpwGHPaw2FErbIlu_NeG6q4o/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre y Apellido": "={{ $json.nombre_y_apellido }}",
+            "Asistirá": "={{ $json.asistira }}",
+            "Menú": "={{ $json.menu }}",
+            "Comprobante": "={{ $json.comprobante }}",
+            "Con Acompañantes": "={{ $json[\"con_acompañantes\"] }}",
+            "Acompañante 1": "={{ $json[\"acompañante_1\"] }}",
+            "Acompañante 2": "={{ $json[\"acompañante_2\"] }}",
+            "Acompañante 3": "={{ $json[\"acompañante_3\"] }}",
+            "Acompañante 4": "={{ $json[\"acompañante_4\"] }}",
+            "Acompañante 5": "={{ $json[\"acompañante_5\"] }}",
+            "Acompañante 10": "={{ $json[\"acompañante_10\"] }}",
+            "Acompañante 9": "={{ $json[\"acompañante_9\"] }}",
+            "Acompañante 8": "={{ $json[\"acompañante_8\"] }}",
+            "Acompañante 7": "={{ $json[\"acompañante_7\"] }}",
+            "Acompañante 6": "={{ $json[\"acompañante_6\"] }}",
+            "Comentarios": "={{ $json.comentarios }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nombre y Apellido",
+              "displayName": "Nombre y Apellido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Asistirá",
+              "displayName": "Asistirá",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Menú",
+              "displayName": "Menú",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Comprobante",
+              "displayName": "Comprobante",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Comentarios",
+              "displayName": "Comentarios",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Con Acompañantes",
+              "displayName": "Con Acompañantes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Acompañante 1",
+              "displayName": "Acompañante 1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Acompañante 2",
+              "displayName": "Acompañante 2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Acompañante 3",
+              "displayName": "Acompañante 3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Acompañante 4",
+              "displayName": "Acompañante 4",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Acompañante 5",
+              "displayName": "Acompañante 5",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Acompañante 6",
+              "displayName": "Acompañante 6",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Acompañante 7",
+              "displayName": "Acompañante 7",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Acompañante 8",
+              "displayName": "Acompañante 8",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Acompañante 9",
+              "displayName": "Acompañante 9",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Acompañante 10",
+              "displayName": "Acompañante 10",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        960,
+        0
+      ],
+      "id": "54eca80a-4fda-4006-bab5-0b52a9e787a6",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "T3E1s6pusi5vT6TH",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "77f71f39-4d93-4873-8e33-a628253cc155",
+              "name": "nombre_y_apellido",
+              "value": "={{ $('Webhook').item.json.body.fullName }}",
+              "type": "string"
+            },
+            {
+              "id": "d19eac9d-8e60-4bbc-b7f0-b4e0ccc8dd25",
+              "name": "asistira",
+              "value": "={{ $('Webhook').item.json.body.assistance === \"asistiré\" ? \"Si\" : \"No\" }}",
+              "type": "string"
+            },
+            {
+              "id": "22ba279f-16c7-4b1e-807a-1afc3fda9869",
+              "name": "menu",
+              "value": "={{ $('Webhook').item.json.body.menuType }}",
+              "type": "string"
+            },
+            {
+              "id": "509b3156-eaa1-44a9-9eb5-d11ef8a1b87d",
+              "name": "con_acompañantes",
+              "value": "={{ $('Webhook').item.json.body.withCompanion === \"true\" ? \"Si\" : \"No\" }}",
+              "type": "string"
+            },
+            {
+              "id": "fe9ebee4-5d3c-406a-a6f3-761f13c98c52",
+              "name": "comprobante",
+              "value": "=https://sos.neowyze.tech/my-wedding/{{ $('Webhook').item.json.body.client }}/{{ $('Webhook').item.json.body.fullName.split(\" \").join(\"-\").toLowerCase() }}.{{ $('Webhook').item.binary.paymentReceipt0.fileExtension }}",
+              "type": "string"
+            },
+            {
+              "id": "87d24e29-b1a2-48dc-9c1a-73571d63a73d",
+              "name": "acompañante_1",
+              "value": "={{ $json.body[\"companions[0].companionFullName\"] ? `${$json.body[\"companions[0].companionFullName\"]}, Menu: ${$json.body[\"companions[0].companionMenuType\"]}` : \"-\" }}",
+              "type": "string"
+            },
+            {
+              "id": "d4b52047-5ec2-48af-b15d-5ec27d6ffb28",
+              "name": "acompañante_2",
+              "value": "={{ $json.body[\"companions[1].companionFullName\"] ? `${$json.body[\"companions[1].companionFullName\"]}, Menu: ${$json.body[\"companions[1].companionMenuType\"]}` : \"-\" }}",
+              "type": "string"
+            },
+            {
+              "id": "7cba36e4-5b5e-4181-9858-9dce3af26d7b",
+              "name": "acompañante_3",
+              "value": "={{ $json.body[\"companions[2].companionFullName\"] ? `${$json.body[\"companions[2].companionFullName\"]}, Menu: ${$json.body[\"companions[2].companionMenuType\"]}` : \"-\" }}",
+              "type": "string"
+            },
+            {
+              "id": "2ead9c17-9e45-42ae-9ab7-68d83b8fe995",
+              "name": "acompañante_4",
+              "value": "={{ $json.body[\"companions[3].companionFullName\"] ? `${$json.body[\"companions[3].companionFullName\"]}, Menu: ${$json.body[\"companions[3].companionMenuType\"]}` : \"-\" }}",
+              "type": "string"
+            },
+            {
+              "id": "6371380b-d590-4c10-8442-105c1c36322c",
+              "name": "acompañante_5",
+              "value": "={{ $json.body[\"companions[4].companionFullName\"] ? `${$json.body[\"companions[4].companionFullName\"]}, Menu: ${$json.body[\"companions[4].companionMenuType\"]}` : \"-\" }}",
+              "type": "string"
+            },
+            {
+              "id": "f83867a2-03e3-467d-9dfd-b523742b07c7",
+              "name": "acompañante_6",
+              "value": "={{ $json.body[\"companions[5].companionFullName\"] ? `${$json.body[\"companions[5].companionFullName\"]}, Menu: ${$json.body[\"companions[5].companionMenuType\"]}` : \"-\" }}",
+              "type": "string"
+            },
+            {
+              "id": "c9a8d42c-2ad0-4cc6-9931-6ed7b81fe726",
+              "name": "acompañante_7",
+              "value": "={{ $json.body[\"companions[6].companionFullName\"] ? `${$json.body[\"companions[6].companionFullName\"]}, Menu: ${$json.body[\"companions[6].companionMenuType\"]}` : \"-\" }}",
+              "type": "string"
+            },
+            {
+              "id": "825d3e47-9640-48d6-8275-7200c250bbfc",
+              "name": "=acompañante_8",
+              "value": "={{ $json.body[\"companions[7].companionFullName\"] ? `${$json.body[\"companions[7].companionFullName\"]}, Menu: ${$json.body[\"companions[7].companionMenuType\"]}` : \"-\" }}",
+              "type": "string"
+            },
+            {
+              "id": "7054f59d-429a-4dc7-8114-ffdaca6f5ff7",
+              "name": "acompañante_9",
+              "value": "={{ $json.body[\"companions[8].companionFullName\"] ? `${$json.body[\"companions[8].companionFullName\"]}, Menu: ${$json.body[\"companions[8].companionMenuType\"]}` : \"-\" }}",
+              "type": "string"
+            },
+            {
+              "id": "6c0e8389-2dda-462e-b65d-662d6781c382",
+              "name": "acompañante_10",
+              "value": "={{ $json.body[\"companions[9].companionFullName\"] ? `${$json.body[\"companions[9].companionFullName\"]}, Menu: ${$json.body[\"companions[9].companionMenuType\"]}` : \"-\" }}",
+              "type": "string"
+            },
+            {
+              "id": "62ab0632-9867-4fec-bef6-148069498c5b",
+              "name": "comentarios",
+              "value": "={{ $json.body.comments }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        700,
+        0
+      ],
+      "id": "a1b2f26b-115f-4ee2-8831-9f0426f1f893",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c49a37bd-8f4c-4342-8ace-9fd6a48badad",
+              "leftValue": "={{ $json.body.paymentReceipt }}",
+              "rightValue": "\"null\"",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "92c78b44-04c8-4a71-ad2e-2b1514a66620",
+              "leftValue": "={{ $json.body.paymentReceipt }}",
+              "rightValue": "\"null\"",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "584b6055-bf8a-4e74-af4a-472010d0a754",
+              "leftValue": "={{ $json.body.paymentReceipt }}",
+              "rightValue": "null",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        220,
+        20
+      ],
+      "id": "80f2d55b-cbc7-4172-acd8-3543cf724bfc",
+      "name": "If"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-25T18:46:09.000Z",
+  "versionId": "24f6cffb-cdd0-4f05-8c18-2522d5c5ab77"
 }
