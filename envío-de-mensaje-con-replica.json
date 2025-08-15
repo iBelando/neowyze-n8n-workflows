@@ -1,421 +1,553 @@
 {
-  "0": {
-    "parameters": {
-      "path": "argenway",
-      "responseMode": "responseNode",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.webhook",
-    "typeVersion": 2,
-    "position": [
-      0,
-      -560
-    ],
-    "id": "ba7f0764-80c0-4749-9744-e18c022b0c87",
-    "name": "Verificación",
-    "webhookId": "6423f6bb-b3dc-4db4-a895-f9d8d9242688"
-  },
-  "1": {
-    "parameters": {
-      "respondWith": "text",
-      "responseBody": "={{ $json.query['hub.challenge'] }}",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.respondToWebhook",
-    "typeVersion": 1.1,
-    "position": [
-      220,
-      -560
-    ],
-    "id": "4bfa3f34-b1fa-4d59-958c-b790ccef9060",
-    "name": "Respond to Webhook"
-  },
-  "2": {
-    "parameters": {
-      "httpMethod": "POST",
-      "path": "argenway",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.webhook",
-    "typeVersion": 2,
-    "position": [
-      0,
-      -360
-    ],
-    "id": "ca75a1ab-6420-4db2-8b1f-6d021071ff83",
-    "name": "Respuesta",
-    "webhookId": "ca8ac8c9-143b-42ae-8a19-8c963aeeb602"
-  },
-  "3": {
-    "parameters": {
-      "conditions": {
-        "options": {
-          "caseSensitive": true,
-          "leftValue": "",
-          "typeValidation": "loose",
-          "version": 2
-        },
-        "conditions": [
+  "active": false,
+  "connections": {
+    "Verificación": {
+      "main": [
+        [
           {
-            "id": "f9339f1e-3c29-4a43-b742-e343c225ebc1",
-            "leftValue": "={{ $json.body.entry[0].changes[0].value.messages[0] }}",
-            "rightValue": "",
-            "operator": {
-              "type": "boolean",
-              "operation": "exists",
-              "singleValue": true
-            }
-          }
-        ],
-        "combinator": "and"
-      },
-      "looseTypeValidation": true,
-      "options": {}
-    },
-    "type": "n8n-nodes-base.if",
-    "typeVersion": 2.2,
-    "position": [
-      220,
-      -360
-    ],
-    "id": "d2b2caac-09dd-422a-b8dd-03944119987d",
-    "name": "If1"
-  },
-  "4": {
-    "parameters": {
-      "jsCode": "return $input.all();"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      440,
-      -460
-    ],
-    "id": "bbc4de78-9575-4437-bc68-7f18c8314613",
-    "name": "Code2"
-  },
-  "5": {
-    "parameters": {
-      "phoneNumberId": "631081970092798",
-      "recipientPhoneNumber": "5492214363975",
-      "template": "recordatorio_informes|es_AR",
-      "components": {
-        "component": [
-          {
-            "bodyParameters": {
-              "parameter": [
-                {
-                  "text": "Cristian Sosa"
-                }
-              ]
-            }
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
           }
         ]
-      }
-    },
-    "type": "n8n-nodes-base.whatsApp",
-    "typeVersion": 1,
-    "position": [
-      560,
-      0
-    ],
-    "id": "37612163-4eda-4942-b54b-ac5302291823",
-    "name": "WhatsApp Business Cloud",
-    "webhookId": "89aa6b27-747f-4263-a186-03c245054b18",
-    "credentials": {
-      "whatsAppApi": {
-        "id": "SlLQKZiaNG7boEr5",
-        "name": "Argenway Whatsapp"
-      }
-    }
-  },
-  "6": {
-    "parameters": {},
-    "type": "n8n-nodes-base.manualTrigger",
-    "typeVersion": 1,
-    "position": [
-      -40,
-      0
-    ],
-    "id": "3e678fd6-8577-450f-b85f-56269aac5332",
-    "name": "When clicking ‘Test workflow’"
-  },
-  "7": {
-    "parameters": {
-      "assignments": {
-        "assignments": [
-          {
-            "id": "c8d1c789-d36a-45fa-9e94-bd2e46614882",
-            "name": "resumeUrl",
-            "value": "={{ $execution.resumeUrl }}",
-            "type": "string"
-          }
-        ]
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.set",
-    "typeVersion": 3.4,
-    "position": [
-      280,
-      0
-    ],
-    "id": "224262e2-b953-4f36-aec5-54c4a630f7d1",
-    "name": "Edit Fields"
-  },
-  "8": {
-    "parameters": {
-      "updates": [
-        "messages"
       ]
     },
-    "type": "n8n-nodes-base.whatsAppTrigger",
-    "typeVersion": 1,
-    "position": [
-      -40,
-      480
-    ],
-    "id": "f56898b4-bb39-4c80-9cb9-7bbb88955a1a",
-    "name": "WhatsApp Trigger",
-    "webhookId": "3583ec92-0977-436c-9056-486f674c0f7e",
-    "credentials": {
-      "whatsAppTriggerApi": {
-        "id": "TUkfPNzL2HCG61qc",
-        "name": "WhatsApp OAuth account"
-      }
-    }
-  },
-  "9": {
-    "parameters": {
-      "rules": {
-        "values": [
+    "Respuesta": {
+      "main": [
+        []
+      ]
+    },
+    "If1": {
+      "main": [
+        [
           {
-            "conditions": {
-              "options": {
-                "caseSensitive": true,
-                "leftValue": "",
-                "typeValidation": "strict",
-                "version": 2
-              },
-              "conditions": [
-                {
-                  "leftValue": "={{ $json.messages[0].button.payload }}",
-                  "rightValue": "Confirmar",
-                  "operator": {
-                    "type": "string",
-                    "operation": "equals"
-                  },
-                  "id": "ce2d4905-e84e-443c-a696-7d064a3ab285"
-                }
-              ],
-              "combinator": "and"
-            }
-          },
-          {
-            "conditions": {
-              "options": {
-                "caseSensitive": true,
-                "leftValue": "",
-                "typeValidation": "strict",
-                "version": 2
-              },
-              "conditions": [
-                {
-                  "id": "1190a104-12d4-4f82-a1ce-73a524a2f8fe",
-                  "leftValue": "={{ $json.messages[0].button.payload }}",
-                  "rightValue": "Rechazar",
-                  "operator": {
-                    "type": "string",
-                    "operation": "equals",
-                    "name": "filter.operator.equals"
-                  }
-                }
-              ],
-              "combinator": "and"
-            }
-          },
-          {
-            "conditions": {
-              "options": {
-                "caseSensitive": true,
-                "leftValue": "",
-                "typeValidation": "strict",
-                "version": 2
-              },
-              "conditions": [
-                {
-                  "id": "84103cd2-106a-4276-a311-958b928812e0",
-                  "leftValue": "={{ $json.messages[0].text.body }}",
-                  "rightValue": "",
-                  "operator": {
-                    "type": "string",
-                    "operation": "notEmpty",
-                    "singleValue": true
-                  }
-                }
-              ],
-              "combinator": "and"
-            }
+            "node": "Code2",
+            "type": "main",
+            "index": 0
           }
         ]
-      },
-      "options": {}
+      ]
     },
-    "type": "n8n-nodes-base.switch",
-    "typeVersion": 3.2,
-    "position": [
-      400,
-      380
-    ],
-    "id": "5d93a794-697f-459e-828a-64e40c133921",
-    "name": "Switch"
-  },
-  "10": {
-    "parameters": {
-      "operation": "send",
-      "phoneNumberId": "631081970092798",
-      "recipientPhoneNumber": "={{ $json.messages[0].from }}",
-      "textBody": "Entendido, se seguirán enviando recordatorios",
-      "additionalFields": {}
+    "WhatsApp Business Cloud": {
+      "main": [
+        []
+      ]
     },
-    "type": "n8n-nodes-base.whatsApp",
-    "typeVersion": 1,
-    "position": [
-      640,
-      200
-    ],
-    "id": "d589e218-d0d2-4aae-b8a1-f24138d08eb9",
-    "name": "WhatsApp Business Cloud1",
-    "webhookId": "c5ea45a8-7374-4567-a3a1-408897e63688",
-    "credentials": {
-      "whatsAppApi": {
-        "id": "SlLQKZiaNG7boEr5",
-        "name": "Argenway Whatsapp"
-      }
-    }
-  },
-  "11": {
-    "parameters": {
-      "operation": "send",
-      "phoneNumberId": "631081970092798",
-      "recipientPhoneNumber": "={{ $json.messages[0].from }}",
-      "textBody": "Entendido, ya no se enviarán recordatorios",
-      "additionalFields": {}
-    },
-    "type": "n8n-nodes-base.whatsApp",
-    "typeVersion": 1,
-    "position": [
-      640,
-      380
-    ],
-    "id": "bb3c3630-f6d7-433c-8f68-94ab4a6c9e68",
-    "name": "WhatsApp Business Cloud2",
-    "webhookId": "8d6b2f07-6fe0-445a-b4d0-ed5a5570b458",
-    "credentials": {
-      "whatsAppApi": {
-        "id": "SlLQKZiaNG7boEr5",
-        "name": "Argenway Whatsapp"
-      }
-    }
-  },
-  "12": {
-    "parameters": {
-      "documentId": {
-        "__rl": true,
-        "value": "18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg",
-        "mode": "list",
-        "cachedResultName": "Base de datos | Inversores Argenway",
-        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg/edit?usp=drivesdk"
-      },
-      "sheetName": {
-        "__rl": true,
-        "value": 931241228,
-        "mode": "list",
-        "cachedResultName": "Base de datos",
-        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg/edit#gid=931241228"
-      },
-      "filtersUI": {
-        "values": [
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
           {
-            "lookupColumn": "Whatsapp",
-            "lookupValue": "={{ $json.messages[0].from }}"
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
           }
         ]
-      },
-      "options": {}
+      ]
     },
-    "type": "n8n-nodes-base.googleSheets",
-    "typeVersion": 4.5,
-    "position": [
-      640,
-      600
-    ],
-    "id": "571a1dbc-14c9-4ec8-8125-d41cc4f0bd07",
-    "name": "Obtengo el inversor que escribió",
-    "credentials": {
-      "googleSheetsOAuth2Api": {
-        "id": "sftHuZ9WcrY9nf5C",
-        "name": "Google Sheets account 3"
-      }
-    }
-  },
-  "13": {
-    "parameters": {
-      "conditions": {
-        "options": {
-          "caseSensitive": true,
-          "leftValue": "",
-          "typeValidation": "loose",
-          "version": 2
-        },
-        "conditions": [
+    "Edit Fields": {
+      "main": [
+        [
           {
-            "id": "f9339f1e-3c29-4a43-b742-e343c225ebc1",
-            "leftValue": "={{ $json.messages[0] }}",
-            "rightValue": "",
-            "operator": {
-              "type": "boolean",
-              "operation": "exists",
-              "singleValue": true
-            }
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "Verifico si es un envío de mensajes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
           }
         ],
-        "combinator": "and"
-      },
-      "looseTypeValidation": true,
-      "options": {}
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Obtengo el inversor que escribió",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
-    "type": "n8n-nodes-base.if",
-    "typeVersion": 2.2,
-    "position": [
-      180,
-      480
-    ],
-    "id": "8465e5ff-331d-46ce-9d26-c63775f6abd9",
-    "name": "Verifico si es un envío de mensajes"
+    "Obtengo el inversor que escribió": {
+      "main": [
+        [
+          {
+            "node": "Envío mensaje de texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verifico si es un envío de mensajes": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
   },
-  "14": {
-    "parameters": {
-      "operation": "send",
-      "phoneNumberId": "631081970092798",
-      "recipientPhoneNumber": "={{ $('Switch').item.json.messages[0].from }}",
-      "textBody": "=😅 Este número no está habilitado para chatear. \nSi querés comunicarte con nuestro equipo, podés contactarte con {{ $json[\"Ejecutivo Comercial\"]}} al {{ $json[\"Número del asesor\"] }} para que resuelva cualquier consulta.\n\nGracias!",
-      "additionalFields": {}
+  "createdAt": "2025-04-24T18:58:06.217Z",
+  "id": "kMYTAVXapVOLfhwO",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Envío de mensaje con replica",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "argenway",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        -560
+      ],
+      "id": "ba7f0764-80c0-4749-9744-e18c022b0c87",
+      "name": "Verificación",
+      "webhookId": "6423f6bb-b3dc-4db4-a895-f9d8d9242688"
     },
-    "type": "n8n-nodes-base.whatsApp",
-    "typeVersion": 1,
-    "position": [
-      860,
-      600
-    ],
-    "id": "1468f495-74f9-4518-96d9-668c4d11d301",
-    "name": "Envío mensaje de texto",
-    "webhookId": "670adcb7-8150-4faf-8044-4d2bea064089",
-    "credentials": {
-      "whatsAppApi": {
-        "id": "SlLQKZiaNG7boEr5",
-        "name": "Argenway Whatsapp"
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        -560
+      ],
+      "id": "4bfa3f34-b1fa-4d59-958c-b790ccef9060",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "argenway",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        -360
+      ],
+      "id": "ca75a1ab-6420-4db2-8b1f-6d021071ff83",
+      "name": "Respuesta",
+      "webhookId": "ca8ac8c9-143b-42ae-8a19-8c963aeeb602"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f9339f1e-3c29-4a43-b742-e343c225ebc1",
+              "leftValue": "={{ $json.body.entry[0].changes[0].value.messages[0] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        220,
+        -360
+      ],
+      "id": "d2b2caac-09dd-422a-b8dd-03944119987d",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        -460
+      ],
+      "id": "bbc4de78-9575-4437-bc68-7f18c8314613",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "631081970092798",
+        "recipientPhoneNumber": "5492214363975",
+        "template": "recordatorio_informes|es_AR",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "Cristian Sosa"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        560,
+        0
+      ],
+      "id": "37612163-4eda-4942-b54b-ac5302291823",
+      "name": "WhatsApp Business Cloud",
+      "webhookId": "89aa6b27-747f-4263-a186-03c245054b18",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SlLQKZiaNG7boEr5",
+          "name": "Argenway Whatsapp"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        0
+      ],
+      "id": "3e678fd6-8577-450f-b85f-56269aac5332",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c8d1c789-d36a-45fa-9e94-bd2e46614882",
+              "name": "resumeUrl",
+              "value": "={{ $execution.resumeUrl }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        0
+      ],
+      "id": "224262e2-b953-4f36-aec5-54c4a630f7d1",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ]
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        480
+      ],
+      "id": "f56898b4-bb39-4c80-9cb9-7bbb88955a1a",
+      "name": "WhatsApp Trigger",
+      "webhookId": "3583ec92-0977-436c-9056-486f674c0f7e",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "TUkfPNzL2HCG61qc",
+          "name": "WhatsApp OAuth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.messages[0].button.payload }}",
+                    "rightValue": "Confirmar",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "ce2d4905-e84e-443c-a696-7d064a3ab285"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1190a104-12d4-4f82-a1ce-73a524a2f8fe",
+                    "leftValue": "={{ $json.messages[0].button.payload }}",
+                    "rightValue": "Rechazar",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "84103cd2-106a-4276-a311-958b928812e0",
+                    "leftValue": "={{ $json.messages[0].text.body }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        400,
+        380
+      ],
+      "id": "5d93a794-697f-459e-828a-64e40c133921",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "631081970092798",
+        "recipientPhoneNumber": "={{ $json.messages[0].from }}",
+        "textBody": "Entendido, se seguirán enviando recordatorios",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        640,
+        200
+      ],
+      "id": "d589e218-d0d2-4aae-b8a1-f24138d08eb9",
+      "name": "WhatsApp Business Cloud1",
+      "webhookId": "c5ea45a8-7374-4567-a3a1-408897e63688",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SlLQKZiaNG7boEr5",
+          "name": "Argenway Whatsapp"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "631081970092798",
+        "recipientPhoneNumber": "={{ $json.messages[0].from }}",
+        "textBody": "Entendido, ya no se enviarán recordatorios",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        640,
+        380
+      ],
+      "id": "bb3c3630-f6d7-433c-8f68-94ab4a6c9e68",
+      "name": "WhatsApp Business Cloud2",
+      "webhookId": "8d6b2f07-6fe0-445a-b4d0-ed5a5570b458",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SlLQKZiaNG7boEr5",
+          "name": "Argenway Whatsapp"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg",
+          "mode": "list",
+          "cachedResultName": "Base de datos | Inversores Argenway",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 931241228,
+          "mode": "list",
+          "cachedResultName": "Base de datos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg/edit#gid=931241228"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Whatsapp",
+              "lookupValue": "={{ $json.messages[0].from }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        640,
+        600
+      ],
+      "id": "571a1dbc-14c9-4ec8-8125-d41cc4f0bd07",
+      "name": "Obtengo el inversor que escribió",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "sftHuZ9WcrY9nf5C",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f9339f1e-3c29-4a43-b742-e343c225ebc1",
+              "leftValue": "={{ $json.messages[0] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        180,
+        480
+      ],
+      "id": "8465e5ff-331d-46ce-9d26-c63775f6abd9",
+      "name": "Verifico si es un envío de mensajes"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "631081970092798",
+        "recipientPhoneNumber": "={{ $('Switch').item.json.messages[0].from }}",
+        "textBody": "=😅 Este número no está habilitado para chatear. \nSi querés comunicarte con nuestro equipo, podés contactarte con {{ $json[\"Ejecutivo Comercial\"]}} al {{ $json[\"Número del asesor\"] }} para que resuelva cualquier consulta.\n\nGracias!",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        860,
+        600
+      ],
+      "id": "1468f495-74f9-4518-96d9-668c4d11d301",
+      "name": "Envío mensaje de texto",
+      "webhookId": "670adcb7-8150-4faf-8044-4d2bea064089",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SlLQKZiaNG7boEr5",
+          "name": "Argenway Whatsapp"
+        }
       }
     }
-  }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 4,
+  "updatedAt": "2025-06-09T17:21:57.000Z",
+  "versionId": "d8ec69ba-c3a9-43d8-ba40-de30c18e45ec"
 }
