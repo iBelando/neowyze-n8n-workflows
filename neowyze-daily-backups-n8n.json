@@ -14,13 +14,7 @@
     },
     "Filter": {
       "main": [
-        [
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Switch": {
@@ -52,7 +46,7 @@
       "main": [
         [
           {
-            "node": "Filter",
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
@@ -298,7 +292,7 @@
       "type": "n8n-nodes-base.filter",
       "position": [
         -460,
-        400
+        880
       ],
       "typeVersion": 2.2
     },
@@ -675,6 +669,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-15T22:25:50.000Z",
-  "versionId": "ad63705a-b7df-437b-91b7-9e87d99644c9"
+  "updatedAt": "2025-08-15T22:26:51.000Z",
+  "versionId": "000fc81b-bc4a-458e-bdf5-f1d6f93c0a30"
 }
