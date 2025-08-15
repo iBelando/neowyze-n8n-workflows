@@ -1,0 +1,651 @@
+{
+  "0": {
+    "parameters": {
+      "path": "oro-verde",
+      "responseMode": "responseNode",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.webhook",
+    "typeVersion": 2,
+    "position": [
+      60,
+      120
+    ],
+    "id": "1cf23bb1-6f43-48c5-b891-d652f40d5170",
+    "name": "Verificación",
+    "webhookId": "6423f6bb-b3dc-4db4-a895-f9d8d9242688"
+  },
+  "1": {
+    "parameters": {
+      "respondWith": "text",
+      "responseBody": "={{ $json.query['hub.challenge'] }}",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.respondToWebhook",
+    "typeVersion": 1.1,
+    "position": [
+      320,
+      120
+    ],
+    "id": "6296b963-dd6a-46e5-a551-3eabc6f31cef",
+    "name": "Respond to Webhook"
+  },
+  "2": {
+    "parameters": {
+      "updates": [
+        "messages"
+      ]
+    },
+    "type": "n8n-nodes-base.whatsAppTrigger",
+    "typeVersion": 1,
+    "position": [
+      -40,
+      680
+    ],
+    "id": "95cdc84e-a047-45b1-a8fe-28b741bc7b68",
+    "name": "WhatsApp Trigger",
+    "webhookId": "3583ec92-0977-436c-9056-486f674c0f7e",
+    "credentials": {
+      "whatsAppTriggerApi": {
+        "id": "WHB2BLy1pAihGsGD",
+        "name": "Oro Verde"
+      }
+    }
+  },
+  "3": {
+    "parameters": {
+      "rules": {
+        "values": [
+          {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 2
+              },
+              "conditions": [
+                {
+                  "leftValue": "={{ $json.messages[0].button.payload }}",
+                  "rightValue": "Confirmar",
+                  "operator": {
+                    "type": "string",
+                    "operation": "equals"
+                  },
+                  "id": "ce2d4905-e84e-443c-a696-7d064a3ab285"
+                }
+              ],
+              "combinator": "and"
+            }
+          },
+          {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 2
+              },
+              "conditions": [
+                {
+                  "id": "1190a104-12d4-4f82-a1ce-73a524a2f8fe",
+                  "leftValue": "={{ $json.messages[0].button.payload }}",
+                  "rightValue": "Rechazar",
+                  "operator": {
+                    "type": "string",
+                    "operation": "equals",
+                    "name": "filter.operator.equals"
+                  }
+                }
+              ],
+              "combinator": "and"
+            }
+          },
+          {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 2
+              },
+              "conditions": [
+                {
+                  "id": "84103cd2-106a-4276-a311-958b928812e0",
+                  "leftValue": "={{ $json.messages[0].text.body }}",
+                  "rightValue": "",
+                  "operator": {
+                    "type": "string",
+                    "operation": "notEmpty",
+                    "singleValue": true
+                  }
+                }
+              ],
+              "combinator": "and"
+            }
+          },
+          {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 2
+              },
+              "conditions": [
+                {
+                  "id": "723efa4e-bb2c-420b-93e8-9e0a3f554cd5",
+                  "leftValue": "={{ $json.messages[0].type }}",
+                  "rightValue": "text",
+                  "operator": {
+                    "type": "string",
+                    "operation": "notEquals"
+                  }
+                }
+              ],
+              "combinator": "and"
+            }
+          }
+        ]
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.switch",
+    "typeVersion": 3.2,
+    "position": [
+      400,
+      580
+    ],
+    "id": "2a06cc4c-608f-45e0-9437-162bded0aee0",
+    "name": "Switch"
+  },
+  "4": {
+    "parameters": {
+      "operation": "send",
+      "phoneNumberId": "691649007368841",
+      "recipientPhoneNumber": "={{ $json.messages[0].from }}",
+      "textBody": "Entendido, se seguirán enviando recordatorios",
+      "additionalFields": {}
+    },
+    "type": "n8n-nodes-base.whatsApp",
+    "typeVersion": 1,
+    "position": [
+      1080,
+      400
+    ],
+    "id": "ce15549c-0b0c-4c06-84c4-5d7c267004a8",
+    "name": "WhatsApp Business Cloud1",
+    "webhookId": "c5ea45a8-7374-4567-a3a1-408897e63688",
+    "credentials": {
+      "whatsAppApi": {
+        "id": "IhiBXA6GvGnqtxFk",
+        "name": "Oro Verde - Whatsapp"
+      }
+    }
+  },
+  "5": {
+    "parameters": {
+      "operation": "send",
+      "phoneNumberId": "691649007368841",
+      "recipientPhoneNumber": "={{ $json.messages[0].from }}",
+      "textBody": "Entendido, ya no se enviarán recordatorios",
+      "additionalFields": {}
+    },
+    "type": "n8n-nodes-base.whatsApp",
+    "typeVersion": 1,
+    "position": [
+      1080,
+      580
+    ],
+    "id": "f33c760f-23c7-43b4-ad43-e0f522ba9cfc",
+    "name": "WhatsApp Business Cloud2",
+    "webhookId": "8d6b2f07-6fe0-445a-b4d0-ed5a5570b458",
+    "credentials": {
+      "whatsAppApi": {
+        "id": "IhiBXA6GvGnqtxFk",
+        "name": "Oro Verde - Whatsapp"
+      }
+    }
+  },
+  "6": {
+    "parameters": {
+      "conditions": {
+        "options": {
+          "caseSensitive": true,
+          "leftValue": "",
+          "typeValidation": "loose",
+          "version": 2
+        },
+        "conditions": [
+          {
+            "id": "f9339f1e-3c29-4a43-b742-e343c225ebc1",
+            "leftValue": "={{ $json.messages[0] }}",
+            "rightValue": "",
+            "operator": {
+              "type": "boolean",
+              "operation": "exists",
+              "singleValue": true
+            }
+          }
+        ],
+        "combinator": "and"
+      },
+      "looseTypeValidation": true,
+      "options": {}
+    },
+    "type": "n8n-nodes-base.if",
+    "typeVersion": 2.2,
+    "position": [
+      180,
+      680
+    ],
+    "id": "6e1854b4-8915-4994-ac07-a08d074c913e",
+    "name": "Verifico si es un envío de mensajes"
+  },
+  "7": {
+    "parameters": {
+      "operation": "send",
+      "phoneNumberId": "691649007368841",
+      "recipientPhoneNumber": "=54349215610012",
+      "textBody": "={{$('HTTP Request').item.json.choices[0].message.content}}",
+      "additionalFields": {}
+    },
+    "type": "n8n-nodes-base.whatsApp",
+    "typeVersion": 1,
+    "position": [
+      3400,
+      800
+    ],
+    "id": "c901cc99-1f22-4fea-9e84-6c2b1c350457",
+    "name": "Envío mensaje de texto",
+    "webhookId": "670adcb7-8150-4faf-8044-4d2bea064089",
+    "credentials": {
+      "whatsAppApi": {
+        "id": "IhiBXA6GvGnqtxFk",
+        "name": "Oro Verde - Whatsapp"
+      }
+    }
+  },
+  "8": {
+    "parameters": {
+      "content": "## Verificación\n**Acá se realiza la verificación del webhook**",
+      "height": 320,
+      "width": 620
+    },
+    "type": "n8n-nodes-base.stickyNote",
+    "position": [
+      0,
+      0
+    ],
+    "typeVersion": 1,
+    "id": "7c7fef40-bff7-42e1-9ee6-59ddb750eff8",
+    "name": "Sticky Note"
+  },
+  "9": {
+    "parameters": {
+      "operation": "append",
+      "documentId": {
+        "__rl": true,
+        "value": "16x3Hh8oII8ooq1T4qINrys1xqKWnXaDmgp3bhcRivCA",
+        "mode": "list",
+        "cachedResultName": "Respuestas - Test",
+        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16x3Hh8oII8ooq1T4qINrys1xqKWnXaDmgp3bhcRivCA/edit?usp=drivesdk"
+      },
+      "sheetName": {
+        "__rl": true,
+        "value": "gid=0",
+        "mode": "list",
+        "cachedResultName": "Sheet1",
+        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16x3Hh8oII8ooq1T4qINrys1xqKWnXaDmgp3bhcRivCA/edit#gid=0"
+      },
+      "columns": {
+        "mappingMode": "defineBelow",
+        "value": {
+          "Nombre": "={{ $('Switch').item.json.contacts[0].profile.name }}",
+          "Numero": "={{ $('Switch').item.json.messages[0].from }}",
+          "Mensaje": "={{$('HTTP Request').item.json.choices[0].message.content}}",
+          "Hora": "={{ $('Switch').item.json.messages[0].timestamp }}",
+          "Column 5": "-",
+          "Column 6": "-"
+        },
+        "matchingColumns": [
+          "Nombre"
+        ],
+        "schema": [
+          {
+            "id": "Nombre",
+            "displayName": "Nombre",
+            "required": false,
+            "defaultMatch": false,
+            "display": true,
+            "type": "string",
+            "canBeUsedToMatch": true,
+            "removed": false
+          },
+          {
+            "id": "Numero",
+            "displayName": "Numero",
+            "required": false,
+            "defaultMatch": false,
+            "display": true,
+            "type": "string",
+            "canBeUsedToMatch": true
+          },
+          {
+            "id": "Mensaje",
+            "displayName": "Mensaje",
+            "required": false,
+            "defaultMatch": false,
+            "display": true,
+            "type": "string",
+            "canBeUsedToMatch": true
+          },
+          {
+            "id": "Hora",
+            "displayName": "Hora",
+            "required": false,
+            "defaultMatch": false,
+            "display": true,
+            "type": "string",
+            "canBeUsedToMatch": true
+          },
+          {
+            "id": "Column 5",
+            "displayName": "Column 5",
+            "required": false,
+            "defaultMatch": false,
+            "display": true,
+            "type": "string",
+            "canBeUsedToMatch": true
+          },
+          {
+            "id": "Column 6",
+            "displayName": "Column 6",
+            "required": false,
+            "defaultMatch": false,
+            "display": true,
+            "type": "string",
+            "canBeUsedToMatch": true
+          }
+        ],
+        "attemptToConvertTypes": false,
+        "convertFieldsToString": false
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.googleSheets",
+    "typeVersion": 4.5,
+    "position": [
+      2540,
+      680
+    ],
+    "id": "0bab77c4-d641-4488-96fd-eb3a19fae25c",
+    "name": "Google Sheets",
+    "credentials": {
+      "googleSheetsOAuth2Api": {
+        "id": "tcYjJbLS3otsYnxI",
+        "name": "Google Sheets account 5"
+      }
+    }
+  },
+  "10": {
+    "parameters": {
+      "httpMethod": "POST",
+      "path": "oro-verde/orden",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.webhook",
+    "typeVersion": 2,
+    "position": [
+      -580,
+      1240
+    ],
+    "id": "3809938e-8fd9-49cd-ba03-5f93c52588b2",
+    "name": "Webhook",
+    "webhookId": "d7625210-c79e-4266-bfa5-1d7a54db1ca0"
+  },
+  "11": {
+    "parameters": {
+      "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+    },
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+      -360,
+      1240
+    ],
+    "id": "b63fc65b-fac1-4579-9195-08c75e27d7dc",
+    "name": "Code"
+  },
+  "12": {
+    "parameters": {
+      "options": {
+        "groupMessages": true
+      }
+    },
+    "type": "@n8n/n8n-nodes-langchain.memoryManager",
+    "typeVersion": 1.1,
+    "position": [
+      640,
+      800
+    ],
+    "id": "5ad0fcb1-a73d-44fa-87f4-8428d143bc21",
+    "name": "Chat Memory Manager"
+  },
+  "13": {
+    "parameters": {
+      "mode": "insert",
+      "messages": {
+        "messageValues": [
+          {
+            "message": "={{$json.choices[0].message.content}}"
+          },
+          {
+            "type": "user",
+            "message": "={{ $('Switch').item.json.messages[0].text.body }}"
+          }
+        ]
+      }
+    },
+    "type": "@n8n/n8n-nodes-langchain.memoryManager",
+    "typeVersion": 1.1,
+    "position": [
+      1720,
+      800
+    ],
+    "id": "e3c5e64c-312e-46fe-ad56-ad7443daa8bf",
+    "name": "Chat Memory Manager1"
+  },
+  "14": {
+    "parameters": {
+      "sessionIdType": "customKey",
+      "sessionKey": "={{ $('Switch').item.json.messages[0].from }}",
+      "contextWindowLength": 30
+    },
+    "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+    "typeVersion": 1.3,
+    "position": [
+      1220,
+      1140
+    ],
+    "id": "636fd9f1-f66e-48c3-8d32-0cc437821492",
+    "name": "Simple Memory"
+  },
+  "15": {
+    "parameters": {},
+    "type": "n8n-nodes-base.manualTrigger",
+    "typeVersion": 1,
+    "position": [
+      -580,
+      1500
+    ],
+    "id": "9a43fb27-15c7-4aa4-aedc-4cd8c767e735",
+    "name": "When clicking ‘Test workflow’"
+  },
+  "16": {
+    "parameters": {
+      "jsCode": "const dbMessages = $input.first().json.messages.map(message => {\n    const key = Object.keys(message)[0];\n    const value = message[key];\n    \n    return {\n      role: key === \"human\" ? \"user\" : key,\n      content: value\n    };\n})\n\nconst messages = [...dbMessages, {\"role\": \"user\", \"content\": $('Switch').item.json.messages[0].text.body }]\n\nreturn {data: messages};"
+    },
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+      1100,
+      800
+    ],
+    "id": "eb7ce031-afb1-4672-92da-25235a59d58d",
+    "name": "Code3"
+  },
+  "17": {
+    "parameters": {
+      "method": "POST",
+      "url": "https://s7j52jztuwikgluppe4r4alg.agents.do-ai.run/api/v1/chat/completions",
+      "sendHeaders": true,
+      "headerParameters": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "value": "Bearer AY8OnyEHY5xYPXOEo4BkwHye99p3ahaf"
+          }
+        ]
+      },
+      "sendBody": true,
+      "specifyBody": "json",
+      "jsonBody": "={\n  \"messages\": {{ $json.data.toJsonString() }},\n  \"stream\": false,\n  \"include_functions_info\": false,\n  \"include_retrieval_info\": true,\n  \"include_guardrails_info\": false\n}",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 4.2,
+    "position": [
+      1380,
+      800
+    ],
+    "id": "6c1554a5-dd83-41e4-98fd-fff6bc49338b",
+    "name": "HTTP Request",
+    "executeOnce": true
+  },
+  "18": {
+    "parameters": {
+      "options": {}
+    },
+    "type": "@n8n/n8n-nodes-langchain.memoryManager",
+    "typeVersion": 1.1,
+    "position": [
+      -360,
+      1500
+    ],
+    "id": "2c4e460b-6de6-4fc9-8941-f5563fda403c",
+    "name": "Chat Memory Manager4"
+  },
+  "19": {
+    "parameters": {
+      "sessionIdType": "customKey",
+      "sessionKey": "5492214363975",
+      "contextWindowLength": 10
+    },
+    "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+    "typeVersion": 1.3,
+    "position": [
+      -240,
+      1740
+    ],
+    "id": "8299e143-b0cd-456b-8d5f-10b5b9c9f210",
+    "name": "Simple Memory2"
+  },
+  "20": {
+    "parameters": {
+      "conditions": {
+        "options": {
+          "caseSensitive": true,
+          "leftValue": "",
+          "typeValidation": "strict",
+          "version": 2
+        },
+        "conditions": [
+          {
+            "id": "1e6f99c0-85df-4f75-8af4-96e14c07c4ad",
+            "leftValue": "={{$('HTTP Request').item.json.choices[0].message.content}}",
+            "rightValue": "Tu pedido ya está registrado",
+            "operator": {
+              "type": "string",
+              "operation": "contains"
+            }
+          }
+        ],
+        "combinator": "and"
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.if",
+    "typeVersion": 2.2,
+    "position": [
+      2140,
+      800
+    ],
+    "id": "e101a6d0-57fd-45e1-a789-b606f984e355",
+    "name": "If"
+  },
+  "21": {
+    "parameters": {},
+    "type": "n8n-nodes-base.merge",
+    "typeVersion": 3,
+    "position": [
+      3200,
+      800
+    ],
+    "id": "2d70e335-2699-4c8f-97bb-08d16b27358b",
+    "name": "Merge"
+  },
+  "22": {
+    "parameters": {
+      "mode": "delete",
+      "deleteMode": "all"
+    },
+    "type": "@n8n/n8n-nodes-langchain.memoryManager",
+    "typeVersion": 1.1,
+    "position": [
+      2780,
+      680
+    ],
+    "id": "9bb8f881-be55-40d7-9764-afc4f0cbe886",
+    "name": "Chat Memory Manager2"
+  },
+  "23": {
+    "parameters": {
+      "sessionIdType": "customKey",
+      "sessionKey": "{{ $('Switch').item.json.messages[0].from }}",
+      "contextWindowLength": 30
+    },
+    "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+    "typeVersion": 1.3,
+    "position": [
+      2800,
+      1140
+    ],
+    "id": "59c14fb2-c04a-4067-b7ad-5edf8a6864a5",
+    "name": "Simple Memory1"
+  },
+  "24": {
+    "parameters": {
+      "operation": "send",
+      "phoneNumberId": "691649007368841",
+      "recipientPhoneNumber": "542214363975",
+      "textBody": "=Hola, gracias por escribir. Te comento que no está permitido enviar archivos multimedia (imágenes, videos, audios, etc.) por esta vía.\n\nPodés contarme lo que necesitás de forma escrita: una descripción, tu consulta o los datos que quieras compartir. Así podré ayudarte sin inconvenientes.",
+      "additionalFields": {}
+    },
+    "type": "n8n-nodes-base.whatsApp",
+    "typeVersion": 1,
+    "position": [
+      640,
+      1080
+    ],
+    "id": "70de97c2-a1db-4d20-b9c3-2000fdefae4b",
+    "name": "WhatsApp Business Cloud",
+    "webhookId": "bce95f12-fff1-4734-a1b4-c4afdd307010",
+    "credentials": {
+      "whatsAppApi": {
+        "id": "IhiBXA6GvGnqtxFk",
+        "name": "Oro Verde - Whatsapp"
+      }
+    }
+  }
+}
