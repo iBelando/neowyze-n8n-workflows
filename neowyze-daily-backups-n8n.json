@@ -96,8 +96,8 @@
     "name": "Filter",
     "type": "n8n-nodes-base.filter",
     "position": [
-      -500,
-      680
+      -460,
+      400
     ],
     "typeVersion": 2.2
   },
