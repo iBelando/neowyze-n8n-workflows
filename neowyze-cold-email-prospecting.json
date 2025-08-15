@@ -1,70 +1,132 @@
 {
-  "0": {
-    "parameters": {},
-    "type": "n8n-nodes-base.manualTrigger",
-    "typeVersion": 1,
-    "position": [
-      -120,
-      80
-    ],
-    "id": "c15ec820-90c8-4184-be7f-d46b7a1ea798",
-    "name": "When clicking ‘Test workflow’"
-  },
-  "1": {
-    "parameters": {
-      "url": "https://maps.googleapis.com/maps/api/place/textsearch/json?query=inmobiliarias+en+Rosario&key=API_KEY",
-      "options": {}
+  "active": false,
+  "connections": {
+    "HTTP Request - Buscar negocios": {
+      "main": [
+        [
+          {
+            "node": "Transformar resultados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
-    "name": "HTTP Request - Buscar negocios",
-    "type": "n8n-nodes-base.httpRequest",
-    "typeVersion": 1,
-    "position": [
-      80,
-      80
-    ],
-    "id": "a166c8ed-3363-4751-8a03-b9bf0e842975"
-  },
-  "2": {
-    "parameters": {
-      "functionCode": "\nconst leads = items[0].json.results.map(result => {\n  return {\n    json: {\n      name: result.name,\n      address: result.formatted_address,\n      website: result.website || \"\",\n      email: \"\", // email se agregaría si se scrapea con otra herramienta\n    }\n  };\n});\nreturn leads;\n"
+    "Transformar resultados": {
+      "main": [
+        [
+          {
+            "node": "Generar prompt IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
-    "name": "Transformar resultados",
-    "type": "n8n-nodes-base.function",
-    "typeVersion": 1,
-    "position": [
-      280,
-      80
-    ],
-    "id": "bec9d215-f96d-4f5f-8f8e-af647385c728"
-  },
-  "3": {
-    "parameters": {
-      "functionCode": "\nconst promptBase = `Sos un experto en ventas B2B. Escribí un email frío de prospección para una agencia que ofrece servicios de desarrollo web, SEO y publicidad. El negocio se llama:`;\n\nreturn items.map(item => {\n  const negocio = item.json.name;\n  return {\n    json: {\n      ...item.json,\n      prompt: `${promptBase} ${negocio}`\n    }\n  };\n});\n"
+    "Generar prompt IA": {
+      "main": [
+        [
+          {
+            "node": "Enviar email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
-    "name": "Generar prompt IA",
-    "type": "n8n-nodes-base.function",
-    "typeVersion": 1,
-    "position": [
-      480,
-      80
-    ],
-    "id": "a4f7a082-6d82-4d5f-92c8-7e9b5dd92518"
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request - Buscar negocios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
   },
-  "4": {
-    "parameters": {
-      "fromEmail": "tu-correo@tu-dominio.com",
-      "toEmail": "={{$json[\"email\"]}}",
-      "subject": "Podemos ayudarte a mejorar tu presencia digital",
-      "text": "={{$json[\"completion\"]}}",
-      "options": {}
+  "createdAt": "2025-06-28T04:17:03.145Z",
+  "id": "hKIUS5bJjR7AnGCo",
+  "meta": null,
+  "name": "[Neowyze] Cold Email Prospecting",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        80
+      ],
+      "id": "c15ec820-90c8-4184-be7f-d46b7a1ea798",
+      "name": "When clicking ‘Test workflow’"
     },
-    "name": "Enviar email",
-    "type": "n8n-nodes-base.emailSend",
-    "typeVersion": 1,
-    "position": [
-      680,
-      80
-    ],
-    "id": "2cb11c6c-fcca-4954-bbfb-8b2666cd9140"
-  }
+    {
+      "parameters": {
+        "url": "https://maps.googleapis.com/maps/api/place/textsearch/json?query=inmobiliarias+en+Rosario&key=API_KEY",
+        "options": {}
+      },
+      "name": "HTTP Request - Buscar negocios",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        80,
+        80
+      ],
+      "id": "a166c8ed-3363-4751-8a03-b9bf0e842975"
+    },
+    {
+      "parameters": {
+        "functionCode": "\nconst leads = items[0].json.results.map(result => {\n  return {\n    json: {\n      name: result.name,\n      address: result.formatted_address,\n      website: result.website || \"\",\n      email: \"\", // email se agregaría si se scrapea con otra herramienta\n    }\n  };\n});\nreturn leads;\n"
+      },
+      "name": "Transformar resultados",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        280,
+        80
+      ],
+      "id": "bec9d215-f96d-4f5f-8f8e-af647385c728"
+    },
+    {
+      "parameters": {
+        "functionCode": "\nconst promptBase = `Sos un experto en ventas B2B. Escribí un email frío de prospección para una agencia que ofrece servicios de desarrollo web, SEO y publicidad. El negocio se llama:`;\n\nreturn items.map(item => {\n  const negocio = item.json.name;\n  return {\n    json: {\n      ...item.json,\n      prompt: `${promptBase} ${negocio}`\n    }\n  };\n});\n"
+      },
+      "name": "Generar prompt IA",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        480,
+        80
+      ],
+      "id": "a4f7a082-6d82-4d5f-92c8-7e9b5dd92518"
+    },
+    {
+      "parameters": {
+        "fromEmail": "tu-correo@tu-dominio.com",
+        "toEmail": "={{$json[\"email\"]}}",
+        "subject": "Podemos ayudarte a mejorar tu presencia digital",
+        "text": "={{$json[\"completion\"]}}",
+        "options": {}
+      },
+      "name": "Enviar email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        680,
+        80
+      ],
+      "id": "2cb11c6c-fcca-4954-bbfb-8b2666cd9140"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-28T04:18:58.000Z",
+  "versionId": "0ecfe055-edb6-4c58-83f7-1931be3c64c8"
 }
