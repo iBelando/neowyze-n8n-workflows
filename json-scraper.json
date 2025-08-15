@@ -1,887 +1,1225 @@
 {
-  "0": {
-    "parameters": {
-      "conditions": {
-        "options": {
-          "caseSensitive": true,
-          "leftValue": "",
-          "typeValidation": "strict",
-          "version": 2
-        },
-        "conditions": [
+  "active": false,
+  "connections": {
+    "If": {
+      "main": [
+        [
           {
-            "id": "300a1d53-9df5-4b1b-905f-db0d2a3381ee",
-            "leftValue": "={{ $json }}",
-            "rightValue": "",
-            "operator": {
-              "type": "object",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
+            "node": "Obtengo el json existente",
+            "type": "main",
+            "index": 0
           }
         ],
-        "combinator": "and"
-      },
-      "options": {}
+        [
+          {
+            "node": "Guardo el nuevo json",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
-    "type": "n8n-nodes-base.if",
-    "typeVersion": 2.2,
-    "position": [
-      3680,
-      -160
-    ],
-    "id": "f2722195-80ca-46ea-a07d-b1c7bc9be478",
-    "name": "If"
+    "Busco si el json ya existe": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtengo el json existente": {
+      "main": [
+        [
+          {
+            "node": "Lo paso a json",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lo paso a json": {
+      "main": [
+        [
+          {
+            "node": "Uno la data vieja con la nueva",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Elimino el json viejo": {
+      "main": [
+        [
+          {
+            "node": "Guardo el json actualizado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Uno la data vieja con la nueva": {
+      "main": [
+        [
+          {
+            "node": "Elimino el json viejo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtengo la carpeta del proyecto": {
+      "main": [
+        [
+          {
+            "node": "Filtro los resultados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtengo la carpeta del pais": {
+      "main": [
+        [
+          {
+            "node": "Filter1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtengo la carpeta de la provincia": {
+      "main": [
+        [
+          {
+            "node": "Filter2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "si no existe la carpeta del proyecto la creo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "si no existe la carpeta del pais la creo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter1": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Si no existe la carpeta de la provincia la creo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter2": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "si no existe la carpeta del proyecto la creo": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Obtengo la carpeta del pais",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Obtengo la carpeta de la provincia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "si no existe la carpeta del pais la creo": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        [
+          {
+            "node": "Busco si el json ya existe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Me guardo el nombre del archivo": {
+      "main": [
+        [
+          {
+            "node": "Obtengo la carpeta del proyecto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtro los resultados": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Renombro las key de los objetos": {
+      "main": [
+        [
+          {
+            "node": "Elimino los objetos vacíos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Renombro las key de los objetos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Elimino los objetos vacíos": {
+      "main": [
+        [
+          {
+            "node": "Me guardo el nombre del archivo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Si no existe la carpeta de la provincia la creo": {
+      "main": [
+        [
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
   },
-  "1": {
-    "parameters": {
-      "resource": "fileFolder",
-      "queryString": "={{ $('Me guardo el nombre del archivo').first().json.city }}.json",
-      "filter": {
+  "createdAt": "2025-03-17T19:18:12.622Z",
+  "id": "nT6khC9o2lNPQZE3",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "json scraper",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "300a1d53-9df5-4b1b-905f-db0d2a3381ee",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3680,
+        -160
+      ],
+      "id": "f2722195-80ca-46ea-a07d-b1c7bc9be478",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "queryString": "={{ $('Me guardo el nombre del archivo').first().json.city }}.json",
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "={{ $('Aggregate2').item.json[\"\"][0].id }}",
+            "mode": "id"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        3420,
+        -160
+      ],
+      "id": "2061e8a2-5331-491b-a46b-6ccab8a2c762",
+      "name": "Busco si el json ya existe",
+      "executeOnce": true,
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XLaCEqfXoWHPqJtQ",
+          "name": "Google Drive account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "createFromText",
+        "content": "={{ $('Elimino los objetos vacíos').all().map(item => item.json).toJsonString()}}",
+        "name": "={{ $('Me guardo el nombre del archivo').first().json.city }}.json",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
         "folderId": {
           "__rl": true,
           "value": "={{ $('Aggregate2').item.json[\"\"][0].id }}",
           "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        4080,
+        80
+      ],
+      "id": "e3537189-4e66-4375-8bbb-1e1a47b7d989",
+      "name": "Guardo el nuevo json",
+      "executeOnce": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XLaCEqfXoWHPqJtQ",
+          "name": "Google Drive account"
         }
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleDrive",
-    "typeVersion": 3,
-    "position": [
-      3420,
-      -160
-    ],
-    "id": "2061e8a2-5331-491b-a46b-6ccab8a2c762",
-    "name": "Busco si el json ya existe",
-    "executeOnce": true,
-    "alwaysOutputData": true,
-    "credentials": {
-      "googleDriveOAuth2Api": {
-        "id": "XLaCEqfXoWHPqJtQ",
-        "name": "Google Drive account"
       }
     },
-    "onError": "continueRegularOutput"
-  },
-  "2": {
-    "parameters": {
-      "operation": "createFromText",
-      "content": "={{ $('Elimino los objetos vacíos').all().map(item => item.json).toJsonString()}}",
-      "name": "={{ $('Me guardo el nombre del archivo').first().json.city }}.json",
-      "driveId": {
-        "__rl": true,
-        "mode": "list",
-        "value": "My Drive"
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
       },
-      "folderId": {
-        "__rl": true,
-        "value": "={{ $('Aggregate2').item.json[\"\"][0].id }}",
-        "mode": "id"
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleDrive",
-    "typeVersion": 3,
-    "position": [
-      4080,
-      80
-    ],
-    "id": "e3537189-4e66-4375-8bbb-1e1a47b7d989",
-    "name": "Guardo el nuevo json",
-    "executeOnce": true,
-    "credentials": {
-      "googleDriveOAuth2Api": {
-        "id": "XLaCEqfXoWHPqJtQ",
-        "name": "Google Drive account"
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        4080,
+        -380
+      ],
+      "id": "30da2bab-ca42-4a07-974d-e3964bc46839",
+      "name": "Obtengo el json existente",
+      "executeOnce": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XLaCEqfXoWHPqJtQ",
+          "name": "Google Drive account"
+        }
       }
-    }
-  },
-  "3": {
-    "parameters": {
-      "operation": "download",
-      "fileId": {
-        "__rl": true,
-        "value": "={{ $json.id }}",
-        "mode": "id"
-      },
-      "options": {}
     },
-    "type": "n8n-nodes-base.googleDrive",
-    "typeVersion": 3,
-    "position": [
-      4080,
-      -380
-    ],
-    "id": "30da2bab-ca42-4a07-974d-e3964bc46839",
-    "name": "Obtengo el json existente",
-    "executeOnce": true,
-    "credentials": {
-      "googleDriveOAuth2Api": {
-        "id": "XLaCEqfXoWHPqJtQ",
-        "name": "Google Drive account"
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "destinationKey": "=",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        4300,
+        -380
+      ],
+      "id": "bda40d64-ea14-429a-9000-112d29eab26a",
+      "name": "Lo paso a json"
+    },
+    {
+      "parameters": {
+        "operation": "deleteFile",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('If').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        4780,
+        -380
+      ],
+      "id": "f36c78c5-7589-414e-b610-393518b9e4b2",
+      "name": "Elimino el json viejo",
+      "executeOnce": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XLaCEqfXoWHPqJtQ",
+          "name": "Google Drive account"
+        }
       }
-    }
-  },
-  "4": {
-    "parameters": {
-      "operation": "fromJson",
-      "destinationKey": "=",
-      "options": {}
     },
-    "type": "n8n-nodes-base.extractFromFile",
-    "typeVersion": 1,
-    "position": [
-      4300,
-      -380
-    ],
-    "id": "bda40d64-ea14-429a-9000-112d29eab26a",
-    "name": "Lo paso a json"
-  },
-  "5": {
-    "parameters": {
-      "operation": "deleteFile",
-      "fileId": {
-        "__rl": true,
-        "value": "={{ $('If').item.json.id }}",
-        "mode": "id"
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleDrive",
-    "typeVersion": 3,
-    "position": [
-      4780,
-      -380
-    ],
-    "id": "f36c78c5-7589-414e-b610-393518b9e4b2",
-    "name": "Elimino el json viejo",
-    "executeOnce": true,
-    "credentials": {
-      "googleDriveOAuth2Api": {
-        "id": "XLaCEqfXoWHPqJtQ",
-        "name": "Google Drive account"
-      }
-    }
-  },
-  "6": {
-    "parameters": {
-      "operation": "createFromText",
-      "content": "={{ $('Lo paso a json').item.json[\"\"].toJsonString() }}",
-      "name": "={{ $('Me guardo el nombre del archivo').first().json.city }}.json",
-      "driveId": {
-        "__rl": true,
-        "mode": "list",
-        "value": "My Drive"
-      },
-      "folderId": {
-        "__rl": true,
-        "value": "={{ $('Aggregate2').item.json[\"\"][0].id }}",
-        "mode": "id"
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleDrive",
-    "typeVersion": 3,
-    "position": [
-      5020,
-      -380
-    ],
-    "id": "c48c8e8c-18af-462d-b07c-9ba9c9ba4d53",
-    "name": "Guardo el json actualizado",
-    "executeOnce": true,
-    "credentials": {
-      "googleDriveOAuth2Api": {
-        "id": "XLaCEqfXoWHPqJtQ",
-        "name": "Google Drive account"
-      }
-    }
-  },
-  "7": {
-    "parameters": {
-      "jsCode": "const newData = $('Elimino los objetos vacíos').all().map(item => item.json)\n\nconst oldData = $input.first().json[\"\"]\n\nreturn [...oldData, ...newData]"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      4520,
-      -380
-    ],
-    "id": "bc9f680c-b8d5-4be8-9a53-60a13056af02",
-    "name": "Uno la data vieja con la nueva"
-  },
-  "8": {
-    "parameters": {
-      "resource": "fileFolder",
-      "queryString": "={{ $json.project }}",
-      "returnAll": true,
-      "filter": {
+    {
+      "parameters": {
+        "operation": "createFromText",
+        "content": "={{ $('Lo paso a json').item.json[\"\"].toJsonString() }}",
+        "name": "={{ $('Me guardo el nombre del archivo').first().json.city }}.json",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
         "folderId": {
+          "__rl": true,
+          "value": "={{ $('Aggregate2').item.json[\"\"][0].id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        5020,
+        -380
+      ],
+      "id": "c48c8e8c-18af-462d-b07c-9ba9c9ba4d53",
+      "name": "Guardo el json actualizado",
+      "executeOnce": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XLaCEqfXoWHPqJtQ",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const newData = $('Elimino los objetos vacíos').all().map(item => item.json)\n\nconst oldData = $input.first().json[\"\"]\n\nreturn [...oldData, ...newData]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4520,
+        -380
+      ],
+      "id": "bc9f680c-b8d5-4be8-9a53-60a13056af02",
+      "name": "Uno la data vieja con la nueva"
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "queryString": "={{ $json.project }}",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "mode": "list",
+            "value": "root",
+            "cachedResultName": "/ (Root folder)"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        600,
+        -160
+      ],
+      "id": "dc65abbc-158d-4a8f-b952-efd21e5da108",
+      "name": "Obtengo la carpeta del proyecto",
+      "executeOnce": true,
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XLaCEqfXoWHPqJtQ",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "queryString": "={{ $('Me guardo el nombre del archivo').item.json.country }}",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "={{ $json[\"\"][0].id }}",
+            "mode": "id"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1520,
+        -160
+      ],
+      "id": "aacde97b-d741-4b09-bf33-3c0f9d81d01b",
+      "name": "Obtengo la carpeta del pais",
+      "executeOnce": true,
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XLaCEqfXoWHPqJtQ",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "queryString": "={{ $('Me guardo el nombre del archivo').item.json.province }}",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "={{ $json[\"\"][0].id }}",
+            "mode": "id"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2420,
+        -160
+      ],
+      "id": "990aa056-1c12-4a23-bf7f-a420b611137d",
+      "name": "Obtengo la carpeta de la provincia",
+      "executeOnce": true,
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XLaCEqfXoWHPqJtQ",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "74af473c-a736-4721-a715-8eae64f29209",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1000,
+        -160
+      ],
+      "id": "6405b401-5073-49da-a21e-629dfcaf8fc6",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a7263caa-a602-4cb6-a915-965a2d2b8d72",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1880,
+        -160
+      ],
+      "id": "e96888fc-9ea8-473d-bbd2-9392b92901d2",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2e56673c-287d-44b0-acde-618caeb5d1be",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "=/{{ $('Me guardo el nombre del archivo').item.json.country }}/i",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        1700,
+        -160
+      ],
+      "id": "1640c5a2-b958-4bad-903e-14a68fd5538f",
+      "name": "Filter1",
+      "executeOnce": true,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "16f9a7b1-f037-474c-8c6e-f547906bf170",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2800,
+        -160
+      ],
+      "id": "82d7e03d-7338-449e-92e4-ad5e06136ada",
+      "name": "If3",
+      "executeOnce": true,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0486feaf-e94d-4062-b36f-d30635fc61f8",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "=/{{ $('Me guardo el nombre del archivo').item.json.province }}/i",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        2600,
+        -160
+      ],
+      "id": "bbd4cc95-93b8-47a6-a8a7-c4d090111174",
+      "name": "Filter2",
+      "executeOnce": true,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $('Me guardo el nombre del archivo').item.json.project }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
           "mode": "list",
           "value": "root",
           "cachedResultName": "/ (Root folder)"
-        }
+        },
+        "options": {}
       },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleDrive",
-    "typeVersion": 3,
-    "position": [
-      600,
-      -160
-    ],
-    "id": "dc65abbc-158d-4a8f-b952-efd21e5da108",
-    "name": "Obtengo la carpeta del proyecto",
-    "executeOnce": true,
-    "alwaysOutputData": true,
-    "credentials": {
-      "googleDriveOAuth2Api": {
-        "id": "XLaCEqfXoWHPqJtQ",
-        "name": "Google Drive account"
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1160,
+        40
+      ],
+      "id": "0fe1fba9-b35b-4c7d-ada5-302f70c3a165",
+      "name": "si no existe la carpeta del proyecto la creo",
+      "executeOnce": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XLaCEqfXoWHPqJtQ",
+          "name": "Google Drive account"
+        }
       }
-    }
-  },
-  "9": {
-    "parameters": {
-      "resource": "fileFolder",
-      "queryString": "={{ $('Me guardo el nombre del archivo').item.json.country }}",
-      "returnAll": true,
-      "filter": {
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        -160
+      ],
+      "id": "f5fb16ce-5065-411b-b25f-e4a7944ac925",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        -160
+      ],
+      "id": "786e3a36-b84a-456f-b0d5-68920b56346a",
+      "name": "Aggregate1",
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $('Me guardo el nombre del archivo').item.json.country }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
         "folderId": {
           "__rl": true,
-          "value": "={{ $json[\"\"][0].id }}",
+          "value": "={{ $('Aggregate').item.json[\"\"][0].id }}",
           "mode": "id"
-        }
+        },
+        "options": {}
       },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleDrive",
-    "typeVersion": 3,
-    "position": [
-      1520,
-      -160
-    ],
-    "id": "aacde97b-d741-4b09-bf33-3c0f9d81d01b",
-    "name": "Obtengo la carpeta del pais",
-    "executeOnce": true,
-    "alwaysOutputData": true,
-    "credentials": {
-      "googleDriveOAuth2Api": {
-        "id": "XLaCEqfXoWHPqJtQ",
-        "name": "Google Drive account"
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2060,
+        20
+      ],
+      "id": "a14cde05-3d4c-4b71-b9dd-e305f79140b2",
+      "name": "si no existe la carpeta del pais la creo",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XLaCEqfXoWHPqJtQ",
+          "name": "Google Drive account"
+        }
       }
-    }
-  },
-  "10": {
-    "parameters": {
-      "resource": "fileFolder",
-      "queryString": "={{ $('Me guardo el nombre del archivo').item.json.province }}",
-      "returnAll": true,
-      "filter": {
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3160,
+        -160
+      ],
+      "id": "862fe38f-7f49-4f0d-bea9-597352654a62",
+      "name": "Aggregate2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nconst fileName = $('On form submission').first().json.data.filename\n\nconst splitedName = fileName.split(\"_\");\n\nreturn {\n  project: splitedName[0].replace(/-/g, \" \"),\n  country: splitedName[1].replace(/-/g, \" \"),\n  province: splitedName[2].replace(/-/g, \" \"),\n  city: splitedName[3].replace(/-/g, ' ').replace('.xlsx', '')\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        380,
+        -160
+      ],
+      "id": "c3fdbd74-ed4d-4983-86e0-6a39deecd517",
+      "name": "Me guardo el nombre del archivo"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b6e84098-a1b2-4fb8-9abd-70d12255466d",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "=/{{ $('Me guardo el nombre del archivo').item.json.project }}/i",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        800,
+        -160
+      ],
+      "id": "64a82119-5d1c-45bb-8df9-5e9d02c37072",
+      "name": "Filtro los resultados",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "formTitle": "Leads",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "data",
+              "fieldType": "file",
+              "multipleFiles": false,
+              "acceptFileTypes": ".xlsx",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -600,
+        -160
+      ],
+      "id": "a277c1c0-cd20-4835-be81-419e44cbb364",
+      "name": "On form submission",
+      "webhookId": "6a1de3cd-0250-4ec1-8c8e-e013595af534"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4211b49f-578d-4392-ab98-bc2a45cfeb4f",
+              "name": "location",
+              "value": "={{ $json[\"hfpxzc href\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "fee82c2e-6521-4d62-87e6-d68b68098c8e",
+              "name": "name",
+              "value": "={{ $json.qBF1Pd }}",
+              "type": "string"
+            },
+            {
+              "id": "f5f14e2c-23c2-4b36-90c7-4a1d7c7fb983",
+              "name": "rating",
+              "value": "={{ $json.MW4etd }}",
+              "type": "string"
+            },
+            {
+              "id": "ed104154-4296-484f-9439-144515b49cef",
+              "name": "reviews",
+              "value": "={{ $json.UY7F9 }}",
+              "type": "string"
+            },
+            {
+              "id": "9aa73165-df35-4a22-8a4b-9077f8606a29",
+              "name": "category",
+              "value": "={{ $json.W4Efsd }}",
+              "type": "string"
+            },
+            {
+              "id": "3aa199ad-33e1-47b8-8d79-a6d8cc762a44",
+              "name": "address",
+              "value": "={{ $json[\"W4Efsd 4\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "5e54e653-b434-4003-b677-d5a87f3bb050",
+              "name": "status",
+              "value": "={{ $json[\"W4Efsd 5\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "fcece345-d36b-4073-a9c9-46b006360860",
+              "name": "image_url",
+              "value": "={{ $json[\"FQ2IWe src\"] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -120,
+        -160
+      ],
+      "id": "2b0c740f-f9fc-43ae-bd0e-f5e7da20b90e",
+      "name": "Renombro las key de los objetos"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a3e6bf26-02c3-4e39-a1ca-4cc337aa6f35",
+              "leftValue": "={{ $json.location }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ec1f338c-2f7c-4701-8398-7cf677431b40",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "8e93b923-09e7-45cf-bc63-975921fcb948",
+              "leftValue": "={{ $json.rating }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "52e42c21-48fc-44ef-8c7e-456fb97cd4e9",
+              "leftValue": "={{ $json.reviews }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "08fa9309-5a82-4d52-a250-189dc39ba9ed",
+              "leftValue": "={{ $json.category }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "57fba0a6-c62b-43f1-83ef-9c3803d1cbea",
+              "leftValue": "={{ $json.category }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "7b77faef-b58f-414d-84be-bdc4d5dfb763",
+              "leftValue": "={{ $json.address }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "752809d4-9223-4eee-a493-e07796313784",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ab14d1da-8e0b-4f7b-8635-36921642b60d",
+              "leftValue": "={{ $json.image_url }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        140,
+        -160
+      ],
+      "id": "aa6bf4cb-d77d-4806-bdc9-d046d58e59cb",
+      "name": "Elimino los objetos vacíos"
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -360,
+        -160
+      ],
+      "id": "a54b8365-2946-4a5e-9bad-201197b5bdb0",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $('Me guardo el nombre del archivo').item.json.province }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
         "folderId": {
           "__rl": true,
-          "value": "={{ $json[\"\"][0].id }}",
+          "value": "={{ $('Aggregate1').item.json[\"\"][0].id }}",
           "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2980,
+        20
+      ],
+      "id": "740791ab-f8c4-427e-a09a-b59721db4d04",
+      "name": "Si no existe la carpeta de la provincia la creo",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "XLaCEqfXoWHPqJtQ",
+          "name": "Google Drive account"
         }
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleDrive",
-    "typeVersion": 3,
-    "position": [
-      2420,
-      -160
-    ],
-    "id": "990aa056-1c12-4a23-bf7f-a420b611137d",
-    "name": "Obtengo la carpeta de la provincia",
-    "executeOnce": true,
-    "alwaysOutputData": true,
-    "credentials": {
-      "googleDriveOAuth2Api": {
-        "id": "XLaCEqfXoWHPqJtQ",
-        "name": "Google Drive account"
       }
     }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
   },
-  "11": {
-    "parameters": {
-      "conditions": {
-        "options": {
-          "caseSensitive": true,
-          "leftValue": "",
-          "typeValidation": "strict",
-          "version": 2
-        },
-        "conditions": [
-          {
-            "id": "74af473c-a736-4721-a715-8eae64f29209",
-            "leftValue": "={{ $json }}",
-            "rightValue": "",
-            "operator": {
-              "type": "object",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
-          }
-        ],
-        "combinator": "and"
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.if",
-    "typeVersion": 2.2,
-    "position": [
-      1000,
-      -160
-    ],
-    "id": "6405b401-5073-49da-a21e-629dfcaf8fc6",
-    "name": "If1"
-  },
-  "12": {
-    "parameters": {
-      "conditions": {
-        "options": {
-          "caseSensitive": true,
-          "leftValue": "",
-          "typeValidation": "strict",
-          "version": 2
-        },
-        "conditions": [
-          {
-            "id": "a7263caa-a602-4cb6-a915-965a2d2b8d72",
-            "leftValue": "={{ $json }}",
-            "rightValue": "",
-            "operator": {
-              "type": "object",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
-          }
-        ],
-        "combinator": "and"
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.if",
-    "typeVersion": 2.2,
-    "position": [
-      1880,
-      -160
-    ],
-    "id": "e96888fc-9ea8-473d-bbd2-9392b92901d2",
-    "name": "If2"
-  },
-  "13": {
-    "parameters": {
-      "conditions": {
-        "options": {
-          "caseSensitive": true,
-          "leftValue": "",
-          "typeValidation": "strict",
-          "version": 2
-        },
-        "conditions": [
-          {
-            "id": "2e56673c-287d-44b0-acde-618caeb5d1be",
-            "leftValue": "={{ $json.name }}",
-            "rightValue": "=/{{ $('Me guardo el nombre del archivo').item.json.country }}/i",
-            "operator": {
-              "type": "string",
-              "operation": "regex"
-            }
-          }
-        ],
-        "combinator": "and"
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.filter",
-    "typeVersion": 2.2,
-    "position": [
-      1700,
-      -160
-    ],
-    "id": "1640c5a2-b958-4bad-903e-14a68fd5538f",
-    "name": "Filter1",
-    "executeOnce": true,
-    "alwaysOutputData": true
-  },
-  "14": {
-    "parameters": {
-      "conditions": {
-        "options": {
-          "caseSensitive": true,
-          "leftValue": "",
-          "typeValidation": "strict",
-          "version": 2
-        },
-        "conditions": [
-          {
-            "id": "16f9a7b1-f037-474c-8c6e-f547906bf170",
-            "leftValue": "={{ $json }}",
-            "rightValue": "",
-            "operator": {
-              "type": "object",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
-          }
-        ],
-        "combinator": "and"
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.if",
-    "typeVersion": 2.2,
-    "position": [
-      2800,
-      -160
-    ],
-    "id": "82d7e03d-7338-449e-92e4-ad5e06136ada",
-    "name": "If3",
-    "executeOnce": true,
-    "alwaysOutputData": false
-  },
-  "15": {
-    "parameters": {
-      "conditions": {
-        "options": {
-          "caseSensitive": true,
-          "leftValue": "",
-          "typeValidation": "strict",
-          "version": 2
-        },
-        "conditions": [
-          {
-            "id": "0486feaf-e94d-4062-b36f-d30635fc61f8",
-            "leftValue": "={{ $json.name }}",
-            "rightValue": "=/{{ $('Me guardo el nombre del archivo').item.json.province }}/i",
-            "operator": {
-              "type": "string",
-              "operation": "regex"
-            }
-          }
-        ],
-        "combinator": "and"
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.filter",
-    "typeVersion": 2.2,
-    "position": [
-      2600,
-      -160
-    ],
-    "id": "bbd4cc95-93b8-47a6-a8a7-c4d090111174",
-    "name": "Filter2",
-    "executeOnce": true,
-    "alwaysOutputData": true
-  },
-  "16": {
-    "parameters": {
-      "resource": "folder",
-      "name": "={{ $('Me guardo el nombre del archivo').item.json.project }}",
-      "driveId": {
-        "__rl": true,
-        "mode": "list",
-        "value": "My Drive"
-      },
-      "folderId": {
-        "__rl": true,
-        "mode": "list",
-        "value": "root",
-        "cachedResultName": "/ (Root folder)"
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleDrive",
-    "typeVersion": 3,
-    "position": [
-      1160,
-      40
-    ],
-    "id": "0fe1fba9-b35b-4c7d-ada5-302f70c3a165",
-    "name": "si no existe la carpeta del proyecto la creo",
-    "executeOnce": true,
-    "credentials": {
-      "googleDriveOAuth2Api": {
-        "id": "XLaCEqfXoWHPqJtQ",
-        "name": "Google Drive account"
-      }
+  "staticData": {
+    "node:Se ejecuta al subir un nuevo archivo xlsx": {
+      "lastTimeChecked": "2025-03-19T14:25:16Z"
     }
   },
-  "17": {
-    "parameters": {
-      "aggregate": "aggregateAllItemData",
-      "destinationFieldName": "",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.aggregate",
-    "typeVersion": 1,
-    "position": [
-      1320,
-      -160
-    ],
-    "id": "f5fb16ce-5065-411b-b25f-e4a7944ac925",
-    "name": "Aggregate"
-  },
-  "18": {
-    "parameters": {
-      "aggregate": "aggregateAllItemData",
-      "destinationFieldName": "",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.aggregate",
-    "typeVersion": 1,
-    "position": [
-      2240,
-      -160
-    ],
-    "id": "786e3a36-b84a-456f-b0d5-68920b56346a",
-    "name": "Aggregate1",
-    "executeOnce": true
-  },
-  "19": {
-    "parameters": {
-      "resource": "folder",
-      "name": "={{ $('Me guardo el nombre del archivo').item.json.country }}",
-      "driveId": {
-        "__rl": true,
-        "mode": "list",
-        "value": "My Drive"
-      },
-      "folderId": {
-        "__rl": true,
-        "value": "={{ $('Aggregate').item.json[\"\"][0].id }}",
-        "mode": "id"
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleDrive",
-    "typeVersion": 3,
-    "position": [
-      2060,
-      20
-    ],
-    "id": "a14cde05-3d4c-4b71-b9dd-e305f79140b2",
-    "name": "si no existe la carpeta del pais la creo",
-    "credentials": {
-      "googleDriveOAuth2Api": {
-        "id": "XLaCEqfXoWHPqJtQ",
-        "name": "Google Drive account"
-      }
-    }
-  },
-  "20": {
-    "parameters": {
-      "aggregate": "aggregateAllItemData",
-      "destinationFieldName": "",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.aggregate",
-    "typeVersion": 1,
-    "position": [
-      3160,
-      -160
-    ],
-    "id": "862fe38f-7f49-4f0d-bea9-597352654a62",
-    "name": "Aggregate2"
-  },
-  "21": {
-    "parameters": {
-      "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nconst fileName = $('On form submission').first().json.data.filename\n\nconst splitedName = fileName.split(\"_\");\n\nreturn {\n  project: splitedName[0].replace(/-/g, \" \"),\n  country: splitedName[1].replace(/-/g, \" \"),\n  province: splitedName[2].replace(/-/g, \" \"),\n  city: splitedName[3].replace(/-/g, ' ').replace('.xlsx', '')\n}"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      380,
-      -160
-    ],
-    "id": "c3fdbd74-ed4d-4983-86e0-6a39deecd517",
-    "name": "Me guardo el nombre del archivo"
-  },
-  "22": {
-    "parameters": {
-      "conditions": {
-        "options": {
-          "caseSensitive": true,
-          "leftValue": "",
-          "typeValidation": "strict",
-          "version": 2
-        },
-        "conditions": [
-          {
-            "id": "b6e84098-a1b2-4fb8-9abd-70d12255466d",
-            "leftValue": "={{ $json.name }}",
-            "rightValue": "=/{{ $('Me guardo el nombre del archivo').item.json.project }}/i",
-            "operator": {
-              "type": "string",
-              "operation": "regex"
-            }
-          }
-        ],
-        "combinator": "and"
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.filter",
-    "typeVersion": 2.2,
-    "position": [
-      800,
-      -160
-    ],
-    "id": "64a82119-5d1c-45bb-8df9-5e9d02c37072",
-    "name": "Filtro los resultados",
-    "alwaysOutputData": true
-  },
-  "23": {
-    "parameters": {
-      "formTitle": "Leads",
-      "formFields": {
-        "values": [
-          {
-            "fieldLabel": "data",
-            "fieldType": "file",
-            "multipleFiles": false,
-            "acceptFileTypes": ".xlsx",
-            "requiredField": true
-          }
-        ]
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.formTrigger",
-    "typeVersion": 2.2,
-    "position": [
-      -600,
-      -160
-    ],
-    "id": "a277c1c0-cd20-4835-be81-419e44cbb364",
-    "name": "On form submission",
-    "webhookId": "6a1de3cd-0250-4ec1-8c8e-e013595af534"
-  },
-  "24": {
-    "parameters": {
-      "assignments": {
-        "assignments": [
-          {
-            "id": "4211b49f-578d-4392-ab98-bc2a45cfeb4f",
-            "name": "location",
-            "value": "={{ $json[\"hfpxzc href\"] }}",
-            "type": "string"
-          },
-          {
-            "id": "fee82c2e-6521-4d62-87e6-d68b68098c8e",
-            "name": "name",
-            "value": "={{ $json.qBF1Pd }}",
-            "type": "string"
-          },
-          {
-            "id": "f5f14e2c-23c2-4b36-90c7-4a1d7c7fb983",
-            "name": "rating",
-            "value": "={{ $json.MW4etd }}",
-            "type": "string"
-          },
-          {
-            "id": "ed104154-4296-484f-9439-144515b49cef",
-            "name": "reviews",
-            "value": "={{ $json.UY7F9 }}",
-            "type": "string"
-          },
-          {
-            "id": "9aa73165-df35-4a22-8a4b-9077f8606a29",
-            "name": "category",
-            "value": "={{ $json.W4Efsd }}",
-            "type": "string"
-          },
-          {
-            "id": "3aa199ad-33e1-47b8-8d79-a6d8cc762a44",
-            "name": "address",
-            "value": "={{ $json[\"W4Efsd 4\"] }}",
-            "type": "string"
-          },
-          {
-            "id": "5e54e653-b434-4003-b677-d5a87f3bb050",
-            "name": "status",
-            "value": "={{ $json[\"W4Efsd 5\"] }}",
-            "type": "string"
-          },
-          {
-            "id": "fcece345-d36b-4073-a9c9-46b006360860",
-            "name": "image_url",
-            "value": "={{ $json[\"FQ2IWe src\"] }}",
-            "type": "string"
-          }
-        ]
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.set",
-    "typeVersion": 3.4,
-    "position": [
-      -120,
-      -160
-    ],
-    "id": "2b0c740f-f9fc-43ae-bd0e-f5e7da20b90e",
-    "name": "Renombro las key de los objetos"
-  },
-  "25": {
-    "parameters": {
-      "conditions": {
-        "options": {
-          "caseSensitive": true,
-          "leftValue": "",
-          "typeValidation": "strict",
-          "version": 2
-        },
-        "conditions": [
-          {
-            "id": "a3e6bf26-02c3-4e39-a1ca-4cc337aa6f35",
-            "leftValue": "={{ $json.location }}",
-            "rightValue": "",
-            "operator": {
-              "type": "string",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
-          },
-          {
-            "id": "ec1f338c-2f7c-4701-8398-7cf677431b40",
-            "leftValue": "={{ $json.name }}",
-            "rightValue": "",
-            "operator": {
-              "type": "string",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
-          },
-          {
-            "id": "8e93b923-09e7-45cf-bc63-975921fcb948",
-            "leftValue": "={{ $json.rating }}",
-            "rightValue": "",
-            "operator": {
-              "type": "string",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
-          },
-          {
-            "id": "52e42c21-48fc-44ef-8c7e-456fb97cd4e9",
-            "leftValue": "={{ $json.reviews }}",
-            "rightValue": "",
-            "operator": {
-              "type": "string",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
-          },
-          {
-            "id": "08fa9309-5a82-4d52-a250-189dc39ba9ed",
-            "leftValue": "={{ $json.category }}",
-            "rightValue": "",
-            "operator": {
-              "type": "string",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
-          },
-          {
-            "id": "57fba0a6-c62b-43f1-83ef-9c3803d1cbea",
-            "leftValue": "={{ $json.category }}",
-            "rightValue": "",
-            "operator": {
-              "type": "string",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
-          },
-          {
-            "id": "7b77faef-b58f-414d-84be-bdc4d5dfb763",
-            "leftValue": "={{ $json.address }}",
-            "rightValue": "",
-            "operator": {
-              "type": "string",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
-          },
-          {
-            "id": "752809d4-9223-4eee-a493-e07796313784",
-            "leftValue": "={{ $json.status }}",
-            "rightValue": "",
-            "operator": {
-              "type": "string",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
-          },
-          {
-            "id": "ab14d1da-8e0b-4f7b-8635-36921642b60d",
-            "leftValue": "={{ $json.image_url }}",
-            "rightValue": "",
-            "operator": {
-              "type": "string",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
-          }
-        ],
-        "combinator": "or"
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.filter",
-    "typeVersion": 2.2,
-    "position": [
-      140,
-      -160
-    ],
-    "id": "aa6bf4cb-d77d-4806-bdc9-d046d58e59cb",
-    "name": "Elimino los objetos vacíos"
-  },
-  "26": {
-    "parameters": {
-      "operation": "xlsx",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.extractFromFile",
-    "typeVersion": 1,
-    "position": [
-      -360,
-      -160
-    ],
-    "id": "a54b8365-2946-4a5e-9bad-201197b5bdb0",
-    "name": "Extract from File"
-  },
-  "27": {
-    "parameters": {
-      "resource": "folder",
-      "name": "={{ $('Me guardo el nombre del archivo').item.json.province }}",
-      "driveId": {
-        "__rl": true,
-        "mode": "list",
-        "value": "My Drive"
-      },
-      "folderId": {
-        "__rl": true,
-        "value": "={{ $('Aggregate1').item.json[\"\"][0].id }}",
-        "mode": "id"
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleDrive",
-    "typeVersion": 3,
-    "position": [
-      2980,
-      20
-    ],
-    "id": "740791ab-f8c4-427e-a09a-b59721db4d04",
-    "name": "Si no existe la carpeta de la provincia la creo",
-    "credentials": {
-      "googleDriveOAuth2Api": {
-        "id": "XLaCEqfXoWHPqJtQ",
-        "name": "Google Drive account"
-      }
-    }
-  }
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-03-19T14:53:38.000Z",
+  "versionId": "063e5526-7d46-41d8-89ce-e3df49ca1b62"
 }
