@@ -1,0 +1,156 @@
+{
+  "0": {
+    "parameters": {
+      "httpMethod": "POST",
+      "path": "1884f047-bd06-4d96-bd29-adc1322d0688",
+      "authentication": "headerAuth",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.webhook",
+    "typeVersion": 2,
+    "position": [
+      -80,
+      -140
+    ],
+    "id": "89eb4842-51c0-4cc9-bb6f-c1fa36c5be5f",
+    "name": "Webhook",
+    "webhookId": "1884f047-bd06-4d96-bd29-adc1322d0688",
+    "credentials": {
+      "httpHeaderAuth": {
+        "id": "ZxW5bLpVMAPhWB2P",
+        "name": "Header Auth account"
+      }
+    }
+  },
+  "1": {
+    "parameters": {
+      "resource": "message",
+      "guildId": {
+        "__rl": true,
+        "value": "1178756472834883874",
+        "mode": "list",
+        "cachedResultName": "NEOWYZE",
+        "cachedResultUrl": "https://discord.com/channels/1178756472834883874"
+      },
+      "channelId": {
+        "__rl": true,
+        "value": "1405027179716415639",
+        "mode": "list",
+        "cachedResultName": "『🧙🏼‍♂️』devops",
+        "cachedResultUrl": "https://discord.com/channels/1178756472834883874/1405027179716415639"
+      },
+      "content": "={{ $json.choices[0].message.content }}",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.discord",
+    "typeVersion": 2,
+    "position": [
+      1080,
+      -880
+    ],
+    "id": "5ec88c95-e81f-4a4e-8e83-b311ca58400d",
+    "name": "Discord",
+    "webhookId": "a52e6761-833c-40b1-9083-abdb4c19c54f",
+    "credentials": {
+      "discordBotApi": {
+        "id": "VxcEjTSW3Ju9l493",
+        "name": "Largo Agent"
+      }
+    }
+  },
+  "2": {
+    "parameters": {
+      "rules": {
+        "values": [
+          {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 2
+              },
+              "conditions": [
+                {
+                  "leftValue": "={{ $json.body.channel.id }}",
+                  "rightValue": "1405027179716415639",
+                  "operator": {
+                    "type": "string",
+                    "operation": "equals"
+                  },
+                  "id": "933a61a8-0bca-4b85-a747-d1b6ad186134"
+                }
+              ],
+              "combinator": "and"
+            },
+            "renameOutput": true,
+            "outputKey": "largo-agent"
+          }
+        ]
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.switch",
+    "typeVersion": 3.2,
+    "position": [
+      200,
+      -140
+    ],
+    "id": "3cd4b278-9d97-4933-89c9-2b3a2c2b1036",
+    "name": "Switch"
+  },
+  "3": {
+    "parameters": {
+      "model": {
+        "__rl": true,
+        "value": "gpt-5-nano",
+        "mode": "list",
+        "cachedResultName": "gpt-5-nano"
+      },
+      "options": {
+        "maxTokens": 256,
+        "temperature": 0.7
+      }
+    },
+    "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+    "typeVersion": 1.2,
+    "position": [
+      560,
+      -680
+    ],
+    "id": "79795125-d765-4b17-851d-c4b6d643aa54",
+    "name": "OpenAI Chat Model",
+    "credentials": {
+      "openAiApi": {
+        "id": "WXcb81sSca2QEiC8",
+        "name": "Neowyze OpenAI Credentials"
+      }
+    }
+  },
+  "4": {
+    "parameters": {
+      "promptType": "define",
+      "text": "={{ $json.body.content }}",
+      "options": {}
+    },
+    "type": "@n8n/n8n-nodes-langchain.agent",
+    "typeVersion": 1.8,
+    "position": [
+      580,
+      -880
+    ],
+    "id": "bdea7089-89dc-4720-a90f-2ffbf0830e58",
+    "name": "Largo Agent"
+  },
+  "5": {
+    "parameters": {},
+    "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+    "typeVersion": 1.3,
+    "position": [
+      680,
+      -680
+    ],
+    "id": "564642ba-e8e8-4623-bd96-3a01b251217a",
+    "name": "Simple Memory"
+  }
+}
