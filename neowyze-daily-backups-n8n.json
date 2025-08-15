@@ -1,465 +1,680 @@
 {
-  "0": {
-    "parameters": {
-      "resource": "file",
-      "owner": {
-        "__rl": true,
-        "value": "iBelando",
-        "mode": "name"
-      },
-      "repository": {
-        "__rl": true,
-        "value": "neowyze-n8n-workflows",
-        "mode": "name"
-      },
-      "filePath": "={{ $('Loop Over Items').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\") }}.json",
-      "fileContent": "={{ JSON.stringify($json.changes, null, 2) }}",
-      "commitMessage": "={{$('Loop Over Items').item.json.name}} ({{$json.status}})"
-    },
-    "id": "c4c1c03b-cb0e-4b7b-b33a-4fa6490a6394",
-    "name": "Create new file",
-    "type": "n8n-nodes-base.github",
-    "position": [
-      1460,
-      160
-    ],
-    "webhookId": "b440dead-fad0-4546-8ca7-201aa2ea2936",
-    "typeVersion": 1,
-    "credentials": {
-      "githubApi": {
-        "id": "azLE7lidNcTJXzZF",
-        "name": "GitHub Neowyze"
-      }
-    },
-    "onError": "continueRegularOutput"
-  },
-  "1": {
-    "parameters": {
-      "resource": "file",
-      "operation": "edit",
-      "owner": {
-        "__rl": true,
-        "value": "iBelando",
-        "mode": "name"
-      },
-      "repository": {
-        "__rl": true,
-        "value": "neowyze-n8n-workflows",
-        "mode": "name"
-      },
-      "filePath": "={{ $('Loop Over Items').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\") }}.json",
-      "fileContent": "={{ JSON.stringify($json.changes, null, 2) }}",
-      "commitMessage": "={{$('Loop Over Items').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\")}} ({{$json.status}})"
-    },
-    "id": "433179ed-0230-4871-898c-fe17dad43f5f",
-    "name": "Edit existing file",
-    "type": "n8n-nodes-base.github",
-    "position": [
-      1460,
-      -120
-    ],
-    "webhookId": "1dfc4103-7c23-4814-a0b5-dd4f5a96d36b",
-    "typeVersion": 1,
-    "credentials": {
-      "githubApi": {
-        "id": "azLE7lidNcTJXzZF",
-        "name": "GitHub Neowyze"
-      }
-    },
-    "onError": "continueRegularOutput"
-  },
-  "2": {
-    "parameters": {
-      "conditions": {
-        "options": {
-          "version": 2,
-          "leftValue": "",
-          "caseSensitive": true,
-          "typeValidation": "strict"
-        },
-        "conditions": [
+  "active": true,
+  "connections": {
+    "Config": {
+      "main": [
+        [
           {
-            "id": "bb64ed2c-5193-4b8f-a9e8-55cb83ea244c",
-            "operator": {
-              "type": "dateTime",
-              "operation": "afterOrEquals"
-            },
-            "leftValue": "={{ $json.updatedAt }}",
-            "rightValue": "={{ $now.minus(1, 'days') }}"
-          }
-        ],
-        "combinator": "and"
-      },
-      "options": {}
-    },
-    "id": "04f2c4ff-d6bc-4206-8563-12f408725f7b",
-    "name": "Filter",
-    "type": "n8n-nodes-base.filter",
-    "position": [
-      -460,
-      400
-    ],
-    "typeVersion": 2.2
-  },
-  "3": {
-    "parameters": {
-      "rules": {
-        "values": [
-          {
-            "conditions": {
-              "options": {
-                "version": 2,
-                "leftValue": "",
-                "caseSensitive": true,
-                "typeValidation": "strict"
-              },
-              "conditions": [
-                {
-                  "id": "6655f56f-b447-43eb-84a2-be8b71524af7",
-                  "operator": {
-                    "name": "filter.operator.equals",
-                    "type": "string",
-                    "operation": "equals"
-                  },
-                  "leftValue": "={{$json.status}}",
-                  "rightValue": "updated"
-                }
-              ],
-              "combinator": "and"
-            },
-            "renameOutput": true,
-            "outputKey": "Different"
-          },
-          {
-            "conditions": {
-              "options": {
-                "version": 2,
-                "leftValue": "",
-                "caseSensitive": true,
-                "typeValidation": "strict"
-              },
-              "conditions": [
-                {
-                  "id": "fd0fcdea-e8c0-42be-ba51-5cd2b71ed247",
-                  "operator": {
-                    "name": "filter.operator.equals",
-                    "type": "string",
-                    "operation": "equals"
-                  },
-                  "leftValue": "={{$json.status}}",
-                  "rightValue": "new"
-                }
-              ],
-              "combinator": "and"
-            },
-            "renameOutput": true,
-            "outputKey": "New"
-          },
-          {
-            "conditions": {
-              "options": {
-                "version": 2,
-                "leftValue": "",
-                "caseSensitive": true,
-                "typeValidation": "strict"
-              },
-              "conditions": [
-                {
-                  "id": "ca3b1c68-d756-4de5-b69b-147526e19e35",
-                  "operator": {
-                    "type": "string",
-                    "operation": "equals"
-                  },
-                  "leftValue": "={{$json.status}}",
-                  "rightValue": "same"
-                }
-              ],
-              "combinator": "and"
-            },
-            "renameOutput": true,
-            "outputKey": "Same"
+            "node": "Get Workflows",
+            "type": "main",
+            "index": 0
           }
         ]
-      },
-      "options": {}
+      ]
     },
-    "id": "b49e284e-ad81-47a9-ab5c-ca8c479ac605",
-    "name": "Switch",
-    "type": "n8n-nodes-base.switch",
-    "position": [
-      1040,
-      180
-    ],
-    "typeVersion": 3.2
-  },
-  "4": {
-    "parameters": {
-      "filters": {},
-      "requestOptions": {}
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
-    "id": "c29c1fcd-12e3-48aa-a2ed-f43c526bc514",
-    "name": "Get Workflows",
-    "type": "n8n-nodes-base.n8n",
-    "position": [
-      -660,
-      400
-    ],
-    "typeVersion": 1,
-    "credentials": {
-      "n8nApi": {
-        "id": "UuXUgqYZ7NCconr4",
-        "name": "n8n account"
-      }
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Edit existing file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create new file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Workflows": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create new file": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Completed Notification",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Starting Message": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit existing file": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Starting Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "5": {
-    "parameters": {
-      "assignments": {
-        "assignments": [
-          {
-            "id": "03f51f9c-4681-4423-91d2-d32f4c18d6bc",
-            "name": "repo_owner",
-            "type": "string",
-            "value": ""
-          },
-          {
-            "id": "0c9b521a-b698-4b43-9eb0-bbf744760158",
-            "name": "repo_name",
-            "type": "string",
-            "value": "n8n-workflows"
-          },
-          {
-            "id": "91627e70-a71a-4be0-a6f6-b04d5c8469d8",
-            "name": "repo_path",
-            "type": "string",
-            "value": "n8n-workflows"
-          },
-          {
-            "id": "983a2c87-9d69-4d64-ab88-ec1b1117c6e6",
-            "name": "sub_path",
-            "type": "string",
-            "value": "folder"
-          }
-        ]
-      },
-      "includeOtherFields": true,
-      "options": {}
-    },
-    "id": "ea95abc9-1dd2-46d9-813a-47fff76dc527",
-    "name": "Config",
-    "type": "n8n-nodes-base.set",
-    "position": [
-      -880,
-      400
-    ],
-    "typeVersion": 3.4
-  },
-  "6": {
-    "parameters": {
-      "select": "channel",
-      "channelId": {
-        "__rl": true,
-        "mode": "name",
-        "value": "#notifications"
-      },
-      "text": "=Information_source:  Starting Workflow Backup [{{ $execution.id }}]",
-      "otherOptions": {
-        "includeLinkToWorkflow": false
-      }
-    },
-    "id": "508792e1-6789-4f55-82aa-f081d03f3227",
-    "name": "Starting Message",
-    "type": "n8n-nodes-base.slack",
-    "position": [
-      -1100,
-      400
-    ],
-    "webhookId": "c02eb407-5547-4aa0-9ebf-46dab67b63b6",
-    "typeVersion": 2.2,
-    "disabled": true
-  },
-  "7": {
-    "parameters": {
-      "select": "channel",
-      "channelId": {
-        "__rl": true,
-        "mode": "name",
-        "value": "#notifications"
-      },
-      "text": "=✅ Backup has completed - {{ $('Get Workflows').all().length }} workflows have been processed.",
-      "otherOptions": {}
-    },
-    "id": "abd32a6e-1eb1-4e01-82ac-5dec4fba9a0e",
-    "name": "Completed Notification",
-    "type": "n8n-nodes-base.slack",
-    "position": [
-      80,
-      -100
-    ],
-    "webhookId": "a0c6e8c8-5d71-40fa-b02b-63a7ed5726c4",
-    "executeOnce": true,
-    "typeVersion": 2.2,
-    "disabled": true
-  },
-  "8": {
-    "parameters": {
-      "options": {}
-    },
-    "id": "6d21fb47-0bb9-49b1-861f-5850d483e437",
-    "name": "Loop Over Items",
-    "type": "n8n-nodes-base.splitInBatches",
-    "position": [
-      -220,
-      400
-    ],
-    "typeVersion": 3
-  },
-  "9": {
-    "parameters": {
-      "rule": {
-        "interval": [
-          {}
-        ]
-      }
-    },
-    "id": "3396db12-6caa-4998-8412-5c4226a3bce1",
-    "name": "Schedule Trigger",
-    "type": "n8n-nodes-base.scheduleTrigger",
-    "position": [
-      -1320,
-      400
-    ],
-    "typeVersion": 1.2
-  },
-  "10": {
-    "parameters": {
-      "resource": "file",
-      "operation": "get",
-      "owner": {
-        "__rl": true,
-        "value": "iBelando",
-        "mode": "list",
-        "cachedResultName": "iBelando",
-        "cachedResultUrl": "https://github.com/iBelando"
-      },
-      "repository": {
-        "__rl": true,
-        "value": "neowyze-n8n-workflows",
-        "mode": "list",
-        "cachedResultName": "neowyze-n8n-workflows",
-        "cachedResultUrl": "https://github.com/iBelando/neowyze-n8n-workflows"
-      },
-      "filePath": "={{ $json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\") }}.json",
-      "asBinaryProperty": false,
-      "additionalParameters": {}
-    },
-    "type": "n8n-nodes-base.github",
-    "typeVersion": 1,
-    "position": [
-      80,
-      420
-    ],
-    "id": "acc21b87-9147-4d8a-9b5e-f81cce75d94e",
-    "name": "GitHub",
-    "alwaysOutputData": true,
-    "credentials": {
-      "githubApi": {
-        "id": "azLE7lidNcTJXzZF",
-        "name": "GitHub Neowyze"
-      }
-    },
-    "onError": "continueRegularOutput"
-  },
-  "11": {
-    "parameters": {},
-    "type": "n8n-nodes-base.wait",
-    "typeVersion": 1.1,
-    "position": [
-      1780,
-      480
-    ],
-    "id": "7866624c-fe68-4a53-ae77-f5edb4997bf4",
-    "name": "Wait",
-    "webhookId": "c49244d7-4957-481b-bae1-a1c29d48bf92"
-  },
-  "12": {
-    "parameters": {
-      "conditions": {
-        "options": {
-          "caseSensitive": true,
-          "leftValue": "",
-          "typeValidation": "strict",
-          "version": 2
+  "createdAt": "2025-08-15T18:35:11.893Z",
+  "id": "NKK9c1gi5YZxKbLZ",
+  "meta": null,
+  "name": "[NEOWYZE] Daily Backups N8N",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "iBelando",
+          "mode": "name"
         },
-        "conditions": [
-          {
-            "id": "aa5ddc01-60c6-454f-abb0-f23130ec695c",
-            "leftValue": "={{ $json.download_url }}",
-            "rightValue": "",
-            "operator": {
-              "type": "string",
-              "operation": "exists",
-              "singleValue": true
-            }
-          }
-        ],
-        "combinator": "and"
+        "repository": {
+          "__rl": true,
+          "value": "neowyze-n8n-workflows",
+          "mode": "name"
+        },
+        "filePath": "={{ $('Loop Over Items').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\") }}.json",
+        "fileContent": "={{ JSON.stringify($json.changes, null, 2) }}",
+        "commitMessage": "={{$('Loop Over Items').item.json.name}} ({{$json.status}})"
       },
-      "options": {}
+      "id": "c4c1c03b-cb0e-4b7b-b33a-4fa6490a6394",
+      "name": "Create new file",
+      "type": "n8n-nodes-base.github",
+      "position": [
+        1460,
+        160
+      ],
+      "webhookId": "b440dead-fad0-4546-8ca7-201aa2ea2936",
+      "typeVersion": 1,
+      "credentials": {
+        "githubApi": {
+          "id": "azLE7lidNcTJXzZF",
+          "name": "GitHub Neowyze"
+        }
+      },
+      "onError": "continueRegularOutput"
     },
-    "type": "n8n-nodes-base.if",
-    "typeVersion": 2.2,
-    "position": [
-      260,
-      420
-    ],
-    "id": "8cc8c588-4102-49d8-ab20-8941f6ea4f8f",
-    "name": "If"
-  },
-  "13": {
-    "parameters": {
-      "url": "={{ $json.download_url }}",
-      "options": {
-        "response": {
-          "response": {
-            "responseFormat": "json"
-          }
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "iBelando",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "neowyze-n8n-workflows",
+          "mode": "name"
+        },
+        "filePath": "={{ $('Loop Over Items').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\") }}.json",
+        "fileContent": "={{ JSON.stringify($json.changes, null, 2) }}",
+        "commitMessage": "={{$('Loop Over Items').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\")}} ({{$json.status}})"
+      },
+      "id": "433179ed-0230-4871-898c-fe17dad43f5f",
+      "name": "Edit existing file",
+      "type": "n8n-nodes-base.github",
+      "position": [
+        1460,
+        -120
+      ],
+      "webhookId": "1dfc4103-7c23-4814-a0b5-dd4f5a96d36b",
+      "typeVersion": 1,
+      "credentials": {
+        "githubApi": {
+          "id": "azLE7lidNcTJXzZF",
+          "name": "GitHub Neowyze"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "bb64ed2c-5193-4b8f-a9e8-55cb83ea244c",
+              "operator": {
+                "type": "dateTime",
+                "operation": "afterOrEquals"
+              },
+              "leftValue": "={{ $json.updatedAt }}",
+              "rightValue": "={{ $now.minus(1, 'days') }}"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "04f2c4ff-d6bc-4206-8563-12f408725f7b",
+      "name": "Filter",
+      "type": "n8n-nodes-base.filter",
+      "position": [
+        -460,
+        400
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "6655f56f-b447-43eb-84a2-be8b71524af7",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{$json.status}}",
+                    "rightValue": "updated"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Different"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "fd0fcdea-e8c0-42be-ba51-5cd2b71ed247",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{$json.status}}",
+                    "rightValue": "new"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "New"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "ca3b1c68-d756-4de5-b69b-147526e19e35",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{$json.status}}",
+                    "rightValue": "same"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Same"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b49e284e-ad81-47a9-ab5c-ca8c479ac605",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        1040,
+        180
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "filters": {},
+        "requestOptions": {}
+      },
+      "id": "c29c1fcd-12e3-48aa-a2ed-f43c526bc514",
+      "name": "Get Workflows",
+      "type": "n8n-nodes-base.n8n",
+      "position": [
+        -660,
+        400
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "n8nApi": {
+          "id": "UuXUgqYZ7NCconr4",
+          "name": "n8n account"
         }
       }
     },
-    "type": "n8n-nodes-base.httpRequest",
-    "typeVersion": 4.2,
-    "position": [
-      520,
-      40
-    ],
-    "id": "8f26be2f-1177-4055-8a8c-ef051952d8b0",
-    "name": "HTTP Request"
-  },
-  "14": {
-    "parameters": {
-      "jsCode": "function orderJsonKeys(obj) {\n  const ordered = {};\n  Object.keys(obj || {}).sort().forEach(key => {\n    ordered[key] = obj[key];\n  });\n  return ordered;\n}\n\nconst githubWF = orderJsonKeys($input[0]);\nconst n8nWF = orderJsonKeys($('Loop Over Items').first().json.nodes);\n\nif (JSON.stringify(githubWF) === JSON.stringify(n8nWF)) {\n  return [{ json: { status: \"same\" } }];\n} else {\n  return [{ json: { status: \"updated\", changes: n8nWF } }];\n}\n"
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "03f51f9c-4681-4423-91d2-d32f4c18d6bc",
+              "name": "repo_owner",
+              "type": "string",
+              "value": ""
+            },
+            {
+              "id": "0c9b521a-b698-4b43-9eb0-bbf744760158",
+              "name": "repo_name",
+              "type": "string",
+              "value": "n8n-workflows"
+            },
+            {
+              "id": "91627e70-a71a-4be0-a6f6-b04d5c8469d8",
+              "name": "repo_path",
+              "type": "string",
+              "value": "n8n-workflows"
+            },
+            {
+              "id": "983a2c87-9d69-4d64-ab88-ec1b1117c6e6",
+              "name": "sub_path",
+              "type": "string",
+              "value": "folder"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "ea95abc9-1dd2-46d9-813a-47fff76dc527",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -880,
+        400
+      ],
+      "typeVersion": 3.4
     },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      720,
-      40
-    ],
-    "id": "a662a638-ee14-412c-9c8f-1edda7846f69",
-    "name": "Code"
-  },
-  "15": {
-    "parameters": {
-      "jsCode": "function orderJsonKeys(obj) {\n  const ordered = {};\n  Object.keys(obj || {}).sort().forEach(key => {\n    ordered[key] = obj[key];\n  });\n  return ordered;\n}\n\nconst n8nWF = orderJsonKeys($('Loop Over Items').first().json.nodes);\n\nreturn [{ json: { status: \"new\", changes: n8nWF } }];\n"
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "#notifications"
+        },
+        "text": "=Information_source:  Starting Workflow Backup [{{ $execution.id }}]",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "id": "508792e1-6789-4f55-82aa-f081d03f3227",
+      "name": "Starting Message",
+      "type": "n8n-nodes-base.slack",
+      "position": [
+        -1100,
+        400
+      ],
+      "webhookId": "c02eb407-5547-4aa0-9ebf-46dab67b63b6",
+      "typeVersion": 2.2,
+      "disabled": true
     },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      720,
-      440
-    ],
-    "id": "dcda56c3-96a1-4b23-a308-00db7dd52915",
-    "name": "Code1"
-  }
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "#notifications"
+        },
+        "text": "=✅ Backup has completed - {{ $('Get Workflows').all().length }} workflows have been processed.",
+        "otherOptions": {}
+      },
+      "id": "abd32a6e-1eb1-4e01-82ac-5dec4fba9a0e",
+      "name": "Completed Notification",
+      "type": "n8n-nodes-base.slack",
+      "position": [
+        80,
+        -100
+      ],
+      "webhookId": "a0c6e8c8-5d71-40fa-b02b-63a7ed5726c4",
+      "executeOnce": true,
+      "typeVersion": 2.2,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "6d21fb47-0bb9-49b1-861f-5850d483e437",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "position": [
+        -220,
+        400
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "id": "3396db12-6caa-4998-8412-5c4226a3bce1",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        -1320,
+        400
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "iBelando",
+          "mode": "list",
+          "cachedResultName": "iBelando",
+          "cachedResultUrl": "https://github.com/iBelando"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "neowyze-n8n-workflows",
+          "mode": "list",
+          "cachedResultName": "neowyze-n8n-workflows",
+          "cachedResultUrl": "https://github.com/iBelando/neowyze-n8n-workflows"
+        },
+        "filePath": "={{ $json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\") }}.json",
+        "asBinaryProperty": false,
+        "additionalParameters": {}
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        80,
+        420
+      ],
+      "id": "acc21b87-9147-4d8a-9b5e-f81cce75d94e",
+      "name": "GitHub",
+      "alwaysOutputData": true,
+      "credentials": {
+        "githubApi": {
+          "id": "azLE7lidNcTJXzZF",
+          "name": "GitHub Neowyze"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1780,
+        480
+      ],
+      "id": "7866624c-fe68-4a53-ae77-f5edb4997bf4",
+      "name": "Wait",
+      "webhookId": "c49244d7-4957-481b-bae1-a1c29d48bf92"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "aa5ddc01-60c6-454f-abb0-f23130ec695c",
+              "leftValue": "={{ $json.download_url }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        260,
+        420
+      ],
+      "id": "8cc8c588-4102-49d8-ab20-8941f6ea4f8f",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.download_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        40
+      ],
+      "id": "8f26be2f-1177-4055-8a8c-ef051952d8b0",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "function orderJsonKeys(obj) {\n  const ordered = {};\n  Object.keys(obj || {}).sort().forEach(key => {\n    ordered[key] = obj[key];\n  });\n  return ordered;\n}\n\nconst githubWF = orderJsonKeys($input[0]);\nconst n8nWF = orderJsonKeys($('Loop Over Items').first().json);\n\nif (JSON.stringify(githubWF) === JSON.stringify(n8nWF)) {\n  return [{ json: { status: \"same\" } }];\n} else {\n  return [{ json: { status: \"updated\", changes: n8nWF } }];\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        40
+      ],
+      "id": "a662a638-ee14-412c-9c8f-1edda7846f69",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "jsCode": "function orderJsonKeys(obj) {\n  const ordered = {};\n  Object.keys(obj || {}).sort().forEach(key => {\n    ordered[key] = obj[key];\n  });\n  return ordered;\n}\n\nconst n8nWF = orderJsonKeys($('Loop Over Items').first().json);\n\nreturn [{ json: { status: \"new\", changes: n8nWF } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        440
+      ],
+      "id": "dcda56c3-96a1-4b23-a308-00db7dd52915",
+      "name": "Code1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-15T22:25:50.000Z",
+  "versionId": "ad63705a-b7df-437b-91b7-9e87d99644c9"
 }
