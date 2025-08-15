@@ -1,0 +1,378 @@
+{
+  "0": {
+    "parameters": {
+      "formTitle": "Nicho SEOS",
+      "formFields": {
+        "values": [
+          {
+            "fieldLabel": "data",
+            "fieldType": "file",
+            "multipleFiles": false,
+            "acceptFileTypes": ".xlsx"
+          }
+        ]
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.formTrigger",
+    "typeVersion": 2.2,
+    "position": [
+      0,
+      0
+    ],
+    "id": "f6ec9622-5860-4ed0-9518-6051d0072ea8",
+    "name": "On form submission",
+    "webhookId": "2f7a2a48-d1d9-43c2-ac3b-f4e7af0ee6f1"
+  },
+  "1": {
+    "parameters": {
+      "operation": "xlsx",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.extractFromFile",
+    "typeVersion": 1,
+    "position": [
+      240,
+      0
+    ],
+    "id": "3aaf3283-e648-4b6b-8087-3a04bebf5903",
+    "name": "Extract from File"
+  },
+  "2": {
+    "parameters": {
+      "options": {}
+    },
+    "type": "n8n-nodes-base.splitInBatches",
+    "typeVersion": 3,
+    "position": [
+      960,
+      0
+    ],
+    "id": "b0f3c918-3a6f-488d-80ae-201fdae5f85f",
+    "name": "Loop Over Items"
+  },
+  "3": {
+    "parameters": {
+      "collection": "hotels",
+      "options": {},
+      "query": "={\n    \"name\": \"{{$json.name}}\"\n}"
+    },
+    "type": "n8n-nodes-base.mongoDb",
+    "typeVersion": 1.1,
+    "position": [
+      1240,
+      160
+    ],
+    "id": "9f17c9d5-d221-41da-9a01-5b30b35f5def",
+    "name": "MongoDB",
+    "executeOnce": true,
+    "alwaysOutputData": true,
+    "credentials": {
+      "mongoDb": {
+        "id": "wbbTpWmbPfXz3T1z",
+        "name": "MongoDB account 2"
+      }
+    }
+  },
+  "4": {
+    "parameters": {
+      "conditions": {
+        "options": {
+          "caseSensitive": true,
+          "leftValue": "",
+          "typeValidation": "strict",
+          "version": 2
+        },
+        "conditions": [
+          {
+            "id": "207eebcd-3099-4020-8c1e-bdb5ed6714e7",
+            "leftValue": "={{ $json }}",
+            "rightValue": "",
+            "operator": {
+              "type": "object",
+              "operation": "notEmpty",
+              "singleValue": true
+            }
+          }
+        ],
+        "combinator": "and"
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.if",
+    "typeVersion": 2.2,
+    "position": [
+      1520,
+      160
+    ],
+    "id": "2e000618-3b6d-41be-a975-e711c4fbba24",
+    "name": "If"
+  },
+  "5": {
+    "parameters": {
+      "operation": "insert",
+      "collection": "hotels",
+      "fields": "={{ $json.keys().join(',') }}",
+      "options": {
+        "dateFields": "=createdAt, updatedAt"
+      }
+    },
+    "type": "n8n-nodes-base.mongoDb",
+    "typeVersion": 1.1,
+    "position": [
+      2340,
+      300
+    ],
+    "id": "9b590ea3-5d5f-4197-a62f-8f8f2c0d8ef5",
+    "name": "MongoDB1",
+    "credentials": {
+      "mongoDb": {
+        "id": "wbbTpWmbPfXz3T1z",
+        "name": "MongoDB account 2"
+      }
+    }
+  },
+  "6": {
+    "parameters": {
+      "operation": "update",
+      "collection": "hotels",
+      "updateKey": "_id",
+      "fields": "={{ $json.keys().join(',') }}",
+      "options": {
+        "dateFields": "createdAt,updatedAt"
+      }
+    },
+    "type": "n8n-nodes-base.mongoDb",
+    "typeVersion": 1.1,
+    "position": [
+      2340,
+      100
+    ],
+    "id": "a95e5cfd-68f6-493d-8840-11c36c879d24",
+    "name": "MongoDB2",
+    "credentials": {
+      "mongoDb": {
+        "id": "wbbTpWmbPfXz3T1z",
+        "name": "MongoDB account 2"
+      }
+    }
+  },
+  "7": {
+    "parameters": {
+      "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+    },
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+      1240,
+      -160
+    ],
+    "id": "8aa8868a-be48-49cd-8908-af046d1bc5fa",
+    "name": "Code"
+  },
+  "8": {
+    "parameters": {
+      "assignments": {
+        "assignments": [
+          {
+            "id": "4211b49f-578d-4392-ab98-bc2a45cfeb4f",
+            "name": "location",
+            "value": "={{ $json[\"hfpxzc href\"] }}",
+            "type": "string"
+          },
+          {
+            "id": "fee82c2e-6521-4d62-87e6-d68b68098c8e",
+            "name": "name",
+            "value": "={{ $json.qBF1Pd }}",
+            "type": "string"
+          },
+          {
+            "id": "f5f14e2c-23c2-4b36-90c7-4a1d7c7fb983",
+            "name": "rating",
+            "value": "={{ $json.MW4etd }}",
+            "type": "string"
+          },
+          {
+            "id": "ed104154-4296-484f-9439-144515b49cef",
+            "name": "reviews",
+            "value": "={{ $json.UY7F9 }}",
+            "type": "string"
+          },
+          {
+            "id": "9aa73165-df35-4a22-8a4b-9077f8606a29",
+            "name": "category",
+            "value": "={{ $json.W4Efsd }}",
+            "type": "string"
+          },
+          {
+            "id": "3aa199ad-33e1-47b8-8d79-a6d8cc762a44",
+            "name": "address",
+            "value": "={{ $json[\"W4Efsd 4\"] }}",
+            "type": "string"
+          },
+          {
+            "id": "5e54e653-b434-4003-b677-d5a87f3bb050",
+            "name": "status",
+            "value": "={{ $json[\"W4Efsd 5\"] }}",
+            "type": "string"
+          },
+          {
+            "id": "fcece345-d36b-4073-a9c9-46b006360860",
+            "name": "image_url",
+            "value": "={{ $json[\"FQ2IWe src\"] }}",
+            "type": "string"
+          }
+        ]
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.set",
+    "typeVersion": 3.4,
+    "position": [
+      480,
+      0
+    ],
+    "id": "c805caa7-61b7-4344-b28f-c77fbf2a7a45",
+    "name": "Renombro las key de los objetos"
+  },
+  "9": {
+    "parameters": {
+      "conditions": {
+        "options": {
+          "caseSensitive": true,
+          "leftValue": "",
+          "typeValidation": "strict",
+          "version": 2
+        },
+        "conditions": [
+          {
+            "id": "a3e6bf26-02c3-4e39-a1ca-4cc337aa6f35",
+            "leftValue": "={{ $json.location }}",
+            "rightValue": "",
+            "operator": {
+              "type": "string",
+              "operation": "notEmpty",
+              "singleValue": true
+            }
+          },
+          {
+            "id": "ec1f338c-2f7c-4701-8398-7cf677431b40",
+            "leftValue": "={{ $json.name }}",
+            "rightValue": "",
+            "operator": {
+              "type": "string",
+              "operation": "notEmpty",
+              "singleValue": true
+            }
+          },
+          {
+            "id": "8e93b923-09e7-45cf-bc63-975921fcb948",
+            "leftValue": "={{ $json.rating }}",
+            "rightValue": "",
+            "operator": {
+              "type": "string",
+              "operation": "notEmpty",
+              "singleValue": true
+            }
+          },
+          {
+            "id": "52e42c21-48fc-44ef-8c7e-456fb97cd4e9",
+            "leftValue": "={{ $json.reviews }}",
+            "rightValue": "",
+            "operator": {
+              "type": "string",
+              "operation": "notEmpty",
+              "singleValue": true
+            }
+          },
+          {
+            "id": "08fa9309-5a82-4d52-a250-189dc39ba9ed",
+            "leftValue": "={{ $json.category }}",
+            "rightValue": "",
+            "operator": {
+              "type": "string",
+              "operation": "notEmpty",
+              "singleValue": true
+            }
+          },
+          {
+            "id": "57fba0a6-c62b-43f1-83ef-9c3803d1cbea",
+            "leftValue": "={{ $json.category }}",
+            "rightValue": "",
+            "operator": {
+              "type": "string",
+              "operation": "notEmpty",
+              "singleValue": true
+            }
+          },
+          {
+            "id": "7b77faef-b58f-414d-84be-bdc4d5dfb763",
+            "leftValue": "={{ $json.address }}",
+            "rightValue": "",
+            "operator": {
+              "type": "string",
+              "operation": "notEmpty",
+              "singleValue": true
+            }
+          },
+          {
+            "id": "752809d4-9223-4eee-a493-e07796313784",
+            "leftValue": "={{ $json.status }}",
+            "rightValue": "",
+            "operator": {
+              "type": "string",
+              "operation": "notEmpty",
+              "singleValue": true
+            }
+          },
+          {
+            "id": "ab14d1da-8e0b-4f7b-8635-36921642b60d",
+            "leftValue": "={{ $json.image_url }}",
+            "rightValue": "",
+            "operator": {
+              "type": "string",
+              "operation": "notEmpty",
+              "singleValue": true
+            }
+          }
+        ],
+        "combinator": "or"
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.filter",
+    "typeVersion": 2.2,
+    "position": [
+      700,
+      0
+    ],
+    "id": "e4bc8f98-e48c-4d62-909d-05fe0d374460",
+    "name": "Elimino los objetos vacíos"
+  },
+  "10": {
+    "parameters": {
+      "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nconst item = $('Loop Over Items').first().json\n\nreturn {\n  ...item,\n  origin: \"Form\",\n  status: \"created\",\n  notes: \"\",\n  createdAt: new Date(),\n  updatedAt: new Date()\n}"
+    },
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+      1740,
+      300
+    ],
+    "id": "b91b8f57-89cf-4d36-9d17-a3c17db15ec4",
+    "name": "Code1"
+  },
+  "11": {
+    "parameters": {
+      "jsCode": "const item = $input.first().json\n\nreturn {\n  ...item,\n  origin: \"Form\",\n  status: \"created\",\n  notes: \"\",\n  createdAt: new Date(),\n  updatedAt: new Date()\n}"
+    },
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+      1740,
+      100
+    ],
+    "id": "a9585306-28a5-4ed4-8ff7-e9e121b72335",
+    "name": "Code2"
+  }
+}
