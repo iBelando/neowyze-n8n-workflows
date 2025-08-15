@@ -1,376 +1,606 @@
 {
-  "0": {
-    "parameters": {
-      "documentId": {
-        "__rl": true,
-        "value": "18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg",
-        "mode": "list",
-        "cachedResultName": "Base de datos | Inversores Argenway",
-        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg/edit?usp=drivesdk"
-      },
-      "sheetName": {
-        "__rl": true,
-        "value": 931241228,
-        "mode": "list",
-        "cachedResultName": "Base de datos",
-        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg/edit#gid=931241228"
-      },
-      "filtersUI": {
-        "values": [
+  "active": false,
+  "connections": {
+    "Obtengo el sheet y filtro por clientes": {
+      "main": [
+        [
           {
-            "lookupColumn": "CLIENTE (SI/NO)",
-            "lookupValue": "SI"
+            "node": "Filtro por proyecto seleccionado1",
+            "type": "main",
+            "index": 0
           }
         ]
-      },
-      "options": {}
+      ]
     },
-    "type": "n8n-nodes-base.googleSheets",
-    "typeVersion": 4.5,
-    "position": [
-      820,
-      400
-    ],
-    "id": "ba7ac0b2-d3bf-4d21-9d40-c1b7498c5f6a",
-    "name": "Obtengo el sheet y filtro por clientes"
-  },
-  "1": {
-    "parameters": {
-      "options": {}
-    },
-    "type": "n8n-nodes-base.splitInBatches",
-    "typeVersion": 3,
-    "position": [
-      1300,
-      400
-    ],
-    "id": "ffd69ecf-bd36-4337-8293-62bcf0dca2d5",
-    "name": "Itero"
-  },
-  "2": {
-    "parameters": {
-      "jsCode": "return $input.all();"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      1620,
-      320
-    ],
-    "id": "5fba6735-29e3-45a5-bd8d-ec11732e9e08",
-    "name": "Code"
-  },
-  "3": {
-    "parameters": {
-      "formTitle": "Envío de informes mensual",
-      "formFields": {
-        "values": [
+    "Itero": {
+      "main": [
+        [
           {
-            "fieldLabel": "Proyecto",
-            "fieldType": "dropdown",
-            "fieldOptions": {
-              "values": [
-                {
-                  "option": "Todos"
-                },
-                {
-                  "option": "TRU"
-                },
-                {
-                  "option": "BRC"
-                },
-                {
-                  "option": "ROS"
-                },
-                {
-                  "option": "DOM"
-                }
-              ]
-            },
-            "requiredField": true
-          }
-        ]
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.formTrigger",
-    "typeVersion": 2.2,
-    "position": [
-      -2240,
-      400
-    ],
-    "id": "1ed3b104-dc53-4904-be98-427ef94436ad",
-    "name": "Selecciono el proyecto",
-    "webhookId": "9a8757a8-bead-4f36-8713-25d18d79f5b3"
-  },
-  "4": {
-    "parameters": {
-      "defineForm": "json",
-      "jsonOutput": "={{ JSON.stringify($json.form) }}",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.form",
-    "typeVersion": 1,
-    "position": [
-      -1580,
-      400
-    ],
-    "id": "7100e04d-b9f2-497d-96d1-02aa163d1382",
-    "name": "Selecciono el template",
-    "webhookId": "9028b0d7-8a7c-4341-89e8-23c164c7a158"
-  },
-  "5": {
-    "parameters": {
-      "jsCode": "// Si selecciono \"Todos\", devuelvo todos\nif ($('Selecciono el proyecto').first().json.Proyecto === 'Todos') {\n  return $input.all()\n} else {\n  // Si no, filtro por el proyecto seleccionado\n  return $input.all().filter(client => client.json.Proyecto.includes($('Selecciono el proyecto').first().json.Proyecto) && client.json[\"Whatsapp\"].toString() !== '-')\n}"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      1040,
-      400
-    ],
-    "id": "754e0591-457d-42c0-9f9f-04e502443019",
-    "name": "Filtro por proyecto seleccionado1"
-  },
-  "6": {
-    "parameters": {
-      "url": "https://graph.facebook.com/v17.0/1444719746509267/message_templates",
-      "sendHeaders": true,
-      "headerParameters": {
-        "parameters": [
-          {
-            "name": "Authorization",
-            "value": "Bearer EAATYZAFsqHfsBOwoFWHd44vo7OOmZAbCeGSNKy1l0dipYCzYdMtkWM0T7H24UkqvOuu0xuNFHpnDxGR4IP5ZA6X8wklp0mbcbilhQ9ROOLjEE3IAryWZCrKANmwv20N3xbNkTkdNLo3a3CnV9d38vu3A4gRwSZBpaiK8gwnTiL8UVlE1psrS5mRA0WhJBywZDZD"
-          }
-        ]
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.httpRequest",
-    "typeVersion": 4.2,
-    "position": [
-      -2020,
-      400
-    ],
-    "id": "d66ea454-3518-4bcf-b2bc-637de2559cb2",
-    "name": "Obtengo los templates de whatsapp"
-  },
-  "7": {
-    "parameters": {
-      "jsCode": "const data = $input.first().json.data\n\nreturn {\n  form: [\n    {\n      fieldLabel: \"Templates\",\n      fieldType: \"dropdown\",\n      fieldOptions: data.map(e => { return {option: `${e.name}`}}),\n      requiredField: true\n    }\n  ]\n}"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      -1800,
-      400
-    ],
-    "id": "247916d3-35ba-4b08-a12f-eee7fa7608c5",
-    "name": "Formateo las opciones del formulario"
-  },
-  "8": {
-    "parameters": {
-      "jsCode": "\nconst template = $('Obtengo los templates de whatsapp').first().json.data.find(template => template.name === $input.first().json.Templates)\n\nreturn {json: template}"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      -1360,
-      400
-    ],
-    "id": "4f603ca2-b940-4a42-94fc-32a79669ef14",
-    "name": "Filtro por el template seleccionado"
-  },
-  "9": {
-    "parameters": {
-      "jsCode": "const body = {\n  messaging_product: \"whatsapp\",\n  recipient_type: \"individual\",\n  to: \"+5492214363975\",\n  type: \"template\",\n  template: {\n    name: $input.first().json.name,\n    language: {\n      code: $input.first().json.language\n    },\n    components: []\n  }\n}\n\n$input.first().json.components.forEach(component => {\n  if (component.type === \"HEADER\" && component.format !== \"TEXT\") {\n    body.template.components.push({\n      type: \"header\",\n      parameters: [\n        {\n          type: component.format.toLowerCase(),\n          [component.format.toLowerCase()]: {\n            link: $input.first().json.components[0].example.header_handle[0],\n          },\n        },\n      ]\n    })\n  }\n\n    if (component.type === \"BODY\" && component.example) {\n      const parameters = component.example.body_text_named_params.map(param => {\n        return {\n          type: \"text\",\n          parameter_name: param.param_name,\n          text: param.example\n        }\n      })\n      \n    body.template.components.push({\n      type: \"body\",\n      parameters\n    })\n  }\n})\n\nreturn body;"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      -1140,
-      400
-    ],
-    "id": "c1f46d66-15c6-4978-9b7d-d1bce8b773cd",
-    "name": "Formateo el body"
-  },
-  "10": {
-    "parameters": {
-      "url": "={{ $json.link }}",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.httpRequest",
-    "typeVersion": 4.2,
-    "position": [
-      -480,
-      300
-    ],
-    "id": "801f5754-ab0f-407a-bddc-75fb4e74908c",
-    "name": "Obtengo el archivo del template"
-  },
-  "11": {
-    "parameters": {
-      "method": "POST",
-      "url": "https://api.core.neowyze.tech/files/upload",
-      "sendBody": true,
-      "contentType": "multipart-form-data",
-      "bodyParameters": {
-        "parameters": [
-          {
-            "parameterType": "formBinaryData",
-            "name": "files",
-            "inputDataFieldName": "data"
-          }
-        ]
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.httpRequest",
-    "typeVersion": 4.2,
-    "position": [
-      20,
-      300
-    ],
-    "id": "ebc370c0-ae03-449f-ab64-d9fcc8f0bdcf",
-    "name": "Subo el archivo a digital"
-  },
-  "12": {
-    "parameters": {
-      "conditions": {
-        "options": {
-          "caseSensitive": true,
-          "leftValue": "",
-          "typeValidation": "loose",
-          "version": 2
-        },
-        "conditions": [
-          {
-            "id": "d2624e3b-5f0d-4474-83bb-6d61c664af38",
-            "leftValue": "={{ $json.template.components.filter(item => item.type === \"header\") }}",
-            "rightValue": "",
-            "operator": {
-              "type": "array",
-              "operation": "notEmpty",
-              "singleValue": true
-            }
+            "node": "Code",
+            "type": "main",
+            "index": 0
           }
         ],
-        "combinator": "or"
-      },
-      "looseTypeValidation": true,
-      "options": {}
-    },
-    "type": "n8n-nodes-base.if",
-    "typeVersion": 2.2,
-    "position": [
-      -920,
-      400
-    ],
-    "id": "9a5d795a-006e-47a9-9ece-ae9b68c3d268",
-    "name": "Verifico si tiene header"
-  },
-  "13": {
-    "parameters": {
-      "jsCode": "const json = $('Verifico si tiene header').first().json\n\nconst header = json.template.components.find(component => component.type === \"header\")\n\nheader.parameters = [{\n    type: $('Obtengo el archivo subido en la plantilla').first().json.type,\n    [$('Obtengo el archivo subido en la plantilla').first().json.type] : {\n      link: $input.first().json\n    }\n  }]\n\nreturn json"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      280,
-      300
-    ],
-    "id": "250646e2-31d0-46d2-9938-b9c9bcdba345",
-    "name": "Agrego el archivo a body"
-  },
-  "14": {
-    "parameters": {
-      "jsCode": "\nconst header = $input.first().json.template.components.filter(component => component.type === \"header\")\n\nconst type = header[0].parameters[0].type\n\nreturn {\n  type,\n  link: header[0].parameters[0][type].link\n}"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      -700,
-      300
-    ],
-    "id": "b34ba6c2-6955-4bba-816b-247fe04b0c71",
-    "name": "Obtengo el archivo subido en la plantilla"
-  },
-  "15": {
-    "parameters": {},
-    "type": "n8n-nodes-base.merge",
-    "typeVersion": 3,
-    "position": [
-      620,
-      400
-    ],
-    "id": "1faa9854-bd86-4161-b8f5-b35cdd942cf7",
-    "name": "Merge"
-  },
-  "16": {
-    "parameters": {
-      "method": "POST",
-      "url": "https://graph.facebook.com/v22.0/631081970092798/messages",
-      "sendHeaders": true,
-      "headerParameters": {
-        "parameters": [
+        [
           {
-            "name": "Authorization",
-            "value": "Bearer EAATYZAFsqHfsBOwoFWHd44vo7OOmZAbCeGSNKy1l0dipYCzYdMtkWM0T7H24UkqvOuu0xuNFHpnDxGR4IP5ZA6X8wklp0mbcbilhQ9ROOLjEE3IAryWZCrKANmwv20N3xbNkTkdNLo3a3CnV9d38vu3A4gRwSZBpaiK8gwnTiL8UVlE1psrS5mRA0WhJBywZDZD"
+            "node": "Configuro las variables",
+            "type": "main",
+            "index": 0
           }
         ]
+      ]
+    },
+    "Selecciono el proyecto": {
+      "main": [
+        [
+          {
+            "node": "Obtengo los templates de whatsapp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Selecciono el template": {
+      "main": [
+        [
+          {
+            "node": "Filtro por el template seleccionado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtro por proyecto seleccionado1": {
+      "main": [
+        [
+          {
+            "node": "Itero",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtengo los templates de whatsapp": {
+      "main": [
+        [
+          {
+            "node": "Formateo las opciones del formulario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formateo las opciones del formulario": {
+      "main": [
+        [
+          {
+            "node": "Selecciono el template",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtro por el template seleccionado": {
+      "main": [
+        [
+          {
+            "node": "Formateo el body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formateo el body": {
+      "main": [
+        [
+          {
+            "node": "Verifico si tiene header",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtengo el archivo del template": {
+      "main": [
+        [
+          {
+            "node": "Subo el archivo a digital",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Subo el archivo a digital": {
+      "main": [
+        [
+          {
+            "node": "Agrego el archivo a body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verifico si tiene header": {
+      "main": [
+        [
+          {
+            "node": "Obtengo el archivo subido en la plantilla",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Agrego el archivo a body": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtengo el archivo subido en la plantilla": {
+      "main": [
+        [
+          {
+            "node": "Obtengo el archivo del template",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Obtengo el sheet y filtro por clientes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envio el mensaje": {
+      "main": [
+        [
+          {
+            "node": "Espero medio segundo entre cada envío de mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Espero medio segundo entre cada envío de mensaje": {
+      "main": [
+        [
+          {
+            "node": "Itero",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configuro las variables": {
+      "main": [
+        [
+          {
+            "node": "Envio el mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-08T13:47:21.293Z",
+  "id": "xoJ7cHJtkKmN88kl",
+  "meta": null,
+  "name": "Envío de campañas",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg",
+          "mode": "list",
+          "cachedResultName": "Base de datos | Inversores Argenway",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 931241228,
+          "mode": "list",
+          "cachedResultName": "Base de datos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg/edit#gid=931241228"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "CLIENTE (SI/NO)",
+              "lookupValue": "SI"
+            }
+          ]
+        },
+        "options": {}
       },
-      "sendBody": true,
-      "specifyBody": "json",
-      "jsonBody": "={{ $json }}",
-      "options": {}
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        820,
+        400
+      ],
+      "id": "ba7ac0b2-d3bf-4d21-9d40-c1b7498c5f6a",
+      "name": "Obtengo el sheet y filtro por clientes"
     },
-    "type": "n8n-nodes-base.httpRequest",
-    "typeVersion": 4.2,
-    "position": [
-      1840,
-      500
-    ],
-    "id": "4b4f0cff-56e3-492a-b7e5-63643a4a963d",
-    "name": "Envio el mensaje"
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1300,
+        400
+      ],
+      "id": "ffd69ecf-bd36-4337-8293-62bcf0dca2d5",
+      "name": "Itero"
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1620,
+        320
+      ],
+      "id": "5fba6735-29e3-45a5-bd8d-ec11732e9e08",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "formTitle": "Envío de informes mensual",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Proyecto",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Todos"
+                  },
+                  {
+                    "option": "TRU"
+                  },
+                  {
+                    "option": "BRC"
+                  },
+                  {
+                    "option": "ROS"
+                  },
+                  {
+                    "option": "DOM"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -2240,
+        400
+      ],
+      "id": "1ed3b104-dc53-4904-be98-427ef94436ad",
+      "name": "Selecciono el proyecto",
+      "webhookId": "9a8757a8-bead-4f36-8713-25d18d79f5b3"
+    },
+    {
+      "parameters": {
+        "defineForm": "json",
+        "jsonOutput": "={{ JSON.stringify($json.form) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        -1580,
+        400
+      ],
+      "id": "7100e04d-b9f2-497d-96d1-02aa163d1382",
+      "name": "Selecciono el template",
+      "webhookId": "9028b0d7-8a7c-4341-89e8-23c164c7a158"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Si selecciono \"Todos\", devuelvo todos\nif ($('Selecciono el proyecto').first().json.Proyecto === 'Todos') {\n  return $input.all()\n} else {\n  // Si no, filtro por el proyecto seleccionado\n  return $input.all().filter(client => client.json.Proyecto.includes($('Selecciono el proyecto').first().json.Proyecto) && client.json[\"Whatsapp\"].toString() !== '-')\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        400
+      ],
+      "id": "754e0591-457d-42c0-9f9f-04e502443019",
+      "name": "Filtro por proyecto seleccionado1"
+    },
+    {
+      "parameters": {
+        "url": "https://graph.facebook.com/v17.0/1444719746509267/message_templates",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer EAATYZAFsqHfsBOwoFWHd44vo7OOmZAbCeGSNKy1l0dipYCzYdMtkWM0T7H24UkqvOuu0xuNFHpnDxGR4IP5ZA6X8wklp0mbcbilhQ9ROOLjEE3IAryWZCrKANmwv20N3xbNkTkdNLo3a3CnV9d38vu3A4gRwSZBpaiK8gwnTiL8UVlE1psrS5mRA0WhJBywZDZD"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2020,
+        400
+      ],
+      "id": "d66ea454-3518-4bcf-b2bc-637de2559cb2",
+      "name": "Obtengo los templates de whatsapp"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json.data\n\nreturn {\n  form: [\n    {\n      fieldLabel: \"Templates\",\n      fieldType: \"dropdown\",\n      fieldOptions: data.map(e => { return {option: `${e.name}`}}),\n      requiredField: true\n    }\n  ]\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1800,
+        400
+      ],
+      "id": "247916d3-35ba-4b08-a12f-eee7fa7608c5",
+      "name": "Formateo las opciones del formulario"
+    },
+    {
+      "parameters": {
+        "jsCode": "\nconst template = $('Obtengo los templates de whatsapp').first().json.data.find(template => template.name === $input.first().json.Templates)\n\nreturn {json: template}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1360,
+        400
+      ],
+      "id": "4f603ca2-b940-4a42-94fc-32a79669ef14",
+      "name": "Filtro por el template seleccionado"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = {\n  messaging_product: \"whatsapp\",\n  recipient_type: \"individual\",\n  to: \"+5492214363975\",\n  type: \"template\",\n  template: {\n    name: $input.first().json.name,\n    language: {\n      code: $input.first().json.language\n    },\n    components: []\n  }\n}\n\n$input.first().json.components.forEach(component => {\n  if (component.type === \"HEADER\" && component.format !== \"TEXT\") {\n    body.template.components.push({\n      type: \"header\",\n      parameters: [\n        {\n          type: component.format.toLowerCase(),\n          [component.format.toLowerCase()]: {\n            link: $input.first().json.components[0].example.header_handle[0],\n          },\n        },\n      ]\n    })\n  }\n\n    if (component.type === \"BODY\" && component.example) {\n      const parameters = component.example.body_text_named_params.map(param => {\n        return {\n          type: \"text\",\n          parameter_name: param.param_name,\n          text: param.example\n        }\n      })\n      \n    body.template.components.push({\n      type: \"body\",\n      parameters\n    })\n  }\n})\n\nreturn body;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1140,
+        400
+      ],
+      "id": "c1f46d66-15c6-4978-9b7d-d1bce8b773cd",
+      "name": "Formateo el body"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.link }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -480,
+        300
+      ],
+      "id": "801f5754-ab0f-407a-bddc-75fb4e74908c",
+      "name": "Obtengo el archivo del template"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.core.neowyze.tech/files/upload",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "files",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        20,
+        300
+      ],
+      "id": "ebc370c0-ae03-449f-ab64-d9fcc8f0bdcf",
+      "name": "Subo el archivo a digital"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d2624e3b-5f0d-4474-83bb-6d61c664af38",
+              "leftValue": "={{ $json.template.components.filter(item => item.type === \"header\") }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -920,
+        400
+      ],
+      "id": "9a5d795a-006e-47a9-9ece-ae9b68c3d268",
+      "name": "Verifico si tiene header"
+    },
+    {
+      "parameters": {
+        "jsCode": "const json = $('Verifico si tiene header').first().json\n\nconst header = json.template.components.find(component => component.type === \"header\")\n\nheader.parameters = [{\n    type: $('Obtengo el archivo subido en la plantilla').first().json.type,\n    [$('Obtengo el archivo subido en la plantilla').first().json.type] : {\n      link: $input.first().json\n    }\n  }]\n\nreturn json"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        280,
+        300
+      ],
+      "id": "250646e2-31d0-46d2-9938-b9c9bcdba345",
+      "name": "Agrego el archivo a body"
+    },
+    {
+      "parameters": {
+        "jsCode": "\nconst header = $input.first().json.template.components.filter(component => component.type === \"header\")\n\nconst type = header[0].parameters[0].type\n\nreturn {\n  type,\n  link: header[0].parameters[0][type].link\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -700,
+        300
+      ],
+      "id": "b34ba6c2-6955-4bba-816b-247fe04b0c71",
+      "name": "Obtengo el archivo subido en la plantilla"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        620,
+        400
+      ],
+      "id": "1faa9854-bd86-4161-b8f5-b35cdd942cf7",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v22.0/631081970092798/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer EAATYZAFsqHfsBOwoFWHd44vo7OOmZAbCeGSNKy1l0dipYCzYdMtkWM0T7H24UkqvOuu0xuNFHpnDxGR4IP5ZA6X8wklp0mbcbilhQ9ROOLjEE3IAryWZCrKANmwv20N3xbNkTkdNLo3a3CnV9d38vu3A4gRwSZBpaiK8gwnTiL8UVlE1psrS5mRA0WhJBywZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1840,
+        500
+      ],
+      "id": "4b4f0cff-56e3-492a-b7e5-63643a4a963d",
+      "name": "Envio el mensaje"
+    },
+    {
+      "parameters": {
+        "amount": 0.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2060,
+        500
+      ],
+      "id": "498c22a4-3d8c-4d17-bc60-7e99f727d7bb",
+      "name": "Espero medio segundo entre cada envío de mensaje",
+      "webhookId": "b39905ad-2b5b-4089-8606-f25211d615fd"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtengo el body para enviar mensaje\nconst json = $('Merge').first().json\n\n// Configuro el \"to\"\njson.to = `+${$input.first().json.Whatsapp}`\n\n// Busco el component \"body\"\nconst body = json.template.components.find(component => component.type === \"body\")\n\n// Verifico si existe el componet \"body\"\nif (body && body.parameters.length > 0) {\n  const formatedBodyParams = body.parameters.map(param => {\n  \n    const parameterName = param.parameter_name.split(\"_\").map((word, index) => {\n    return index === 0 ?\n      word[0].toUpperCase() + word.slice(1).toLowerCase() :\n      word.toLowerCase()\n  }).join(\" \")\n\n    return {\n      ...param,\n      text: $input.first().json[parameterName]\n    }\n  })\n\n  body.parameters = formatedBodyParams\n}\n\nreturn json"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1620,
+        500
+      ],
+      "id": "ccd44054-6296-4863-931c-98b3539e5fd8",
+      "name": "Configuro las variables"
+    },
+    {
+      "parameters": {
+        "jsCode": "// const FormData = require('form-data');\n// const formData = new FormData();\n\nconst allowedAudioTypes = [\n  'audio/aac',\n  'audio/amr',\n  'audio/mpeg',\n  'audio/mp4',\n  'audio/ogg',\n]\n\nconst allowedDocumentTypes = [\n  'text/plain',\n  'application/vnd.ms-excel',\n  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',\n  'application/msword',\n  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',\n  'application/vnd.ms-powerpoint',\n  'application/vnd.openxmlformats-officedocument.presentationml.presentation',\n  'application/pdf'\n]\n\nconst allowedImageTypes = [\n  'image/jpeg',\n  'image/png',\n]\n\nconst allowedStickerTypes = [\n  'image/webp'\n]\n\nconst allowedVideoTypes = [\n  'video/3gpp',\n  'video/mp4'\n];\n\nconst allowedMimeTypes = [\n  ...allowedAudioTypes,\n  ...allowedDocumentTypes,\n  ...allowedImageTypes,\n  ...allowedStickerTypes,\n  ...allowedVideoTypes\n]\n\nconsole.log(\"file size: \", $binary.data.size)\n\nif (!allowedMimeTypes.includes($binary.data.mimeType)) {\n  throw new Error(`Tipo de archivo no permitido: ${$binary.data.mimeType}`);\n} else if (\n  allowedAudioTypes.includes($binary.data.mimeType) && \n  $binary.data.size > 16 * 1024 * 1024\n) {\n  throw new Error('Los archivos de audio no pueden exceder los 16MB');\n} else if (\n  allowedDocumentTypes.includes($binary.data.mimeType) && \n  $binary.data.size > 100 * 1024 * 1024\n) {\n  throw new Error('Los documentos no pueden exceder los 100MB');\n} else if (\n  allowedImageTypes.includes($binary.data.mimeType) && \n  $binary.data.size > 5 * 1024 * 1024\n) {\n  throw new Error('Las imágenes no pueden exceder los 5MB');\n} else if (\n  allowedStickerTypes.includes($binary.data.mimeType) && \n  $binary.data.size > ($binary.data.animated ? 500 * 1024 : 100 * 1024)\n) {\n  throw new Error(`Los stickers ${$binary.data.animated ? 'animados' : 'estáticos'} no pueden exceder los ${$binary.data.animated ? '500KB' : '100KB'}`);\n} else if (\n  allowedVideoTypes.includes($binary.data.mimeType) && \n  $binary.data.size > 16 * 1024 * 1024\n) {\n  throw new Error('Los videos no pueden exceder los 16MB');\n} else {\n  return [{binary: $binary}];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        100
+      ],
+      "id": "9b7fddaf-874e-482c-8109-c769d6f108ae",
+      "name": "Verifico el peso y el tipo de archivo"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
   },
-  "17": {
-    "parameters": {
-      "amount": 0.5
-    },
-    "type": "n8n-nodes-base.wait",
-    "typeVersion": 1.1,
-    "position": [
-      2060,
-      500
-    ],
-    "id": "498c22a4-3d8c-4d17-bc60-7e99f727d7bb",
-    "name": "Espero medio segundo entre cada envío de mensaje",
-    "webhookId": "b39905ad-2b5b-4089-8606-f25211d615fd"
-  },
-  "18": {
-    "parameters": {
-      "jsCode": "// Obtengo el body para enviar mensaje\nconst json = $('Merge').first().json\n\n// Configuro el \"to\"\njson.to = `+${$input.first().json.Whatsapp}`\n\n// Busco el component \"body\"\nconst body = json.template.components.find(component => component.type === \"body\")\n\n// Verifico si existe el componet \"body\"\nif (body && body.parameters.length > 0) {\n  const formatedBodyParams = body.parameters.map(param => {\n  \n    const parameterName = param.parameter_name.split(\"_\").map((word, index) => {\n    return index === 0 ?\n      word[0].toUpperCase() + word.slice(1).toLowerCase() :\n      word.toLowerCase()\n  }).join(\" \")\n\n    return {\n      ...param,\n      text: $input.first().json[parameterName]\n    }\n  })\n\n  body.parameters = formatedBodyParams\n}\n\nreturn json"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      1620,
-      500
-    ],
-    "id": "ccd44054-6296-4863-931c-98b3539e5fd8",
-    "name": "Configuro las variables"
-  },
-  "19": {
-    "parameters": {
-      "jsCode": "// const FormData = require('form-data');\n// const formData = new FormData();\n\nconst allowedAudioTypes = [\n  'audio/aac',\n  'audio/amr',\n  'audio/mpeg',\n  'audio/mp4',\n  'audio/ogg',\n]\n\nconst allowedDocumentTypes = [\n  'text/plain',\n  'application/vnd.ms-excel',\n  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',\n  'application/msword',\n  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',\n  'application/vnd.ms-powerpoint',\n  'application/vnd.openxmlformats-officedocument.presentationml.presentation',\n  'application/pdf'\n]\n\nconst allowedImageTypes = [\n  'image/jpeg',\n  'image/png',\n]\n\nconst allowedStickerTypes = [\n  'image/webp'\n]\n\nconst allowedVideoTypes = [\n  'video/3gpp',\n  'video/mp4'\n];\n\nconst allowedMimeTypes = [\n  ...allowedAudioTypes,\n  ...allowedDocumentTypes,\n  ...allowedImageTypes,\n  ...allowedStickerTypes,\n  ...allowedVideoTypes\n]\n\nconsole.log(\"file size: \", $binary.data.size)\n\nif (!allowedMimeTypes.includes($binary.data.mimeType)) {\n  throw new Error(`Tipo de archivo no permitido: ${$binary.data.mimeType}`);\n} else if (\n  allowedAudioTypes.includes($binary.data.mimeType) && \n  $binary.data.size > 16 * 1024 * 1024\n) {\n  throw new Error('Los archivos de audio no pueden exceder los 16MB');\n} else if (\n  allowedDocumentTypes.includes($binary.data.mimeType) && \n  $binary.data.size > 100 * 1024 * 1024\n) {\n  throw new Error('Los documentos no pueden exceder los 100MB');\n} else if (\n  allowedImageTypes.includes($binary.data.mimeType) && \n  $binary.data.size > 5 * 1024 * 1024\n) {\n  throw new Error('Las imágenes no pueden exceder los 5MB');\n} else if (\n  allowedStickerTypes.includes($binary.data.mimeType) && \n  $binary.data.size > ($binary.data.animated ? 500 * 1024 : 100 * 1024)\n) {\n  throw new Error(`Los stickers ${$binary.data.animated ? 'animados' : 'estáticos'} no pueden exceder los ${$binary.data.animated ? '500KB' : '100KB'}`);\n} else if (\n  allowedVideoTypes.includes($binary.data.mimeType) && \n  $binary.data.size > 16 * 1024 * 1024\n) {\n  throw new Error('Los videos no pueden exceder los 16MB');\n} else {\n  return [{binary: $binary}];\n}"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      -240,
-      100
-    ],
-    "id": "9b7fddaf-874e-482c-8109-c769d6f108ae",
-    "name": "Verifico el peso y el tipo de archivo"
-  }
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-08T13:47:21.293Z",
+  "versionId": "85d7dba3-d6cd-4b52-ac61-7c2b6d609414"
 }
