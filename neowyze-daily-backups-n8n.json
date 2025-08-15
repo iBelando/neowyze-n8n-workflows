@@ -70,8 +70,8 @@
         "mode": "name"
       },
       "filePath": "={{ $('Loop Over Items').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\") }}.json",
-      "fileContent": "={{$('isDiffOrNew').item.json[\"n8n_data_stringy\"]}}",
-      "commitMessage": "={{$('Loop Over Items').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\")}} ({{$json.github_status}})"
+      "fileContent": "={{ JSON.stringify($json.changes, null, 2) }}",
+      "commitMessage": "={{$('Loop Over Items').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\")}} ({{$json.status}})"
     },
     "id": "433179ed-0230-4871-898c-fe17dad43f5f",
     "name": "Edit existing file",
@@ -84,8 +84,8 @@
     "typeVersion": 1,
     "credentials": {
       "githubApi": {
-        "id": "X7P1JrlHuBsYUES2",
-        "name": "GitHub account"
+        "id": "azLE7lidNcTJXzZF",
+        "name": "GitHub Neowyze"
       }
     }
   },
@@ -98,7 +98,6 @@
           "caseSensitive": true,
           "typeValidation": "strict"
         },
-        "combinator": "and",
         "conditions": [
           {
             "id": "bb64ed2c-5193-4b8f-a9e8-55cb83ea244c",
@@ -109,7 +108,8 @@
             "leftValue": "={{ $json.updatedAt }}",
             "rightValue": "={{ $now.minus(1, 'days') }}"
           }
-        ]
+        ],
+        "combinator": "and"
       },
       "options": {}
     },
