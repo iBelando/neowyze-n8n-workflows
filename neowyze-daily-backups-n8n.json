@@ -1,29 +1,6 @@
 {
   "0": {
     "parameters": {
-      "assignments": {
-        "assignments": [
-          {
-            "id": "8d513345-6484-431f-afb7-7cf045c90f4f",
-            "name": "Done",
-            "type": "boolean",
-            "value": true
-          }
-        ]
-      },
-      "options": {}
-    },
-    "id": "04389b13-f3f5-4486-a1f9-f6a3dba12b98",
-    "name": "Return",
-    "type": "n8n-nodes-base.set",
-    "position": [
-      1660,
-      480
-    ],
-    "typeVersion": 3.3
-  },
-  "1": {
-    "parameters": {
       "resource": "file",
       "owner": {
         "__rl": true,
@@ -55,7 +32,7 @@
       }
     }
   },
-  "2": {
+  "1": {
     "parameters": {
       "resource": "file",
       "operation": "edit",
@@ -89,7 +66,7 @@
       }
     }
   },
-  "3": {
+  "2": {
     "parameters": {
       "conditions": {
         "options": {
@@ -117,12 +94,12 @@
     "name": "Filter",
     "type": "n8n-nodes-base.filter",
     "position": [
-      -440,
-      400
+      -500,
+      680
     ],
     "typeVersion": 2.2
   },
-  "4": {
+  "3": {
     "parameters": {
       "rules": {
         "values": [
@@ -213,7 +190,7 @@
     ],
     "typeVersion": 3.2
   },
-  "5": {
+  "4": {
     "parameters": {
       "filters": {},
       "requestOptions": {}
@@ -233,7 +210,7 @@
       }
     }
   },
-  "6": {
+  "5": {
     "parameters": {
       "assignments": {
         "assignments": [
@@ -275,7 +252,7 @@
     ],
     "typeVersion": 3.4
   },
-  "7": {
+  "6": {
     "parameters": {
       "select": "channel",
       "channelId": {
@@ -299,7 +276,7 @@
     "typeVersion": 2.2,
     "disabled": true
   },
-  "8": {
+  "7": {
     "parameters": {
       "select": "channel",
       "channelId": {
@@ -322,7 +299,7 @@
     "typeVersion": 2.2,
     "disabled": true
   },
-  "9": {
+  "8": {
     "parameters": {
       "options": {}
     },
@@ -335,7 +312,7 @@
     ],
     "typeVersion": 3
   },
-  "10": {
+  "9": {
     "parameters": {
       "rule": {
         "interval": [
@@ -352,7 +329,7 @@
     ],
     "typeVersion": 1.2
   },
-  "11": {
+  "10": {
     "parameters": {
       "resource": "file",
       "operation": "get",
@@ -391,19 +368,19 @@
     },
     "onError": "continueRegularOutput"
   },
-  "12": {
+  "11": {
     "parameters": {},
     "type": "n8n-nodes-base.wait",
     "typeVersion": 1.1,
     "position": [
-      1840,
+      1780,
       480
     ],
     "id": "7866624c-fe68-4a53-ae77-f5edb4997bf4",
     "name": "Wait",
     "webhookId": "c49244d7-4957-481b-bae1-a1c29d48bf92"
   },
-  "13": {
+  "12": {
     "parameters": {
       "conditions": {
         "options": {
@@ -437,7 +414,7 @@
     "id": "8cc8c588-4102-49d8-ab20-8941f6ea4f8f",
     "name": "If"
   },
-  "14": {
+  "13": {
     "parameters": {
       "url": "={{ $json.download_url }}",
       "options": {
@@ -457,7 +434,7 @@
     "id": "8f26be2f-1177-4055-8a8c-ef051952d8b0",
     "name": "HTTP Request"
   },
-  "15": {
+  "14": {
     "parameters": {
       "jsCode": "function orderJsonKeys(obj) {\n  const ordered = {};\n  Object.keys(obj || {}).sort().forEach(key => {\n    ordered[key] = obj[key];\n  });\n  return ordered;\n}\n\nconst githubWF = orderJsonKeys($input[0]);\nconst n8nWF = orderJsonKeys($('Loop Over Items').first().json.nodes);\n\nif (JSON.stringify(githubWF) === JSON.stringify(n8nWF)) {\n  return [{ json: { status: \"same\" } }];\n} else {\n  return [{ json: { status: \"updated\", changes: n8nWF } }];\n}\n"
     },
@@ -470,7 +447,7 @@
     "id": "a662a638-ee14-412c-9c8f-1edda7846f69",
     "name": "Code"
   },
-  "16": {
+  "15": {
     "parameters": {
       "jsCode": "function orderJsonKeys(obj) {\n  const ordered = {};\n  Object.keys(obj || {}).sort().forEach(key => {\n    ordered[key] = obj[key];\n  });\n  return ordered;\n}\n\nconst n8nWF = orderJsonKeys($('Loop Over Items').first().json.nodes);\n\nreturn [{ json: { status: \"new\", changes: n8nWF } }];\n"
     },
