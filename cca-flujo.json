@@ -1,0 +1,435 @@
+{
+  "0": {
+    "parameters": {
+      "url": "https://nuestrosautos.cca.org.ar/api/classifieds/listamarcas",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 4.2,
+    "position": [
+      -1460,
+      -80
+    ],
+    "id": "4bac74bf-d629-48d7-9a74-8e09664d3191",
+    "name": "HTTP Request"
+  },
+  "1": {
+    "parameters": {},
+    "type": "n8n-nodes-base.manualTrigger",
+    "typeVersion": 1,
+    "position": [
+      -1360,
+      360
+    ],
+    "id": "c889b71a-72a4-4f80-ad43-a915f7b44e2c",
+    "name": "Inicio de workflow"
+  },
+  "2": {
+    "parameters": {
+      "url": "=https://nuestrosautos.cca.org.ar/api/classifieds/listaversionanio/{{ $json.modelId }}/null",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 4.2,
+    "position": [
+      240,
+      360
+    ],
+    "id": "8737cf0e-e86b-4a0e-85b2-36fe06d770d3",
+    "name": "Obtengo los años de cada modelo",
+    "alwaysOutputData": true
+  },
+  "3": {
+    "parameters": {
+      "assignments": {
+        "assignments": [
+          {
+            "id": "da2c3a23-7bef-4fa8-82eb-5a8562827854",
+            "name": "brand",
+            "value": "={{ $('Itero cada modelo').item.json.brand }}",
+            "type": "string"
+          },
+          {
+            "id": "5b89798e-6b39-4c20-a042-5bc29acbef9e",
+            "name": "model",
+            "value": "={{ $('Itero cada modelo').item.json.model }}",
+            "type": "string"
+          },
+          {
+            "id": "b9c6ee9e-5fa3-453e-ab3c-ff44d4f3ac2d",
+            "name": "modelId",
+            "value": "={{ $('Itero cada modelo').item.json.modelId }}",
+            "type": "string"
+          },
+          {
+            "id": "fb2dada5-005a-4cca-aa03-06e68bcfb7d6",
+            "name": "=year",
+            "value": "={{ $json.name }}",
+            "type": "string"
+          }
+        ]
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.set",
+    "typeVersion": 3.4,
+    "position": [
+      500,
+      360
+    ],
+    "id": "4c790876-99e8-44f5-ae0d-64f7e2c9b276",
+    "name": "Añado la marca y marcaId"
+  },
+  "4": {
+    "parameters": {
+      "jsCode": "return $input.all();"
+    },
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+      1080,
+      -160
+    ],
+    "id": "9c347bfd-594f-4ef1-9088-ddbaf4ab8e97",
+    "name": "Code2"
+  },
+  "5": {
+    "parameters": {
+      "batchSize": 50,
+      "options": {}
+    },
+    "type": "n8n-nodes-base.splitInBatches",
+    "typeVersion": 3,
+    "position": [
+      820,
+      0
+    ],
+    "id": "e82df0d3-1393-4d4e-97f2-b80febd84c22",
+    "name": "Itero cada año"
+  },
+  "6": {
+    "parameters": {
+      "operation": "append",
+      "documentId": {
+        "__rl": true,
+        "value": "1IvKOiZkmR3vyvs3TIDmhTnCtUHObbZjsH-MS-KDekVY",
+        "mode": "list",
+        "cachedResultName": "CCA Modelos",
+        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IvKOiZkmR3vyvs3TIDmhTnCtUHObbZjsH-MS-KDekVY/edit?usp=drivesdk"
+      },
+      "sheetName": {
+        "__rl": true,
+        "value": "gid=0",
+        "mode": "list",
+        "cachedResultName": "Sheet1",
+        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IvKOiZkmR3vyvs3TIDmhTnCtUHObbZjsH-MS-KDekVY/edit#gid=0"
+      },
+      "columns": {
+        "mappingMode": "defineBelow",
+        "value": {},
+        "matchingColumns": [],
+        "schema": [],
+        "attemptToConvertTypes": false,
+        "convertFieldsToString": false
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.googleSheets",
+    "typeVersion": 4.5,
+    "position": [
+      -1080,
+      -80
+    ],
+    "id": "949c5f4f-b320-4789-bdce-d7d683895695",
+    "name": "Google Sheets1",
+    "credentials": {
+      "googleSheetsOAuth2Api": {
+        "id": "22tj7t5eGQERnbJc",
+        "name": "Google Sheets account 2"
+      }
+    }
+  },
+  "7": {
+    "parameters": {
+      "assignments": {
+        "assignments": [
+          {
+            "id": "ac2397b4-64ff-43b3-8e87-2bf9f6fbcbd5",
+            "name": "marca",
+            "value": "={{ $json.name }}",
+            "type": "string"
+          }
+        ]
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.set",
+    "typeVersion": 3.4,
+    "position": [
+      -1280,
+      -80
+    ],
+    "id": "a6ec22de-9a47-4e33-9306-7ea96312d9f9",
+    "name": "Edit Fields1"
+  },
+  "8": {
+    "parameters": {
+      "documentId": {
+        "__rl": true,
+        "value": "1IvKOiZkmR3vyvs3TIDmhTnCtUHObbZjsH-MS-KDekVY",
+        "mode": "list",
+        "cachedResultName": "CCA Modelos",
+        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IvKOiZkmR3vyvs3TIDmhTnCtUHObbZjsH-MS-KDekVY/edit?usp=drivesdk"
+      },
+      "sheetName": {
+        "__rl": true,
+        "value": "gid=0",
+        "mode": "list",
+        "cachedResultName": "Sheet1",
+        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IvKOiZkmR3vyvs3TIDmhTnCtUHObbZjsH-MS-KDekVY/edit#gid=0"
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.googleSheets",
+    "typeVersion": 4.5,
+    "position": [
+      -1140,
+      360
+    ],
+    "id": "854db7ef-af4f-448c-b6ab-c2b290806e65",
+    "name": "obtengo las marcas del google sheet",
+    "credentials": {
+      "googleSheetsOAuth2Api": {
+        "id": "22tj7t5eGQERnbJc",
+        "name": "Google Sheets account 2"
+      }
+    }
+  },
+  "9": {
+    "parameters": {
+      "jsCode": "return $input.all();"
+    },
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+      -560,
+      240
+    ],
+    "id": "3a785465-db18-4948-a9c7-07ed7bfada33",
+    "name": "Code"
+  },
+  "10": {
+    "parameters": {
+      "batchSize": 10,
+      "options": {}
+    },
+    "type": "n8n-nodes-base.splitInBatches",
+    "typeVersion": 3,
+    "position": [
+      -940,
+      360
+    ],
+    "id": "384414bc-4e6d-4f38-beb3-b052797fe0de",
+    "name": "Itero cada marca"
+  },
+  "11": {
+    "parameters": {
+      "url": "=https://nuestrosautos.cca.org.ar/api/classifieds/listamodelos/{{ $json.marca }}",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 4.2,
+    "position": [
+      -760,
+      500
+    ],
+    "id": "bbac35e8-041a-4210-a17a-fe880ce22592",
+    "name": "Obtengo los modelos de cada marca"
+  },
+  "12": {
+    "parameters": {
+      "assignments": {
+        "assignments": [
+          {
+            "id": "7f10c0c4-cebe-48cf-adf9-19b64e255bc0",
+            "name": "brand",
+            "value": "={{ $('Itero cada marca').item.json.marca }}",
+            "type": "string"
+          },
+          {
+            "id": "516b2fa1-5482-4f64-b97d-e255f7acf51f",
+            "name": "model",
+            "value": "={{ $json.name }}",
+            "type": "string"
+          },
+          {
+            "id": "d76aab31-f32c-482c-a714-abcc13f4ef85",
+            "name": "modelId",
+            "value": "={{ $json.id }}",
+            "type": "string"
+          }
+        ]
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.set",
+    "typeVersion": 3.4,
+    "position": [
+      -560,
+      500
+    ],
+    "id": "b27e9ade-9a52-4f12-a3b7-34fee3d1d61f",
+    "name": "Renombro modelo y modeloId",
+    "notesInFlow": false
+  },
+  "13": {
+    "parameters": {
+      "batchSize": 50,
+      "options": {}
+    },
+    "type": "n8n-nodes-base.splitInBatches",
+    "typeVersion": 3,
+    "position": [
+      -40,
+      160
+    ],
+    "id": "862f3e26-5790-428a-a52a-4cb7bb83a08f",
+    "name": "Itero cada modelo"
+  },
+  "14": {
+    "parameters": {
+      "url": "=https://nuestrosautos.cca.org.ar/api/classifieds/listaversionanio/{{$input.item.json.modelId}}/{{ $input.item.json.year }}",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 4.2,
+    "position": [
+      1040,
+      100
+    ],
+    "id": "ccf96898-ae6e-4858-b7e3-d30520b417a8",
+    "name": "Obtengo las versiones y precios de cada año",
+    "alwaysOutputData": true
+  },
+  "15": {
+    "parameters": {
+      "amount": 1
+    },
+    "type": "n8n-nodes-base.wait",
+    "typeVersion": 1.1,
+    "position": [
+      1700,
+      100
+    ],
+    "id": "88e75468-0a16-402c-9bec-85f820394c92",
+    "name": "Espero 2 segundos entre cada petición2",
+    "webhookId": "36d23851-57eb-46cb-b5a4-78b92fd1afb6"
+  },
+  "16": {
+    "parameters": {
+      "assignments": {
+        "assignments": [
+          {
+            "id": "578e37aa-cb4b-4d1f-93b7-269da970a6a3",
+            "name": "brand",
+            "value": "={{ $('Itero cada año').item.json.brand }}",
+            "type": "string"
+          },
+          {
+            "id": "c7b470e7-516e-46d4-b1be-d2f0253315c6",
+            "name": "model",
+            "value": "={{ $('Itero cada año').item.json.model }}",
+            "type": "string"
+          },
+          {
+            "id": "f55c706b-9330-4f66-bc18-f5db0902f5c0",
+            "name": "version",
+            "value": "={{ $json.version }}",
+            "type": "string"
+          },
+          {
+            "id": "292e3444-14f9-4904-8b10-9f27c16b9e7f",
+            "name": "year",
+            "value": "={{ $('Itero cada año').item.json.year }}",
+            "type": "string"
+          },
+          {
+            "id": "f81ef5ab-a233-4eaa-8dde-066fee4dc093",
+            "name": "price",
+            "value": "={{ $json.precio }}",
+            "type": "string"
+          }
+        ]
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.set",
+    "typeVersion": 3.4,
+    "position": [
+      1260,
+      100
+    ],
+    "id": "fb47f6eb-171c-49d9-8eae-0f0eabd84976",
+    "name": "Añado el precio y la versión"
+  },
+  "17": {
+    "parameters": {
+      "jsCode": "let filterCars = $input.all().filter((car) => {\n  return car.json.year !== null\n})\n\nreturn filterCars"
+    },
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+      400,
+      0
+    ],
+    "id": "445fbe2b-66b7-4ba5-922a-884517bf0573",
+    "name": "Filtro por los autos donde \"year\" sea distinto de \"null\""
+  },
+  "18": {
+    "parameters": {
+      "amount": 1
+    },
+    "type": "n8n-nodes-base.wait",
+    "typeVersion": 1.1,
+    "position": [
+      740,
+      360
+    ],
+    "id": "400be402-6d68-446f-affd-d99fbef29597",
+    "name": "Espero 1 segundo entre cada petición",
+    "webhookId": "05f4b8d3-ce9f-4ff5-a6ce-8c55c019844f"
+  },
+  "19": {
+    "parameters": {
+      "amount": 1
+    },
+    "type": "n8n-nodes-base.wait",
+    "typeVersion": 1.1,
+    "position": [
+      -340,
+      500
+    ],
+    "id": "db65928c-2c5a-4c1f-b1e6-b2527b7f233b",
+    "name": "Espero 1 segundo entre cada petición1",
+    "webhookId": "81a77df4-9627-46df-bc77-4e8da5880895"
+  },
+  "20": {
+    "parameters": {
+      "method": "POST",
+      "url": "https://api.core.neowyze.tech/n8n/cars/cca",
+      "sendBody": true,
+      "specifyBody": "json",
+      "jsonBody": "={{ $input.all().map(item => item.json) }}",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 4.2,
+    "position": [
+      1480,
+      100
+    ],
+    "id": "1806639d-1ad1-42d9-a40c-6ae3937d6a5d",
+    "name": "HTTP Request1",
+    "executeOnce": true
+  }
+}
