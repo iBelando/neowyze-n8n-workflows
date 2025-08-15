@@ -1,885 +1,1199 @@
 {
-  "0": {
-    "parameters": {
-      "calendar": {
-        "__rl": true,
-        "value": "ibelando@neowyze.tech",
-        "mode": "list",
-        "cachedResultName": "ibelando@neowyze.tech"
-      },
-      "start": "={{ $json.fechaInicio }}",
-      "end": "={{ $json.fechaFin }}",
-      "additionalFields": {
-        "color": "={{ $json.colorId }}",
-        "id": "={{ $json.id }}",
-        "summary": "={{ $json.calendar }} Ocupado"
-      }
+  "active": true,
+  "connections": {
+    "Crear Nuevo Evento": {
+      "main": [
+        []
+      ]
     },
-    "type": "n8n-nodes-base.googleCalendar",
-    "typeVersion": 1.3,
-    "position": [
-      740,
-      -680
-    ],
-    "id": "c7d433f9-066f-4114-b255-f61161dd8a93",
-    "name": "Crear Nuevo Evento",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "UhODC6g3pd8nHlNl",
-        "name": "Google Calendar account 2"
-      }
+    "Google Calendar": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Crear Nuevo Evento1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ejecucion Manual": {
+      "main": [
+        [
+          {
+            "node": "Google Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear Nuevo Evento1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Calendar1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Google Calendar1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Naranja X Calendar": {
+      "main": [
+        [
+          {
+            "node": "Mapeo Campos Naranja X",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Greether Calendar": {
+      "main": [
+        [
+          {
+            "node": "Mapeo Campos Greether",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Personal Calendar": {
+      "main": [
+        [
+          {
+            "node": "Mapeo Campos Personal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mapeo Campos Greether": {
+      "main": [
+        [
+          {
+            "node": "Crear Nuevo Evento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mapeo Campos Naranja X": {
+      "main": [
+        [
+          {
+            "node": "Crear Nuevo Evento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mapeo Campos Personal": {
+      "main": [
+        [
+          {
+            "node": "Crear Nuevo Evento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mapeo Campos Greether1": {
+      "main": [
+        [
+          {
+            "node": "Actualizar Evento1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mapeo Campos Naranja X1": {
+      "main": [
+        [
+          {
+            "node": "Actualizar Evento1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mapeo Campos Personal1": {
+      "main": [
+        [
+          {
+            "node": "Actualizar Evento1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Naranja X Update": {
+      "main": [
+        [
+          {
+            "node": "Mapeo Campos Naranja X1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Greether Update": {
+      "main": [
+        [
+          {
+            "node": "Mapeo Campos Greether1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Personal Update": {
+      "main": [
+        [
+          {
+            "node": "Mapeo Campos Personal1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Naranja X Delete": {
+      "main": [
+        [
+          {
+            "node": "Remover Evento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Greether Delete": {
+      "main": [
+        [
+          {
+            "node": "Remover Evento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Personal Delete": {
+      "main": [
+        [
+          {
+            "node": "Remover Evento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "1": {
-    "parameters": {
-      "operation": "getAll",
-      "calendar": {
-        "__rl": true,
-        "value": "ignacio@greether.com",
-        "mode": "list",
-        "cachedResultName": "ignacio@greether.com"
+  "createdAt": "2025-05-05T13:29:10.421Z",
+  "id": "ijN4LuY4jiKT3sv9",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Sincronización Google Calendars Nacho",
+  "nodes": [
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "ibelando@neowyze.tech",
+          "mode": "list",
+          "cachedResultName": "ibelando@neowyze.tech"
+        },
+        "start": "={{ $json.fechaInicio }}",
+        "end": "={{ $json.fechaFin }}",
+        "additionalFields": {
+          "color": "={{ $json.colorId }}",
+          "id": "={{ $json.id }}",
+          "summary": "={{ $json.calendar }} Ocupado"
+        }
       },
-      "timeMax": "={{ $now.plus({ days: 5 }) }}",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleCalendar",
-    "typeVersion": 1.3,
-    "position": [
-      1460,
-      -780
-    ],
-    "id": "383f4135-a566-47e9-90d2-ac56ff8aa90a",
-    "name": "Google Calendar",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "l5gPwkdfGQZqmLh6",
-        "name": "Google Calendar account"
-      }
-    }
-  },
-  "2": {
-    "parameters": {
-      "options": {}
-    },
-    "type": "n8n-nodes-base.splitInBatches",
-    "typeVersion": 3,
-    "position": [
-      1780,
-      -780
-    ],
-    "id": "15880aeb-a693-4c51-92ef-25eeb71b41e6",
-    "name": "Loop Over Items"
-  },
-  "3": {
-    "parameters": {},
-    "type": "n8n-nodes-base.manualTrigger",
-    "typeVersion": 1,
-    "position": [
-      1240,
-      -780
-    ],
-    "id": "5d024445-698b-4100-887a-995ba0546a8b",
-    "name": "Ejecucion Manual"
-  },
-  "4": {
-    "parameters": {
-      "calendar": {
-        "__rl": true,
-        "value": "ibelando@neowyze.tech",
-        "mode": "list",
-        "cachedResultName": "ibelando@neowyze.tech"
-      },
-      "start": "={{ $json.start.dateTime }}",
-      "end": "={{ $json.end.dateTime }}",
-      "additionalFields": {
-        "color": "=3",
-        "id": "",
-        "summary": "[Greether] Ocupado"
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        740,
+        -680
+      ],
+      "id": "c7d433f9-066f-4114-b255-f61161dd8a93",
+      "name": "Crear Nuevo Evento",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "UhODC6g3pd8nHlNl",
+          "name": "Google Calendar account 2"
+        }
       }
     },
-    "type": "n8n-nodes-base.googleCalendar",
-    "typeVersion": 1.3,
-    "position": [
-      2000,
-      -580
-    ],
-    "id": "b2da9add-57be-4dd3-b022-f40bafc2a870",
-    "name": "Crear Nuevo Evento1",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "UhODC6g3pd8nHlNl",
-        "name": "Google Calendar account 2"
-      }
-    }
-  },
-  "5": {
-    "parameters": {
-      "operation": "update",
-      "calendar": {
-        "__rl": true,
-        "value": "ibelando@neowyze.tech",
-        "mode": "list",
-        "cachedResultName": "ibelando@neowyze.tech"
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "ignacio@greether.com",
+          "mode": "list",
+          "cachedResultName": "ignacio@greether.com"
+        },
+        "timeMax": "={{ $now.plus({ days: 5 }) }}",
+        "options": {}
       },
-      "eventId": "={{ $json.id }}",
-      "updateFields": {
-        "id": "={{ $('Loop Over Items').item.json.id }}"
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1460,
+        -780
+      ],
+      "id": "383f4135-a566-47e9-90d2-ac56ff8aa90a",
+      "name": "Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "l5gPwkdfGQZqmLh6",
+          "name": "Google Calendar account"
+        }
       }
     },
-    "type": "n8n-nodes-base.googleCalendar",
-    "typeVersion": 1.3,
-    "position": [
-      2380,
-      -580
-    ],
-    "id": "78e09bdc-6acb-48f4-ba94-588bb92774a5",
-    "name": "Google Calendar1",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "UhODC6g3pd8nHlNl",
-        "name": "Google Calendar account 2"
-      }
-    }
-  },
-  "6": {
-    "parameters": {},
-    "type": "n8n-nodes-base.wait",
-    "typeVersion": 1.1,
-    "position": [
-      2540,
-      -580
-    ],
-    "id": "edbaf7b1-1fe4-43ee-b31d-df71495b8d0d",
-    "name": "Wait",
-    "webhookId": "574007d4-c93f-4bf5-abef-80b09bda58cf"
-  },
-  "7": {
-    "parameters": {},
-    "type": "n8n-nodes-base.wait",
-    "typeVersion": 1.1,
-    "position": [
-      2200,
-      -580
-    ],
-    "id": "42f9bb43-3736-4f6e-af13-e6a699fbf4de",
-    "name": "Wait1",
-    "webhookId": "574007d4-c93f-4bf5-abef-80b09bda58cf"
-  },
-  "8": {
-    "parameters": {
-      "operation": "delete",
-      "calendar": {
-        "__rl": true,
-        "value": "ibelando@neowyze.tech",
-        "mode": "id"
+    {
+      "parameters": {
+        "options": {}
       },
-      "eventId": "={{ $json.id }}",
-      "options": {}
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1780,
+        -780
+      ],
+      "id": "15880aeb-a693-4c51-92ef-25eeb71b41e6",
+      "name": "Loop Over Items"
     },
-    "type": "n8n-nodes-base.googleCalendar",
-    "typeVersion": 1.3,
-    "position": [
-      1720,
-      220
-    ],
-    "id": "5c4c3d42-c3b7-4a17-86e6-d9b1ec27b198",
-    "name": "Remover Evento",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "UhODC6g3pd8nHlNl",
-        "name": "Google Calendar account 2"
-      }
-    }
-  },
-  "9": {
-    "parameters": {
-      "pollTimes": {
-        "item": [
-          {
-            "mode": "everyX",
-            "value": 15,
-            "unit": "minutes"
-          }
-        ]
-      },
-      "calendarId": {
-        "__rl": true,
-        "value": "ignacio@greether.com",
-        "mode": "list",
-        "cachedResultName": "ignacio@greether.com"
-      },
-      "triggerOn": "eventCreated",
-      "options": {}
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        -780
+      ],
+      "id": "5d024445-698b-4100-887a-995ba0546a8b",
+      "name": "Ejecucion Manual"
     },
-    "type": "n8n-nodes-base.googleCalendarTrigger",
-    "typeVersion": 1,
-    "position": [
-      40,
-      -720
-    ],
-    "id": "84097456-173e-434d-8df2-0a6e82b278b6",
-    "name": "Greether Calendar",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "l5gPwkdfGQZqmLh6",
-        "name": "Google Calendar account"
-      }
-    }
-  },
-  "10": {
-    "parameters": {
-      "pollTimes": {
-        "item": [
-          {
-            "mode": "everyX",
-            "value": 15,
-            "unit": "minutes"
-          }
-        ]
-      },
-      "calendarId": {
-        "__rl": true,
-        "value": "ignacio.belando@naranjax.com",
-        "mode": "list",
-        "cachedResultName": "ignacio.belando@naranjax.com"
-      },
-      "triggerOn": "eventCreated",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleCalendarTrigger",
-    "typeVersion": 1,
-    "position": [
-      40,
-      -960
-    ],
-    "id": "7ea22570-8767-4b96-998d-51ad9ad41f06",
-    "name": "Naranja X Calendar",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "l5gPwkdfGQZqmLh6",
-        "name": "Google Calendar account"
-      }
-    }
-  },
-  "11": {
-    "parameters": {
-      "pollTimes": {
-        "item": [
-          {
-            "mode": "everyX",
-            "value": 15,
-            "unit": "minutes"
-          }
-        ]
-      },
-      "calendarId": {
-        "__rl": true,
-        "value": "ignaciobelando@gmail.com",
-        "mode": "list",
-        "cachedResultName": "ignaciobelando@gmail.com"
-      },
-      "triggerOn": "eventCreated",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleCalendarTrigger",
-    "typeVersion": 1,
-    "position": [
-      40,
-      -480
-    ],
-    "id": "89473b93-0e28-4b48-b898-c9c47b252201",
-    "name": "Personal Calendar",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "l5gPwkdfGQZqmLh6",
-        "name": "Google Calendar account"
-      }
-    }
-  },
-  "12": {
-    "parameters": {
-      "assignments": {
-        "assignments": [
-          {
-            "id": "469eeb97-a350-4bec-99df-21551bed5ef7",
-            "name": "calendar",
-            "value": "[Greether]",
-            "type": "string"
-          },
-          {
-            "id": "04659a7b-eac9-4708-b794-702be06e09f0",
-            "name": "id",
-            "value": "={{ $json.id }}",
-            "type": "string"
-          },
-          {
-            "id": "76d2e922-1a3d-4e5d-b161-2cc7093acdea",
-            "name": "fechaInicio",
-            "value": "={{ $json.start.dateTime }}",
-            "type": "string"
-          },
-          {
-            "id": "a7a8dd8a-2801-4eb6-bb4c-acd768325572",
-            "name": "fechaFin",
-            "value": "={{ $json.end.dateTime }}",
-            "type": "string"
-          },
-          {
-            "id": "0a08fc9c-490c-48aa-8e35-a08e01ac499c",
-            "name": "colorId",
-            "value": "3",
-            "type": "string"
-          }
-        ]
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.set",
-    "typeVersion": 3.4,
-    "position": [
-      300,
-      -720
-    ],
-    "id": "44b8a872-40d5-45a2-ad60-d7c3c851012a",
-    "name": "Mapeo Campos Greether"
-  },
-  "13": {
-    "parameters": {
-      "assignments": {
-        "assignments": [
-          {
-            "id": "469eeb97-a350-4bec-99df-21551bed5ef7",
-            "name": "calendar",
-            "value": "[Naranja X]",
-            "type": "string"
-          },
-          {
-            "id": "04659a7b-eac9-4708-b794-702be06e09f0",
-            "name": "id",
-            "value": "={{ $json.id }}",
-            "type": "string"
-          },
-          {
-            "id": "76d2e922-1a3d-4e5d-b161-2cc7093acdea",
-            "name": "fechaInicio",
-            "value": "={{ $json.start.dateTime }}",
-            "type": "string"
-          },
-          {
-            "id": "a7a8dd8a-2801-4eb6-bb4c-acd768325572",
-            "name": "fechaFin",
-            "value": "={{ $json.end.dateTime }}",
-            "type": "string"
-          },
-          {
-            "id": "5fe7406d-4a5a-4e39-a0eb-d26a1107b099",
-            "name": "colorId",
-            "value": "6",
-            "type": "string"
-          }
-        ]
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.set",
-    "typeVersion": 3.4,
-    "position": [
-      280,
-      -960
-    ],
-    "id": "24bf0567-21ff-4b03-8cad-d0d9bf174a44",
-    "name": "Mapeo Campos Naranja X"
-  },
-  "14": {
-    "parameters": {
-      "assignments": {
-        "assignments": [
-          {
-            "id": "469eeb97-a350-4bec-99df-21551bed5ef7",
-            "name": "calendar",
-            "value": "={{ $json.organizer.email === \"info@cmdesarrolloweb.com\" ? \"[CMD]\" : $json.organizer.email === \"cbagarolo@goupventas.com.ar\" ? \"[GOUP]\" : $json.organizer.email === \"fa.esp96@gmail.com\" ? \"[TravelTo]\" : \"[Out Of Office]\"}}",
-            "type": "string"
-          },
-          {
-            "id": "04659a7b-eac9-4708-b794-702be06e09f0",
-            "name": "id",
-            "value": "={{ $json.id }}",
-            "type": "string"
-          },
-          {
-            "id": "76d2e922-1a3d-4e5d-b161-2cc7093acdea",
-            "name": "fechaInicio",
-            "value": "={{ $json.start.dateTime ?? $json.start.date }}",
-            "type": "string"
-          },
-          {
-            "id": "a7a8dd8a-2801-4eb6-bb4c-acd768325572",
-            "name": "fechaFin",
-            "value": "={{ $json.end.dateTime ?? $json.end.date }}",
-            "type": "string"
-          },
-          {
-            "id": "8a50950a-b603-4a68-905c-23de91668cbc",
-            "name": "colorId",
-            "value": "={{ $json.organizer.email === \"info@cmdesarrolloweb.com\" ? 7 : $json.organizer.email === \"cbagarolo@goupventas.com.ar\" ? 5 : $json.organizer.email === \"fa.esp96@gmail.com\" ? 9 : 11}}",
-            "type": "string"
-          }
-        ]
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.set",
-    "typeVersion": 3.4,
-    "position": [
-      300,
-      -480
-    ],
-    "id": "72a52ff4-22de-476e-957a-c0372194341c",
-    "name": "Mapeo Campos Personal"
-  },
-  "15": {
-    "parameters": {
-      "content": "## Crear eventos en el calendario",
-      "height": 800,
-      "width": 1120,
-      "color": 3
-    },
-    "type": "n8n-nodes-base.stickyNote",
-    "position": [
-      -80,
-      -1080
-    ],
-    "typeVersion": 1,
-    "id": "3fce06a5-8558-44ee-bdc9-e77444c5c498",
-    "name": "Sticky Note1"
-  },
-  "16": {
-    "parameters": {
-      "content": "## Sincronizar Calendarios",
-      "height": 800,
-      "width": 1620,
-      "color": 5
-    },
-    "type": "n8n-nodes-base.stickyNote",
-    "position": [
-      1140,
-      -1080
-    ],
-    "typeVersion": 1,
-    "id": "e55c76cf-fa3c-4700-9ab5-372d4dbc5069",
-    "name": "Sticky Note2"
-  },
-  "17": {
-    "parameters": {
-      "assignments": {
-        "assignments": [
-          {
-            "id": "469eeb97-a350-4bec-99df-21551bed5ef7",
-            "name": "calendar",
-            "value": "[Greether]",
-            "type": "string"
-          },
-          {
-            "id": "04659a7b-eac9-4708-b794-702be06e09f0",
-            "name": "id",
-            "value": "={{ $json.id }}",
-            "type": "string"
-          },
-          {
-            "id": "76d2e922-1a3d-4e5d-b161-2cc7093acdea",
-            "name": "fechaInicio",
-            "value": "={{ $json.start.dateTime }}",
-            "type": "string"
-          },
-          {
-            "id": "a7a8dd8a-2801-4eb6-bb4c-acd768325572",
-            "name": "fechaFin",
-            "value": "={{ $json.end.dateTime }}",
-            "type": "string"
-          },
-          {
-            "id": "0a08fc9c-490c-48aa-8e35-a08e01ac499c",
-            "name": "colorId",
-            "value": "3",
-            "type": "string"
-          }
-        ]
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.set",
-    "typeVersion": 3.4,
-    "position": [
-      300,
-      180
-    ],
-    "id": "c5a9e8b9-319f-4cac-af2a-4d4697aa4b81",
-    "name": "Mapeo Campos Greether1"
-  },
-  "18": {
-    "parameters": {
-      "assignments": {
-        "assignments": [
-          {
-            "id": "469eeb97-a350-4bec-99df-21551bed5ef7",
-            "name": "calendar",
-            "value": "[Naranja X]",
-            "type": "string"
-          },
-          {
-            "id": "04659a7b-eac9-4708-b794-702be06e09f0",
-            "name": "id",
-            "value": "={{ $json.id }}",
-            "type": "string"
-          },
-          {
-            "id": "76d2e922-1a3d-4e5d-b161-2cc7093acdea",
-            "name": "fechaInicio",
-            "value": "={{ $json.start.dateTime }}",
-            "type": "string"
-          },
-          {
-            "id": "a7a8dd8a-2801-4eb6-bb4c-acd768325572",
-            "name": "fechaFin",
-            "value": "={{ $json.end.dateTime }}",
-            "type": "string"
-          },
-          {
-            "id": "5fe7406d-4a5a-4e39-a0eb-d26a1107b099",
-            "name": "colorId",
-            "value": "6",
-            "type": "string"
-          }
-        ]
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.set",
-    "typeVersion": 3.4,
-    "position": [
-      280,
-      -60
-    ],
-    "id": "0384c1c1-97cf-47b6-8f7d-03ad3289c1ce",
-    "name": "Mapeo Campos Naranja X1"
-  },
-  "19": {
-    "parameters": {
-      "assignments": {
-        "assignments": [
-          {
-            "id": "469eeb97-a350-4bec-99df-21551bed5ef7",
-            "name": "calendar",
-            "value": "={{ $json.organizer.email === \"info@cmdesarrolloweb.com\" ? \"[CMD]\" : $json.organizer.email === \"cbagarolo@goupventas.com.ar\" ? \"[GOUP]\" : $json.organizer.email === \"fa.esp96@gmail.com\" ? \"[TravelTo]\" : \"[Out Of Office]\"}}",
-            "type": "string"
-          },
-          {
-            "id": "04659a7b-eac9-4708-b794-702be06e09f0",
-            "name": "id",
-            "value": "={{ $json.id }}",
-            "type": "string"
-          },
-          {
-            "id": "76d2e922-1a3d-4e5d-b161-2cc7093acdea",
-            "name": "fechaInicio",
-            "value": "={{ $json.start.dateTime ?? $json.start.date }}",
-            "type": "string"
-          },
-          {
-            "id": "a7a8dd8a-2801-4eb6-bb4c-acd768325572",
-            "name": "fechaFin",
-            "value": "={{ $json.end.dateTime ?? $json.end.date }}",
-            "type": "string"
-          },
-          {
-            "id": "8a50950a-b603-4a68-905c-23de91668cbc",
-            "name": "colorId",
-            "value": "={{ $json.organizer.email === \"info@cmdesarrolloweb.com\" ? 7 : $json.organizer.email === \"cbagarolo@goupventas.com.ar\" ? 5 : $json.organizer.email === \"fa.esp96@gmail.com\" ? 9 : 11}}",
-            "type": "string"
-          }
-        ]
-      },
-      "options": {}
-    },
-    "type": "n8n-nodes-base.set",
-    "typeVersion": 3.4,
-    "position": [
-      300,
-      420
-    ],
-    "id": "7421bf01-d6bd-4a17-ae08-de8631963d63",
-    "name": "Mapeo Campos Personal1"
-  },
-  "20": {
-    "parameters": {
-      "content": "## Actualizar eventos en el calendario",
-      "height": 800,
-      "width": 1120,
-      "color": 4
-    },
-    "type": "n8n-nodes-base.stickyNote",
-    "position": [
-      -80,
-      -140
-    ],
-    "typeVersion": 1,
-    "id": "3ee96b14-fae0-43dc-afcf-e2ca109fc5c4",
-    "name": "Sticky Note"
-  },
-  "21": {
-    "parameters": {
-      "operation": "update",
-      "calendar": {
-        "__rl": true,
-        "value": "ibelando@neowyze.tech",
-        "mode": "list",
-        "cachedResultName": "ibelando@neowyze.tech"
-      },
-      "eventId": "={{ $json.id }}",
-      "updateFields": {
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "ibelando@neowyze.tech",
+          "mode": "list",
+          "cachedResultName": "ibelando@neowyze.tech"
+        },
+        "start": "={{ $json.start.dateTime }}",
         "end": "={{ $json.end.dateTime }}",
-        "start": "={{ $json.start.dateTime }}"
+        "additionalFields": {
+          "color": "=3",
+          "id": "",
+          "summary": "[Greether] Ocupado"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        2000,
+        -580
+      ],
+      "id": "b2da9add-57be-4dd3-b022-f40bafc2a870",
+      "name": "Crear Nuevo Evento1",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "UhODC6g3pd8nHlNl",
+          "name": "Google Calendar account 2"
+        }
       }
     },
-    "type": "n8n-nodes-base.googleCalendar",
-    "typeVersion": 1.3,
-    "position": [
-      760,
-      220
-    ],
-    "id": "2173b766-80be-42c1-b6d4-541ae244b2b0",
-    "name": "Actualizar Evento1",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "UhODC6g3pd8nHlNl",
-        "name": "Google Calendar account 2"
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "ibelando@neowyze.tech",
+          "mode": "list",
+          "cachedResultName": "ibelando@neowyze.tech"
+        },
+        "eventId": "={{ $json.id }}",
+        "updateFields": {
+          "id": "={{ $('Loop Over Items').item.json.id }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        2380,
+        -580
+      ],
+      "id": "78e09bdc-6acb-48f4-ba94-588bb92774a5",
+      "name": "Google Calendar1",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "UhODC6g3pd8nHlNl",
+          "name": "Google Calendar account 2"
+        }
       }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2540,
+        -580
+      ],
+      "id": "edbaf7b1-1fe4-43ee-b31d-df71495b8d0d",
+      "name": "Wait",
+      "webhookId": "574007d4-c93f-4bf5-abef-80b09bda58cf"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2200,
+        -580
+      ],
+      "id": "42f9bb43-3736-4f6e-af13-e6a699fbf4de",
+      "name": "Wait1",
+      "webhookId": "574007d4-c93f-4bf5-abef-80b09bda58cf"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "ibelando@neowyze.tech",
+          "mode": "id"
+        },
+        "eventId": "={{ $json.id }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1720,
+        220
+      ],
+      "id": "5c4c3d42-c3b7-4a17-86e6-d9b1ec27b198",
+      "name": "Remover Evento",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "UhODC6g3pd8nHlNl",
+          "name": "Google Calendar account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 15,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "calendarId": {
+          "__rl": true,
+          "value": "ignacio@greether.com",
+          "mode": "list",
+          "cachedResultName": "ignacio@greether.com"
+        },
+        "triggerOn": "eventCreated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTrigger",
+      "typeVersion": 1,
+      "position": [
+        40,
+        -720
+      ],
+      "id": "84097456-173e-434d-8df2-0a6e82b278b6",
+      "name": "Greether Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "l5gPwkdfGQZqmLh6",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 15,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "calendarId": {
+          "__rl": true,
+          "value": "ignacio.belando@naranjax.com",
+          "mode": "list",
+          "cachedResultName": "ignacio.belando@naranjax.com"
+        },
+        "triggerOn": "eventCreated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTrigger",
+      "typeVersion": 1,
+      "position": [
+        40,
+        -960
+      ],
+      "id": "7ea22570-8767-4b96-998d-51ad9ad41f06",
+      "name": "Naranja X Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "l5gPwkdfGQZqmLh6",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 15,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "calendarId": {
+          "__rl": true,
+          "value": "ignaciobelando@gmail.com",
+          "mode": "list",
+          "cachedResultName": "ignaciobelando@gmail.com"
+        },
+        "triggerOn": "eventCreated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTrigger",
+      "typeVersion": 1,
+      "position": [
+        40,
+        -480
+      ],
+      "id": "89473b93-0e28-4b48-b898-c9c47b252201",
+      "name": "Personal Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "l5gPwkdfGQZqmLh6",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "469eeb97-a350-4bec-99df-21551bed5ef7",
+              "name": "calendar",
+              "value": "[Greether]",
+              "type": "string"
+            },
+            {
+              "id": "04659a7b-eac9-4708-b794-702be06e09f0",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "76d2e922-1a3d-4e5d-b161-2cc7093acdea",
+              "name": "fechaInicio",
+              "value": "={{ $json.start.dateTime }}",
+              "type": "string"
+            },
+            {
+              "id": "a7a8dd8a-2801-4eb6-bb4c-acd768325572",
+              "name": "fechaFin",
+              "value": "={{ $json.end.dateTime }}",
+              "type": "string"
+            },
+            {
+              "id": "0a08fc9c-490c-48aa-8e35-a08e01ac499c",
+              "name": "colorId",
+              "value": "3",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        300,
+        -720
+      ],
+      "id": "44b8a872-40d5-45a2-ad60-d7c3c851012a",
+      "name": "Mapeo Campos Greether"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "469eeb97-a350-4bec-99df-21551bed5ef7",
+              "name": "calendar",
+              "value": "[Naranja X]",
+              "type": "string"
+            },
+            {
+              "id": "04659a7b-eac9-4708-b794-702be06e09f0",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "76d2e922-1a3d-4e5d-b161-2cc7093acdea",
+              "name": "fechaInicio",
+              "value": "={{ $json.start.dateTime }}",
+              "type": "string"
+            },
+            {
+              "id": "a7a8dd8a-2801-4eb6-bb4c-acd768325572",
+              "name": "fechaFin",
+              "value": "={{ $json.end.dateTime }}",
+              "type": "string"
+            },
+            {
+              "id": "5fe7406d-4a5a-4e39-a0eb-d26a1107b099",
+              "name": "colorId",
+              "value": "6",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        -960
+      ],
+      "id": "24bf0567-21ff-4b03-8cad-d0d9bf174a44",
+      "name": "Mapeo Campos Naranja X"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "469eeb97-a350-4bec-99df-21551bed5ef7",
+              "name": "calendar",
+              "value": "={{ $json.organizer.email === \"info@cmdesarrolloweb.com\" ? \"[CMD]\" : $json.organizer.email === \"cbagarolo@goupventas.com.ar\" ? \"[GOUP]\" : $json.organizer.email === \"fa.esp96@gmail.com\" ? \"[TravelTo]\" : \"[Out Of Office]\"}}",
+              "type": "string"
+            },
+            {
+              "id": "04659a7b-eac9-4708-b794-702be06e09f0",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "76d2e922-1a3d-4e5d-b161-2cc7093acdea",
+              "name": "fechaInicio",
+              "value": "={{ $json.start.dateTime ?? $json.start.date }}",
+              "type": "string"
+            },
+            {
+              "id": "a7a8dd8a-2801-4eb6-bb4c-acd768325572",
+              "name": "fechaFin",
+              "value": "={{ $json.end.dateTime ?? $json.end.date }}",
+              "type": "string"
+            },
+            {
+              "id": "8a50950a-b603-4a68-905c-23de91668cbc",
+              "name": "colorId",
+              "value": "={{ $json.organizer.email === \"info@cmdesarrolloweb.com\" ? 7 : $json.organizer.email === \"cbagarolo@goupventas.com.ar\" ? 5 : $json.organizer.email === \"fa.esp96@gmail.com\" ? 9 : 11}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        300,
+        -480
+      ],
+      "id": "72a52ff4-22de-476e-957a-c0372194341c",
+      "name": "Mapeo Campos Personal"
+    },
+    {
+      "parameters": {
+        "content": "## Crear eventos en el calendario",
+        "height": 800,
+        "width": 1120,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -80,
+        -1080
+      ],
+      "typeVersion": 1,
+      "id": "3fce06a5-8558-44ee-bdc9-e77444c5c498",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Sincronizar Calendarios",
+        "height": 800,
+        "width": 1620,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1140,
+        -1080
+      ],
+      "typeVersion": 1,
+      "id": "e55c76cf-fa3c-4700-9ab5-372d4dbc5069",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "469eeb97-a350-4bec-99df-21551bed5ef7",
+              "name": "calendar",
+              "value": "[Greether]",
+              "type": "string"
+            },
+            {
+              "id": "04659a7b-eac9-4708-b794-702be06e09f0",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "76d2e922-1a3d-4e5d-b161-2cc7093acdea",
+              "name": "fechaInicio",
+              "value": "={{ $json.start.dateTime }}",
+              "type": "string"
+            },
+            {
+              "id": "a7a8dd8a-2801-4eb6-bb4c-acd768325572",
+              "name": "fechaFin",
+              "value": "={{ $json.end.dateTime }}",
+              "type": "string"
+            },
+            {
+              "id": "0a08fc9c-490c-48aa-8e35-a08e01ac499c",
+              "name": "colorId",
+              "value": "3",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        300,
+        180
+      ],
+      "id": "c5a9e8b9-319f-4cac-af2a-4d4697aa4b81",
+      "name": "Mapeo Campos Greether1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "469eeb97-a350-4bec-99df-21551bed5ef7",
+              "name": "calendar",
+              "value": "[Naranja X]",
+              "type": "string"
+            },
+            {
+              "id": "04659a7b-eac9-4708-b794-702be06e09f0",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "76d2e922-1a3d-4e5d-b161-2cc7093acdea",
+              "name": "fechaInicio",
+              "value": "={{ $json.start.dateTime }}",
+              "type": "string"
+            },
+            {
+              "id": "a7a8dd8a-2801-4eb6-bb4c-acd768325572",
+              "name": "fechaFin",
+              "value": "={{ $json.end.dateTime }}",
+              "type": "string"
+            },
+            {
+              "id": "5fe7406d-4a5a-4e39-a0eb-d26a1107b099",
+              "name": "colorId",
+              "value": "6",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        -60
+      ],
+      "id": "0384c1c1-97cf-47b6-8f7d-03ad3289c1ce",
+      "name": "Mapeo Campos Naranja X1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "469eeb97-a350-4bec-99df-21551bed5ef7",
+              "name": "calendar",
+              "value": "={{ $json.organizer.email === \"info@cmdesarrolloweb.com\" ? \"[CMD]\" : $json.organizer.email === \"cbagarolo@goupventas.com.ar\" ? \"[GOUP]\" : $json.organizer.email === \"fa.esp96@gmail.com\" ? \"[TravelTo]\" : \"[Out Of Office]\"}}",
+              "type": "string"
+            },
+            {
+              "id": "04659a7b-eac9-4708-b794-702be06e09f0",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "76d2e922-1a3d-4e5d-b161-2cc7093acdea",
+              "name": "fechaInicio",
+              "value": "={{ $json.start.dateTime ?? $json.start.date }}",
+              "type": "string"
+            },
+            {
+              "id": "a7a8dd8a-2801-4eb6-bb4c-acd768325572",
+              "name": "fechaFin",
+              "value": "={{ $json.end.dateTime ?? $json.end.date }}",
+              "type": "string"
+            },
+            {
+              "id": "8a50950a-b603-4a68-905c-23de91668cbc",
+              "name": "colorId",
+              "value": "={{ $json.organizer.email === \"info@cmdesarrolloweb.com\" ? 7 : $json.organizer.email === \"cbagarolo@goupventas.com.ar\" ? 5 : $json.organizer.email === \"fa.esp96@gmail.com\" ? 9 : 11}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        300,
+        420
+      ],
+      "id": "7421bf01-d6bd-4a17-ae08-de8631963d63",
+      "name": "Mapeo Campos Personal1"
+    },
+    {
+      "parameters": {
+        "content": "## Actualizar eventos en el calendario",
+        "height": 800,
+        "width": 1120,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -80,
+        -140
+      ],
+      "typeVersion": 1,
+      "id": "3ee96b14-fae0-43dc-afcf-e2ca109fc5c4",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "ibelando@neowyze.tech",
+          "mode": "list",
+          "cachedResultName": "ibelando@neowyze.tech"
+        },
+        "eventId": "={{ $json.id }}",
+        "updateFields": {
+          "end": "={{ $json.end.dateTime }}",
+          "start": "={{ $json.start.dateTime }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        760,
+        220
+      ],
+      "id": "2173b766-80be-42c1-b6d4-541ae244b2b0",
+      "name": "Actualizar Evento1",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "UhODC6g3pd8nHlNl",
+          "name": "Google Calendar account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 15,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "calendarId": {
+          "__rl": true,
+          "value": "ignacio.belando@naranjax.com",
+          "mode": "list",
+          "cachedResultName": "ignacio.belando@naranjax.com"
+        },
+        "triggerOn": "eventUpdated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTrigger",
+      "typeVersion": 1,
+      "position": [
+        40,
+        -60
+      ],
+      "id": "4cdf6913-41fe-4530-8cd6-b7f9e8f0924c",
+      "name": "Naranja X Update",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "l5gPwkdfGQZqmLh6",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 15,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "calendarId": {
+          "__rl": true,
+          "value": "ignacio@greether.com",
+          "mode": "list",
+          "cachedResultName": "ignacio@greether.com"
+        },
+        "triggerOn": "eventUpdated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTrigger",
+      "typeVersion": 1,
+      "position": [
+        40,
+        180
+      ],
+      "id": "32822856-8bd3-4a22-bb24-0786605a2dfb",
+      "name": "Greether Update",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "l5gPwkdfGQZqmLh6",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 15,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "calendarId": {
+          "__rl": true,
+          "value": "ignaciobelando@gmail.com",
+          "mode": "list",
+          "cachedResultName": "ignaciobelando@gmail.com"
+        },
+        "triggerOn": "eventUpdated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTrigger",
+      "typeVersion": 1,
+      "position": [
+        40,
+        420
+      ],
+      "id": "d31af61c-e6c8-4859-b66b-8f45188a1729",
+      "name": "Personal Update",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "l5gPwkdfGQZqmLh6",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 15,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "calendarId": {
+          "__rl": true,
+          "value": "ignacio.belando@naranjax.com",
+          "mode": "list",
+          "cachedResultName": "ignacio.belando@naranjax.com"
+        },
+        "triggerOn": "eventCancelled",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTrigger",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        0
+      ],
+      "id": "dde38dfb-6805-4ca9-b95d-84c8cfd3f147",
+      "name": "Naranja X Delete",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "l5gPwkdfGQZqmLh6",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 15,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "calendarId": {
+          "__rl": true,
+          "value": "ignacio@greether.com",
+          "mode": "list",
+          "cachedResultName": "ignacio@greether.com"
+        },
+        "triggerOn": "eventCancelled",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTrigger",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        220
+      ],
+      "id": "98ee4387-5d70-4086-8db2-0295cf3355a8",
+      "name": "Greether Delete",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "l5gPwkdfGQZqmLh6",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 15,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "calendarId": {
+          "__rl": true,
+          "value": "ignaciobelando@gmail.com",
+          "mode": "list",
+          "cachedResultName": "ignaciobelando@gmail.com"
+        },
+        "triggerOn": "eventCancelled",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTrigger",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        460
+      ],
+      "id": "076e08ac-b9a5-4368-a492-3467d3381e29",
+      "name": "Personal Delete",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "l5gPwkdfGQZqmLh6",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Remove eventos en el calendario",
+        "height": 800,
+        "width": 1040,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1140,
+        -140
+      ],
+      "typeVersion": 1,
+      "id": "735b30a9-de42-4f89-b60c-6d032ab8f1d5",
+      "name": "Sticky Note3"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Google Calendar Trigger": {
+      "lastTimeChecked": "2025-05-06T15:00:27Z"
+    },
+    "node:Google Calendar Trigger1": {
+      "lastTimeChecked": "2025-05-06T03:48:58Z"
+    },
+    "node:Nuevo Evento Creado": {
+      "lastTimeChecked": "2025-05-06T03:50:49Z"
+    },
+    "node:Evento Actualizado": {
+      "lastTimeChecked": "2025-05-06T03:50:49Z"
+    },
+    "node:[Naranja X] Nuevo Evento": {
+      "lastTimeChecked": "2025-05-06T12:15:58Z"
+    },
+    "node:[Naranja X] Evento Actualizado": {
+      "lastTimeChecked": "2025-05-06T15:00:41Z"
+    },
+    "node:Greether Calendar": {
+      "lastTimeChecked": "2025-08-14T17:00:08Z"
+    },
+    "node:Naranja X Calendar": {
+      "lastTimeChecked": "2025-08-14T16:45:40Z"
+    },
+    "node:Personal Calendar": {
+      "lastTimeChecked": "2025-08-14T16:45:28Z"
+    },
+    "node:Naranja X Update": {
+      "lastTimeChecked": "2025-08-14T17:00:15Z"
+    },
+    "node:Greether Update": {
+      "lastTimeChecked": "2025-08-14T17:00:07Z"
+    },
+    "node:Personal Update": {
+      "lastTimeChecked": "2025-08-14T17:00:05Z"
+    },
+    "node:Naranja X Delete": {
+      "lastTimeChecked": "2025-08-14T17:00:10Z"
+    },
+    "node:Greether Delete": {
+      "lastTimeChecked": "2025-08-14T16:45:20Z"
+    },
+    "node:Personal Delete": {
+      "lastTimeChecked": "2025-08-14T16:45:29Z"
     }
   },
-  "22": {
-    "parameters": {
-      "pollTimes": {
-        "item": [
-          {
-            "mode": "everyX",
-            "value": 15,
-            "unit": "minutes"
-          }
-        ]
-      },
-      "calendarId": {
-        "__rl": true,
-        "value": "ignacio.belando@naranjax.com",
-        "mode": "list",
-        "cachedResultName": "ignacio.belando@naranjax.com"
-      },
-      "triggerOn": "eventUpdated",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleCalendarTrigger",
-    "typeVersion": 1,
-    "position": [
-      40,
-      -60
-    ],
-    "id": "4cdf6913-41fe-4530-8cd6-b7f9e8f0924c",
-    "name": "Naranja X Update",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "l5gPwkdfGQZqmLh6",
-        "name": "Google Calendar account"
-      }
-    }
-  },
-  "23": {
-    "parameters": {
-      "pollTimes": {
-        "item": [
-          {
-            "mode": "everyX",
-            "value": 15,
-            "unit": "minutes"
-          }
-        ]
-      },
-      "calendarId": {
-        "__rl": true,
-        "value": "ignacio@greether.com",
-        "mode": "list",
-        "cachedResultName": "ignacio@greether.com"
-      },
-      "triggerOn": "eventUpdated",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleCalendarTrigger",
-    "typeVersion": 1,
-    "position": [
-      40,
-      180
-    ],
-    "id": "32822856-8bd3-4a22-bb24-0786605a2dfb",
-    "name": "Greether Update",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "l5gPwkdfGQZqmLh6",
-        "name": "Google Calendar account"
-      }
-    }
-  },
-  "24": {
-    "parameters": {
-      "pollTimes": {
-        "item": [
-          {
-            "mode": "everyX",
-            "value": 15,
-            "unit": "minutes"
-          }
-        ]
-      },
-      "calendarId": {
-        "__rl": true,
-        "value": "ignaciobelando@gmail.com",
-        "mode": "list",
-        "cachedResultName": "ignaciobelando@gmail.com"
-      },
-      "triggerOn": "eventUpdated",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleCalendarTrigger",
-    "typeVersion": 1,
-    "position": [
-      40,
-      420
-    ],
-    "id": "d31af61c-e6c8-4859-b66b-8f45188a1729",
-    "name": "Personal Update",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "l5gPwkdfGQZqmLh6",
-        "name": "Google Calendar account"
-      }
-    }
-  },
-  "25": {
-    "parameters": {
-      "pollTimes": {
-        "item": [
-          {
-            "mode": "everyX",
-            "value": 15,
-            "unit": "minutes"
-          }
-        ]
-      },
-      "calendarId": {
-        "__rl": true,
-        "value": "ignacio.belando@naranjax.com",
-        "mode": "list",
-        "cachedResultName": "ignacio.belando@naranjax.com"
-      },
-      "triggerOn": "eventCancelled",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleCalendarTrigger",
-    "typeVersion": 1,
-    "position": [
-      1280,
-      0
-    ],
-    "id": "dde38dfb-6805-4ca9-b95d-84c8cfd3f147",
-    "name": "Naranja X Delete",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "l5gPwkdfGQZqmLh6",
-        "name": "Google Calendar account"
-      }
-    }
-  },
-  "26": {
-    "parameters": {
-      "pollTimes": {
-        "item": [
-          {
-            "mode": "everyX",
-            "value": 15,
-            "unit": "minutes"
-          }
-        ]
-      },
-      "calendarId": {
-        "__rl": true,
-        "value": "ignacio@greether.com",
-        "mode": "list",
-        "cachedResultName": "ignacio@greether.com"
-      },
-      "triggerOn": "eventCancelled",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleCalendarTrigger",
-    "typeVersion": 1,
-    "position": [
-      1280,
-      220
-    ],
-    "id": "98ee4387-5d70-4086-8db2-0295cf3355a8",
-    "name": "Greether Delete",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "l5gPwkdfGQZqmLh6",
-        "name": "Google Calendar account"
-      }
-    }
-  },
-  "27": {
-    "parameters": {
-      "pollTimes": {
-        "item": [
-          {
-            "mode": "everyX",
-            "value": 15,
-            "unit": "minutes"
-          }
-        ]
-      },
-      "calendarId": {
-        "__rl": true,
-        "value": "ignaciobelando@gmail.com",
-        "mode": "list",
-        "cachedResultName": "ignaciobelando@gmail.com"
-      },
-      "triggerOn": "eventCancelled",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.googleCalendarTrigger",
-    "typeVersion": 1,
-    "position": [
-      1280,
-      460
-    ],
-    "id": "076e08ac-b9a5-4368-a492-3467d3381e29",
-    "name": "Personal Delete",
-    "credentials": {
-      "googleCalendarOAuth2Api": {
-        "id": "l5gPwkdfGQZqmLh6",
-        "name": "Google Calendar account"
-      }
-    }
-  },
-  "28": {
-    "parameters": {
-      "content": "## Remove eventos en el calendario",
-      "height": 800,
-      "width": 1040,
-      "color": 2
-    },
-    "type": "n8n-nodes-base.stickyNote",
-    "position": [
-      1140,
-      -140
-    ],
-    "typeVersion": 1,
-    "id": "735b30a9-de42-4f89-b60c-6d032ab8f1d5",
-    "name": "Sticky Note3"
-  }
+  "tags": [],
+  "triggerCount": 9,
+  "updatedAt": "2025-05-06T15:24:14.000Z",
+  "versionId": "2cbebb21-2b32-41fd-ab21-a54ace86c358"
 }
