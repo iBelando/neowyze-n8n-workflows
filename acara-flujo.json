@@ -1,129 +1,244 @@
 {
-  "0": {
-    "parameters": {},
-    "type": "n8n-nodes-base.manualTrigger",
-    "typeVersion": 1,
-    "position": [
-      -20,
-      520
-    ],
-    "id": "73c8d150-1dfa-47c4-bec1-d2c70bc6d9fa",
-    "name": "When clicking ‘Test workflow’"
-  },
-  "1": {
-    "parameters": {
-      "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nconst formatData = $input.all()[0].json.data\n\nreturn formatData.map(item => {\n  return {\n    brandId: item.id,\n    brand: item.name\n  }\n});"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      440,
-      520
-    ],
-    "id": "e05c979d-4c6d-4a7f-b933-9da4a5566f37",
-    "name": "Code5"
-  },
-  "2": {
-    "parameters": {
-      "options": {}
-    },
-    "type": "n8n-nodes-base.splitInBatches",
-    "typeVersion": 3,
-    "position": [
-      660,
-      520
-    ],
-    "id": "c3997bec-2b5a-4d16-aeda-d08daaf52ec2",
-    "name": "Loop Over Items2"
-  },
-  "3": {
-    "parameters": {
-      "jsCode": "return $input.all();"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      900,
-      440
-    ],
-    "id": "a04d0a66-1726-4afa-8b0b-e815701dbb27",
-    "name": "Code6"
-  },
-  "4": {
-    "parameters": {
-      "jsCode": "// Suponiendo que el resultado de tu petición está en 'items[0].json.body'\nconst htmlString = $('Obtengo la tabla completa con versiones, años y precios').first().json.data;\n\n// Extraer el contenido del thead\nconst theadStart = htmlString.indexOf('<thead>');\nconst theadEnd = htmlString.indexOf('</thead>');\n\nconst theadContent = htmlString.substring(theadStart, theadEnd);\n\n// Dividir las filas por la etiqueta <tr>\nconst headerRows = theadContent.split(/<\\/tr>\\s*<tr[^>]*>/).map(row => row.replace(/<\\/?tr[^>]*>/g, '').trim());\n\n// Obtener los encabezados de la primera fila del thead\nconst headerRow = headerRows[0].split(/<\\/?t[dh][^>]*>/).filter(cell => cell.trim() !== '');\nconst headers = headerRow.map(header => header.trim());\n\n// Extraer el contenido del tbody\nconst tbodyStart = htmlString.indexOf('<tbody>');\nconst tbodyEnd = htmlString.indexOf('</tbody>');\n\nlet tbodyContent = htmlString.substring(tbodyStart, tbodyEnd);\n\n// Eliminar la etiqueta <tbody> al inicio\ntbodyContent = tbodyContent.replace('<tbody>', '').trim(); // Eliminar <tbody>\n\n// Dividir las filas por la etiqueta <tr>\nconst rows = tbodyContent.split(/<\\/tr>\\s*<tr[^>]*>/).map(row => row.replace(/<\\/?tr[^>]*>/g, '').trim());\n\n// Procesar cada fila para obtener las celdas\nconst data = rows.map(row => {\n    // Dividir las celdas por la etiqueta <td>\n    const cells = row.split(/<\\/?t[dh][^>]*>/).filter(cell => cell.trim() !== '');\n  \n    // Crear un array para almacenar los objetos por año\n    const vehiclesByYear = [];\n\n    // Verificar que hay suficientes celdas para procesar\n    if (cells.length > 0) {\n        const model = cells[0]; // Primera columna\n        const version = cells[1]; // Segunda columna\n        const money = cells[2]\n      \n        // Iterar sobre los años (de la tercera a la última columna)\n        for (let i = 3; i < cells.length; i++) {\n            const year = headers[i]; // Obtener el año del encabezado\n            const price = cells[i]; // Valor correspondiente al año      \n\n            // Solo crear un objeto si hay un valor\n            if (price && price !== '-') {\n                vehiclesByYear.push({\n                    brand: $('Loop Over Items2').first().json.brand,\n                    model,\n                    version,\n                    year,\n                    money,\n                    price: `${price.trim()}`,  // Agregar el precio\n                    createdAt: new Date(),\n                    updatedAt: new Date()\n                });\n            }\n        }\n    }\n\n    return vehiclesByYear; // Devolver los objetos por año\n});\n\n\n// Aplanar el array de arrays en un solo array\nconst flattenedVehicles = data.flat();\n\n// Filtrar objetos válidos (sin datos vacíos)\nconst vehicles = flattenedVehicles.filter(vehicle => vehicle.model && vehicle.version);\n\n// Devolver los datos extraídos como un nuevo output\nreturn vehicles.map(vehicle => {\n    return {\n        json: vehicle\n    };\n});\n"
-    },
-    "type": "n8n-nodes-base.code",
-    "typeVersion": 2,
-    "position": [
-      1200,
-      640
-    ],
-    "id": "aecf12e4-5848-47f8-96c4-00c6052132f6",
-    "name": "Code8"
-  },
-  "5": {
-    "parameters": {},
-    "type": "n8n-nodes-base.wait",
-    "typeVersion": 1.1,
-    "position": [
-      2020,
-      640
-    ],
-    "id": "a7e53cdb-65da-4591-8120-d064bc6c5cb8",
-    "name": "Wait3",
-    "webhookId": "d6147e30-e64e-44ed-99c8-628cab1daa66"
-  },
-  "6": {
-    "parameters": {
-      "url": "=https://api.acara.org.ar/api/v1/prices/get-vehicules?vehiculeType=1&vehiculeBrandId={{ $('Loop Over Items2').item.json.brandId }}",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.httpRequest",
-    "typeVersion": 4.2,
-    "position": [
-      900,
-      640
-    ],
-    "id": "b6aeb908-40b2-4f56-8de6-65207244661a",
-    "name": "Obtengo la tabla completa con versiones, años y precios"
-  },
-  "7": {
-    "parameters": {
-      "url": "https://api.acara.org.ar/api/v1/prices/brand-list?vehiculeType=1",
-      "options": {}
-    },
-    "type": "n8n-nodes-base.httpRequest",
-    "typeVersion": 4.2,
-    "position": [
-      220,
-      520
-    ],
-    "id": "68aad10f-6e94-4231-be4c-0186ba951a56",
-    "name": "Obtengo las marca"
-  },
-  "8": {
-    "parameters": {
-      "method": "POST",
-      "url": "https://api.core.neowyze.tech/n8n/cars/acara",
-      "sendBody": true,
-      "specifyBody": "=json",
-      "bodyParameters": {
-        "parameters": [
-          {}
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Obtengo las marca",
+            "type": "main",
+            "index": 0
+          }
         ]
-      },
-      "jsonBody": "={{ $input.all().map(item => item.json) }}",
-      "options": {}
+      ]
     },
-    "type": "n8n-nodes-base.httpRequest",
-    "typeVersion": 4.2,
-    "position": [
-      1440,
-      640
-    ],
-    "id": "552da1b2-fe50-4478-9fe3-4a9b8820dae8",
-    "name": "HTTP Request3",
-    "executeOnce": true
-  }
+    "Code5": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [
+          {
+            "node": "Code6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Obtengo la tabla completa con versiones, años y precios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code8": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtengo la tabla completa con versiones, años y precios": {
+      "main": [
+        [
+          {
+            "node": "Code8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtengo las marca": {
+      "main": [
+        [
+          {
+            "node": "Code5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-12T12:47:05.067Z",
+  "id": "CgeLt4R4tP2l3FF3",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ACARA Flujo",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        520
+      ],
+      "id": "73c8d150-1dfa-47c4-bec1-d2c70bc6d9fa",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nconst formatData = $input.all()[0].json.data\n\nreturn formatData.map(item => {\n  return {\n    brandId: item.id,\n    brand: item.name\n  }\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        520
+      ],
+      "id": "e05c979d-4c6d-4a7f-b933-9da4a5566f37",
+      "name": "Code5"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        660,
+        520
+      ],
+      "id": "c3997bec-2b5a-4d16-aeda-d08daaf52ec2",
+      "name": "Loop Over Items2"
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        440
+      ],
+      "id": "a04d0a66-1726-4afa-8b0b-e815701dbb27",
+      "name": "Code6"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Suponiendo que el resultado de tu petición está en 'items[0].json.body'\nconst htmlString = $('Obtengo la tabla completa con versiones, años y precios').first().json.data;\n\n// Extraer el contenido del thead\nconst theadStart = htmlString.indexOf('<thead>');\nconst theadEnd = htmlString.indexOf('</thead>');\n\nconst theadContent = htmlString.substring(theadStart, theadEnd);\n\n// Dividir las filas por la etiqueta <tr>\nconst headerRows = theadContent.split(/<\\/tr>\\s*<tr[^>]*>/).map(row => row.replace(/<\\/?tr[^>]*>/g, '').trim());\n\n// Obtener los encabezados de la primera fila del thead\nconst headerRow = headerRows[0].split(/<\\/?t[dh][^>]*>/).filter(cell => cell.trim() !== '');\nconst headers = headerRow.map(header => header.trim());\n\n// Extraer el contenido del tbody\nconst tbodyStart = htmlString.indexOf('<tbody>');\nconst tbodyEnd = htmlString.indexOf('</tbody>');\n\nlet tbodyContent = htmlString.substring(tbodyStart, tbodyEnd);\n\n// Eliminar la etiqueta <tbody> al inicio\ntbodyContent = tbodyContent.replace('<tbody>', '').trim(); // Eliminar <tbody>\n\n// Dividir las filas por la etiqueta <tr>\nconst rows = tbodyContent.split(/<\\/tr>\\s*<tr[^>]*>/).map(row => row.replace(/<\\/?tr[^>]*>/g, '').trim());\n\n// Procesar cada fila para obtener las celdas\nconst data = rows.map(row => {\n    // Dividir las celdas por la etiqueta <td>\n    const cells = row.split(/<\\/?t[dh][^>]*>/).filter(cell => cell.trim() !== '');\n  \n    // Crear un array para almacenar los objetos por año\n    const vehiclesByYear = [];\n\n    // Verificar que hay suficientes celdas para procesar\n    if (cells.length > 0) {\n        const model = cells[0]; // Primera columna\n        const version = cells[1]; // Segunda columna\n        const money = cells[2]\n      \n        // Iterar sobre los años (de la tercera a la última columna)\n        for (let i = 3; i < cells.length; i++) {\n            const year = headers[i]; // Obtener el año del encabezado\n            const price = cells[i]; // Valor correspondiente al año      \n\n            // Solo crear un objeto si hay un valor\n            if (price && price !== '-') {\n                vehiclesByYear.push({\n                    brand: $('Loop Over Items2').first().json.brand,\n                    model,\n                    version,\n                    year,\n                    money,\n                    price: `${price.trim()}`,  // Agregar el precio\n                    createdAt: new Date(),\n                    updatedAt: new Date()\n                });\n            }\n        }\n    }\n\n    return vehiclesByYear; // Devolver los objetos por año\n});\n\n\n// Aplanar el array de arrays en un solo array\nconst flattenedVehicles = data.flat();\n\n// Filtrar objetos válidos (sin datos vacíos)\nconst vehicles = flattenedVehicles.filter(vehicle => vehicle.model && vehicle.version);\n\n// Devolver los datos extraídos como un nuevo output\nreturn vehicles.map(vehicle => {\n    return {\n        json: vehicle\n    };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        640
+      ],
+      "id": "aecf12e4-5848-47f8-96c4-00c6052132f6",
+      "name": "Code8"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2020,
+        640
+      ],
+      "id": "a7e53cdb-65da-4591-8120-d064bc6c5cb8",
+      "name": "Wait3",
+      "webhookId": "d6147e30-e64e-44ed-99c8-628cab1daa66"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.acara.org.ar/api/v1/prices/get-vehicules?vehiculeType=1&vehiculeBrandId={{ $('Loop Over Items2').item.json.brandId }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        900,
+        640
+      ],
+      "id": "b6aeb908-40b2-4f56-8de6-65207244661a",
+      "name": "Obtengo la tabla completa con versiones, años y precios"
+    },
+    {
+      "parameters": {
+        "url": "https://api.acara.org.ar/api/v1/prices/brand-list?vehiculeType=1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        520
+      ],
+      "id": "68aad10f-6e94-4231-be4c-0186ba951a56",
+      "name": "Obtengo las marca"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.core.neowyze.tech/n8n/cars/acara",
+        "sendBody": true,
+        "specifyBody": "=json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{ $input.all().map(item => item.json) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1440,
+        640
+      ],
+      "id": "552da1b2-fe50-4478-9fe3-4a9b8820dae8",
+      "name": "HTTP Request3",
+      "executeOnce": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-14T18:31:45.000Z",
+  "versionId": "652fb834-e561-4517-8235-cba3ee2f95cc"
 }
