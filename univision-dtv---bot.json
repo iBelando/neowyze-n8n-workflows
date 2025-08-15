@@ -1,0 +1,652 @@
+{
+  "0": {
+    "parameters": {
+      "path": "univision",
+      "responseMode": "responseNode",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.webhook",
+    "typeVersion": 2,
+    "position": [
+      60,
+      120
+    ],
+    "id": "e1cde871-9ad8-42a3-b747-fae31181f5a8",
+    "name": "Verificación",
+    "webhookId": "6423f6bb-b3dc-4db4-a895-f9d8d9242688"
+  },
+  "1": {
+    "parameters": {
+      "respondWith": "text",
+      "responseBody": "={{ $json.query['hub.challenge'] }}",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.respondToWebhook",
+    "typeVersion": 1.1,
+    "position": [
+      320,
+      120
+    ],
+    "id": "3358753b-889e-41bf-af9e-5c84ee9cfb36",
+    "name": "Respond to Webhook"
+  },
+  "2": {
+    "parameters": {
+      "rules": {
+        "values": [
+          {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 2
+              },
+              "conditions": [
+                {
+                  "leftValue": "={{ $json.messages[0].button.payload }}",
+                  "rightValue": "Confirmar",
+                  "operator": {
+                    "type": "string",
+                    "operation": "equals"
+                  },
+                  "id": "ce2d4905-e84e-443c-a696-7d064a3ab285"
+                }
+              ],
+              "combinator": "and"
+            }
+          },
+          {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 2
+              },
+              "conditions": [
+                {
+                  "id": "1190a104-12d4-4f82-a1ce-73a524a2f8fe",
+                  "leftValue": "={{ $json.messages[0].button.payload }}",
+                  "rightValue": "Rechazar",
+                  "operator": {
+                    "type": "string",
+                    "operation": "equals",
+                    "name": "filter.operator.equals"
+                  }
+                }
+              ],
+              "combinator": "and"
+            }
+          },
+          {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 2
+              },
+              "conditions": [
+                {
+                  "id": "84103cd2-106a-4276-a311-958b928812e0",
+                  "leftValue": "={{ $json.messages[0].text.body }}",
+                  "rightValue": "",
+                  "operator": {
+                    "type": "string",
+                    "operation": "notEmpty",
+                    "singleValue": true
+                  }
+                }
+              ],
+              "combinator": "and"
+            }
+          },
+          {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 2
+              },
+              "conditions": [
+                {
+                  "id": "36882f24-4999-4a65-90d3-50ae1da2faa1",
+                  "leftValue": "={{ $json.messages[0].type }}",
+                  "rightValue": "text",
+                  "operator": {
+                    "type": "string",
+                    "operation": "notEquals"
+                  }
+                }
+              ],
+              "combinator": "and"
+            }
+          }
+        ]
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.switch",
+    "typeVersion": 3.2,
+    "position": [
+      400,
+      580
+    ],
+    "id": "78a38e10-933a-4504-8fbe-adc41c6636d5",
+    "name": "Switch"
+  },
+  "3": {
+    "parameters": {
+      "operation": "send",
+      "phoneNumberId": "802227299632271",
+      "recipientPhoneNumber": "={{ $json.messages[0].from }}",
+      "textBody": "Entendido, se seguirán enviando recordatorios",
+      "additionalFields": {}
+    },
+    "type": "n8n-nodes-base.whatsApp",
+    "typeVersion": 1,
+    "position": [
+      1080,
+      400
+    ],
+    "id": "c375dafc-6889-4b71-b1e6-c2712ac929dd",
+    "name": "WhatsApp Business Cloud1",
+    "webhookId": "c5ea45a8-7374-4567-a3a1-408897e63688",
+    "credentials": {
+      "whatsAppApi": {
+        "id": "y4QR4nygt9F9YhH8",
+        "name": "Univision DTV Whatsapp"
+      }
+    }
+  },
+  "4": {
+    "parameters": {
+      "operation": "send",
+      "phoneNumberId": "802227299632271",
+      "recipientPhoneNumber": "={{ $json.messages[0].from }}",
+      "textBody": "Entendido, ya no se enviarán recordatorios",
+      "additionalFields": {}
+    },
+    "type": "n8n-nodes-base.whatsApp",
+    "typeVersion": 1,
+    "position": [
+      1080,
+      580
+    ],
+    "id": "65f13ced-10d9-4987-ba30-4496b6e57355",
+    "name": "WhatsApp Business Cloud2",
+    "webhookId": "8d6b2f07-6fe0-445a-b4d0-ed5a5570b458",
+    "credentials": {
+      "whatsAppApi": {
+        "id": "y4QR4nygt9F9YhH8",
+        "name": "Univision DTV Whatsapp"
+      }
+    }
+  },
+  "5": {
+    "parameters": {
+      "conditions": {
+        "options": {
+          "caseSensitive": true,
+          "leftValue": "",
+          "typeValidation": "loose",
+          "version": 2
+        },
+        "conditions": [
+          {
+            "id": "f9339f1e-3c29-4a43-b742-e343c225ebc1",
+            "leftValue": "={{ $json.messages[0] }}",
+            "rightValue": "",
+            "operator": {
+              "type": "boolean",
+              "operation": "exists",
+              "singleValue": true
+            }
+          }
+        ],
+        "combinator": "and"
+      },
+      "looseTypeValidation": true,
+      "options": {}
+    },
+    "type": "n8n-nodes-base.if",
+    "typeVersion": 2.2,
+    "position": [
+      180,
+      680
+    ],
+    "id": "fc549229-c8c1-4582-afeb-6f6b42daa2c7",
+    "name": "Verifico si es un envío de mensajes"
+  },
+  "6": {
+    "parameters": {
+      "operation": "send",
+      "phoneNumberId": "=763353423520906",
+      "recipientPhoneNumber": "={{$('Switch').item.json.messages[0].from}}",
+      "textBody": "={{$('HTTP Request').item.json.choices[0].message.content}}",
+      "additionalFields": {}
+    },
+    "type": "n8n-nodes-base.whatsApp",
+    "typeVersion": 1,
+    "position": [
+      3400,
+      800
+    ],
+    "id": "c76a48a3-b66d-467b-82c9-c5c98cccb195",
+    "name": "Envío mensaje de texto",
+    "webhookId": "670adcb7-8150-4faf-8044-4d2bea064089",
+    "credentials": {
+      "whatsAppApi": {
+        "id": "y4QR4nygt9F9YhH8",
+        "name": "Univision DTV Whatsapp"
+      }
+    }
+  },
+  "7": {
+    "parameters": {
+      "content": "## Verificación\n**Acá se realiza la verificación del webhook**",
+      "height": 320,
+      "width": 620
+    },
+    "type": "n8n-nodes-base.stickyNote",
+    "position": [
+      0,
+      0
+    ],
+    "typeVersion": 1,
+    "id": "7f53ad47-0944-4356-a409-5894cc4d016c",
+    "name": "Sticky Note"
+  },
+  "8": {
+    "parameters": {
+      "operation": "append",
+      "documentId": {
+        "__rl": true,
+        "value": "16x3Hh8oII8ooq1T4qINrys1xqKWnXaDmgp3bhcRivCA",
+        "mode": "list",
+        "cachedResultName": "Respuestas - Test",
+        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16x3Hh8oII8ooq1T4qINrys1xqKWnXaDmgp3bhcRivCA/edit?usp=drivesdk"
+      },
+      "sheetName": {
+        "__rl": true,
+        "value": "gid=0",
+        "mode": "list",
+        "cachedResultName": "Sheet1",
+        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16x3Hh8oII8ooq1T4qINrys1xqKWnXaDmgp3bhcRivCA/edit#gid=0"
+      },
+      "columns": {
+        "mappingMode": "defineBelow",
+        "value": {
+          "Nombre": "={{ $('Switch').item.json.contacts[0].profile.name }}",
+          "Numero": "={{ $('Switch').item.json.messages[0].from }}",
+          "Mensaje": "={{$('HTTP Request').item.json.choices[0].message.content}}",
+          "Hora": "={{ $('Switch').item.json.messages[0].timestamp }}",
+          "Column 5": "-",
+          "Column 6": "-"
+        },
+        "matchingColumns": [
+          "Nombre"
+        ],
+        "schema": [
+          {
+            "id": "Nombre",
+            "displayName": "Nombre",
+            "required": false,
+            "defaultMatch": false,
+            "display": true,
+            "type": "string",
+            "canBeUsedToMatch": true,
+            "removed": false
+          },
+          {
+            "id": "Numero",
+            "displayName": "Numero",
+            "required": false,
+            "defaultMatch": false,
+            "display": true,
+            "type": "string",
+            "canBeUsedToMatch": true
+          },
+          {
+            "id": "Mensaje",
+            "displayName": "Mensaje",
+            "required": false,
+            "defaultMatch": false,
+            "display": true,
+            "type": "string",
+            "canBeUsedToMatch": true
+          },
+          {
+            "id": "Hora",
+            "displayName": "Hora",
+            "required": false,
+            "defaultMatch": false,
+            "display": true,
+            "type": "string",
+            "canBeUsedToMatch": true
+          },
+          {
+            "id": "Column 5",
+            "displayName": "Column 5",
+            "required": false,
+            "defaultMatch": false,
+            "display": true,
+            "type": "string",
+            "canBeUsedToMatch": true
+          },
+          {
+            "id": "Column 6",
+            "displayName": "Column 6",
+            "required": false,
+            "defaultMatch": false,
+            "display": true,
+            "type": "string",
+            "canBeUsedToMatch": true
+          }
+        ],
+        "attemptToConvertTypes": false,
+        "convertFieldsToString": false
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.googleSheets",
+    "typeVersion": 4.5,
+    "position": [
+      2540,
+      680
+    ],
+    "id": "e2fa26d6-5f9e-46d1-b956-c1ddfdc400f9",
+    "name": "Google Sheets",
+    "credentials": {
+      "googleSheetsOAuth2Api": {
+        "id": "FbfeQYgJpKktwvaB",
+        "name": "Google Sheets account 4"
+      }
+    }
+  },
+  "9": {
+    "parameters": {
+      "httpMethod": "POST",
+      "path": "oro-verde/orden",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.webhook",
+    "typeVersion": 2,
+    "position": [
+      -580,
+      1240
+    ],
+    "id": "28592e35-0c1f-4ad2-bf07-3d3181429cd6",
+    "name": "Webhook",
+    "webhookId": "d7625210-c79e-4266-bfa5-1d7a54db1ca0"
+  },
+  "10": {
+    "parameters": {
+      "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+    },
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+      -360,
+      1240
+    ],
+    "id": "01a01054-1a8f-4bed-840c-124b492cd226",
+    "name": "Code"
+  },
+  "11": {
+    "parameters": {
+      "options": {
+        "groupMessages": true
+      }
+    },
+    "type": "@n8n/n8n-nodes-langchain.memoryManager",
+    "typeVersion": 1.1,
+    "position": [
+      640,
+      800
+    ],
+    "id": "7910abad-84bb-445f-80a7-cf4539e42232",
+    "name": "Chat Memory Manager"
+  },
+  "12": {
+    "parameters": {
+      "mode": "insert",
+      "messages": {
+        "messageValues": [
+          {
+            "message": "={{$json.choices[0].message.content}}"
+          },
+          {
+            "type": "user",
+            "message": "={{ $('Switch').item.json.messages[0].text.body }}"
+          }
+        ]
+      }
+    },
+    "type": "@n8n/n8n-nodes-langchain.memoryManager",
+    "typeVersion": 1.1,
+    "position": [
+      1720,
+      800
+    ],
+    "id": "44de54e3-5e66-46f2-8dbe-1bda15df97be",
+    "name": "Chat Memory Manager1"
+  },
+  "13": {
+    "parameters": {
+      "sessionIdType": "customKey",
+      "sessionKey": "={{ $('Switch').item.json.messages[0].from }}",
+      "contextWindowLength": 30
+    },
+    "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+    "typeVersion": 1.3,
+    "position": [
+      1220,
+      1140
+    ],
+    "id": "3f49a5c7-e5c3-49b7-86d6-f440136c16f6",
+    "name": "Simple Memory"
+  },
+  "14": {
+    "parameters": {},
+    "type": "n8n-nodes-base.manualTrigger",
+    "typeVersion": 1,
+    "position": [
+      -580,
+      1500
+    ],
+    "id": "c86ad733-5eac-4465-a2d6-f4333d887986",
+    "name": "When clicking ‘Test workflow’"
+  },
+  "15": {
+    "parameters": {
+      "jsCode": "const dbMessages = $input.first().json.messages.map(message => {\n    const key = Object.keys(message)[0];\n    const value = message[key];\n    \n    return {\n      role: key === \"human\" ? \"user\" : key,\n      content: value\n    };\n})\n\nconst messages = [...dbMessages, {\"role\": \"user\", \"content\": $('Switch').item.json.messages[0].text.body }]\n\nreturn {data: messages};"
+    },
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+      1100,
+      800
+    ],
+    "id": "4b9d9d29-c0aa-4b3c-b547-11e4cd80dd99",
+    "name": "Code3"
+  },
+  "16": {
+    "parameters": {
+      "method": "POST",
+      "url": "https://f5qmauqtep2eihlhxoymxqrp.agents.do-ai.run/api/v1/chat/completions",
+      "sendHeaders": true,
+      "headerParameters": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "value": "Bearer nMfMNFz6QRVgaUV2qzjkTkt9mj44LZH2"
+          }
+        ]
+      },
+      "sendBody": true,
+      "specifyBody": "json",
+      "jsonBody": "={\n  \"messages\": {{ $json.data.toJsonString() }},\n  \"stream\": false,\n  \"include_functions_info\": false,\n  \"include_retrieval_info\": true,\n  \"include_guardrails_info\": false\n}",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 4.2,
+    "position": [
+      1380,
+      800
+    ],
+    "id": "e8739ea1-eff9-4eec-8234-0f666b34c2bc",
+    "name": "HTTP Request",
+    "executeOnce": true
+  },
+  "17": {
+    "parameters": {
+      "mode": "delete",
+      "deleteMode": "all"
+    },
+    "type": "@n8n/n8n-nodes-langchain.memoryManager",
+    "typeVersion": 1.1,
+    "position": [
+      -360,
+      1500
+    ],
+    "id": "262bd5a4-950d-4343-9493-3d3a5d2ebf5e",
+    "name": "Chat Memory Manager4"
+  },
+  "18": {
+    "parameters": {
+      "sessionIdType": "customKey",
+      "sessionKey": "5492214363975",
+      "contextWindowLength": 30
+    },
+    "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+    "typeVersion": 1.3,
+    "position": [
+      -240,
+      1740
+    ],
+    "id": "590e0a62-765a-432a-99fe-096694afdc40",
+    "name": "Simple Memory2"
+  },
+  "19": {
+    "parameters": {
+      "conditions": {
+        "options": {
+          "caseSensitive": true,
+          "leftValue": "",
+          "typeValidation": "strict",
+          "version": 2
+        },
+        "conditions": [
+          {
+            "id": "1e6f99c0-85df-4f75-8af4-96e14c07c4ad",
+            "leftValue": "={{$('HTTP Request').item.json.choices[0].message.content}}",
+            "rightValue": "TU PEDIDO QUEDÓ REGISTRADO",
+            "operator": {
+              "type": "string",
+              "operation": "contains"
+            }
+          }
+        ],
+        "combinator": "and"
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.if",
+    "typeVersion": 2.2,
+    "position": [
+      2140,
+      800
+    ],
+    "id": "0c72863a-5c3b-4357-8300-497ee864e097",
+    "name": "If"
+  },
+  "20": {
+    "parameters": {},
+    "type": "n8n-nodes-base.merge",
+    "typeVersion": 3,
+    "position": [
+      3200,
+      800
+    ],
+    "id": "a43b44d3-384e-489c-8462-3023b880c272",
+    "name": "Merge"
+  },
+  "21": {
+    "parameters": {
+      "mode": "delete",
+      "deleteMode": "all"
+    },
+    "type": "@n8n/n8n-nodes-langchain.memoryManager",
+    "typeVersion": 1.1,
+    "position": [
+      2780,
+      680
+    ],
+    "id": "0e337147-def8-4057-952c-16eb80e0ca5b",
+    "name": "Chat Memory Manager2"
+  },
+  "22": {
+    "parameters": {
+      "sessionIdType": "customKey",
+      "sessionKey": "{{ $('Switch').item.json.messages[0].from }}",
+      "contextWindowLength": 30
+    },
+    "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+    "typeVersion": 1.3,
+    "position": [
+      2800,
+      1140
+    ],
+    "id": "069cd2b1-f99c-4808-97f1-d11679d17f01",
+    "name": "Simple Memory1"
+  },
+  "23": {
+    "parameters": {
+      "operation": "send",
+      "phoneNumberId": "802227299632271",
+      "recipientPhoneNumber": "542214363975",
+      "textBody": "=Hola, gracias por escribir. Te comento que no está permitido enviar archivos multimedia (imágenes, videos, audios, etc.) por esta vía.\n\nPodés contarme lo que necesitás de forma escrita: una descripción, tu consulta o los datos que quieras compartir. Así podré ayudarte sin inconvenientes.",
+      "additionalFields": {}
+    },
+    "type": "n8n-nodes-base.whatsApp",
+    "typeVersion": 1,
+    "position": [
+      640,
+      1160
+    ],
+    "id": "05a0a4f7-bf0d-4721-9d6f-3cb33a6e322d",
+    "name": "WhatsApp Business Cloud",
+    "webhookId": "bce95f12-fff1-4734-a1b4-c4afdd307010",
+    "credentials": {
+      "whatsAppApi": {
+        "id": "y4QR4nygt9F9YhH8",
+        "name": "Univision DTV Whatsapp"
+      }
+    }
+  },
+  "24": {
+    "parameters": {
+      "updates": [
+        "messages"
+      ]
+    },
+    "type": "n8n-nodes-base.whatsAppTrigger",
+    "typeVersion": 1,
+    "position": [
+      0,
+      680
+    ],
+    "id": "079ebedd-7f8d-4f7a-b29e-460a9cb2b252",
+    "name": "WhatsApp Trigger",
+    "webhookId": "8c24c65f-fb99-48fb-ae04-d18818f2dfc7",
+    "credentials": {
+      "whatsAppTriggerApi": {
+        "id": "Ywpxn4VdDfBmXug7",
+        "name": "Univision DTV"
+      }
+    }
+  }
+}
