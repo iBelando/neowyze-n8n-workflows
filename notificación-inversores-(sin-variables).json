@@ -1,0 +1,230 @@
+{
+  "0": {
+    "parameters": {
+      "phoneNumberId": "631081970092798",
+      "recipientPhoneNumber": "=+{{ $json[\"Whatsapp\"] }}",
+      "template": "={{ $('Selecciono el template').item.json.Templates }}",
+      "components": {
+        "component": [
+          {
+            "type": "header",
+            "headerParameters": {
+              "parameter": [
+                {
+                  "type": "image",
+                  "imageLink": "https://sos.neowyze.tech/argenway_mayo_23.jpg"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "type": "n8n-nodes-base.whatsApp",
+    "typeVersion": 1,
+    "position": [
+      -1080,
+      260
+    ],
+    "id": "7d28fd58-1416-4180-a9aa-13dccec688d3",
+    "name": "WhatsApp Business Cloud",
+    "webhookId": "ee3984d3-7df6-4dd7-82e2-54488d15fba8",
+    "retryOnFail": true,
+    "maxTries": 2,
+    "credentials": {
+      "whatsAppApi": {
+        "id": "SlLQKZiaNG7boEr5",
+        "name": "Argenway Whatsapp"
+      }
+    }
+  },
+  "1": {
+    "parameters": {
+      "options": {}
+    },
+    "type": "n8n-nodes-base.splitInBatches",
+    "typeVersion": 3,
+    "position": [
+      -1320,
+      180
+    ],
+    "id": "ebd3a2ac-76c5-4af8-8035-ebc5a200f970",
+    "name": "Loop Over Items"
+  },
+  "2": {
+    "parameters": {
+      "amount": 1
+    },
+    "type": "n8n-nodes-base.wait",
+    "typeVersion": 1.1,
+    "position": [
+      -860,
+      260
+    ],
+    "id": "0ce42092-2013-4725-b5fe-902b336edc65",
+    "name": "Wait",
+    "webhookId": "1fd2008e-66c7-4fea-a45c-20c17d22abb0"
+  },
+  "3": {
+    "parameters": {
+      "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+    },
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+      -1080,
+      100
+    ],
+    "id": "cf73353d-e6bd-4da4-bd24-0bd691779f87",
+    "name": "Code1"
+  },
+  "4": {
+    "parameters": {
+      "formTitle": "Envío de informes mensual",
+      "formFields": {
+        "values": [
+          {
+            "fieldLabel": "Proyecto",
+            "fieldType": "dropdown",
+            "fieldOptions": {
+              "values": [
+                {
+                  "option": "Todos"
+                },
+                {
+                  "option": "TRU"
+                },
+                {
+                  "option": "BRC"
+                },
+                {
+                  "option": "ROS"
+                },
+                {
+                  "option": "DOM"
+                }
+              ]
+            },
+            "requiredField": true
+          }
+        ]
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.formTrigger",
+    "typeVersion": 2.2,
+    "position": [
+      -2680,
+      180
+    ],
+    "id": "b871cfe7-3da1-42d0-befb-3531ef032550",
+    "name": "Selecciono el proyecto",
+    "webhookId": "9a8757a8-bead-4f36-8713-25d18d79f5b3"
+  },
+  "5": {
+    "parameters": {
+      "defineForm": "json",
+      "jsonOutput": "={{ JSON.stringify($json.form) }}",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.form",
+    "typeVersion": 1,
+    "position": [
+      -2020,
+      180
+    ],
+    "id": "b869a596-74a4-481a-a9b2-b1da82bdca11",
+    "name": "Selecciono el template",
+    "webhookId": "9028b0d7-8a7c-4341-89e8-23c164c7a158"
+  },
+  "6": {
+    "parameters": {
+      "jsCode": "const data = $input.first().json.data\n\nreturn {\n  form: [\n    {\n      fieldLabel: \"Templates\",\n      fieldType: \"dropdown\",\n      fieldOptions: data.map(e => { return {option: `${e.name}|${e.language}`}}),\n      requiredField: true\n    }\n  ]\n}"
+    },
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+      -2240,
+      180
+    ],
+    "id": "f67b2f48-53dc-40e3-be9a-bd097d62c718",
+    "name": "Obtengo los templates de meta"
+  },
+  "7": {
+    "parameters": {
+      "url": "https://graph.facebook.com/v17.0/1444719746509267/message_templates",
+      "sendHeaders": true,
+      "headerParameters": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "value": "Bearer EAATYZAFsqHfsBOwoFWHd44vo7OOmZAbCeGSNKy1l0dipYCzYdMtkWM0T7H24UkqvOuu0xuNFHpnDxGR4IP5ZA6X8wklp0mbcbilhQ9ROOLjEE3IAryWZCrKANmwv20N3xbNkTkdNLo3a3CnV9d38vu3A4gRwSZBpaiK8gwnTiL8UVlE1psrS5mRA0WhJBywZDZD"
+          }
+        ]
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 4.2,
+    "position": [
+      -2460,
+      180
+    ],
+    "id": "208f9820-7961-4754-943f-8911e97a8bab",
+    "name": "HTTP Request"
+  },
+  "8": {
+    "parameters": {
+      "documentId": {
+        "__rl": true,
+        "value": "18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg",
+        "mode": "list",
+        "cachedResultName": "Base de datos | Inversores Argenway",
+        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg/edit?usp=drivesdk"
+      },
+      "sheetName": {
+        "__rl": true,
+        "value": 931241228,
+        "mode": "list",
+        "cachedResultName": "Base de datos",
+        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18TVmkjLc4CLoZ14e6GhuS24F9yEPdGc8oiL6Zlo8wDg/edit#gid=931241228"
+      },
+      "filtersUI": {
+        "values": [
+          {
+            "lookupColumn": "CLIENTE (SI/NO)",
+            "lookupValue": "SI"
+          }
+        ]
+      },
+      "options": {}
+    },
+    "type": "n8n-nodes-base.googleSheets",
+    "typeVersion": 4.5,
+    "position": [
+      -1800,
+      180
+    ],
+    "id": "02d6bceb-62ce-491f-83ad-daa307ee06e4",
+    "name": "Obtengo el sheet y filtro por clientes",
+    "credentials": {
+      "googleSheetsOAuth2Api": {
+        "id": "sftHuZ9WcrY9nf5C",
+        "name": "Google Sheets account 3"
+      }
+    }
+  },
+  "9": {
+    "parameters": {
+      "jsCode": "// Si selecciono \"Todos\", devuelvo todos\nif ($('Selecciono el proyecto').first().json.Proyecto === 'Todos') {\n  return $input.all()\n} else {\n  // Si no, filtro por el proyecto seleccionado\n  return $input.all().filter(client => client.json.Proyecto.includes($('Selecciono el proyecto').first().json.Proyecto) && client.json[\"Whatsapp\"].toString() !== '-')\n}"
+    },
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+      -1580,
+      180
+    ],
+    "id": "b53fdc02-0582-432d-acd6-bc7ae777d0d5",
+    "name": "Filtro por proyecto seleccionado"
+  }
+}
