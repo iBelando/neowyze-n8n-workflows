@@ -30,7 +30,8 @@
         "id": "azLE7lidNcTJXzZF",
         "name": "GitHub Neowyze"
       }
-    }
+    },
+    "onError": "continueRegularOutput"
   },
   "1": {
     "parameters": {
@@ -64,7 +65,8 @@
         "id": "azLE7lidNcTJXzZF",
         "name": "GitHub Neowyze"
       }
-    }
+    },
+    "onError": "continueRegularOutput"
   },
   "2": {
     "parameters": {
