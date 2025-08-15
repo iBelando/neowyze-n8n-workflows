@@ -1,0 +1,61 @@
+{
+  "0": {
+    "parameters": {},
+    "type": "n8n-nodes-base.manualTrigger",
+    "typeVersion": 1,
+    "position": [
+      0,
+      0
+    ],
+    "id": "21fe97b1-e8ca-401f-b895-21d837c9d4ca",
+    "name": "When clicking ‘Test workflow’"
+  },
+  "1": {
+    "parameters": {
+      "mode": "raw",
+      "jsonOutput": "{\n  \"data\": [\n  {\n    \"nombre\": \"Juan Pérez\",\n    \"rol\": \"Diseñador\",\n    \"monto\": \"$1000\",\n    \"fecha\": \"05-05-2025\",\n    \"periodo\": \"Mayo-2025\"\n  },\n  {\n    \"nombre\": \"Ana Gómez\",\n    \"rol\": \"Desarrolladora\",\n    \"monto\": \"$1200\",\n    \"fecha\": \"05-05-2025\",\n    \"periodo\": \"Mayo-2025\"\n  },\n  {\n    \"nombre\": \"Carlos Ruiz\",\n    \"rol\": \"Marketing\",\n    \"monto\": \"$1100\",\n    \"fecha\": \"05-05-2025\",\n    \"periodo\": \"Mayo-2025\"\n  }\n]\n}",
+      "options": {}
+    },
+    "type": "n8n-nodes-base.set",
+    "typeVersion": 3.4,
+    "position": [
+      220,
+      0
+    ],
+    "id": "81753db3-0d63-424d-a803-1e6e23574657",
+    "name": "Edit Fields"
+  },
+  "2": {
+    "parameters": {
+      "options": {}
+    },
+    "type": "n8n-nodes-base.splitInBatches",
+    "typeVersion": 3,
+    "position": [
+      500,
+      0
+    ],
+    "id": "014fc39e-b58b-4872-9a33-9516afd5e214",
+    "name": "Loop Over Items"
+  },
+  "3": {
+    "parameters": {
+      "operation": "get",
+      "documentURL": "1LEDudOGKEedg4WN_noL777Lt3wDepo7f46nCCt9Loo4"
+    },
+    "type": "n8n-nodes-base.googleDocs",
+    "typeVersion": 2,
+    "position": [
+      720,
+      100
+    ],
+    "id": "998f365b-03e1-483f-b641-5e5b3c6594bf",
+    "name": "Google Docs",
+    "credentials": {
+      "googleDocsOAuth2Api": {
+        "id": "AnT8QEKTuYrezosr",
+        "name": "Google Docs account"
+      }
+    }
+  }
+}
