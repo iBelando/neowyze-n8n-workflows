@@ -1,22 +1,11 @@
 {
   "active": true,
   "connections": {
-    "Config": {
-      "main": [
-        [
-          {
-            "node": "Get Workflows",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Filter": {
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Mensaje Inicio Backups",
             "type": "main",
             "index": 0
           }
@@ -63,7 +52,7 @@
       "main": [
         [
           {
-            "node": "Wait",
+            "node": "Fallo el backup?",
             "type": "main",
             "index": 0
           }
@@ -92,7 +81,7 @@
       "main": [
         [
           {
-            "node": "Wait",
+            "node": "Fallo el backup?",
             "type": "main",
             "index": 0
           }
@@ -103,7 +92,7 @@
       "main": [
         [
           {
-            "node": "Mensaje Inicio Backups",
+            "node": "Get Workflows",
             "type": "main",
             "index": 0
           }
@@ -187,7 +176,52 @@
       "main": [
         [
           {
-            "node": "Config",
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensaje backup finalizados": {
+      "main": [
+        []
+      ]
+    },
+    "Mensaje Backup Fallido": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensaje Backup Exitoso": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fallo el backup?": {
+      "main": [
+        [
+          {
+            "node": "Mensaje Backup Fallido",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mensaje Backup Exitoso",
             "type": "main",
             "index": 0
           }
@@ -215,16 +249,16 @@
           "value": "neowyze-n8n-workflows",
           "mode": "name"
         },
-        "filePath": "={{ $('Loop Over Items').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\") }}.json",
+        "filePath": "={{ $('Filter').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\") }}.json",
         "fileContent": "={{ JSON.stringify($json.changes, null, 2) }}",
-        "commitMessage": "={{$('Loop Over Items').item.json.name}} ({{$json.status}})"
+        "commitMessage": "={{$('Filter').item.json.name}} ({{$json.status}})"
       },
       "id": "c4c1c03b-cb0e-4b7b-b33a-4fa6490a6394",
       "name": "Create new file",
       "type": "n8n-nodes-base.github",
       "position": [
-        1680,
-        160
+        1900,
+        60
       ],
       "webhookId": "b440dead-fad0-4546-8ca7-201aa2ea2936",
       "typeVersion": 1,
@@ -250,16 +284,16 @@
           "value": "neowyze-n8n-workflows",
           "mode": "name"
         },
-        "filePath": "={{ $('Loop Over Items').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\") }}.json",
+        "filePath": "={{ $('Filter').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\") }}.json",
         "fileContent": "={{ JSON.stringify($json.changes, null, 2) }}",
-        "commitMessage": "={{$('Loop Over Items').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\")}} ({{$json.status}})"
+        "commitMessage": "={{$('Filter').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\")}} ({{$json.status}})"
       },
       "id": "433179ed-0230-4871-898c-fe17dad43f5f",
       "name": "Edit existing file",
       "type": "n8n-nodes-base.github",
       "position": [
-        1680,
-        -120
+        1900,
+        -160
       ],
       "webhookId": "1dfc4103-7c23-4814-a0b5-dd4f5a96d36b",
       "typeVersion": 1,
@@ -299,7 +333,7 @@
       "name": "Filter",
       "type": "n8n-nodes-base.filter",
       "position": [
-        -220,
+        -440,
         400
       ],
       "typeVersion": 2.2
@@ -404,7 +438,7 @@
       "name": "Get Workflows",
       "type": "n8n-nodes-base.n8n",
       "position": [
-        -440,
+        -700,
         400
       ],
       "typeVersion": 1,
@@ -414,48 +448,6 @@
           "name": "n8n account"
         }
       }
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "03f51f9c-4681-4423-91d2-d32f4c18d6bc",
-              "name": "repo_owner",
-              "type": "string",
-              "value": ""
-            },
-            {
-              "id": "0c9b521a-b698-4b43-9eb0-bbf744760158",
-              "name": "repo_name",
-              "type": "string",
-              "value": "n8n-workflows"
-            },
-            {
-              "id": "91627e70-a71a-4be0-a6f6-b04d5c8469d8",
-              "name": "repo_path",
-              "type": "string",
-              "value": "n8n-workflows"
-            },
-            {
-              "id": "983a2c87-9d69-4d64-ab88-ec1b1117c6e6",
-              "name": "sub_path",
-              "type": "string",
-              "value": "folder"
-            }
-          ]
-        },
-        "includeOtherFields": true,
-        "options": {}
-      },
-      "id": "ea95abc9-1dd2-46d9-813a-47fff76dc527",
-      "name": "Config",
-      "type": "n8n-nodes-base.set",
-      "position": [
-        -660,
-        400
-      ],
-      "typeVersion": 3.4
     },
     {
       "parameters": {
@@ -482,7 +474,7 @@
       "name": "Schedule Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
       "position": [
-        -1180,
+        -940,
         400
       ],
       "typeVersion": 1.2
@@ -505,7 +497,7 @@
           "cachedResultName": "neowyze-n8n-workflows",
           "cachedResultUrl": "https://github.com/iBelando/neowyze-n8n-workflows"
         },
-        "filePath": "={{ $json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\") }}.json",
+        "filePath": "={{ $('Filter').item.json.name.replaceAll(\"[\", \"\").replaceAll(\"]\", \"\").toLowerCase().replaceAll(\" \",\"-\") }}.json",
         "asBinaryProperty": false,
         "additionalParameters": {}
       },
@@ -531,8 +523,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        2000,
-        480
+        2920,
+        540
       ],
       "id": "7866624c-fe68-4a53-ae77-f5edb4997bf4",
       "name": "Wait",
@@ -594,7 +586,7 @@
     },
     {
       "parameters": {
-        "jsCode": "function orderJsonKeys(obj) {\n  const ordered = {};\n  Object.keys(obj || {}).sort().forEach(key => {\n    ordered[key] = obj[key];\n  });\n  return ordered;\n}\n\nconst githubWF = orderJsonKeys($input[0]);\nconst n8nWF = orderJsonKeys($('Loop Over Items').first().json);\n\nif (JSON.stringify(githubWF) === JSON.stringify(n8nWF)) {\n  return [{ json: { status: \"same\" } }];\n} else {\n  return [{ json: { status: \"updated\", changes: n8nWF } }];\n}\n"
+        "jsCode": "function orderJsonKeys(obj) {\n  const ordered = {};\n  Object.keys(obj || {}).sort().forEach(key => {\n    ordered[key] = obj[key];\n  });\n  return ordered;\n}\n\nconst githubWF = orderJsonKeys($input[0]);\nconst n8nWF = orderJsonKeys($('Filter').first().json);\n\nif (JSON.stringify(githubWF) === JSON.stringify(n8nWF)) {\n  return [{ json: { status: \"same\" } }];\n} else {\n  return [{ json: { status: \"updated\", changes: n8nWF } }];\n}\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -607,7 +599,7 @@
     },
     {
       "parameters": {
-        "jsCode": "function orderJsonKeys(obj) {\n  const ordered = {};\n  Object.keys(obj || {}).sort().forEach(key => {\n    ordered[key] = obj[key];\n  });\n  return ordered;\n}\n\nconst n8nWF = orderJsonKeys($('Loop Over Items').first().json);\n\nreturn [{ json: { status: \"new\", changes: n8nWF } }];\n"
+        "jsCode": "function orderJsonKeys(obj) {\n  const ordered = {};\n  Object.keys(obj || {}).sort().forEach(key => {\n    ordered[key] = obj[key];\n  });\n  return ordered;\n}\n\nconst n8nWF = orderJsonKeys($('Filter').first().json);\n\nreturn [{ json: { status: \"new\", changes: n8nWF } }];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -635,8 +627,58 @@
           "cachedResultName": "『🤖』n8n",
           "cachedResultUrl": "https://discord.com/channels/1178756472834883874/1406028027355332769"
         },
-        "content": "🎉 Backup de flujos en n8n completado con éxito.",
-        "options": {}
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "description": "🔄 Iniciando proceso de backup de flujos en n8n.",
+              "color": "#0069FF"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        400
+      ],
+      "id": "463cc284-8a05-4b95-bb2f-3b833dd21db2",
+      "name": "Mensaje Inicio Backups",
+      "webhookId": "e667c6f3-4aa5-4927-bcee-27b5cce20d0e",
+      "credentials": {
+        "discordBotApi": {
+          "id": "VxcEjTSW3Ju9l493",
+          "name": "Largo Agent"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1178756472834883874",
+          "mode": "list",
+          "cachedResultName": "NEOWYZE",
+          "cachedResultUrl": "https://discord.com/channels/1178756472834883874"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1406028027355332769",
+          "mode": "list",
+          "cachedResultName": "『🤖』n8n",
+          "cachedResultUrl": "https://discord.com/channels/1178756472834883874/1406028027355332769"
+        },
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "description": "🎉 Backup de flujos en n8n completado con éxito.",
+              "color": "#01B902"
+            }
+          ]
+        }
       },
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
@@ -671,24 +713,110 @@
           "cachedResultName": "『🤖』n8n",
           "cachedResultUrl": "https://discord.com/channels/1178756472834883874/1406028027355332769"
         },
-        "content": "🔄 Iniciando proceso de backup de flujos en n8n.",
-        "options": {}
+        "content": "=",
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "description": "=📂 Backup workflow: **{{ $('Filter').item.json.name }}**\n🆔 ID: {{ $('GitHub').item.json.name }}\n❌ Estado: Falló durante el backup",
+              "color": "#EB0001"
+            }
+          ]
+        }
       },
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        -940,
-        400
+        2520,
+        -240
       ],
-      "id": "463cc284-8a05-4b95-bb2f-3b833dd21db2",
-      "name": "Mensaje Inicio Backups",
-      "webhookId": "e667c6f3-4aa5-4927-bcee-27b5cce20d0e",
+      "id": "5b9ee72a-158a-4136-acb9-0abeb80a20ad",
+      "name": "Mensaje Backup Fallido",
+      "webhookId": "629f9794-e2e3-43b7-9a4e-5d6e3d0b6879",
       "credentials": {
         "discordBotApi": {
           "id": "VxcEjTSW3Ju9l493",
           "name": "Largo Agent"
         }
       }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1178756472834883874",
+          "mode": "list",
+          "cachedResultName": "NEOWYZE",
+          "cachedResultUrl": "https://discord.com/channels/1178756472834883874"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1406028027355332769",
+          "mode": "list",
+          "cachedResultName": "『🤖』n8n",
+          "cachedResultUrl": "https://discord.com/channels/1178756472834883874/1406028027355332769"
+        },
+        "content": "=",
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "description": "=📂 Backup workflow: **{{ $('Filter').item.json.name }}**\n🆔 ID: {{ $('GitHub').item.json.name }}\n✅ Estado: Completado",
+              "color": "#424242"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        2520,
+        0
+      ],
+      "id": "fddec2f5-3dc4-4d5f-821e-d07673c80b26",
+      "name": "Mensaje Backup Exitoso",
+      "webhookId": "2767c4d0-acf1-4758-925b-652c89dabf22",
+      "credentials": {
+        "discordBotApi": {
+          "id": "VxcEjTSW3Ju9l493",
+          "name": "Largo Agent"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b33c139d-a0c3-45b1-9e3a-d7fa3c91a307",
+              "leftValue": "={{ $json.error }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2200,
+        -20
+      ],
+      "id": "f0782f01-6b88-4306-88cd-0a8faeb7239c",
+      "name": "Fallo el backup?"
     }
   ],
   "pinData": {},
@@ -702,6 +830,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-16T19:52:33.000Z",
-  "versionId": "6a5b8bfb-e960-46a1-9c5d-b4b4bd5a63ba"
+  "updatedAt": "2025-08-16T20:59:05.000Z",
+  "versionId": "fb714a9a-3805-46df-b747-c2c9b6579554"
 }
