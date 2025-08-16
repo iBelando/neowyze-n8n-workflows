@@ -718,7 +718,7 @@
         "embeds": {
           "values": [
             {
-              "description": "=📂 Backup workflow: **{{ $('Filter').item.json.name }}**\n🆔 ID: {{ $('GitHub').item.json.name }}\n❌ Estado: Falló durante el backup",
+              "description": "=📂 **{{ $('Filter').item.json.name }}**\n🆔 {{ $('GitHub').item.json.name }}\n❌ Falló durante el backup",
               "color": "#EB0001"
             }
           ]
@@ -762,7 +762,7 @@
         "embeds": {
           "values": [
             {
-              "description": "=📂 Backup workflow: **{{ $('Filter').item.json.name }}**\n🆔 ID: {{ $('GitHub').item.json.name }}\n✅ Estado: Completado",
+              "description": "=📂 **{{ $('Filter').item.json.name }}**\n🆔 {{ $('GitHub').item.json.name }}\n✅ Completado",
               "color": "#424242"
             }
           ]
@@ -830,6 +830,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-16T20:59:05.000Z",
-  "versionId": "fb714a9a-3805-46df-b747-c2c9b6579554"
+  "updatedAt": "2025-08-16T21:00:12.000Z",
+  "versionId": "c7b372a6-2dd5-40d0-b784-ca1c924847ff"
 }
