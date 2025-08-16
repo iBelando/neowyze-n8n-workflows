@@ -30,7 +30,7 @@
         ],
         [
           {
-            "node": "Wait",
+            "node": "Mensaje Nada para Backup",
             "type": "main",
             "index": 0
           }
@@ -222,6 +222,17 @@
         [
           {
             "node": "Mensaje Backup Exitoso",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensaje Nada para Backup": {
+      "main": [
+        [
+          {
+            "node": "Wait",
             "type": "main",
             "index": 0
           }
@@ -817,6 +828,50 @@
       ],
       "id": "f0782f01-6b88-4306-88cd-0a8faeb7239c",
       "name": "Fallo el backup?"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1178756472834883874",
+          "mode": "list",
+          "cachedResultName": "NEOWYZE",
+          "cachedResultUrl": "https://discord.com/channels/1178756472834883874"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1406028027355332769",
+          "mode": "list",
+          "cachedResultName": "『🤖』n8n",
+          "cachedResultUrl": "https://discord.com/channels/1178756472834883874/1406028027355332769"
+        },
+        "content": "=",
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "description": "=✨ Todo al día! \n📂 No había flujos pendientes de backup en esta ejecución.",
+              "color": "#424242"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        2520,
+        440
+      ],
+      "id": "e070d515-de60-4b82-bf51-1a363e6e7680",
+      "name": "Mensaje Nada para Backup",
+      "webhookId": "2767c4d0-acf1-4758-925b-652c89dabf22",
+      "credentials": {
+        "discordBotApi": {
+          "id": "VxcEjTSW3Ju9l493",
+          "name": "Largo Agent"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -830,6 +885,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-16T21:42:24.000Z",
-  "versionId": "544674d9-fc50-42d8-819e-fdbc117ee116"
+  "updatedAt": "2025-08-16T22:02:11.000Z",
+  "versionId": "29d4338f-a41b-4900-aa6e-b2a83814bef3"
 }
