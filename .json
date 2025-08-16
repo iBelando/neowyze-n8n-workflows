@@ -1,0 +1,42 @@
+{
+  "attachments": [],
+  "author": {
+    "id": "552903030618718212",
+    "username": "Largo",
+    "avatar": "d1689ebc7a9fd3bf4462eb0cbc8d4a77",
+    "discriminator": "5878",
+    "public_flags": 0,
+    "flags": 0,
+    "bot": true,
+    "banner": "313e7622dc5ea9cfa1b6b7e769139c99",
+    "accent_color": null,
+    "global_name": null,
+    "avatar_decoration_data": null,
+    "collectibles": null,
+    "display_name_styles": null,
+    "banner_color": null,
+    "clan": null,
+    "primary_guild": null
+  },
+  "channel_id": "1406028027355332769",
+  "components": [],
+  "content": "",
+  "edited_timestamp": null,
+  "embeds": [
+    {
+      "type": "rich",
+      "description": "🔄 Iniciando proceso de backup de flujos en n8n.",
+      "color": 27135,
+      "content_scan_version": 0
+    }
+  ],
+  "flags": 0,
+  "id": "1406378146198192242",
+  "mention_everyone": false,
+  "mention_roles": [],
+  "mentions": [],
+  "pinned": false,
+  "timestamp": "2025-08-16T20:44:39.296000+00:00",
+  "tts": false,
+  "type": 0
+}
