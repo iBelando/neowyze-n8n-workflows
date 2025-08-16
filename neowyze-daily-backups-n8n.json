@@ -635,7 +635,7 @@
           "cachedResultName": "『🤖』n8n",
           "cachedResultUrl": "https://discord.com/channels/1178756472834883874/1406028027355332769"
         },
-        "content": "🎉 Backup de flujos en n8n completado con éxito",
+        "content": "🎉 Backup de flujos en n8n completado con éxito.",
         "options": {}
       },
       "type": "n8n-nodes-base.discord",
@@ -671,7 +671,7 @@
           "cachedResultName": "『🤖』n8n",
           "cachedResultUrl": "https://discord.com/channels/1178756472834883874/1406028027355332769"
         },
-        "content": "🔄 Iniciando proceso de backup de flujos en n8n...",
+        "content": "🔄 Iniciando proceso de backup de flujos en n8n.",
         "options": {}
       },
       "type": "n8n-nodes-base.discord",
@@ -702,6 +702,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-16T19:28:59.000Z",
-  "versionId": "712157bb-f807-4c90-a130-bf863eaa05ea"
+  "updatedAt": "2025-08-16T19:52:33.000Z",
+  "versionId": "6a5b8bfb-e960-46a1-9c5d-b4b4bd5a63ba"
 }
