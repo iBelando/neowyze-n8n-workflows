@@ -14,7 +14,13 @@
     },
     "Filter": {
       "main": [
-        []
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Switch": {
@@ -46,7 +52,7 @@
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Filter",
             "type": "main",
             "index": 0
           }
@@ -68,7 +74,7 @@
       "main": [
         [
           {
-            "node": "Completed Notification",
+            "node": "Mensaje backup finalizados",
             "type": "main",
             "index": 0
           }
@@ -76,17 +82,6 @@
         [
           {
             "node": "GitHub",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Starting Message": {
-      "main": [
-        [
-          {
-            "node": "Config",
             "type": "main",
             "index": 0
           }
@@ -108,7 +103,7 @@
       "main": [
         [
           {
-            "node": "Starting Message",
+            "node": "Mensaje Inicio Backups",
             "type": "main",
             "index": 0
           }
@@ -187,11 +182,24 @@
           }
         ]
       ]
+    },
+    "Mensaje Inicio Backups": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-08-15T18:35:11.893Z",
   "id": "NKK9c1gi5YZxKbLZ",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "[NEOWYZE] Daily Backups N8N",
   "nodes": [
     {
@@ -215,7 +223,7 @@
       "name": "Create new file",
       "type": "n8n-nodes-base.github",
       "position": [
-        1460,
+        1680,
         160
       ],
       "webhookId": "b440dead-fad0-4546-8ca7-201aa2ea2936",
@@ -250,7 +258,7 @@
       "name": "Edit existing file",
       "type": "n8n-nodes-base.github",
       "position": [
-        1460,
+        1680,
         -120
       ],
       "webhookId": "1dfc4103-7c23-4814-a0b5-dd4f5a96d36b",
@@ -291,8 +299,8 @@
       "name": "Filter",
       "type": "n8n-nodes-base.filter",
       "position": [
-        -460,
-        880
+        -220,
+        400
       ],
       "typeVersion": 2.2
     },
@@ -382,7 +390,7 @@
       "name": "Switch",
       "type": "n8n-nodes-base.switch",
       "position": [
-        1040,
+        1260,
         180
       ],
       "typeVersion": 3.2
@@ -396,7 +404,7 @@
       "name": "Get Workflows",
       "type": "n8n-nodes-base.n8n",
       "position": [
-        -660,
+        -440,
         400
       ],
       "typeVersion": 1,
@@ -444,57 +452,10 @@
       "name": "Config",
       "type": "n8n-nodes-base.set",
       "position": [
-        -880,
+        -660,
         400
       ],
       "typeVersion": 3.4
-    },
-    {
-      "parameters": {
-        "select": "channel",
-        "channelId": {
-          "__rl": true,
-          "mode": "name",
-          "value": "#notifications"
-        },
-        "text": "=Information_source:  Starting Workflow Backup [{{ $execution.id }}]",
-        "otherOptions": {
-          "includeLinkToWorkflow": false
-        }
-      },
-      "id": "508792e1-6789-4f55-82aa-f081d03f3227",
-      "name": "Starting Message",
-      "type": "n8n-nodes-base.slack",
-      "position": [
-        -1100,
-        400
-      ],
-      "webhookId": "c02eb407-5547-4aa0-9ebf-46dab67b63b6",
-      "typeVersion": 2.2,
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "select": "channel",
-        "channelId": {
-          "__rl": true,
-          "mode": "name",
-          "value": "#notifications"
-        },
-        "text": "=✅ Backup has completed - {{ $('Get Workflows').all().length }} workflows have been processed.",
-        "otherOptions": {}
-      },
-      "id": "abd32a6e-1eb1-4e01-82ac-5dec4fba9a0e",
-      "name": "Completed Notification",
-      "type": "n8n-nodes-base.slack",
-      "position": [
-        80,
-        -100
-      ],
-      "webhookId": "a0c6e8c8-5d71-40fa-b02b-63a7ed5726c4",
-      "executeOnce": true,
-      "typeVersion": 2.2,
-      "disabled": true
     },
     {
       "parameters": {
@@ -504,7 +465,7 @@
       "name": "Loop Over Items",
       "type": "n8n-nodes-base.splitInBatches",
       "position": [
-        -220,
+        0,
         400
       ],
       "typeVersion": 3
@@ -521,7 +482,7 @@
       "name": "Schedule Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
       "position": [
-        -1320,
+        -1180,
         400
       ],
       "typeVersion": 1.2
@@ -551,7 +512,7 @@
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        80,
+        300,
         420
       ],
       "id": "acc21b87-9147-4d8a-9b5e-f81cce75d94e",
@@ -570,7 +531,7 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1780,
+        2000,
         480
       ],
       "id": "7866624c-fe68-4a53-ae77-f5edb4997bf4",
@@ -605,7 +566,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        260,
+        480,
         420
       ],
       "id": "8cc8c588-4102-49d8-ab20-8941f6ea4f8f",
@@ -625,7 +586,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        520,
+        740,
         40
       ],
       "id": "8f26be2f-1177-4055-8a8c-ef051952d8b0",
@@ -638,7 +599,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        720,
+        940,
         40
       ],
       "id": "a662a638-ee14-412c-9c8f-1edda7846f69",
@@ -651,11 +612,83 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        720,
+        940,
         440
       ],
       "id": "dcda56c3-96a1-4b23-a308-00db7dd52915",
       "name": "Code1"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1178756472834883874",
+          "mode": "list",
+          "cachedResultName": "NEOWYZE",
+          "cachedResultUrl": "https://discord.com/channels/1178756472834883874"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1406028027355332769",
+          "mode": "list",
+          "cachedResultName": "『🤖』n8n",
+          "cachedResultUrl": "https://discord.com/channels/1178756472834883874/1406028027355332769"
+        },
+        "content": "🎉 Backup de flujos en n8n completado con éxito",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        300,
+        -140
+      ],
+      "id": "d371ebde-f2a6-484f-ac47-a648ce293f49",
+      "name": "Mensaje backup finalizados",
+      "webhookId": "41f6e18e-de7c-4411-9d02-27196904bf49",
+      "credentials": {
+        "discordBotApi": {
+          "id": "VxcEjTSW3Ju9l493",
+          "name": "Largo Agent"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1178756472834883874",
+          "mode": "list",
+          "cachedResultName": "NEOWYZE",
+          "cachedResultUrl": "https://discord.com/channels/1178756472834883874"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1406028027355332769",
+          "mode": "list",
+          "cachedResultName": "『🤖』n8n",
+          "cachedResultUrl": "https://discord.com/channels/1178756472834883874/1406028027355332769"
+        },
+        "content": "🔄 Iniciando proceso de backup de flujos en n8n...",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        -940,
+        400
+      ],
+      "id": "463cc284-8a05-4b95-bb2f-3b833dd21db2",
+      "name": "Mensaje Inicio Backups",
+      "webhookId": "e667c6f3-4aa5-4927-bcee-27b5cce20d0e",
+      "credentials": {
+        "discordBotApi": {
+          "id": "VxcEjTSW3Ju9l493",
+          "name": "Largo Agent"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -669,6 +702,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-15T22:26:51.000Z",
-  "versionId": "000fc81b-bc4a-458e-bdf5-f1d6f93c0a30"
+  "updatedAt": "2025-08-16T19:28:59.000Z",
+  "versionId": "712157bb-f807-4c90-a130-bf863eaa05ea"
 }
