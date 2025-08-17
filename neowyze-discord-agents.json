@@ -1,22 +1,22 @@
 {
   "active": false,
   "connections": {
-    "Webhook": {
+    "Verificación": {
       "main": [
         [
           {
-            "node": "Code",
+            "node": "Respond to Webhook",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Code": {
+    "WhatsApp Trigger": {
       "main": [
         [
           {
-            "node": "Switch",
+            "node": "Verifico si es un envío de mensajes",
             "type": "main",
             "index": 0
           }
@@ -27,181 +27,68 @@
       "main": [
         [
           {
-            "node": "Descargo el comprobante",
+            "node": "WhatsApp Business Cloud1",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Inicio sesión3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "When clicking ‘Test workflow’": {
-      "main": [
-        [
-          {
-            "node": "Code",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If": {
-      "main": [
-        [
-          {
-            "node": "Filtro los cumpleaños del día",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If1": {
-      "main": [
-        [
-          {
-            "node": "Envío mensaje al servidor",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Cron de status pages": {
-      "main": [
-        [
-          {
-            "node": "MongoDB",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Mapeo cada página": {
-      "main": [
-        [
-          {
-            "node": "Envío mensaje al servidor1",
+            "node": "WhatsApp Business Cloud2",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Le hago una petición test",
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Le hago una petición test": {
+    "Verifico si es un envío de mensajes": {
       "main": [
         [
           {
-            "node": "Formateo un objeto de la página con el resultado",
+            "node": "Switch",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Formateo un objeto de la página con el resultado": {
+    "Google Sheets": {
       "main": [
         [
           {
-            "node": "Mapeo cada página",
+            "node": "Chat Memory Manager2",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Cron de cumpleaños": {
-      "main": [
-        []
-      ]
-    },
-    "Cron de licencias del dia": {
-      "main": [
-        []
-      ]
-    },
-    "Alta de usuario": {
+    "Code3": {
       "main": [
         [
           {
-            "node": "Inicio sesión",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Inicio sesión": {
-      "main": [
-        [
-          {
-            "node": "Creo nuevo usuario",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Creo nuevo usuario": {
-      "main": [
-        [
-          {
-            "node": "Le mando las credenciales a su email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Le mando las credenciales a su email": {
-      "main": [
-        [
-          {
-            "node": "Envío la invitación a la organización",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Envío la invitación a la organización": {
-      "main": [
-        [
-          {
-            "node": "Creo el usuario en jira",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Inicio sesión1": {
-      "main": [
-        [
-          {
-            "node": "Obtengo los próximo cumpleaños",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Obtengo los próximo cumpleaños": {
+    "HTTP Request": {
       "main": [
         [
           {
@@ -212,131 +99,122 @@
         ]
       ]
     },
-    "Filtro los cumpleaños del día": {
+    "If": {
       "main": [
         [
           {
-            "node": "Envío mensaje al server",
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Envío mensaje de texto",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Inicio sesión2": {
+    "Chat Memory Manager2": {
       "main": [
         [
           {
-            "node": "Obtengo las licencias del día",
+            "node": "Merge",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Obtengo las licencias del día": {
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "Chat Memory Manager2",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
       "main": [
         [
           {
-            "node": "If1",
+            "node": "Wait",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Inicio sesión3": {
-      "main": [
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
         [
           {
-            "node": "Obtengo información del usuario",
-            "type": "main",
+            "node": "AI Agent",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
       ]
     },
-    "Obtengo información del usuario": {
-      "main": [
+    "Simple Memory": {
+      "ai_memory": [
         [
           {
-            "node": "Mensaje de nueva licencia",
-            "type": "main",
+            "node": "AI Agent",
+            "type": "ai_memory",
             "index": 0
           }
         ]
       ]
     },
-    "Mensaje de nueva licencia": {
-      "main": [
-        [
-          {
-            "node": "Mensaje de aceptar/rechazar licencia",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Mensaje de aceptar/rechazar licencia": {
-      "main": [
-        [
-          {
-            "node": "Formateo un status dependiendo la respuesta",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Actualizo la licencia": {
+    "AI Agent": {
       "main": [
         []
       ]
     },
-    "Formateo un status dependiendo la respuesta": {
-      "main": [
+    "getCategories": {
+      "ai_tool": [
         [
           {
-            "node": "Actualizo la licencia",
-            "type": "main",
+            "node": "AI Agent",
+            "type": "ai_tool",
             "index": 0
           }
         ]
       ]
     },
-    "Descargo el comprobante": {
-      "main": [
+    "getProducts": {
+      "ai_tool": [
         [
           {
-            "node": "Descargo la factura",
-            "type": "main",
+            "node": "AI Agent",
+            "type": "ai_tool",
             "index": 0
           }
         ]
       ]
     },
-    "Descargo la factura": {
+    "Wait": {
       "main": [
         [
           {
-            "node": "Se envía el mail con los archivos adjuntos",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Se envía el mail con los archivos adjuntos": {
-      "main": [
-        []
-      ]
-    },
-    "MongoDB": {
-      "main": [
-        [
-          {
-            "node": "Mapeo cada página",
+            "node": "AI Agent",
             "type": "main",
             "index": 0
           }
@@ -344,42 +222,67 @@
       ]
     }
   },
-  "createdAt": "2025-03-19T15:19:31.845Z",
-  "id": "F6CP0Id22f6cmkgv",
+  "createdAt": "2025-08-17T19:28:18.002Z",
+  "id": "GgN6aT9mrmONLcL2",
   "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "discord bot",
+  "name": "Oro Verde - Bot v2",
   "nodes": [
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "discord-bot",
+        "path": "0adac00e-0fe3-4026-b505-e7d5961d5e2a",
+        "responseMode": "responseNode",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -620,
-        -180
+        64,
+        128
       ],
-      "id": "380b88a0-a911-4ba3-bf91-939a3342fa34",
-      "name": "Webhook",
-      "webhookId": "d0c1f792-d1e4-4d7c-bf39-55975345e9fa"
+      "id": "0b114930-d42a-43ad-b10c-5b360ed8e467",
+      "name": "Verificación",
+      "webhookId": "0adac00e-0fe3-4026-b505-e7d5961d5e2a"
     },
     {
       "parameters": {
-        "jsCode": "return { body: $input.first().json.body};"
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge'] }}",
+        "options": {}
       },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
       "position": [
-        -360,
-        -220
+        320,
+        128
       ],
-      "id": "f1660a8c-4c17-4449-ba16-12d371dcd5a3",
-      "name": "Code"
+      "id": "0dc911bf-abc1-401a-b8d7-6150a53de55f",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        688
+      ],
+      "id": "d38236a5-a0f2-4cf4-907a-6a8b9f3a62e2",
+      "name": "WhatsApp Trigger",
+      "webhookId": "58732c84-646c-4299-b074-f8249300ab74",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "WHB2BLy1pAihGsGD",
+          "name": "Oro Verde"
+        }
+      }
     },
     {
       "parameters": {
@@ -395,13 +298,13 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "={{ $json.body.command }}",
-                    "rightValue": "burocracia",
+                    "leftValue": "={{ $json.messages[0].button.payload }}",
+                    "rightValue": "Confirmar",
                     "operator": {
                       "type": "string",
                       "operation": "equals"
                     },
-                    "id": "9f7991ef-052c-444a-95a2-2c5feeca449e"
+                    "id": "ce2d4905-e84e-443c-a696-7d064a3ab285"
                   }
                 ],
                 "combinator": "and"
@@ -417,13 +320,58 @@
                 },
                 "conditions": [
                   {
-                    "id": "cff639d1-8e2a-40fa-99af-a3aeea5324f0",
-                    "leftValue": "={{ $json.body.command }}",
-                    "rightValue": "nueva-licencia",
+                    "id": "1190a104-12d4-4f82-a1ce-73a524a2f8fe",
+                    "leftValue": "={{ $json.messages[0].button.payload }}",
+                    "rightValue": "Rechazar",
                     "operator": {
                       "type": "string",
                       "operation": "equals",
                       "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "84103cd2-106a-4276-a311-958b928812e0",
+                    "leftValue": "={{ $json.messages[0].text.body }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "723efa4e-bb2c-420b-93e8-9e0a3f554cd5",
+                    "leftValue": "={{ $json.messages[0].type }}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
                     }
                   }
                 ],
@@ -437,976 +385,513 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -140,
-        -220
+        400,
+        592
       ],
-      "id": "733a6b46-2a09-4785-a01f-3154cd01c901",
-      "name": "Switch",
-      "executeOnce": true
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -620,
-        -340
-      ],
-      "id": "1b1ca3e9-e2f6-41e7-b5da-1c895a6e5f8b",
-      "name": "When clicking ‘Test workflow’"
+      "id": "e2876c7a-3549-4716-b991-92614426434b",
+      "name": "Switch"
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "f1372b17-bb16-459b-910f-787cd398996a",
-              "leftValue": "={{ $json.data }}",
-              "rightValue": 0,
-              "operator": {
-                "type": "array",
-                "operation": "lengthGt",
-                "rightType": "number"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        40,
-        640
-      ],
-      "id": "4982f75a-cb2d-4f02-91a0-9e9b48c9f715",
-      "name": "If"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "f1372b17-bb16-459b-910f-787cd398996a",
-              "leftValue": "={{ $json.data }}",
-              "rightValue": 0,
-              "operator": {
-                "type": "array",
-                "operation": "lengthGt",
-                "rightType": "number"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        40,
-        980
-      ],
-      "id": "a8415f12-c5ce-47d1-99ec-80bb7a95c673",
-      "name": "If1"
-    },
-    {
-      "parameters": {
-        "rule": {
-          "interval": [
-            {}
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.2,
-      "position": [
-        -620,
-        1340
-      ],
-      "id": "a1313f81-fa29-4360-9030-61aea701180c",
-      "name": "Cron de status pages"
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
-      "position": [
-        -180,
-        1340
-      ],
-      "id": "cb998211-11ed-4c32-9c81-1877cc19db36",
-      "name": "Mapeo cada página",
-      "executeOnce": false
-    },
-    {
-      "parameters": {
-        "url": "={{ $json.website }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        40,
-        1480
-      ],
-      "id": "5dcff453-0716-4e84-af0d-5686d9d6aa7d",
-      "name": "Le hago una petición test",
-      "executeOnce": true,
-      "alwaysOutputData": true,
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "jsCode": "const website = {\n      url: $('Mapeo cada página').first().json.website,\n    name: $('Mapeo cada página').first().json.company,\n}\n\nif ($input.first().json.data) {\n  return {\n    ...website,\n    status: \"Active\",\n    emoji: \"🟢\"\n  }\n} else {\n  return {\n    ...website,\n    status: \"Inactive\",\n    emoji: \"🔴\"\n  }\n}"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        260,
-        1480
-      ],
-      "id": "84e0aeb6-5f90-4e12-a77e-9d24efc5c869",
-      "name": "Formateo un objeto de la página con el resultado"
-    },
-    {
-      "parameters": {
-        "rule": {
-          "interval": [
-            {}
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.2,
-      "position": [
-        -620,
-        640
-      ],
-      "id": "3f4f9b13-5b72-4ed4-9a68-3d8568fed7cf",
-      "name": "Cron de cumpleaños"
-    },
-    {
-      "parameters": {
-        "rule": {
-          "interval": [
-            {}
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.2,
-      "position": [
-        -620,
-        980
-      ],
-      "id": "d96982d2-896c-4e0f-b16b-e5d8ec6b3cb9",
-      "name": "Cron de licencias del dia"
-    },
-    {
-      "parameters": {
-        "formTitle": "Alta de usuario",
-        "formDescription": "Formulario para dar de alta a un nuevo usuario",
-        "formFields": {
-          "values": [
-            {
-              "fieldLabel": "firstName",
-              "placeholder": "Nombre",
-              "requiredField": true
-            },
-            {
-              "fieldLabel": "lastName",
-              "placeholder": "Apellido",
-              "requiredField": true
-            },
-            {
-              "fieldLabel": "email",
-              "fieldType": "email",
-              "placeholder": "Email",
-              "requiredField": true
-            },
-            {
-              "fieldLabel": "password",
-              "fieldType": "password",
-              "placeholder": "Contraseña",
-              "requiredField": true
-            },
-            {
-              "fieldLabel": "githubUser",
-              "placeholder": "Usuario de github",
-              "requiredField": true
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.formTrigger",
-      "typeVersion": 2.2,
-      "position": [
-        -620,
-        220
-      ],
-      "id": "f8984436-068a-4e28-88a3-bed72fd15186",
-      "name": "Alta de usuario",
-      "webhookId": "a6b4b271-bdbc-401f-8203-ada24e02554f"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://bff.insider.neowyze.tech/api/auth/login",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "{\n    \"email\": \"nbot@neowyze.tech\",\n    \"password\": \"123456\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        -400,
-        220
-      ],
-      "id": "80645092-aff6-441b-bee7-96b8a3db682d",
-      "name": "Inicio sesión"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://bff.insider.neowyze.tech/api/users",
-        "sendHeaders": true,
-        "specifyHeaders": "json",
-        "jsonHeaders": "={\n  \"Authorization\": \"Bearer {{ $json.data.accessToken }}\"\n}",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"firstName\": \"{{ $('Alta de usuario').item.json.firstName }}\",\n  \"lastName\": \"{{ $('Alta de usuario').item.json.lastName }}\",\n  \"email\": \"{{ $('Alta de usuario').item.json.email }}\",\n  \"password\": \"{{ $('Alta de usuario').item.json.password }}\",\n  \"role\": \"Desarrollador\",\n  \"roleId\": \"6740a3510429329a581c59c4\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        -180,
-        220
-      ],
-      "id": "e00da243-a538-43bd-aa4c-0eb6e451e24a",
-      "name": "Creo nuevo usuario"
-    },
-    {
-      "parameters": {
-        "fromEmail": "support@neowyze.tech",
-        "toEmail": "={{ $('Alta de usuario').item.json.email }}",
-        "subject": "Alta de usuario",
-        "text": "=Bienvenido a neowyze!\n\nSe te dió de alta en la plataforma de Insider.\n\nDatos de la cuenta:\ncorreo: {{ $('Alta de usuario').item.json.email }}\ncontraseña: {{ $('Alta de usuario').item.json.password }}"
-      },
-      "type": "n8n-nodes-base.mailgun",
-      "typeVersion": 1,
-      "position": [
-        40,
-        220
-      ],
-      "id": "15d249f2-c25e-4548-b4b8-fa26fb01bf75",
-      "name": "Le mando las credenciales a su email",
-      "credentials": {
-        "mailgunApi": {
-          "id": "SDIXXfxTR1uhLBbL",
-          "name": "Mailgun account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "user",
-        "operation": "invite",
-        "organization": "neowyze",
-        "email": "={{ $('Alta de usuario').item.json.email }}"
-      },
-      "type": "n8n-nodes-base.github",
-      "typeVersion": 1,
-      "position": [
-        260,
-        220
-      ],
-      "id": "7fa66272-8c14-4678-9b6c-9de778163ad7",
-      "name": "Envío la invitación a la organización",
-      "credentials": {
-        "githubApi": {
-          "id": "X7P1JrlHuBsYUES2",
-          "name": "GitHub account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "user",
+        "operation": "send",
+        "phoneNumberId": "691649007368841",
+        "recipientPhoneNumber": "={{ $json.messages[0].from }}",
+        "textBody": "Entendido, se seguirán enviando recordatorios",
         "additionalFields": {}
       },
-      "type": "n8n-nodes-base.jira",
+      "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        480,
-        220
+        1088,
+        400
       ],
-      "id": "c748b309-207e-4641-bfc2-799cc3d84913",
-      "name": "Creo el usuario en jira"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://bff.insider.neowyze.tech/api/auth/login",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "{\n    \"email\": \"nbot@neowyze.tech\",\n    \"password\": \"123456\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        -400,
-        640
-      ],
-      "id": "c87d8f6b-7813-4e71-9d4d-7f1b104d72d5",
-      "name": "Inicio sesión1"
-    },
-    {
-      "parameters": {
-        "url": "https://bff.insider.neowyze.tech/api/users/birthday",
-        "sendHeaders": true,
-        "specifyHeaders": "json",
-        "jsonHeaders": "={\n  \"Authorization\": \"Bearer {{ $json.data.accessToken }}\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        -180,
-        640
-      ],
-      "id": "a4f32f23-b636-49dc-9266-4ec512862df2",
-      "name": "Obtengo los próximo cumpleaños",
-      "retryOnFail": false
-    },
-    {
-      "parameters": {
-        "jsCode": "const today = new Date();\nconst todayMonth = today.getMonth() + 1; // Los meses en JavaScript son 0-11\nconst todayDay = today.getDate();\n\nconst usersWithBirthdayToday = $input.first().json.data.filter(user => {\n  const birthDate = new Date(user.birthDate);\n  const birthMonth = birthDate.getMonth() + 1;\n  const birthDay = birthDate.getDate();\n  return birthMonth === todayMonth && birthDay === todayDay;\n});\n\nreturn usersWithBirthdayToday"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        300,
-        520
-      ],
-      "id": "050da109-13b9-4c6d-9526-71a97c3d698c",
-      "name": "Filtro los cumpleaños del día",
-      "alwaysOutputData": true
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "resource": "message",
-        "guildId": {
-          "__rl": true,
-          "value": "958826838812135464",
-          "mode": "list",
-          "cachedResultName": "Criisgese14's server",
-          "cachedResultUrl": "https://discord.com/channels/958826838812135464"
-        },
-        "channelId": {
-          "__rl": true,
-          "value": "958826838812135467",
-          "mode": "list",
-          "cachedResultName": "general",
-          "cachedResultUrl": "https://discord.com/channels/958826838812135464/958826838812135467"
-        },
-        "content": "=¡Feliz cumpleaños, {{ $json.firstName }} {{ $json.lastName }}!\n\nQue la pases bien en tu día!!!",
-        "options": {},
-        "embeds": {
-          "values": [
-            {}
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.discord",
-      "typeVersion": 2,
-      "position": [
-        580,
-        580
-      ],
-      "id": "d136a363-50e1-443d-a45b-25b443dc1302",
-      "name": "Envío mensaje al server",
-      "webhookId": "7626feff-350f-4dd2-9bba-de59d1aba844",
+      "id": "ce9c25fd-1395-4b69-8822-5feb3d5887f1",
+      "name": "WhatsApp Business Cloud1",
+      "webhookId": "0947478f-0312-4284-b5f6-f87e15d61113",
       "credentials": {
-        "discordOAuth2Api": {
-          "id": "FoT5wujPwBM2kkcj",
-          "name": "Discord account"
+        "whatsAppApi": {
+          "id": "IhiBXA6GvGnqtxFk",
+          "name": "Oro Verde - Whatsapp"
         }
       }
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://bff.insider.neowyze.tech/api/auth/login",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "{\n    \"email\": \"nbot@neowyze.tech\",\n    \"password\": \"123456\"\n}",
-        "options": {}
+        "operation": "send",
+        "phoneNumberId": "691649007368841",
+        "recipientPhoneNumber": "={{ $json.messages[0].from }}",
+        "textBody": "Entendido, ya no se enviarán recordatorios",
+        "additionalFields": {}
       },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        -400,
-        980
-      ],
-      "id": "d9409229-21fa-4e0f-976f-43690923a3d8",
-      "name": "Inicio sesión2"
-    },
-    {
-      "parameters": {
-        "url": "=https://bff.insider.neowyze.tech/api/licenses?limit=10&offset=0&order=asc&orderBy=from&active=true",
-        "sendHeaders": true,
-        "specifyHeaders": "json",
-        "jsonHeaders": "={\n  \"Authorization\": \"Bearer {{ $json.data.accessToken }}\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        -180,
-        980
-      ],
-      "id": "c9668ca4-17be-4aa3-af95-44d5d60bb4c0",
-      "name": "Obtengo las licencias del día",
-      "retryOnFail": true,
-      "maxTries": 2
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "resource": "message",
-        "guildId": {
-          "__rl": true,
-          "value": "958826838812135464",
-          "mode": "list",
-          "cachedResultName": "Criisgese14's server",
-          "cachedResultUrl": "https://discord.com/channels/958826838812135464"
-        },
-        "channelId": {
-          "__rl": true,
-          "value": "958826838812135467",
-          "mode": "list",
-          "cachedResultName": "general",
-          "cachedResultUrl": "https://discord.com/channels/958826838812135464/958826838812135467"
-        },
-        "options": {},
-        "embeds": {
-          "values": [
-            {
-              "description": "={{ $json.data.map(item => {\n  const toDate = new Date(item.to);\n  const formattedDate = toDate.toLocaleDateString('es-ES', {\n    day: '2-digit',\n    month: '2-digit',\n    year: 'numeric'\n  });\n  return `* ${item.user.firstName} ${item.user.lastName}: ${item.licenseType.name} (hasta ${formattedDate}) \\n`;\n}).join().replace(/\\,/g, '') }}",
-              "title": "Licencias del día"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.discord",
-      "typeVersion": 2,
-      "position": [
-        340,
-        880
-      ],
-      "id": "84008b8a-d8ce-4f3f-8345-1ff0735b4037",
-      "name": "Envío mensaje al servidor",
-      "webhookId": "7626feff-350f-4dd2-9bba-de59d1aba844",
-      "executeOnce": true,
-      "credentials": {
-        "discordOAuth2Api": {
-          "id": "FoT5wujPwBM2kkcj",
-          "name": "Discord account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "resource": "message",
-        "guildId": {
-          "__rl": true,
-          "value": "958826838812135464",
-          "mode": "list",
-          "cachedResultName": "Criisgese14's server",
-          "cachedResultUrl": "https://discord.com/channels/958826838812135464"
-        },
-        "channelId": {
-          "__rl": true,
-          "value": "958826838812135467",
-          "mode": "list",
-          "cachedResultName": "general",
-          "cachedResultUrl": "https://discord.com/channels/958826838812135464/958826838812135467"
-        },
-        "options": {},
-        "embeds": {
-          "values": [
-            {
-              "description": "={{ $input.all().map(item => {\n  return `* [${item.json.name}](${item.json.url}) ${item.json.emoji} \\n`\n}).join().replace(/\\,/g, '') }}",
-              "title": "Status Pages"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.discord",
-      "typeVersion": 2,
-      "position": [
-        40,
-        1220
-      ],
-      "id": "82bb4f5a-a268-47dd-ad0d-319df89e5499",
-      "name": "Envío mensaje al servidor1",
-      "webhookId": "aa8bd8ee-c4b1-4f0b-a60a-3e88941ca550",
-      "executeOnce": true,
-      "credentials": {
-        "discordOAuth2Api": {
-          "id": "FoT5wujPwBM2kkcj",
-          "name": "Discord account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://bff.insider.neowyze.tech/api/auth/login",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "{\n    \"email\": \"nbot@neowyze.tech\",\n    \"password\": \"123456\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        180,
-        -60
-      ],
-      "id": "9c29e1db-410a-40a5-96f7-5441a3ef3b69",
-      "name": "Inicio sesión3"
-    },
-    {
-      "parameters": {
-        "url": "=https://bff.insider.neowyze.tech/api/users/{{ $('Code').item.json.body.userId }}",
-        "sendHeaders": true,
-        "specifyHeaders": "json",
-        "jsonHeaders": "={\n  \"Authorization\": \"Bearer {{ $json.data.accessToken }}\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        440,
-        -60
-      ],
-      "id": "4e107ea3-6e21-4d2a-b32f-2f914fd75093",
-      "name": "Obtengo información del usuario"
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "resource": "message",
-        "guildId": {
-          "__rl": true,
-          "value": "958826838812135464",
-          "mode": "list",
-          "cachedResultName": "Criisgese14's server",
-          "cachedResultUrl": "https://discord.com/channels/958826838812135464"
-        },
-        "channelId": {
-          "__rl": true,
-          "value": "958826838812135467",
-          "mode": "list",
-          "cachedResultName": "general",
-          "cachedResultUrl": "https://discord.com/channels/958826838812135464/958826838812135467"
-        },
-        "content": "={{ $json.data.firstName }} {{ $json.data.lastName }} solicitó una nueva licencia por {{ $('Switch').item.json.body.licenseType }} de {{ $('Switch').item.json.body.days }} dia/s",
-        "options": {},
-        "embeds": {
-          "values": [
-            {}
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.discord",
-      "typeVersion": 2,
-      "position": [
-        700,
-        -60
-      ],
-      "id": "505b9e84-5129-4e62-9750-6dfc4f10fa59",
-      "name": "Mensaje de nueva licencia",
-      "webhookId": "f2e0fb67-2ea9-4f5f-94d8-8b8006a319b9",
-      "credentials": {
-        "discordOAuth2Api": {
-          "id": "FoT5wujPwBM2kkcj",
-          "name": "Discord account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "resource": "message",
-        "operation": "sendAndWait",
-        "guildId": {
-          "__rl": true,
-          "value": "958826838812135464",
-          "mode": "list",
-          "cachedResultName": "Criisgese14's server",
-          "cachedResultUrl": "https://discord.com/channels/958826838812135464"
-        },
-        "sendTo": "user",
-        "userId": {
-          "__rl": true,
-          "value": "570676203296522270",
-          "mode": "list",
-          "cachedResultName": "criisgese14"
-        },
-        "message": "={{ $json.content }}",
-        "approvalOptions": {
-          "values": {
-            "approvalType": "double",
-            "approveLabel": "✓ Aprobar",
-            "disapproveLabel": "✗ Rechazar"
-          }
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.discord",
-      "typeVersion": 2,
-      "position": [
-        920,
-        -60
-      ],
-      "id": "e85369c2-ba26-4089-a791-f1102b3648da",
-      "name": "Mensaje de aceptar/rechazar licencia",
-      "webhookId": "58e0f3c0-8005-4346-a3ee-2af2145424dd",
-      "credentials": {
-        "discordOAuth2Api": {
-          "id": "FoT5wujPwBM2kkcj",
-          "name": "Discord account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "PATCH",
-        "url": "=https://bff.insider.neowyze.tech/api/licenses/{{ $('Switch').item.json.body._id }}",
-        "sendHeaders": true,
-        "specifyHeaders": "json",
-        "jsonHeaders": "={\n  \"Authorization\": \"Bearer {{ $('Inicio sesión3').item.json.data.accessToken }}\"\n}",
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "status",
-              "value": "={{ $json.status }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        1360,
-        -60
-      ],
-      "id": "95c6a2ae-52b4-49dd-8dd7-f7ae608ea548",
-      "name": "Actualizo la licencia"
-    },
-    {
-      "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nif ($input.first().json.data.approved) {\n  return {\n    status: \"Aprobado\"\n  }\n} else {\n  return {\n    status: \"Desaprobado\"\n  }\n}"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1140,
-        -60
-      ],
-      "id": "e2618873-9d78-40b7-bfb8-83a22efa7bf8",
-      "name": "Formateo un status dependiendo la respuesta"
-    },
-    {
-      "parameters": {
-        "url": "={{ $json.body.file }}",
-        "options": {
-          "response": {
-            "response": {
-              "responseFormat": "file",
-              "outputPropertyName": "file"
-            }
-          }
-        }
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        180,
-        -400
-      ],
-      "id": "21038c64-0a86-4a41-993f-d53ee00694b2",
-      "name": "Descargo el comprobante",
-      "executeOnce": true
-    },
-    {
-      "parameters": {
-        "url": "={{ $('Code').item.json.body.invoice }}",
-        "options": {
-          "response": {
-            "response": {
-              "responseFormat": "file",
-              "outputPropertyName": "invoice"
-            }
-          }
-        }
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        440,
-        -400
-      ],
-      "id": "4d935487-4dee-4f0e-b95e-142e0da3a000",
-      "name": "Descargo la factura",
-      "executeOnce": true
-    },
-    {
-      "parameters": {
-        "fromEmail": "support@neowyze.tech",
-        "toEmail": "ebarboza@neowyze.tech",
-        "subject": "=Comprobantes de {{ $('Code').item.json.body.name }} - {{ $('Code').item.json.body.month }} {{ $('Code').item.json.body.year }}",
-        "text": "={{ $('Code').item.json.body.name }} envió los comprobantes de {{ $('Code').item.json.body.month }} {{ $('Code').item.json.body.year }}.",
-        "attachments": "file,invoice"
-      },
-      "type": "n8n-nodes-base.mailgun",
+      "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        700,
-        -400
+        1088,
+        592
       ],
-      "id": "dacedf5e-3139-4f72-ba84-db34027626d0",
-      "name": "Se envía el mail con los archivos adjuntos",
-      "executeOnce": true,
+      "id": "789b3a8d-860a-40ae-a823-8b9ebae55bc8",
+      "name": "WhatsApp Business Cloud2",
+      "webhookId": "440f1b35-f8cf-422d-ae0d-c7ba9172570e",
       "credentials": {
-        "mailgunApi": {
-          "id": "SDIXXfxTR1uhLBbL",
-          "name": "Mailgun account"
+        "whatsAppApi": {
+          "id": "IhiBXA6GvGnqtxFk",
+          "name": "Oro Verde - Whatsapp"
         }
       }
     },
     {
       "parameters": {
-        "content": "Si se ejecuta el comando /burocracia",
-        "height": 80,
-        "width": 150,
-        "color": 5
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f9339f1e-3c29-4a43-b742-e343c225ebc1",
+              "leftValue": "={{ $json.messages[0] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        192,
+        688
+      ],
+      "id": "98f9e555-d8ca-4c32-b957-10c1cf676c10",
+      "name": "Verifico si es un envío de mensajes"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "691649007368841",
+        "recipientPhoneNumber": "=54349215610012",
+        "textBody": "={{$('HTTP Request').item.json.choices[0].message.content}}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        3408,
+        800
+      ],
+      "id": "c26e17ac-d3c6-44f1-9916-8a652b880c8f",
+      "name": "Envío mensaje de texto",
+      "webhookId": "06d8b200-95d8-4f1f-8385-b8f7d44cf2c9",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "IhiBXA6GvGnqtxFk",
+          "name": "Oro Verde - Whatsapp"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Verificación\n**Acá se realiza la verificación del webhook**",
+        "height": 320,
+        "width": 620
       },
       "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
       "position": [
         0,
-        -440
+        0
       ],
-      "id": "e936388a-42b6-4d0b-8198-f3079fed8c32",
+      "typeVersion": 1,
+      "id": "246dd01c-475e-4675-8052-90cdd488fce3",
       "name": "Sticky Note"
     },
     {
       "parameters": {
-        "content": "Se ejecuta cuando se crea una nueva licencia",
-        "height": 80,
-        "width": 150,
-        "color": 5
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -20,
-        -20
-      ],
-      "id": "779946f1-2173-42ea-bca0-32f80e641b23",
-      "name": "Sticky Note1"
-    },
-    {
-      "parameters": {
-        "content": "Formulario para dar de alta un usuario",
-        "height": 80,
-        "width": 150,
-        "color": 5
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -640,
-        120
-      ],
-      "id": "65a338f5-c3ba-4058-be99-fe8f7ccfb0dd",
-      "name": "Sticky Note2"
-    },
-    {
-      "parameters": {
-        "content": "CRON para comprobar si hay cumpleaños",
-        "height": 80,
-        "width": 150,
-        "color": 5
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -640,
-        540
-      ],
-      "id": "149dd201-4d03-4942-803a-bc4dfe4184ee",
-      "name": "Sticky Note3"
-    },
-    {
-      "parameters": {
-        "content": "CRON para comprobar si hay licencias activas",
-        "height": 80,
-        "width": 150,
-        "color": 5
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -640,
-        880
-      ],
-      "id": "ca9ee987-feec-491b-92fe-ccc4ea61cda1",
-      "name": "Sticky Note4"
-    },
-    {
-      "parameters": {
-        "content": "CRON para comprobar si las páginas están activas",
-        "height": 100,
-        "width": 150,
-        "color": 5
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -640,
-        1220
-      ],
-      "id": "1766566c-c31e-4224-8ae9-b65c7239d012",
-      "name": "Sticky Note5"
-    },
-    {
-      "parameters": {
-        "collection": "apps",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "16x3Hh8oII8ooq1T4qINrys1xqKWnXaDmgp3bhcRivCA",
+          "mode": "list",
+          "cachedResultName": "Respuestas - Test",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16x3Hh8oII8ooq1T4qINrys1xqKWnXaDmgp3bhcRivCA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16x3Hh8oII8ooq1T4qINrys1xqKWnXaDmgp3bhcRivCA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ $('Switch').item.json.contacts[0].profile.name }}",
+            "Numero": "={{ $('Switch').item.json.messages[0].from }}",
+            "Mensaje": "={{$('HTTP Request').item.json.choices[0].message.content}}",
+            "Hora": "={{ $('Switch').item.json.messages[0].timestamp }}",
+            "Column 5": "-",
+            "Column 6": "-"
+          },
+          "matchingColumns": [
+            "Nombre"
+          ],
+          "schema": [
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Numero",
+              "displayName": "Numero",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mensaje",
+              "displayName": "Mensaje",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hora",
+              "displayName": "Hora",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Column 5",
+              "displayName": "Column 5",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Column 6",
+              "displayName": "Column 6",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
         "options": {}
       },
-      "type": "n8n-nodes-base.mongoDb",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2544,
+        688
+      ],
+      "id": "4af2bc3a-e030-4192-aa6b-105577348bbb",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tcYjJbLS3otsYnxI",
+          "name": "Google Sheets account 5"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const dbMessages = $input.first().json.messages.map(message => {\n    const key = Object.keys(message)[0];\n    const value = message[key];\n    \n    return {\n      role: key === \"human\" ? \"user\" : key,\n      content: value\n    };\n})\n\nconst messages = [...dbMessages, {\"role\": \"user\", \"content\": $('Switch').item.json.messages[0].text.body }]\n\nreturn {data: messages};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1104,
+        800
+      ],
+      "id": "e7186e8d-01ad-4206-8653-5fa2030ea67f",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://s7j52jztuwikgluppe4r4alg.agents.do-ai.run/api/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer AY8OnyEHY5xYPXOEo4BkwHye99p3ahaf"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"messages\": {{ $json.data.toJsonString() }},\n  \"stream\": false,\n  \"include_functions_info\": false,\n  \"include_retrieval_info\": true,\n  \"include_guardrails_info\": false\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1392,
+        800
+      ],
+      "id": "2cbc375c-00e3-4d48-8a74-11b8b83f6680",
+      "name": "HTTP Request",
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1e6f99c0-85df-4f75-8af4-96e14c07c4ad",
+              "leftValue": "={{$('HTTP Request').item.json.choices[0].message.content}}",
+              "rightValue": "Tu pedido ya está registrado",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2144,
+        800
+      ],
+      "id": "30994a18-4a75-42f0-855b-a511c01053e1",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        3200,
+        800
+      ],
+      "id": "37825eae-d66f-46d5-be7f-c9794f33afac",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "mode": "delete",
+        "deleteMode": "all"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
       "typeVersion": 1.1,
       "position": [
-        -400,
-        1340
+        2784,
+        688
       ],
-      "id": "71afac84-421a-4014-899a-1494197369c2",
-      "name": "MongoDB",
+      "id": "0690ff82-0cc5-4c60-867e-1fc6c4633944",
+      "name": "Chat Memory Manager2"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "{{ $('Switch').item.json.messages[0].from }}",
+        "contextWindowLength": 30
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        2800,
+        1152
+      ],
+      "id": "8443f059-96fe-4356-9855-77769c073d5b",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "691649007368841",
+        "recipientPhoneNumber": "542214363975",
+        "textBody": "=Hola, gracias por escribir. Te comento que no está permitido enviar archivos multimedia (imágenes, videos, audios, etc.) por esta vía.\n\nPodés contarme lo que necesitás de forma escrita: una descripción, tu consulta o los datos que quieras compartir. Así podré ayudarte sin inconvenientes.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        640,
+        1088
+      ],
+      "id": "50c97a28-4a3d-4683-a1b3-9e2746e2c081",
+      "name": "WhatsApp Business Cloud",
+      "webhookId": "603f7af7-d776-4948-a8b0-b18e75734f28",
       "credentials": {
-        "mongoDb": {
-          "id": "YU2w8XVgLtYQ7rEC",
-          "name": "MongoDB account 3"
+        "whatsAppApi": {
+          "id": "IhiBXA6GvGnqtxFk",
+          "name": "Oro Verde - Whatsapp"
         }
       }
     },
     {
       "parameters": {
-        "owner": {
+        "options": {
+          "responseMode": "responseNodes"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        112,
+        1520
+      ],
+      "id": "e3f482a3-d553-4a2f-9881-702269152ae4",
+      "name": "When chat message received",
+      "webhookId": "da29db62-cd3c-4851-8686-88209da410c6"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Eres un asistente virtual para Oro Verde Grow, un growshop ubicado en Rafaela, Argentina.  \nTu objetivo es ayudar a los clientes a descubrir y explorar productos de cultivo a través de WhatsApp de forma clara, directa y cordial.\n\n⚡ Reglas generales:\n- Siempre sigue el flujo de conversación definido.  \n- No repitas el saludo si el cliente ya está en medio de la interacción.  \n- Usa únicamente información devuelta por los nodos `getCategories` y `getProducts`.  \n- Nunca inventes categorías, marcas, productos o precios. \n- Mensajes cortos, naturales y fáciles de leer, usando expresiones argentinas (ej: \"mirá\", \"dale\", \"fijate\").  \n- Agrupa máximo 5–7 productos por mensaje.  \n- Siempre cierra con una pregunta para mantener la conversación.\n\n⚡ Contexto del negocio:\n- Nombre: Oro Verde Grow  \n- Sitio web: https://oroverdegrow.ar  \n- Ubicación: Rafaela, Argentina  \n- Zona de atención: Rafaela y alrededores  \n- Productos principales: consultar en `getProducts`  \n\n⚡ Flujo de conversación:\n1. **Inicio / Saludo**  \n   - Saluda cordialmente\n   - Luego, pregunta en qué categoría de producto está interesado.  \n   - Usa el nodo `getCategories` para mostrar opciones.\n\n2. **Seleccionar categoría**  \n   - Una vez que el usuario elige una categoría, consulta por la marca de interés dentro de esa categoría.\n\n3. **Seleccionar marca**  \n   - Filtra marcas disponibles usando `getProducts` y pregunta cuál prefiere.\n\n4. **Mostrar productos**  \n   - Con la categoría y la marca elegida, muestra productos:  \n     🌱 NOMBRE – MARCA  \n     📄 DESCRIPCIÓN  \n     💸 PRECIO  \n     🔗 [Ver más en la web](https://oroverdegrow.ar/producto-slug)  \n   - Si hay combos, agregarlos después del listado.  \n   - Cierra con: \"¿Querés saber más sobre alguno o te paso otra opción?\"\n\n5. **Agregar más / cerrar interacción**  \n   - Pregunta: \"¿Querés ver otra categoría o algún otro producto?\"  \n   - Si el cliente indica que no, cierra con un mensaje cordial:  \n     \"Genial! Cualquier cosa escribinos de nuevo y te ayudamos al toque. Gracias por elegir Oro Verde Grow 🌱\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        624,
+        1520
+      ],
+      "id": "f584b45e-43f9-492a-b567-f52356930d26",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
           "__rl": true,
-          "value": "neowyze",
+          "value": "gpt-5-nano",
           "mode": "list",
-          "cachedResultName": "neowyze",
-          "cachedResultUrl": "https://github.com/neowyze"
+          "cachedResultName": "gpt-5-nano"
         },
-        "repository": {
-          "__rl": true,
-          "value": "cf-emails",
-          "mode": "list",
-          "cachedResultName": "cf-emails",
-          "cachedResultUrl": "https://github.com/neowyze/cf-emails"
-        },
-        "events": [
-          "push"
-        ],
+        "options": {
+          "maxTokens": 256
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        544,
+        1760
+      ],
+      "id": "08b4d3a0-29f1-4755-b87c-704ccadfac4d",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "867psBwjSPb9KjNt",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        720,
+        1760
+      ],
+      "id": "b1ddbb87-a5ef-49bf-a989-52ce2ae81bf2",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Retrieve Categories Information\n\nUse this tool to get the list of product categories available in Oro Verde Grow.\n\nResponse contains:\n- id: Unique category ID\n- name: Category name\n- slug: URL-friendly slug\n- description: Category description\n- parent: Parent category ID (0 if top-level)\n- count: Number of products in this category\n- image: URL to category image\n- link: URL to category page\n- total_categories: Total number of categories\n\nUsage:\nThis tool should be called whenever you need to present the available categories to the user.",
+        "url": "https://oroverdegrow.ar/wp-json/oroverde/v1/categorias",
         "options": {}
       },
-      "type": "n8n-nodes-base.githubTrigger",
-      "typeVersion": 1,
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
       "position": [
-        2620,
-        80
+        896,
+        1824
       ],
-      "id": "d30ed14d-69a5-4434-a465-4fcd308e852e",
-      "name": "Github Trigger",
-      "webhookId": "ac74bd15-d01e-451a-a261-a9bb2fee8715",
-      "credentials": {
-        "githubApi": {
-          "id": "X7P1JrlHuBsYUES2",
-          "name": "GitHub account"
-        }
-      }
+      "id": "963633d6-53e2-4737-9ad2-6561577c7b65",
+      "name": "getCategories"
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Retrieve Products Information\n\nUse this tool to get details about products in Oro Verde Grow.\n\nResponse contains:\n- id: Product ID\n- name: Product name\n- slug: URL-friendly slug\n- price: Product price\n- description: Product description\n- categories: List of categories the product belongs to\n- image: URL to product image\n- stock_status: Stock availability (e.g., \"instock\")\n- pagination:\n  - total_products: Total number of products matching the query\n  - total_pages: Number of pages\n  - current_page: Current page number\n  - products_per_page: Number of products per page\n\nUsage:\nThis tool should be called whenever you need to show products filtered by category and/or search term to the user.",
+        "url": "https://oroverdegrow.ar/wp-json/oroverde/v1/productos",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "categoria",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters0_Value', ``, 'string') }}"
+            },
+            {
+              "name": "busqueda",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters1_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        1072,
+        1808
+      ],
+      "id": "fba07e1b-458d-4b83-88bc-c3f983cba140",
+      "name": "getProducts"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        368,
+        1520
+      ],
+      "id": "ecef4a73-d782-4a5e-b600-eded5d1003b5",
+      "name": "Wait",
+      "webhookId": "66eaf69e-32ca-419e-9442-d69999359ded"
     }
   ],
-  "pinData": {
-    "When clicking ‘Test workflow’": [
-      {
-        "json": {
-          "body": {
-            "command": "actualizar-licencia"
-          }
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": {
-    "node:Schedule Trigger": {
-      "recurrenceRules": []
-    },
-    "node:Schedule Trigger1": {
-      "recurrenceRules": []
-    },
-    "node:Schedule Trigger2": {
-      "recurrenceRules": []
-    },
-    "node:Cron de status pages": {
-      "recurrenceRules": []
-    },
-    "node:Cron de cumpleaños": {
-      "recurrenceRules": []
-    },
-    "node:Cron de licencias del dia": {
-      "recurrenceRules": []
-    },
-    "node:Github Trigger": {
-      "webhookId": 554346517,
-      "webhookEvents": [
-        "push"
-      ]
-    }
-  },
+  "staticData": null,
   "tags": [],
-  "triggerCount": 7,
-  "updatedAt": "2025-08-16T22:11:40.000Z",
-  "versionId": "d396fcf4-5f15-4b73-b12b-0813bd8e9999"
+  "triggerCount": 3,
+  "updatedAt": "2025-08-17T21:08:41.000Z",
+  "versionId": "71bf85b9-05e6-4469-aa5b-5c861677ebdf"
 }
