@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Webhook": {
       "main": [
@@ -346,6 +346,7 @@
   },
   "createdAt": "2025-03-19T15:19:31.845Z",
   "id": "F6CP0Id22f6cmkgv",
+  "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -1406,6 +1407,6 @@
   },
   "tags": [],
   "triggerCount": 7,
-  "updatedAt": "2025-06-25T19:19:40.000Z",
+  "updatedAt": "2025-08-16T22:11:40.000Z",
   "versionId": "d396fcf4-5f15-4b73-b12b-0813bd8e9999"
 }
