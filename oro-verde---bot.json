@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Verificación": {
       "main": [
@@ -41,7 +41,7 @@
         ],
         [
           {
-            "node": "Chat Memory Manager",
+            "node": "Code3",
             "type": "main",
             "index": 0
           }
@@ -77,66 +77,6 @@
         ]
       ]
     },
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "Code",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Chat Memory Manager": {
-      "main": [
-        [
-          {
-            "node": "Code3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Chat Memory Manager1": {
-      "main": [
-        [
-          {
-            "node": "If",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Simple Memory": {
-      "ai_memory": [
-        [
-          {
-            "node": "Chat Memory Manager",
-            "type": "ai_memory",
-            "index": 0
-          },
-          {
-            "node": "Chat Memory Manager1",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "When clicking ‘Test workflow’": {
-      "main": [
-        [
-          {
-            "node": "Chat Memory Manager4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Code3": {
       "main": [
         [
@@ -152,19 +92,8 @@
       "main": [
         [
           {
-            "node": "Chat Memory Manager1",
+            "node": "If",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Simple Memory2": {
-      "ai_memory": [
-        [
-          {
-            "node": "Chat Memory Manager4",
-            "type": "ai_memory",
             "index": 0
           }
         ]
@@ -220,30 +149,102 @@
           }
         ]
       ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "getCategories": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getProducts": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "createdAt": "2025-07-14T19:40:58.357Z",
-  "id": "km4uFhjqtDfWIwjV",
+  "createdAt": "2025-08-17T19:28:18.002Z",
+  "id": "GgN6aT9mrmONLcL2",
+  "isArchived": true,
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Oro Verde - Bot",
+  "name": "Oro Verde - Bot v2",
   "nodes": [
     {
       "parameters": {
-        "path": "oro-verde",
+        "path": "0adac00e-0fe3-4026-b505-e7d5961d5e2a",
         "responseMode": "responseNode",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        60,
-        120
+        64,
+        128
       ],
-      "id": "1cf23bb1-6f43-48c5-b891-d652f40d5170",
+      "id": "0b114930-d42a-43ad-b10c-5b360ed8e467",
       "name": "Verificación",
-      "webhookId": "6423f6bb-b3dc-4db4-a895-f9d8d9242688"
+      "webhookId": "0adac00e-0fe3-4026-b505-e7d5961d5e2a"
     },
     {
       "parameters": {
@@ -255,26 +256,27 @@
       "typeVersion": 1.1,
       "position": [
         320,
-        120
+        128
       ],
-      "id": "6296b963-dd6a-46e5-a551-3eabc6f31cef",
+      "id": "0dc911bf-abc1-401a-b8d7-6150a53de55f",
       "name": "Respond to Webhook"
     },
     {
       "parameters": {
         "updates": [
           "messages"
-        ]
+        ],
+        "options": {}
       },
       "type": "n8n-nodes-base.whatsAppTrigger",
       "typeVersion": 1,
       "position": [
-        -40,
-        680
+        -48,
+        688
       ],
-      "id": "95cdc84e-a047-45b1-a8fe-28b741bc7b68",
+      "id": "d38236a5-a0f2-4cf4-907a-6a8b9f3a62e2",
       "name": "WhatsApp Trigger",
-      "webhookId": "3583ec92-0977-436c-9056-486f674c0f7e",
+      "webhookId": "58732c84-646c-4299-b074-f8249300ab74",
       "credentials": {
         "whatsAppTriggerApi": {
           "id": "WHB2BLy1pAihGsGD",
@@ -384,9 +386,9 @@
       "typeVersion": 3.2,
       "position": [
         400,
-        580
+        592
       ],
-      "id": "2a06cc4c-608f-45e0-9437-162bded0aee0",
+      "id": "e2876c7a-3549-4716-b991-92614426434b",
       "name": "Switch"
     },
     {
@@ -400,12 +402,12 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        1080,
+        1088,
         400
       ],
-      "id": "ce15549c-0b0c-4c06-84c4-5d7c267004a8",
+      "id": "ce9c25fd-1395-4b69-8822-5feb3d5887f1",
       "name": "WhatsApp Business Cloud1",
-      "webhookId": "c5ea45a8-7374-4567-a3a1-408897e63688",
+      "webhookId": "0947478f-0312-4284-b5f6-f87e15d61113",
       "credentials": {
         "whatsAppApi": {
           "id": "IhiBXA6GvGnqtxFk",
@@ -424,12 +426,12 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        1080,
-        580
+        1088,
+        592
       ],
-      "id": "f33c760f-23c7-43b4-ad43-e0f522ba9cfc",
+      "id": "789b3a8d-860a-40ae-a823-8b9ebae55bc8",
       "name": "WhatsApp Business Cloud2",
-      "webhookId": "8d6b2f07-6fe0-445a-b4d0-ed5a5570b458",
+      "webhookId": "440f1b35-f8cf-422d-ae0d-c7ba9172570e",
       "credentials": {
         "whatsAppApi": {
           "id": "IhiBXA6GvGnqtxFk",
@@ -466,10 +468,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        180,
-        680
+        192,
+        688
       ],
-      "id": "6e1854b4-8915-4994-ac07-a08d074c913e",
+      "id": "98f9e555-d8ca-4c32-b957-10c1cf676c10",
       "name": "Verifico si es un envío de mensajes"
     },
     {
@@ -483,12 +485,12 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        3400,
+        3408,
         800
       ],
-      "id": "c901cc99-1f22-4fea-9e84-6c2b1c350457",
+      "id": "c26e17ac-d3c6-44f1-9916-8a652b880c8f",
       "name": "Envío mensaje de texto",
-      "webhookId": "670adcb7-8150-4faf-8044-4d2bea064089",
+      "webhookId": "06d8b200-95d8-4f1f-8385-b8f7d44cf2c9",
       "credentials": {
         "whatsAppApi": {
           "id": "IhiBXA6GvGnqtxFk",
@@ -508,7 +510,7 @@
         0
       ],
       "typeVersion": 1,
-      "id": "7c7fef40-bff7-42e1-9ee6-59ddb750eff8",
+      "id": "246dd01c-475e-4675-8052-90cdd488fce3",
       "name": "Sticky Note"
     },
     {
@@ -606,10 +608,10 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        2540,
-        680
+        2544,
+        688
       ],
-      "id": "0bab77c4-d641-4488-96fd-eb3a19fae25c",
+      "id": "4af2bc3a-e030-4192-aa6b-105577348bbb",
       "name": "Google Sheets",
       "credentials": {
         "googleSheetsOAuth2Api": {
@@ -620,109 +622,15 @@
     },
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "oro-verde/orden",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        -580,
-        1240
-      ],
-      "id": "3809938e-8fd9-49cd-ba03-5f93c52588b2",
-      "name": "Webhook",
-      "webhookId": "d7625210-c79e-4266-bfa5-1d7a54db1ca0"
-    },
-    {
-      "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -360,
-        1240
-      ],
-      "id": "b63fc65b-fac1-4579-9195-08c75e27d7dc",
-      "name": "Code"
-    },
-    {
-      "parameters": {
-        "options": {
-          "groupMessages": true
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryManager",
-      "typeVersion": 1.1,
-      "position": [
-        640,
-        800
-      ],
-      "id": "5ad0fcb1-a73d-44fa-87f4-8428d143bc21",
-      "name": "Chat Memory Manager"
-    },
-    {
-      "parameters": {
-        "mode": "insert",
-        "messages": {
-          "messageValues": [
-            {
-              "message": "={{$json.choices[0].message.content}}"
-            },
-            {
-              "type": "user",
-              "message": "={{ $('Switch').item.json.messages[0].text.body }}"
-            }
-          ]
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryManager",
-      "typeVersion": 1.1,
-      "position": [
-        1720,
-        800
-      ],
-      "id": "e3c5e64c-312e-46fe-ad56-ad7443daa8bf",
-      "name": "Chat Memory Manager1"
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $('Switch').item.json.messages[0].from }}",
-        "contextWindowLength": 30
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        1220,
-        1140
-      ],
-      "id": "636fd9f1-f66e-48c3-8d32-0cc437821492",
-      "name": "Simple Memory"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -580,
-        1500
-      ],
-      "id": "9a43fb27-15c7-4aa4-aedc-4cd8c767e735",
-      "name": "When clicking ‘Test workflow’"
-    },
-    {
-      "parameters": {
         "jsCode": "const dbMessages = $input.first().json.messages.map(message => {\n    const key = Object.keys(message)[0];\n    const value = message[key];\n    \n    return {\n      role: key === \"human\" ? \"user\" : key,\n      content: value\n    };\n})\n\nconst messages = [...dbMessages, {\"role\": \"user\", \"content\": $('Switch').item.json.messages[0].text.body }]\n\nreturn {data: messages};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1100,
+        1104,
         800
       ],
-      "id": "eb7ce031-afb1-4672-92da-25235a59d58d",
+      "id": "e7186e8d-01ad-4206-8653-5fa2030ea67f",
       "name": "Code3"
     },
     {
@@ -746,40 +654,12 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1380,
+        1392,
         800
       ],
-      "id": "6c1554a5-dd83-41e4-98fd-fff6bc49338b",
+      "id": "2cbc375c-00e3-4d48-8a74-11b8b83f6680",
       "name": "HTTP Request",
       "executeOnce": true
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryManager",
-      "typeVersion": 1.1,
-      "position": [
-        -360,
-        1500
-      ],
-      "id": "2c4e460b-6de6-4fc9-8941-f5563fda403c",
-      "name": "Chat Memory Manager4"
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "5492214363975",
-        "contextWindowLength": 10
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        -240,
-        1740
-      ],
-      "id": "8299e143-b0cd-456b-8d5f-10b5b9c9f210",
-      "name": "Simple Memory2"
     },
     {
       "parameters": {
@@ -808,10 +688,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2140,
+        2144,
         800
       ],
-      "id": "e101a6d0-57fd-45e1-a789-b606f984e355",
+      "id": "30994a18-4a75-42f0-855b-a511c01053e1",
       "name": "If"
     },
     {
@@ -822,7 +702,7 @@
         3200,
         800
       ],
-      "id": "2d70e335-2699-4c8f-97bb-08d16b27358b",
+      "id": "37825eae-d66f-46d5-be7f-c9794f33afac",
       "name": "Merge"
     },
     {
@@ -833,10 +713,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryManager",
       "typeVersion": 1.1,
       "position": [
-        2780,
-        680
+        2784,
+        688
       ],
-      "id": "9bb8f881-be55-40d7-9764-afc4f0cbe886",
+      "id": "0690ff82-0cc5-4c60-867e-1fc6c4633944",
       "name": "Chat Memory Manager2"
     },
     {
@@ -849,9 +729,9 @@
       "typeVersion": 1.3,
       "position": [
         2800,
-        1140
+        1152
       ],
-      "id": "59c14fb2-c04a-4067-b7ad-5edf8a6864a5",
+      "id": "8443f059-96fe-4356-9855-77769c073d5b",
       "name": "Simple Memory1"
     },
     {
@@ -866,58 +746,152 @@
       "typeVersion": 1,
       "position": [
         640,
-        1080
+        1088
       ],
-      "id": "70de97c2-a1db-4d20-b9c3-2000fdefae4b",
+      "id": "50c97a28-4a3d-4683-a1b3-9e2746e2c081",
       "name": "WhatsApp Business Cloud",
-      "webhookId": "bce95f12-fff1-4734-a1b4-c4afdd307010",
+      "webhookId": "603f7af7-d776-4948-a8b0-b18e75734f28",
       "credentials": {
         "whatsAppApi": {
           "id": "IhiBXA6GvGnqtxFk",
           "name": "Oro Verde - Whatsapp"
         }
       }
-    }
-  ],
-  "pinData": {
-    "When clicking ‘Test workflow’": [
-      {
-        "json": {
-          "messaging_product": "whatsapp",
-          "metadata": {
-            "display_phone_number": "15556644593",
-            "phone_number_id": "691649007368841"
-          },
-          "contacts": [
-            {
-              "profile": {
-                "name": "criisgese14"
-              },
-              "wa_id": "5492214363975"
-            }
-          ],
-          "messages": [
-            {
-              "from": "5492214363975",
-              "id": "wamid.HBgNNTQ5MjIxNDM2Mzk3NRUCABIYIEU4RTRENkU3ODM5ODc0NjAxMkMxNDE5NTU0MDFBRjEzAA==",
-              "timestamp": "1751983360",
-              "text": {
-                "body": "Buenas"
-              },
-              "type": "text"
-            }
-          ],
-          "field": "messages"
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseMode": "responseNodes"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        112,
+        1520
+      ],
+      "id": "e3f482a3-d553-4a2f-9881-702269152ae4",
+      "name": "When chat message received",
+      "webhookId": "da29db62-cd3c-4851-8686-88209da410c6"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=Eres un asistente virtual para Oro Verde Grow, un growshop ubicado en Rafaela, Argentina.  \nTu objetivo es ayudar a los clientes a descubrir y explorar productos de cultivo a través de WhatsApp de forma clara, directa y cordial.\n\n⚡ Reglas generales:\n- Siempre sigue el flujo de conversación definido.  \n- No repitas el saludo si el cliente ya está en medio de la interacción.  \n- Usa únicamente información devuelta por los nodos `getCategories` y `getProducts`.  \n- Nunca inventes categorías, marcas, productos o precios. \n- Mensajes cortos, naturales y fáciles de leer, usando expresiones argentinas (ej: \"mirá\", \"dale\", \"fijate\").  \n- Agrupa máximo 5–7 productos por mensaje.  \n- Siempre cierra con una pregunta para mantener la conversación.\n\n⚡ Contexto del negocio:\n- Nombre: Oro Verde Grow  \n- Sitio web: https://oroverdegrow.ar  \n- Ubicación: Rafaela, Argentina  \n- Zona de atención: Rafaela y alrededores  \n- Productos principales: consultar en `getProducts`  \n\n⚡ Flujo de conversación:\n1. **Inicio / Saludo**  \n   - Saluda cordialmente\n   - Luego, pregunta en qué categoría de producto está interesado.  \n   - Usa el nodo `getCategories` para mostrar opciones.\n\n2. **Seleccionar categoría**  \n   - Una vez que el usuario elige una categoría, consulta por la marca de interés dentro de esa categoría.\n\n3. **Seleccionar marca**  \n   - Filtra marcas disponibles usando `getProducts` y pregunta cuál prefiere.\n\n4. **Mostrar productos**  \n   - Con la categoría y la marca elegida, muestra productos:  \n     🌱 NOMBRE – MARCA  \n     📄 DESCRIPCIÓN  \n     💸 PRECIO  \n     🔗 [Ver más en la web](https://oroverdegrow.ar/producto-slug)  \n   - Si hay combos, agregarlos después del listado.  \n   - Cierra con: \"¿Querés saber más sobre alguno o te paso otra opción?\"\n\n5. **Agregar más / cerrar interacción**  \n   - Pregunta: \"¿Querés ver otra categoría o algún otro producto?\"  \n   - Si el cliente indica que no, cierra con un mensaje cordial:  \n     \"Genial! Cualquier cosa escribinos de nuevo y te ayudamos al toque. Gracias por elegir Oro Verde Grow 🌱\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        624,
+        1520
+      ],
+      "id": "f584b45e-43f9-492a-b567-f52356930d26",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-nano",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-nano"
+        },
+        "options": {
+          "maxTokens": 256
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        544,
+        1760
+      ],
+      "id": "08b4d3a0-29f1-4755-b87c-704ccadfac4d",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "WXcb81sSca2QEiC8",
+          "name": "Neowyze OpenAI Credentials"
         }
       }
-    ]
-  },
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        720,
+        1760
+      ],
+      "id": "b1ddbb87-a5ef-49bf-a989-52ce2ae81bf2",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Retrieve Categories Information\n\nUse this tool to get the list of product categories available in Oro Verde Grow.\n\nResponse contains:\n- id: Unique category ID\n- name: Category name\n- slug: URL-friendly slug\n- description: Category description\n- parent: Parent category ID (0 if top-level)\n- count: Number of products in this category\n- image: URL to category image\n- link: URL to category page\n- total_categories: Total number of categories\n\nUsage:\nThis tool should be called whenever you need to present the available categories to the user.",
+        "url": "https://oroverdegrow.ar/wp-json/oroverde/v1/categorias",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        896,
+        1808
+      ],
+      "id": "963633d6-53e2-4737-9ad2-6561577c7b65",
+      "name": "getCategories"
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Retrieve Products Information\n\nUse this tool to get details about products in Oro Verde Grow.\n\nResponse contains:\n- id: Product ID\n- name: Product name\n- slug: URL-friendly slug\n- price: Product price\n- description: Product description\n- categories: List of categories the product belongs to\n- image: URL to product image\n- stock_status: Stock availability (e.g., \"instock\")\n- pagination:\n  - total_products: Total number of products matching the query\n  - total_pages: Number of pages\n  - current_page: Current page number\n  - products_per_page: Number of products per page\n\nUsage:\nThis tool should be called whenever you need to show products filtered by category and/or search term to the user.",
+        "url": "https://oroverdegrow.ar/wp-json/oroverde/v1/productos",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "categoria",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters0_Value', ``, 'string') }}"
+            },
+            {
+              "name": "busqueda",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters1_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        1072,
+        1808
+      ],
+      "id": "fba07e1b-458d-4b83-88bc-c3f983cba140",
+      "name": "getProducts"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        368,
+        1520
+      ],
+      "id": "ecef4a73-d782-4a5e-b600-eded5d1003b5",
+      "name": "Wait",
+      "webhookId": "66eaf69e-32ca-419e-9442-d69999359ded"
+    }
+  ],
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 4,
-  "updatedAt": "2025-07-30T17:41:05.000Z",
-  "versionId": "07e26272-306b-44c4-b31c-b66147b9b5a7"
+  "triggerCount": 3,
+  "updatedAt": "2025-08-18T21:07:09.000Z",
+  "versionId": "00854f93-f185-4696-9946-4c06f55cea59"
 }
