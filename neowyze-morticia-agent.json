@@ -1,0 +1,347 @@
+{
+  "active": false,
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Google Docs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Docs": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-27T03:21:09.970Z",
+  "id": "KTa2yE0biG2FqnRU",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[NEOWYZE] Morticia Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"data\": [\n  {\n    \"nombre\": \"Juan Pérez\",\n    \"rol\": \"Diseñador\",\n    \"monto\": \"$1000\",\n    \"fecha\": \"05-05-2025\",\n    \"periodo\": \"Mayo-2025\"\n  },\n  {\n    \"nombre\": \"Ana Gómez\",\n    \"rol\": \"Desarrolladora\",\n    \"monto\": \"$1200\",\n    \"fecha\": \"05-05-2025\",\n    \"periodo\": \"Mayo-2025\"\n  },\n  {\n    \"nombre\": \"Carlos Ruiz\",\n    \"rol\": \"Marketing\",\n    \"monto\": \"$1100\",\n    \"fecha\": \"05-05-2025\",\n    \"periodo\": \"Mayo-2025\"\n  }\n]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        304,
+        144
+      ],
+      "id": "81753db3-0d63-424d-a803-1e6e23574657",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        592,
+        144
+      ],
+      "id": "014fc39e-b58b-4872-9a33-9516afd5e214",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "documentURL": "1LEDudOGKEedg4WN_noL777Lt3wDepo7f46nCCt9Loo4"
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        912,
+        240
+      ],
+      "id": "998f365b-03e1-483f-b641-5e5b3c6594bf",
+      "name": "Google Docs",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "AnT8QEKTuYrezosr",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Dado el siguiente input:\n- Días: {{ $json.dias.join(\", \") }}\n- Mes: {{ $json.mes }}\n\nGenera un mensaje corto y amigable para avisar a <@315334366827905024> que esos días específicos del input son feriados.\n\nRules:\n- Si hay un solo día, menciona el día singular.\n- Si hay varios días, menciona los días separados por comas.\n- Incluye al menos un emoji relacionado al final del mensaje (calendario, celebración, descanso, etc.).\n",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        640,
+        -368
+      ],
+      "id": "de6a1c60-711e-41ea-965d-f33089342a13",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "url": "https://faas-sfo3-7872a1dd.doserverless.co/api/v1/web/fn-fe75abe6-252d-47a3-92d8-df45dfcb2ef5/default/cf-argentina-holidays",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Require-Whisk-Auth",
+              "value": "Jp33LksRpj7X0tB"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "mes",
+              "value": "={{ $json.mes }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        432,
+        -368
+      ],
+      "id": "2a85d8b4-76e6-4b66-9ab2-eebabdc3bc20",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const meses = [\n  \"enero\", \"febrero\", \"marzo\", \"abril\", \"mayo\", \"junio\",\n  \"julio\", \"agosto\", \"septiembre\", \"octubre\", \"noviembre\", \"diciembre\"\n];\n\nconst hoy = new Date();\nreturn [{ mes: meses[hoy.getMonth()] }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        -368
+      ],
+      "id": "5d530a91-cb35-4707-940e-ab7de55a4886",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-nano",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-nano"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        640,
+        -208
+      ],
+      "id": "779348d7-aed8-4dd8-b078-ba3d33d68893",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "WXcb81sSca2QEiC8",
+          "name": "Neowyze OpenAI Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1178756472834883874",
+          "mode": "list",
+          "cachedResultName": "NEOWYZE",
+          "cachedResultUrl": "https://discord.com/channels/1178756472834883874"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1407218706735566980",
+          "mode": "list",
+          "cachedResultName": "『🌱』hr",
+          "cachedResultUrl": "https://discord.com/channels/1178756472834883874/1407218706735566980"
+        },
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "description": "={{ $json.text }}",
+              "color": "#E9C307"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        992,
+        -368
+      ],
+      "id": "850ea9c0-1425-4984-8c79-592c27302c39",
+      "name": "Send a message",
+      "webhookId": "0c78315e-2595-4cec-9452-e566fb7943e3",
+      "credentials": {
+        "discordBotApi": {
+          "id": "I0wiQJMTHf6KMZ4n",
+          "name": "Morticia Agent"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Workflow Notificacion Feriados en Argentina",
+        "height": 416,
+        "width": 1408
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -48,
+        -480
+      ],
+      "typeVersion": 1,
+      "id": "6d9458a8-1a6b-493f-b9b9-ede72f92d9a7",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        80,
+        144
+      ],
+      "id": "0abafb8b-b6c4-44cd-8d10-654ed455a6ef",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 1-7 * 5"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        48,
+        -368
+      ],
+      "id": "37f22a4c-af55-48fc-9e37-b30fa8bbd98a",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Argentina/Buenos_Aires",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-19T14:31:36.000Z",
+  "versionId": "460d30e9-3f2a-4d3b-896d-e7381c99495f"
+}
