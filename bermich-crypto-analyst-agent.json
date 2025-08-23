@@ -98,7 +98,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Analiza {{ $('When chat message received').item.json.chatInput.toUpperCase() }} en timeframe de 5 minutos:\n\nPrecio actual: {{ $json.lastClose }},\nEMA5: {{ $json.lastEma5 }} ({{ $json.emaSignalShort }}),\nEMA9: {{ $json.lastEma9 }},\nEMA21: {{ $json.lastEma21 }},\nRSI14: {{ $json.lastRsi14 }} ({{ $json.rsiSignalShort }}),\nVolumen: {{ $json.lastVolume }} (prom5: {{ $json.avgVolume5 }}, {{ $json.volumeSignal5 }}),\nMomentum corto: {{ $json.momentumShort }}\n\nIndica la acción inmediata en una sola frase con el siguiente formato:\n\n\"Long en X con objetivo Y porque [razón concreta]\"\n\n\"Short en X con objetivo Y porque [razón concreta]\"\n\n\"Esperar en X porque [razón concreta]\"\n\nDonde X = precio de entrada/espera y Y = precio objetivo.\nLa razón debe basarse estrictamente en EMA, RSI, Volumen y Momentum.\nEvita explicaciones largas, generales o múltiples escenarios.",
+        "text": "=Analiza {{ $('When chat message received').item.json.chatInput.toUpperCase() }} en timeframe de 5 minutos con los siguientes datos:\n\nPrecio actual: {{ $json.lastClose }}\nEMA5: {{ $json.lastEma5 }} ({{ $json.emaSignalShort }})\nEMA9: {{ $json.lastEma9 }}\nEMA21: {{ $json.lastEma21 }}\nRSI14: {{ $json.lastRsi14 }} ({{ $json.rsiSignalShort }})\nVolumen: {{ $json.lastVolume }} (prom5: {{ $json.avgVolume5 }}, {{ $json.volumeSignal5 }})\nMomentum corto: {{ $json.momentumShort }}\n\nDa una única recomendación inmediata en exactamente uno de estos tres formatos:\n\n\"Long en X con objetivo Y porque [razón concreta]\"\n\"Short en X con objetivo Y porque [razón concreta]\"\n\"Esperar en X porque [razón concreta]\"\n\nDonde:\n- X = {{ $json.lastClose }}\n- Y = próximo nivel lógico (resistencia si long, soporte si short)\n- La razón debe ser breve y usar solo EMA, RSI, Volumen y Momentum.\n\nNo des múltiples escenarios ni explicaciones largas. Devuelve solo una frase.",
         "batching": {}
       },
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
@@ -143,6 +143,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-22T20:19:35.000Z",
-  "versionId": "fe4815d2-2d33-4bf1-aada-9f77939546b1"
+  "updatedAt": "2025-08-23T17:18:16.000Z",
+  "versionId": "16ca5cef-a42b-47c5-9746-caf33d2854a5"
 }
