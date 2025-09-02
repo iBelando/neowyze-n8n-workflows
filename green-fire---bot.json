@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Verificación": {
       "main": [
@@ -41,7 +41,7 @@
         ],
         [
           {
-            "node": "Chat Memory Manager",
+            "node": "Code3",
             "type": "main",
             "index": 0
           }
@@ -66,37 +66,14 @@
         ]
       ]
     },
-    "Google Sheets": {
-      "main": [
-        [
-          {
-            "node": "Chat Memory Manager2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Chat Memory Manager": {
       "main": [
-        [
-          {
-            "node": "Code3",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Chat Memory Manager1": {
       "main": [
-        [
-          {
-            "node": "If",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Simple Memory": {
@@ -130,7 +107,7 @@
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "AI Agent",
             "type": "main",
             "index": 0
           }
@@ -163,7 +140,7 @@
       "main": [
         [
           {
-            "node": "Google Sheets",
+            "node": "Append row in sheet",
             "type": "main",
             "index": 0
           }
@@ -209,11 +186,58 @@
           }
         ]
       ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory3": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Chat Memory Manager2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-08-08T13:46:14.017Z",
   "id": "WeH7E9vOope7OCJ2",
-  "meta": null,
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Green Fire - Bot",
   "nodes": [
     {
@@ -225,8 +249,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -300,
-        340
+        -304,
+        352
       ],
       "id": "d87035eb-8ff6-4bbe-965b-1009fb264cf9",
       "name": "Verificación",
@@ -241,8 +265,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        -40,
-        340
+        -48,
+        352
       ],
       "id": "e8e82475-a8aa-46b7-9464-df3919da999f",
       "name": "Respond to Webhook"
@@ -251,17 +275,24 @@
       "parameters": {
         "updates": [
           "messages"
-        ]
+        ],
+        "options": {}
       },
       "type": "n8n-nodes-base.whatsAppTrigger",
       "typeVersion": 1,
       "position": [
         -400,
-        900
+        912
       ],
       "id": "5677d084-810b-49ba-b146-8b30dc572d42",
       "name": "WhatsApp Trigger",
-      "webhookId": "3583ec92-0977-436c-9056-486f674c0f7e"
+      "webhookId": "3583ec92-0977-436c-9056-486f674c0f7e",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "wYASJpHv77iE8nCN",
+          "name": "Green Fire"
+        }
+      }
     },
     {
       "parameters": {
@@ -364,7 +395,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        40,
+        48,
         800
       ],
       "id": "7778a14a-5120-4bf9-88ed-f2f357af93ab",
@@ -382,11 +413,17 @@
       "typeVersion": 1,
       "position": [
         720,
-        620
+        624
       ],
       "id": "b1dbbc88-03b3-479d-9422-10a2523f5409",
       "name": "WhatsApp Business Cloud1",
-      "webhookId": "c5ea45a8-7374-4567-a3a1-408897e63688"
+      "webhookId": "c5ea45a8-7374-4567-a3a1-408897e63688",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "m00qyupgEwVN6Nim",
+          "name": "Green Fire - Whatsapp"
+        }
+      }
     },
     {
       "parameters": {
@@ -404,7 +441,13 @@
       ],
       "id": "12716f66-334a-46d2-8a72-23a60a9b538b",
       "name": "WhatsApp Business Cloud2",
-      "webhookId": "8d6b2f07-6fe0-445a-b4d0-ed5a5570b458"
+      "webhookId": "8d6b2f07-6fe0-445a-b4d0-ed5a5570b458",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "m00qyupgEwVN6Nim",
+          "name": "Green Fire - Whatsapp"
+        }
+      }
     },
     {
       "parameters": {
@@ -435,8 +478,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -180,
-        900
+        -176,
+        912
       ],
       "id": "a470d4c3-b166-4dc0-a369-35e6dc1b0bea",
       "name": "Verifico si es un envío de mensajes"
@@ -445,19 +488,25 @@
       "parameters": {
         "operation": "send",
         "phoneNumberId": "691649007368841",
-        "recipientPhoneNumber": "=54349215610012",
-        "textBody": "={{$('HTTP Request').item.json.choices[0].message.content}}",
+        "recipientPhoneNumber": "=542214363975",
+        "textBody": "={{$json.output}}",
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
         3040,
-        1020
+        1024
       ],
       "id": "cbeddf34-0a3c-4cfa-8b6f-23fc7e76665c",
       "name": "Envío mensaje de texto",
-      "webhookId": "670adcb7-8150-4faf-8044-4d2bea064089"
+      "webhookId": "670adcb7-8150-4faf-8044-4d2bea064089",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "m00qyupgEwVN6Nim",
+          "name": "Green Fire - Whatsapp"
+        }
+      }
     },
     {
       "parameters": {
@@ -467,12 +516,301 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -360,
-        220
+        -368,
+        224
       ],
       "typeVersion": 1,
       "id": "029646e0-b9fe-4da8-8c9d-3cf7462dd434",
       "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "options": {
+          "groupMessages": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "typeVersion": 1.1,
+      "position": [
+        592,
+        1648
+      ],
+      "id": "e6f6e03c-1cc7-4b68-b106-b46c6433b8b1",
+      "name": "Chat Memory Manager"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "={{$json.choices[0].message.content}}"
+            },
+            {
+              "type": "user",
+              "message": "={{ $('Switch').item.json.messages[0].text.body }}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "typeVersion": 1.1,
+      "position": [
+        1376,
+        1648
+      ],
+      "id": "825546e4-918a-45cb-a84f-1e4a79039da9",
+      "name": "Chat Memory Manager1"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Switch').item.json.messages[0].from }}",
+        "contextWindowLength": 30
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        960,
+        1968
+      ],
+      "id": "461a8354-bf7e-4839-b373-1d1d994f62e4",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -448,
+        1680
+      ],
+      "id": "e96c3750-a659-4ded-bf83-b5eca53ac338",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "const dbMessages = $input.first().json.messages.map(message => {\n    const key = Object.keys(message)[0];\n    const value = message[key];\n    \n    return {\n      role: key === \"human\" ? \"user\" : key,\n      content: value\n    };\n})\n\nconst messages = [...dbMessages, {\"role\": \"user\", \"content\": $('Switch').item.json.messages[0].text.body }]\n\nreturn {data: messages};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        752,
+        1024
+      ],
+      "id": "292df775-4265-443d-83d2-2e88f62d89aa",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://s7j52jztuwikgluppe4r4alg.agents.do-ai.run/api/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer AY8OnyEHY5xYPXOEo4BkwHye99p3ahaf"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"messages\": {{ $json.data.toJsonString() }},\n  \"stream\": false,\n  \"include_functions_info\": false,\n  \"include_retrieval_info\": true,\n  \"include_guardrails_info\": false\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1088,
+        1648
+      ],
+      "id": "0107170c-63f4-4793-b241-a31439da441c",
+      "name": "HTTP Request",
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "typeVersion": 1.1,
+      "position": [
+        -224,
+        1680
+      ],
+      "id": "e674c2cc-1c89-431a-8fb6-d0e6faeefbd0",
+      "name": "Chat Memory Manager4"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "5492214363975",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -96,
+        1920
+      ],
+      "id": "1dee1f49-439e-40a1-b381-294eabcd183c",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1e6f99c0-85df-4f75-8af4-96e14c07c4ad",
+              "leftValue": "={{ $json.output }}",
+              "rightValue": "Tu pedido ya está registrado",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1792,
+        1024
+      ],
+      "id": "325081a2-55c5-42e8-825b-2a1ba0ad7164",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        2848,
+        1024
+      ],
+      "id": "9a23fd3f-3c04-45f0-b513-b4f110bd03fc",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "mode": "delete",
+        "deleteMode": "all"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "typeVersion": 1.1,
+      "position": [
+        2432,
+        912
+      ],
+      "id": "93f9af21-3469-4184-b684-acd10ee1e8de",
+      "name": "Chat Memory Manager2"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "{{ $('Switch').item.json.messages[0].from }}",
+        "contextWindowLength": 30
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        2448,
+        1360
+      ],
+      "id": "fe5ac06b-32ae-4f7c-b580-e9e53c2373fd",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "691649007368841",
+        "recipientPhoneNumber": "542214363975",
+        "textBody": "=Hola, gracias por escribir. Te comento que no está permitido enviar archivos multimedia (imágenes, videos, audios, etc.) por esta vía.\n\nPodés contarme lo que necesitás de forma escrita: una descripción, tu consulta o los datos que quieras compartir. Así podré ayudarte sin inconvenientes.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        288,
+        1312
+      ],
+      "id": "f2dc120e-a839-43b5-b2f2-d8cc5a7b0930",
+      "name": "WhatsApp Business Cloud",
+      "webhookId": "bce95f12-fff1-4734-a1b4-c4afdd307010",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "m00qyupgEwVN6Nim",
+          "name": "Green Fire - Whatsapp"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.data.toJsonString() }}",
+        "options": {
+          "systemMessage": "=Eres un asistente virtual para Oro Verde Grow, un growshop ubicado en Rafaela, Argentina.  \nTu objetivo es ayudar a los clientes a descubrir y explorar productos de cultivo a través de WhatsApp de forma clara, directa y cordial.\n\n⚡ Reglas generales:\n- Siempre sigue el flujo de conversación definido.  \n- No repitas el saludo si el cliente ya está en medio de la interacción.  \n- Usa únicamente información devuelta por los nodos `getCategories` y `getProducts`.  \n- Nunca inventes categorías, marcas, productos o precios. \n- Mensajes cortos, naturales y fáciles de leer, usando expresiones argentinas (ej: \"mirá\", \"dale\", \"fijate\").  \n- Agrupa máximo 5–7 productos por mensaje.  \n- Siempre cierra con una pregunta para mantener la conversación.\n\n⚡ Contexto del negocio:\n- Nombre: Oro Verde Grow  \n- Sitio web: https://oroverdegrow.ar  \n- Ubicación: Rafaela, Argentina  \n- Zona de atención: Rafaela y alrededores  \n- Productos principales: consultar en `getProducts`  \n\n⚡ Flujo de conversación:\n1. **Inicio / Saludo**  \n   - Saluda cordialmente\n   - Luego, pregunta en qué categoría de producto está interesado.  \n   - Usa el nodo `getCategories` para mostrar opciones.\n\n2. **Seleccionar categoría**  \n   - Una vez que el usuario elige una categoría, consulta por la marca de interés dentro de esa categoría.\n\n3. **Seleccionar marca**  \n   - Filtra marcas disponibles usando `getProducts` y pregunta cuál prefiere.\n\n4. **Mostrar productos**  \n   - Con la categoría y la marca elegida, muestra productos:  \n     🌱 NOMBRE – MARCA  \n     📄 DESCRIPCIÓN  \n     💸 PRECIO  \n     🔗 [Ver más en la web](https://oroverdegrow.ar/producto-slug)  \n   - Si hay combos, agregarlos después del listado.  \n   - Cierra con: \"¿Querés saber más sobre alguno o te paso otra opción?\"\n\n5. **Agregar más / cerrar interacción**  \n   - Pregunta: \"¿Querés ver otra categoría o algún otro producto?\"  \n   - Si el cliente indica que no, cierra con un mensaje cordial:  \n     \"Genial! Cualquier cosa escribinos de nuevo y te ayudamos al toque. Gracias por elegir Oro Verde Grow 🌱\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1200,
+        1024
+      ],
+      "id": "70c63367-e9da-49fd-9a0b-a72a59c3f02f",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-nano",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-nano"
+        },
+        "options": {
+          "maxTokens": 256
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1120,
+        1264
+      ],
+      "id": "5b0635f2-dcbf-4f0f-a9df-8606132dedec",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "Bq3GA8Z6Aqwtv5dl",
+          "name": "Green Fire - OpenIA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Switch').item.json.messages[0].from }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1296,
+        1264
+      ],
+      "id": "d9142128-729b-4178-aa4f-7659c729485e",
+      "name": "Simple Memory3"
     },
     {
       "parameters": {
@@ -569,236 +907,17 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        2180,
-        900
+        2192,
+        912
       ],
       "id": "22423fd0-24a8-47e1-8a55-6e4a5ef69051",
-      "name": "Google Sheets"
-    },
-    {
-      "parameters": {
-        "options": {
-          "groupMessages": true
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "kqgmSDLONnt16S11",
+          "name": "Green Fire - Google Sheets"
         }
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryManager",
-      "typeVersion": 1.1,
-      "position": [
-        280,
-        1020
-      ],
-      "id": "e6f6e03c-1cc7-4b68-b106-b46c6433b8b1",
-      "name": "Chat Memory Manager"
-    },
-    {
-      "parameters": {
-        "mode": "insert",
-        "messages": {
-          "messageValues": [
-            {
-              "message": "={{$json.choices[0].message.content}}"
-            },
-            {
-              "type": "user",
-              "message": "={{ $('Switch').item.json.messages[0].text.body }}"
-            }
-          ]
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryManager",
-      "typeVersion": 1.1,
-      "position": [
-        1360,
-        1020
-      ],
-      "id": "825546e4-918a-45cb-a84f-1e4a79039da9",
-      "name": "Chat Memory Manager1"
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $('Switch').item.json.messages[0].from }}",
-        "contextWindowLength": 30
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        860,
-        1360
-      ],
-      "id": "461a8354-bf7e-4839-b373-1d1d994f62e4",
-      "name": "Simple Memory"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -440,
-        1680
-      ],
-      "id": "e96c3750-a659-4ded-bf83-b5eca53ac338",
-      "name": "When clicking ‘Test workflow’"
-    },
-    {
-      "parameters": {
-        "jsCode": "const dbMessages = $input.first().json.messages.map(message => {\n    const key = Object.keys(message)[0];\n    const value = message[key];\n    \n    return {\n      role: key === \"human\" ? \"user\" : key,\n      content: value\n    };\n})\n\nconst messages = [...dbMessages, {\"role\": \"user\", \"content\": $('Switch').item.json.messages[0].text.body }]\n\nreturn {data: messages};"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        740,
-        1020
-      ],
-      "id": "292df775-4265-443d-83d2-2e88f62d89aa",
-      "name": "Code3"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://s7j52jztuwikgluppe4r4alg.agents.do-ai.run/api/v1/chat/completions",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer AY8OnyEHY5xYPXOEo4BkwHye99p3ahaf"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"messages\": {{ $json.data.toJsonString() }},\n  \"stream\": false,\n  \"include_functions_info\": false,\n  \"include_retrieval_info\": true,\n  \"include_guardrails_info\": false\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        1020,
-        1020
-      ],
-      "id": "0107170c-63f4-4793-b241-a31439da441c",
-      "name": "HTTP Request",
-      "executeOnce": true
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryManager",
-      "typeVersion": 1.1,
-      "position": [
-        -220,
-        1680
-      ],
-      "id": "e674c2cc-1c89-431a-8fb6-d0e6faeefbd0",
-      "name": "Chat Memory Manager4"
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "5492214363975",
-        "contextWindowLength": 10
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        -100,
-        1920
-      ],
-      "id": "1dee1f49-439e-40a1-b381-294eabcd183c",
-      "name": "Simple Memory2"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "1e6f99c0-85df-4f75-8af4-96e14c07c4ad",
-              "leftValue": "={{$('HTTP Request').item.json.choices[0].message.content}}",
-              "rightValue": "Tu pedido ya está registrado",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        1780,
-        1020
-      ],
-      "id": "325081a2-55c5-42e8-825b-2a1ba0ad7164",
-      "name": "If"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3,
-      "position": [
-        2840,
-        1020
-      ],
-      "id": "9a23fd3f-3c04-45f0-b513-b4f110bd03fc",
-      "name": "Merge"
-    },
-    {
-      "parameters": {
-        "mode": "delete",
-        "deleteMode": "all"
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryManager",
-      "typeVersion": 1.1,
-      "position": [
-        2420,
-        900
-      ],
-      "id": "93f9af21-3469-4184-b684-acd10ee1e8de",
-      "name": "Chat Memory Manager2"
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "{{ $('Switch').item.json.messages[0].from }}",
-        "contextWindowLength": 30
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        2440,
-        1360
-      ],
-      "id": "fe5ac06b-32ae-4f7c-b580-e9e53c2373fd",
-      "name": "Simple Memory1"
-    },
-    {
-      "parameters": {
-        "operation": "send",
-        "phoneNumberId": "691649007368841",
-        "recipientPhoneNumber": "542214363975",
-        "textBody": "=Hola, gracias por escribir. Te comento que no está permitido enviar archivos multimedia (imágenes, videos, audios, etc.) por esta vía.\n\nPodés contarme lo que necesitás de forma escrita: una descripción, tu consulta o los datos que quieras compartir. Así podré ayudarte sin inconvenientes.",
-        "additionalFields": {}
-      },
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1,
-      "position": [
-        280,
-        1300
-      ],
-      "id": "f2dc120e-a839-43b5-b2f2-d8cc5a7b0930",
-      "name": "WhatsApp Business Cloud",
-      "webhookId": "bce95f12-fff1-4734-a1b4-c4afdd307010"
+      }
     }
   ],
   "pinData": {
@@ -839,7 +958,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-08-08T13:46:14.017Z",
-  "versionId": "4dabfc45-f62a-4cef-98ca-12fa7eda8b51"
+  "triggerCount": 2,
+  "updatedAt": "2025-09-02T20:52:27.000Z",
+  "versionId": "ac9e4528-0684-495a-9c85-b8d0a8ca75ea"
 }
