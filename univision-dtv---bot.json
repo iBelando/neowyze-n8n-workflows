@@ -12,17 +12,6 @@
         ]
       ]
     },
-    "WhatsApp Trigger": {
-      "main": [
-        [
-          {
-            "node": "Verifico si es un envío de mensajes",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Switch": {
       "main": [
         [
@@ -52,11 +41,95 @@
         ]
       ]
     },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Chat Memory Manager4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Code3": {
       "main": [
         [
           {
             "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "Chat Memory Manager4",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Envío mensaje de texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Memory Manager2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "Chat Memory Manager2",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "Verifico si es un envío de mensajes",
             "type": "main",
             "index": 0
           }
@@ -74,34 +147,12 @@
         ]
       ]
     },
-    "Simple Memory": {
+    "Simple Memory3": {
       "ai_memory": [
         [
           {
             "node": "AI Agent",
             "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "getCategories": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "getProducts": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -111,14 +162,14 @@
       "main": [
         [
           {
-            "node": "Envío mensaje de texto",
+            "node": "If",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "getMayoristas": {
+    "createLead": {
       "ai_tool": [
         [
           {
@@ -129,77 +180,11 @@
         ]
       ]
     },
-    "AI Agent1": {
+    "HTTP Request": {
       "main": [
         [
           {
-            "node": "Respond to Webhook1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Simple Memory1": {
-      "ai_memory": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "getCategories1": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "getProducts1": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "getMayoristas1": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "AI Agent1",
+            "node": "Chat Memory Manager2",
             "type": "main",
             "index": 0
           }
@@ -207,17 +192,17 @@
       ]
     }
   },
-  "createdAt": "2025-08-18T16:33:28.926Z",
-  "id": "gEhXbQhZfSQlMVPW",
+  "createdAt": "2025-07-14T19:43:00.519Z",
+  "id": "v2iGG6OFDDSAWoQ9",
   "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Oro Verde - Test V2",
+  "name": "Univision Dtv - Bot",
   "nodes": [
     {
       "parameters": {
-        "path": "oro-verde-v2",
+        "path": "univision",
         "responseMode": "responseNode",
         "options": {}
       },
@@ -227,9 +212,9 @@
         64,
         128
       ],
-      "id": "b7b24ba2-40b9-4256-9f0f-ca18a0d336fb",
+      "id": "e1cde871-9ad8-42a3-b747-fae31181f5a8",
       "name": "Verificación",
-      "webhookId": "0adac00e-0fe3-4026-b505-e7d5961d5e2a"
+      "webhookId": "6423f6bb-b3dc-4db4-a895-f9d8d9242688"
     },
     {
       "parameters": {
@@ -243,31 +228,8 @@
         320,
         128
       ],
-      "id": "5932d138-c49c-4f0c-a688-bb49b19fafce",
+      "id": "3358753b-889e-41bf-af9e-5c84ee9cfb36",
       "name": "Respond to Webhook"
-    },
-    {
-      "parameters": {
-        "updates": [
-          "messages"
-        ],
-        "options": {}
-      },
-      "type": "n8n-nodes-base.whatsAppTrigger",
-      "typeVersion": 1,
-      "position": [
-        -48,
-        688
-      ],
-      "id": "2f58264d-2702-4d97-8df1-c08845ae87b1",
-      "name": "WhatsApp Trigger",
-      "webhookId": "58732c84-646c-4299-b074-f8249300ab74",
-      "credentials": {
-        "whatsAppTriggerApi": {
-          "id": "WHB2BLy1pAihGsGD",
-          "name": "Oro Verde"
-        }
-      }
     },
     {
       "parameters": {
@@ -306,7 +268,7 @@
                 },
                 "conditions": [
                   {
-                    "id": "723efa4e-bb2c-420b-93e8-9e0a3f554cd5",
+                    "id": "36882f24-4999-4a65-90d3-50ae1da2faa1",
                     "leftValue": "={{ $json.messages[0].type }}",
                     "rightValue": "text",
                     "operator": {
@@ -328,7 +290,7 @@
         400,
         592
       ],
-      "id": "b9085cc5-b7df-4c99-9694-6bb06da28733",
+      "id": "78a38e10-933a-4504-8fbe-adc41c6636d5",
       "name": "Switch"
     },
     {
@@ -360,33 +322,33 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        160,
+        192,
         688
       ],
-      "id": "ce18464d-dc9f-42ed-8de2-2c34ba8f8678",
+      "id": "fc549229-c8c1-4582-afeb-6f6b42daa2c7",
       "name": "Verifico si es un envío de mensajes"
     },
     {
       "parameters": {
         "operation": "send",
-        "phoneNumberId": "750298964831693",
-        "recipientPhoneNumber": "=542214363975",
+        "phoneNumberId": "=763353423520906",
+        "recipientPhoneNumber": "={{$('Switch').item.json.messages[0].from}}",
         "textBody": "={{$json.output}}",
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        1472,
-        368
+        2688,
+        416
       ],
-      "id": "2dc4f3a0-6ee6-457f-8d64-3277b587908b",
+      "id": "c76a48a3-b66d-467b-82c9-c5c98cccb195",
       "name": "Envío mensaje de texto",
-      "webhookId": "06d8b200-95d8-4f1f-8385-b8f7d44cf2c9",
+      "webhookId": "670adcb7-8150-4faf-8044-4d2bea064089",
       "credentials": {
         "whatsAppApi": {
-          "id": "IhiBXA6GvGnqtxFk",
-          "name": "Oro Verde - Whatsapp"
+          "id": "y4QR4nygt9F9YhH8",
+          "name": "Univision DTV Whatsapp"
         }
       }
     },
@@ -402,8 +364,19 @@
         0
       ],
       "typeVersion": 1,
-      "id": "2018a20a-0545-484a-b7bb-2e657c55e229",
+      "id": "7f53ad47-0944-4356-a409-5894cc4d016c",
       "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        976
+      ],
+      "id": "c86ad733-5eac-4465-a2d6-f4333d887986",
+      "name": "When clicking ‘Test workflow’"
     },
     {
       "parameters": {
@@ -412,16 +385,118 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        640,
-        368
+        656,
+        416
       ],
-      "id": "7f6262e9-0e91-4b86-8a0e-a4b27afc4e1b",
+      "id": "4b9d9d29-c0aa-4b3c-b547-11e4cd80dd99",
       "name": "Code3"
     },
     {
       "parameters": {
+        "mode": "delete",
+        "deleteMode": "all"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "typeVersion": 1.1,
+      "position": [
+        192,
+        976
+      ],
+      "id": "262bd5a4-950d-4343-9493-3d3a5d2ebf5e",
+      "name": "Chat Memory Manager4"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "5492214363975",
+        "contextWindowLength": 30
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        1216
+      ],
+      "id": "590e0a62-765a-432a-99fe-096694afdc40",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1e6f99c0-85df-4f75-8af4-96e14c07c4ad",
+              "leftValue": "={{ $json.output }}",
+              "rightValue": "TU PEDIDO QUEDÓ REGISTRADO",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1424,
+        416
+      ],
+      "id": "0c72863a-5c3b-4357-8300-497ee864e097",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        2496,
+        416
+      ],
+      "id": "a43b44d3-384e-489c-8462-3023b880c272",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "mode": "delete",
+        "deleteMode": "all"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "typeVersion": 1.1,
+      "position": [
+        1968,
+        304
+      ],
+      "id": "0e337147-def8-4057-952c-16eb80e0ca5b",
+      "name": "Chat Memory Manager2"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "{{ $('Switch').item.json.messages[0].from }}",
+        "contextWindowLength": 30
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        2000,
+        576
+      ],
+      "id": "069cd2b1-f99c-4808-97f1-d11679d17f01",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
         "operation": "send",
-        "phoneNumberId": "691649007368841",
+        "phoneNumberId": "802227299632271",
         "recipientPhoneNumber": "542214363975",
         "textBody": "=Hola, gracias por escribir. Te comento que no está permitido enviar archivos multimedia (imágenes, videos, audios, etc.) por esta vía.\n\nPodés contarme lo que necesitás de forma escrita: una descripción, tu consulta o los datos que quieras compartir. Así podré ayudarte sin inconvenientes.",
         "additionalFields": {}
@@ -429,16 +504,39 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        640,
+        656,
         768
       ],
-      "id": "594c3787-4d83-4343-9df6-01086d364e0c",
+      "id": "05a0a4f7-bf0d-4721-9d6f-3cb33a6e322d",
       "name": "WhatsApp Business Cloud",
-      "webhookId": "603f7af7-d776-4948-a8b0-b18e75734f28",
+      "webhookId": "bce95f12-fff1-4734-a1b4-c4afdd307010",
       "credentials": {
         "whatsAppApi": {
-          "id": "IhiBXA6GvGnqtxFk",
-          "name": "Oro Verde - Whatsapp"
+          "id": "y4QR4nygt9F9YhH8",
+          "name": "Univision DTV Whatsapp"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        688
+      ],
+      "id": "079ebedd-7f8d-4f7a-b29e-460a9cb2b252",
+      "name": "WhatsApp Trigger",
+      "webhookId": "8c24c65f-fb99-48fb-ae04-d18818f2dfc7",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "Ywpxn4VdDfBmXug7",
+          "name": "Univision DTV"
         }
       }
     },
@@ -447,16 +545,16 @@
         "promptType": "define",
         "text": "={{ $json.data.toJsonString() }}",
         "options": {
-          "systemMessage": "=Eres un asistente virtual para Oro Verde Grow, un growshop ubicado en Rafaela, Argentina.  \nTu objetivo es ayudar a los clientes a descubrir y explorar productos de cultivo a través de WhatsApp de forma clara, directa y cordial.\n\n⚡ Reglas generales:\n- Siempre sigue el flujo de conversación definido.  \n- No repitas el saludo si el cliente ya está en medio de la interacción.  \n- Usa únicamente información devuelta por los nodos `getMayoristas`, `getCategories` y `getProducts`.  \n- Nunca inventes categorías, marcas, productos o precios. \n- Mensajes cortos, naturales y fáciles de leer, usando expresiones argentinas (ej: \"mirá\", \"dale\", \"fijate\").  \n- Agrupa máximo 5–7 productos por mensaje.  \n- Siempre cierra con una pregunta para mantener la conversación.\n\n⚡ Contexto del negocio:\n- Nombre: Oro Verde Grow  \n- Sitio web: https://oroverdegrow.ar  \n- Ubicación: Rafaela, Argentina  \n- Zona de atención: Rafaela y alrededores  \n- Productos principales: consultar en `getProducts`  \n\n⚡ Flujo de conversación:\n1. **Inicio / Saludo**  \n   - Saluda cordialmente\n   - Luego, pregunta en qué categoría de producto está interesado.  \n   - Usa el nodo `getCategories` para mostrar opciones.\n\n2. **Mayorista**\n- Si el cliente solicita la lista de mayoristas, utiliza `getMayoristas` para verificar si el número del cliente pertenece a un mayorista, si pertenece responder:\n  \"Te comparto el link para mayorista: https://catalogo.duxsoftware.com.ar/mayorista-oroverde\"\nSi el numero no pertenece, responder: \"Lo siento, solo podemos compartírsela a mayoristas\"\n\n3. **Seleccionar categoría**  \n   - Una vez que el usuario elige una categoría, consulta por la marca de interés dentro de esa categoría.\n\n4. **Seleccionar marca**  \n   - Filtra marcas disponibles usando `getProducts` y pregunta cuál prefiere.\n\n5. **Mostrar productos**  \n   - Con la categoría y la marca elegida, muestra productos:  \n     🌱 NOMBRE – MARCA  \n     📄 DESCRIPCIÓN  \n     💸 PRECIO  \n     🔗 [Ver más en la web](https://oroverdegrow.ar/producto-slug)  \n   - Si hay combos, agregarlos después del listado.  \n   - Cierra con: \"¿Querés saber más sobre alguno o te paso otra opción?\"\n\n6. **Agregar más / cerrar interacción**  \n   - Pregunta: \"¿Querés ver otra categoría o algún otro producto?\"  \n   - Si el cliente indica que no, cierra con un mensaje cordial:  \n     \"Genial! Cualquier cosa escribinos de nuevo y te ayudamos al toque. Gracias por elegir Oro Verde Grow 🌱\""
+          "systemMessage": "=Eres un asistente virtual para DIRECTV, un proveedor de televisión digital ubicado en Argentina.\nTu objetivo es ayudar a los clientes a contratar el servicio a través de WhatsApp de forma clara, directa y cordial.\n\n⚡ Reglas generales:\n- Siempre sigue el flujo de conversación definido.\n- No repitas el saludo si el cliente ya está en medio de la interacción.\n- Nunca inventes categorías, marcas, productos o precios.\n- Mensajes cortos, naturales y fáciles de leer, usando expresiones argentinas (ej: \"mirá\", \"dale\", \"fijate\").\n- Siempre cierra con una pregunta para mantener la conversación.\n- Guarda toda la información del cliente durante la conversación para generar el resumen final.\n- Utilizar nodo \"createLead\" luego de que el cliente haya proporcionado sus datos personales\n\n⚡ Contexto del negocio:\n- Nombre: DIRECTV\n- Sitio web: https://www.directvla.com/ar\n- Ubicación: Argentina\n- Cobertura: Todo el territorio argentino, incluyendo áreas rurales y remotas\n\n⚡ Promociones generales:\n- 🎁 **1 MES GRATIS** adhiriéndose con tarjeta de crédito\n- 📺 **Todos los planes incluyen Prime Video y DGO**\n- 🏆 **Deportes exclusivos por DSPORTS:** LaLiga, Copa Sudamericana y más\n\n⚡ Planes disponibles:\n\n**SUPERLITE HD**\n- 💸 **Precio:** $27.900/mes\n- 📺 **108 canales**\n- 🔧 **Decodificador HD incluido**\n- 🎬 **Prime Video incluido**\n- 📱 **DIRECTV GO (DGO) incluido**\n- 🏆 **DSPORTS:** LaLiga, Copa Sudamericana y más\n- 🎁 **1 mes gratis con tarjeta de crédito**\n\n**PLATA HD con Disney+**\n- 💸 **Precio:** $34.100/mes\n- 📺 **164 canales**\n- 🔧 **Decodificador HD incluido**\n- 🎬 **Prime Video incluido**\n- 🏰 **Disney+ incluido**\n- 📱 **DIRECTV GO (DGO) incluido**\n- 🏆 **DSPORTS:** LaLiga, Copa Sudamericana y más\n- 🎁 **1 mes gratis con tarjeta de crédito**\n- ⭐ **BONUS:** 1 mes gratis de Universal+ + 2 meses 50% off\n\n**ORO HD con Disney+**\n- 💸 **Precio:** $39.700/mes\n- 📺 **230 canales**\n- 🔧 **Decodificador HD incluido**\n- 🎬 **Prime Video incluido**\n- 🏰 **Disney+ incluido**\n- 📱 **DIRECTV GO (DGO) incluido**\n- 🏆 **DSPORTS:** LaLiga, Copa Sudamericana y más\n- 🎁 **1 mes gratis con tarjeta de crédito**\n- ⭐ **BONUS:** Todos los beneficios del plan Plata HD + más canales\n\n**Canales exclusivos DIRECTV:**\n- DSPORTS: Partidos exclusivos de LaLiga de España y Copa Sudamericana\n- OnDIRECTV: Series y shows de música\n- DNEWS: Noticias y especiales de Latinoamérica\n\n**Beneficios incluidos en todos los planes:**\n- DIRECTV GO (DGO): Acceso a canales en vivo, películas y series en dispositivos móviles\n- Instalación técnica profesional gratuita\n- Antena, decodificador HD y control remoto incluidos\n- Cobertura satelital en toda Argentina\n- Prime Video incluido\n\n**Contenidos adicionales disponibles:**\n- Paquetes de fútbol local\n- HBO Pack\n- Universal+\n- Disney+\n- Otros contenidos premium\n\n⚡ Flujo de conversación:\n1. **Inicio / Saludo**\n   - Saluda cordialmente\n   - Pregunta si está interesado en contratar algún plan de DIRECTV\n\n2. **Presentar planes disponibles**\n   - Si la respuesta es afirmativa, presenta los planes disponibles:\n     📺 **SUPERLITE HD**\n     📺 **PLATA HD con Disney+**\n     📺 **ORO HD con Disney+**\n   - Pregunta si le interesa algún plan en particular\n\n3. **Detallar plan específico**\n   - Si quiere un plan en particular, presenta ese plan más detallado con:\n     📺 NOMBRE DEL PLAN\n     📄 DESCRIPCIÓN COMPLETA (canales, beneficios)\n     🎬 CONTENIDOS INCLUIDOS (Amazon Prime, DIRECTV GO, etc.)\n     🏆 CANALES EXCLUSIVOS (DSPORTS, OnDIRECTV, DNEWS)\n     ➕ CONTENIDOS ADICIONALES DISPONIBLES\n   - Pregunta si quiere avanzar con la contratación\n\n4. **Solicitar datos del cliente**\n   - Una vez que confirma interés, solicita:\n     👤 Nombre completo\n     📍 Dirección\n     📍 Localidad\n     📍 Provincia\n     📞 Número de teléfono\n     📧 Email\n\n5. **Mostrar resumen completo**\n   - Una vez que el cliente proporcione sus datos, muestra el resumen con el siguiente formato:\n     📺 **PLAN SELECCIONADO:** [nombre del plan]\n     📄 **INCLUYE:** [canales y beneficios del plan]\n     🎬 **CONTENIDOS:** [Amazon Prime, DIRECTV GO, etc.]\n     🏆 **EXCLUSIVOS:** DSPORTS, OnDIRECTV, DNEWS\n     \n     👤 DATOS DEL CLIENTE:\n     • Nombre: [nombre completo]\n     • Dirección: [dirección completa]\n     • Localidad: [localidad]\n     • Provincia: [provincia]\n     • Teléfono: [número]\n     • Email: [email]\n\n   - Ejecutar \"createLead\" para guardar la información personal y el plan seleccionado\n   \n   - Pregunta: \"¿Todos los datos son correctos? ¿Confirmás la contratación?\"\n\n6. **Cerrar interacción**\n   - Si confirma: \"¡Perfecto! En las próximas 24 horas te contactaremos para coordinar la instalación. ¡Gracias por elegir DIRECTV! 📺\"\n   - Si no confirma o hay cambios: volver al paso correspondiente para corregir\n   - Si decide no contratar: \"No hay problema. Cualquier cosa escribinos de nuevo y te ayudamos al toque. ¡Gracias por tu tiempo! 📺\"\n\n⚡ Notas importantes:\n- Mantén un registro de toda la información del cliente durante la conversación\n- Si el cliente abandona la conversación y vuelve, pregunta si quiere retomar donde quedaron\n- Siempre confirma los datos antes de finalizar\n- Menciona que la instalación es gratuita y profesional\n- Destaca la cobertura nacional, ideal para zonas rurales\n- Usa emojis para hacer la conversación más amigable\n- Para precios específicos, indica que se confirmarán al momento de la contratación"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        944,
-        368
+        992,
+        416
       ],
-      "id": "d30c6cbf-ccc4-47bd-bbee-2f3bf47f0dda",
+      "id": "21a5a752-274b-4bf2-833d-205be8a996c7",
       "name": "AI Agent"
     },
     {
@@ -474,300 +572,107 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        864,
-        608
+        944,
+        656
       ],
-      "id": "1ac964ab-2ec9-4a61-9307-d275ee538d81",
+      "id": "100de853-c9cd-4ca5-ac6c-6c01eb49aa00",
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
-          "id": "EWsMqU8CMSqu4Q3V",
-          "name": "Oro Verde - Open AI"
+          "id": "trx3FQWo28MQZu8b",
+          "name": "Univision - Open AI"
         }
       }
     },
     {
       "parameters": {
         "sessionIdType": "customKey",
-        "sessionKey": "={{ $('Switch').item.json.messages[0].from }}"
+        "sessionKey": "={{ $('Switch').item.json.messages[0].from }}",
+        "contextWindowLength": 15
       },
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        1040,
-        608
+        1088,
+        672
       ],
-      "id": "2bd600fe-1295-4577-9643-ceab36c0d784",
-      "name": "Simple Memory"
+      "id": "f0c6adb3-3bb3-44b0-b0e5-b51142c5ee90",
+      "name": "Simple Memory3"
     },
     {
       "parameters": {
-        "toolDescription": "=Retrieve Categories Information\n\nUse this tool to get the list of product categories available in Oro Verde Grow.\n\nResponse contains:\n- id: Unique category ID\n- name: Category name\n- slug: URL-friendly slug\n- description: Category description\n- parent: Parent category ID (0 if top-level)\n- count: Number of products in this category\n- image: URL to category image\n- link: URL to category page\n- total_categories: Total number of categories\n\nUsage:\nThis tool should be called whenever you need to present the available categories to the user.",
-        "url": "https://oroverdegrow.ar/wp-json/oroverde/v1/categorias",
+        "toolDescription": "Crea un lead y guarda la información proporcionada del cliente\n\nUsa esta herramienta para crear un lead con toda la información del cliente\n\nUse:\nEsta herramienta debe llamarse luego de que el cliente proporcione sus datos personales",
+        "method": "POST",
+        "url": "https://bff.scalix.neowyze.tech/api/leads",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('JSON', ``, 'json') }}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequestTool",
       "typeVersion": 4.2,
       "position": [
-        1360,
-        624
+        1264,
+        640
       ],
-      "id": "27c2ce2e-7df7-4298-b167-0ad539c9bd84",
-      "name": "getCategories"
+      "id": "b1dbb005-cc37-48fb-ab54-52896132c70a",
+      "name": "createLead"
     },
     {
       "parameters": {
-        "toolDescription": "=Retrieve Products Information\n\nUse this tool to get details about products in Oro Verde Grow.\n\nResponse contains:\n- id: Product ID\n- name: Product name\n- slug: URL-friendly slug\n- price: Product price\n- description: Product description\n- categories: List of categories the product belongs to\n- image: URL to product image\n- stock_status: Stock availability (e.g., \"instock\")\n- pagination:\n  - total_products: Total number of products matching the query\n  - total_pages: Number of pages\n  - current_page: Current page number\n  - products_per_page: Number of products per page\n\nUsage:\nThis tool should be called whenever you need to show products filtered by category and/or search term to the user.",
-        "url": "https://oroverdegrow.ar/wp-json/oroverde/v1/productos",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "categoria",
-              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters0_Value', ``, 'string') }}"
-            },
-            {
-              "name": "busqueda",
-              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters1_Value', ``, 'string') }}"
-            }
-          ]
-        },
+        "method": "POST",
+        "url": "https://bff.scalix.neowyze.tech/api/leads",
         "options": {}
       },
-      "type": "n8n-nodes-base.httpRequestTool",
+      "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1520,
-        624
+        1680,
+        304
       ],
-      "id": "80361145-4ee9-4584-965c-34f591664eee",
-      "name": "getProducts"
-    },
-    {
-      "parameters": {
-        "descriptionType": "manual",
-        "toolDescription": "Retrieve Wholesalers Information\n\nUse this tool to find wholesalers from Oro Verde Grow.\n\nResponse contains:\n- phone: Phone number from wholesaler\n\nUsage:\nThis tool should be called whenever you need verify if client is a wholesaler",
-        "documentId": {
-          "__rl": true,
-          "value": "1QD-CBqfkORSmK0U_DtcpTzfAXeEkcicr63Ni3naO0JQ",
-          "mode": "list",
-          "cachedResultName": "Test Mayorista - Oro Verde",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QD-CBqfkORSmK0U_DtcpTzfAXeEkcicr63Ni3naO0JQ/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": 133052478,
-          "mode": "list",
-          "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QD-CBqfkORSmK0U_DtcpTzfAXeEkcicr63Ni3naO0JQ/edit#gid=133052478"
-        },
-        "filtersUI": {
-          "values": [
-            {
-              "lookupColumn": "Telefono",
-              "lookupValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values0_Value', ``, 'string') }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheetsTool",
-      "typeVersion": 4.7,
-      "position": [
-        1216,
-        624
-      ],
-      "id": "8aaa8c0d-7059-484c-a46a-7a740d990f55",
-      "name": "getMayoristas",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "tcYjJbLS3otsYnxI",
-          "name": "Oro Verde - Green Fire"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "oro-verde-bot",
-        "responseMode": "responseNode",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -48,
-        1104
-      ],
-      "id": "674ed636-7465-4f0f-a9b3-39e1fdf39267",
-      "name": "Webhook",
-      "webhookId": "41be1646-59ad-4833-8509-bd18753007ee"
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "={{ $json.body.message }}",
-        "options": {
-          "systemMessage": "=Eres un asistente virtual para Oro Verde Grow, un growshop ubicado en Rafaela, Argentina.  \nTu objetivo es ayudar a los clientes a descubrir y explorar productos de cultivo a través de WhatsApp de forma clara, directa y cordial.\n\n⚡ Reglas generales:\n- Siempre sigue el flujo de conversación definido.  \n- No repitas el saludo si el cliente ya está en medio de la interacción.  \n- Usa únicamente información devuelta por los nodos `getMayoristas`, `getCategories` y `getProducts`.  \n- Nunca inventes categorías, marcas, productos o precios. \n- Mensajes cortos, naturales y fáciles de leer, usando expresiones argentinas (ej: \"mirá\", \"dale\", \"fijate\").  \n- Agrupa máximo 5–7 productos por mensaje.  \n- Siempre cierra con una pregunta para mantener la conversación.\n\n⚡ Contexto del negocio:\n- Nombre: Oro Verde Grow  \n- Sitio web: https://oroverdegrow.ar  \n- Ubicación: Rafaela, Argentina  \n- Zona de atención: Rafaela y alrededores  \n- Productos principales: consultar en `getProducts`  \n\n⚡ Flujo de conversación:\n1. **Inicio / Saludo**  \n   - Saluda cordialmente\n   - Luego, pregunta en qué categoría de producto está interesado.  \n   - Usa el nodo `getCategories` para mostrar opciones.\n\n2. **Mayorista**\n- Si el cliente solicita la lista de mayoristas, utiliza `getMayoristas` para verificar si el número del cliente pertenece a un mayorista, si pertenece responder:\n  \"Te comparto el link para mayorista: https://catalogo.duxsoftware.com.ar/mayorista-oroverde\"\nSi el numero no pertenece, responder: \"Lo siento, solo podemos compartírsela a mayoristas\"\n\n3. **Seleccionar categoría**  \n   - Una vez que el usuario elige una categoría, consulta por la marca de interés dentro de esa categoría.\n\n4. **Seleccionar marca**  \n   - Filtra marcas disponibles usando `getProducts` y pregunta cuál prefiere.\n\n5. **Mostrar productos**  \n   - Con la categoría y la marca elegida, muestra productos:  \n     🌱 NOMBRE – MARCA  \n     📄 DESCRIPCIÓN  \n     💸 PRECIO  \n     🔗 [Ver más en la web](https://oroverdegrow.ar/producto-slug)  \n   - Si hay combos, agregarlos después del listado.  \n   - Cierra con: \"¿Querés saber más sobre alguno o te paso otra opción?\"\n\n6. **Agregar más / cerrar interacción**  \n   - Pregunta: \"¿Querés ver otra categoría o algún otro producto?\"  \n   - Si el cliente indica que no, cierra con un mensaje cordial:  \n     \"Genial! Cualquier cosa escribinos de nuevo y te ayudamos al toque. Gracias por elegir Oro Verde Grow 🌱\""
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 2.2,
-      "position": [
-        272,
-        1104
-      ],
-      "id": "4fdd8520-cf87-4587-a3c8-714fdee2be90",
-      "name": "AI Agent1"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-4.1-nano",
-          "mode": "list",
-          "cachedResultName": "gpt-4.1-nano"
-        },
-        "options": {
-          "maxTokens": 256
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        176,
-        1360
-      ],
-      "id": "5db17206-c035-4a4c-acfd-753fb0554304",
-      "name": "OpenAI Chat Model1",
-      "credentials": {
-        "openAiApi": {
-          "id": "EWsMqU8CMSqu4Q3V",
-          "name": "Oro Verde - Open AI"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $json.body.id }}"
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        368,
-        1360
-      ],
-      "id": "7836ddc2-c150-4114-997d-42cfd6897633",
-      "name": "Simple Memory1"
-    },
-    {
-      "parameters": {
-        "toolDescription": "=Retrieve Categories Information\n\nUse this tool to get the list of product categories available in Oro Verde Grow.\n\nResponse contains:\n- id: Unique category ID\n- name: Category name\n- slug: URL-friendly slug\n- description: Category description\n- parent: Parent category ID (0 if top-level)\n- count: Number of products in this category\n- image: URL to category image\n- link: URL to category page\n- total_categories: Total number of categories\n\nUsage:\nThis tool should be called whenever you need to present the available categories to the user.",
-        "url": "https://oroverdegrow.ar/wp-json/oroverde/v1/categorias",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequestTool",
-      "typeVersion": 4.2,
-      "position": [
-        656,
-        1360
-      ],
-      "id": "ec8882d2-2453-4a44-8482-47806c4d19d2",
-      "name": "getCategories1"
-    },
-    {
-      "parameters": {
-        "toolDescription": "=Retrieve Products Information\n\nUse this tool to get details about products in Oro Verde Grow.\n\nResponse contains:\n- id: Product ID\n- name: Product name\n- slug: URL-friendly slug\n- price: Product price\n- description: Product description\n- categories: List of categories the product belongs to\n- image: URL to product image\n- stock_status: Stock availability (e.g., \"instock\")\n- pagination:\n  - total_products: Total number of products matching the query\n  - total_pages: Number of pages\n  - current_page: Current page number\n  - products_per_page: Number of products per page\n\nUsage:\nThis tool should be called whenever you need to show products filtered by category and/or search term to the user.",
-        "url": "https://oroverdegrow.ar/wp-json/oroverde/v1/productos",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "categoria",
-              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters0_Value', ``, 'string') }}"
-            },
-            {
-              "name": "busqueda",
-              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters1_Value', ``, 'string') }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequestTool",
-      "typeVersion": 4.2,
-      "position": [
-        832,
-        1360
-      ],
-      "id": "23645e9b-c741-48f1-ac36-c0bdb962245f",
-      "name": "getProducts1"
-    },
-    {
-      "parameters": {
-        "descriptionType": "manual",
-        "toolDescription": "Retrieve Wholesalers Information\n\nUse this tool to find wholesalers from Oro Verde Grow.\n\nResponse contains:\n- phone: Phone number from wholesaler\n\nUsage:\nThis tool should be called whenever you need verify if client is a wholesaler",
-        "documentId": {
-          "__rl": true,
-          "value": "1QD-CBqfkORSmK0U_DtcpTzfAXeEkcicr63Ni3naO0JQ",
-          "mode": "list",
-          "cachedResultName": "Test Mayorista - Oro Verde",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QD-CBqfkORSmK0U_DtcpTzfAXeEkcicr63Ni3naO0JQ/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": 133052478,
-          "mode": "list",
-          "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QD-CBqfkORSmK0U_DtcpTzfAXeEkcicr63Ni3naO0JQ/edit#gid=133052478"
-        },
-        "filtersUI": {
-          "values": [
-            {
-              "lookupColumn": "Telefono",
-              "lookupValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values0_Value', ``, 'string') }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheetsTool",
-      "typeVersion": 4.7,
-      "position": [
-        512,
-        1360
-      ],
-      "id": "9339c5cf-36ca-436e-a379-c1b133ab732a",
-      "name": "getMayoristas1",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "tcYjJbLS3otsYnxI",
-          "name": "Oro Verde - Green Fire"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.4,
-      "position": [
-        736,
-        1104
-      ],
-      "id": "8f0d0d3d-a1d8-4f61-9fb6-a3d256c1b209",
-      "name": "Respond to Webhook1"
+      "id": "06087a64-aa6b-486e-8f5f-c14a1ffb2e34",
+      "name": "HTTP Request"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "When clicking ‘Test workflow’": [
+      {
+        "json": {
+          "messaging_product": "whatsapp",
+          "metadata": {
+            "display_phone_number": "15556644593",
+            "phone_number_id": "691649007368841"
+          },
+          "contacts": [
+            {
+              "profile": {
+                "name": "criisgese14"
+              },
+              "wa_id": "5492214363975"
+            }
+          ],
+          "messages": [
+            {
+              "from": "5492214363975",
+              "id": "wamid.HBgNNTQ5MjIxNDM2Mzk3NRUCABIYIEU4RTRENkU3ODM5ODc0NjAxMkMxNDE5NTU0MDFBRjEzAA==",
+              "timestamp": "1751983360",
+              "text": {
+                "body": "Buenas"
+              },
+              "type": "text"
+            }
+          ],
+          "field": "messages"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 3,
-  "updatedAt": "2025-09-03T18:51:38.000Z",
-  "versionId": "e6648b12-5c16-4200-8217-39710eeaf6a2"
+  "triggerCount": 2,
+  "updatedAt": "2025-09-04T20:35:45.000Z",
+  "versionId": "316f89d8-44c9-4c95-9a75-b8e52f278bf8"
 }
