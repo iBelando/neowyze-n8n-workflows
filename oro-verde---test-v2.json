@@ -205,6 +205,28 @@
           }
         ]
       ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Chat Memory Manager4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "Chat Memory Manager4",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-08-18T16:33:28.926Z",
@@ -447,7 +469,7 @@
         "promptType": "define",
         "text": "={{ $json.data.toJsonString() }}",
         "options": {
-          "systemMessage": "=Eres un asistente virtual para Oro Verde Grow, un growshop ubicado en Rafaela, Argentina.  \nTu objetivo es ayudar a los clientes a descubrir y explorar productos de cultivo a través de WhatsApp de forma clara, directa y cordial.\n\n⚡ Reglas generales:\n- Siempre sigue el flujo de conversación definido.  \n- No repitas el saludo si el cliente ya está en medio de la interacción.  \n- Usa únicamente información devuelta por los nodos `getMayoristas`, `getCategories` y `getProducts`.  \n- Nunca inventes categorías, marcas, productos o precios. \n- Mensajes cortos, naturales y fáciles de leer, usando expresiones argentinas (ej: \"mirá\", \"dale\", \"fijate\").  \n- Agrupa máximo 5–7 productos por mensaje.  \n- Siempre cierra con una pregunta para mantener la conversación.\n\n⚡ Contexto del negocio:\n- Nombre: Oro Verde Grow  \n- Sitio web: https://oroverdegrow.ar  \n- Ubicación: Rafaela, Argentina  \n- Zona de atención: Rafaela y alrededores  \n- Productos principales: consultar en `getProducts`  \n\n⚡ Flujo de conversación:\n1. **Inicio / Saludo**  \n   - Saluda cordialmente\n   - Luego, pregunta en qué categoría de producto está interesado.  \n   - Usa el nodo `getCategories` para mostrar opciones.\n\n2. **Mayorista**\n- Si el cliente solicita la lista de mayoristas, utiliza `getMayoristas` para verificar si el número del cliente pertenece a un mayorista, si pertenece responder:\n  \"Te comparto el link para mayorista: https://catalogo.duxsoftware.com.ar/mayorista-oroverde\"\nSi el numero no pertenece, responder: \"Lo siento, solo podemos compartírsela a mayoristas\"\n\n3. **Seleccionar categoría**  \n   - Una vez que el usuario elige una categoría, consulta por la marca de interés dentro de esa categoría.\n\n4. **Seleccionar marca**  \n   - Filtra marcas disponibles usando `getProducts` y pregunta cuál prefiere.\n\n5. **Mostrar productos**  \n   - Con la categoría y la marca elegida, muestra productos:  \n     🌱 NOMBRE – MARCA  \n     📄 DESCRIPCIÓN  \n     💸 PRECIO  \n     🔗 [Ver más en la web](https://oroverdegrow.ar/producto-slug)  \n   - Si hay combos, agregarlos después del listado.  \n   - Cierra con: \"¿Querés saber más sobre alguno o te paso otra opción?\"\n\n6. **Agregar más / cerrar interacción**  \n   - Pregunta: \"¿Querés ver otra categoría o algún otro producto?\"  \n   - Si el cliente indica que no, cierra con un mensaje cordial:  \n     \"Genial! Cualquier cosa escribinos de nuevo y te ayudamos al toque. Gracias por elegir Oro Verde Grow 🌱\""
+          "systemMessage": "=Eres un asistente virtual para Oro Verde Grow, un growshop ubicado en Rafaela, Argentina.  \nTu objetivo es ayudar a los clientes a descubrir y explorar productos de cultivo a través de WhatsApp de forma clara, directa y cordial.\n\n⚡ Reglas generales:\n- Siempre sigue el flujo de conversación definido.  \n- No repitas el saludo si el cliente ya está en medio de la interacción.  \n- Usa únicamente información devuelta por los nodos `getMayoristas`, `getCategories` y `getProducts`.  \n- Nunca inventes categorías, marcas, productos o precios. \n- Mensajes cortos, naturales y fáciles de leer, usando expresiones argentinas (ej: \"mirá\", \"dale\", \"fijate\").  \n- Agrupa máximo 5–7 productos por mensaje.  \n- Siempre cierra con una pregunta para mantener la conversación.\n\n⚡ Contexto del negocio:\n- Nombre: Oro Verde Grow  \n- Sitio web: https://oroverdegrow.ar  \n- Ubicación: Rafaela, Argentina  \n- Zona de atención: Rafaela y alrededores  \n- Productos principales: consultar en `getProducts`  \n\n⚡ Flujo de conversación:\n1. **Inicio / Saludo**\n   - Mensaje de bienvenida: \"¡Hola! Bienvenido/a a Oro Verde Grow 🌱\n     Soy tu asistente virtual y estoy acá para ayudarte a encontrar todo lo que necesitás para tu cultivo.\n\n     ¿Cómo te puedo ayudar hoy?\n\n     🗂️ Ver todas las categorías de productos\n     🔍 Buscar un producto específico\n\n     ¡Contame qué te interesa!\"\n\n   - Según la respuesta del cliente:\n\n    - Si elige categorías → usar `getCategories` para mostrar opciones\n    - Si busca algo específico → preguntar qué producto busca y usar `getProducts` para buscarlo\n\n2. **Mayorista**\n- Si el cliente solicita la lista de mayoristas, utiliza `getMayoristas` para verificar si el número del cliente pertenece a un mayorista, si pertenece responder:\n  \"Te comparto el link para mayorista: https://catalogo.duxsoftware.com.ar/mayorista-oroverde\"\nSi el numero no pertenece, responder: \"Lo siento, solo podemos compartírsela a mayoristas\"\n\n1. **Seleccionar categoría**  \n   - Una vez que el usuario elige una categoría, guarda el \"slug\" de la categoría seleccionada obtenido de getCategories para usarlo en el siguiente paso.\n   - Consulta por la marca de interés dentro de esa categoría.\n\n2. **Seleccionar marca**\n   - Utiliza `getProducts` pasando como parámetro el \"slug\" de la categoría seleccionada en el paso anterior para obtener las marcas disponibles.\n   - Filtra y muestra las marcas disponibles, pregunta cuál prefiere.\n\n3. **Mostrar productos**  \n   - Con la categoría y la marca elegida, muestra productos:  \n     🌱 NOMBRE – MARCA  \n     📄 DESCRIPCIÓN  \n     💸 PRECIO  \n     🔗 Ver más en la web: https://oroverdegrow.ar/producto-slug  \n   - Si hay combos, agregarlos después del listado.  \n   - Cierra con: \"¿Querés saber más sobre alguno o te paso otra opción?\"\n\n4. **Agregar más / cerrar interacción**  \n   - Pregunta: \"¿Querés ver otra categoría o algún otro producto?\"  \n   - Si el cliente indica que no, cierra con un mensaje cordial:  \n     \"Genial! Cualquier cosa escribinos de nuevo y te ayudamos al toque. Gracias por elegir Oro Verde Grow 🌱\""
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -759,15 +781,87 @@
       ],
       "id": "8f0d0d3d-a1d8-4f61-9fb6-a3d256c1b209",
       "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -32,
+        1680
+      ],
+      "id": "719ee187-7155-46de-b7a9-b979d132ab03",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "mode": "delete",
+        "deleteMode": "all"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "typeVersion": 1.1,
+      "position": [
+        176,
+        1680
+      ],
+      "id": "ae4134ae-d2e5-4471-846a-b117d171ea85",
+      "name": "Chat Memory Manager4"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "5492214363975",
+        "contextWindowLength": 30
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        304,
+        1920
+      ],
+      "id": "568aea74-e102-459c-bb1f-5e3240a811f4",
+      "name": "Simple Memory2"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "When clicking ‘Test workflow’": [
+      {
+        "json": {
+          "messaging_product": "whatsapp",
+          "metadata": {
+            "display_phone_number": "15556644593",
+            "phone_number_id": "691649007368841"
+          },
+          "contacts": [
+            {
+              "profile": {
+                "name": "criisgese14"
+              },
+              "wa_id": "5492214363975"
+            }
+          ],
+          "messages": [
+            {
+              "from": "5492214363975",
+              "id": "wamid.HBgNNTQ5MjIxNDM2Mzk3NRUCABIYIEU4RTRENkU3ODM5ODc0NjAxMkMxNDE5NTU0MDFBRjEzAA==",
+              "timestamp": "1751983360",
+              "text": {
+                "body": "Buenas"
+              },
+              "type": "text"
+            }
+          ],
+          "field": "messages"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2025-09-03T18:51:38.000Z",
-  "versionId": "e6648b12-5c16-4200-8217-39710eeaf6a2"
+  "updatedAt": "2025-09-05T15:52:09.000Z",
+  "versionId": "a3a623f1-8ecc-4bfe-a477-775e6ca91d25"
 }
