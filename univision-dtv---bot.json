@@ -12,17 +12,6 @@
         ]
       ]
     },
-    "WhatsApp Trigger": {
-      "main": [
-        [
-          {
-            "node": "Verifico si es un envío de mensajes",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Switch": {
       "main": [
         [
@@ -85,6 +74,17 @@
         ]
       ]
     },
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "Verifico si es un envío de mensajes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "OpenAI Chat Model": {
       "ai_languageModel": [
         [
@@ -118,7 +118,7 @@
         ]
       ]
     },
-    "createOrder": {
+    "createLead": {
       "ai_tool": [
         [
           {
@@ -130,27 +130,27 @@
       ]
     }
   },
-  "createdAt": "2025-08-08T13:46:14.017Z",
-  "id": "WeH7E9vOope7OCJ2",
+  "createdAt": "2025-07-14T19:43:00.519Z",
+  "id": "v2iGG6OFDDSAWoQ9",
   "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Green Fire - Bot",
+  "name": "Univision Dtv - Bot",
   "nodes": [
     {
       "parameters": {
-        "path": "green-fire",
+        "path": "univision",
         "responseMode": "responseNode",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -304,
-        352
+        64,
+        128
       ],
-      "id": "d87035eb-8ff6-4bbe-965b-1009fb264cf9",
+      "id": "e1cde871-9ad8-42a3-b747-fae31181f5a8",
       "name": "Verificación",
       "webhookId": "6423f6bb-b3dc-4db4-a895-f9d8d9242688"
     },
@@ -163,34 +163,11 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        -48,
-        352
+        320,
+        128
       ],
-      "id": "e8e82475-a8aa-46b7-9464-df3919da999f",
+      "id": "3358753b-889e-41bf-af9e-5c84ee9cfb36",
       "name": "Respond to Webhook"
-    },
-    {
-      "parameters": {
-        "updates": [
-          "messages"
-        ],
-        "options": {}
-      },
-      "type": "n8n-nodes-base.whatsAppTrigger",
-      "typeVersion": 1,
-      "position": [
-        -400,
-        912
-      ],
-      "id": "5677d084-810b-49ba-b146-8b30dc572d42",
-      "name": "WhatsApp Trigger",
-      "webhookId": "3583ec92-0977-436c-9056-486f674c0f7e",
-      "credentials": {
-        "whatsAppTriggerApi": {
-          "id": "wYASJpHv77iE8nCN",
-          "name": "Green Fire"
-        }
-      }
     },
     {
       "parameters": {
@@ -229,7 +206,7 @@
                 },
                 "conditions": [
                   {
-                    "id": "723efa4e-bb2c-420b-93e8-9e0a3f554cd5",
+                    "id": "36882f24-4999-4a65-90d3-50ae1da2faa1",
                     "leftValue": "={{ $json.messages[0].type }}",
                     "rightValue": "text",
                     "operator": {
@@ -248,10 +225,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        48,
-        800
+        400,
+        592
       ],
-      "id": "7778a14a-5120-4bf9-88ed-f2f357af93ab",
+      "id": "78a38e10-933a-4504-8fbe-adc41c6636d5",
       "name": "Switch"
     },
     {
@@ -283,33 +260,33 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -176,
-        912
+        192,
+        688
       ],
-      "id": "a470d4c3-b166-4dc0-a369-35e6dc1b0bea",
+      "id": "fc549229-c8c1-4582-afeb-6f6b42daa2c7",
       "name": "Verifico si es un envío de mensajes"
     },
     {
       "parameters": {
         "operation": "send",
-        "phoneNumberId": "691649007368841",
-        "recipientPhoneNumber": "=542214363975",
+        "phoneNumberId": "=763353423520906",
+        "recipientPhoneNumber": "={{$('Switch').item.json.messages[0].from}}",
         "textBody": "={{$json.output}}",
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        1264,
-        624
+        1536,
+        416
       ],
-      "id": "cbeddf34-0a3c-4cfa-8b6f-23fc7e76665c",
+      "id": "c76a48a3-b66d-467b-82c9-c5c98cccb195",
       "name": "Envío mensaje de texto",
       "webhookId": "670adcb7-8150-4faf-8044-4d2bea064089",
       "credentials": {
         "whatsAppApi": {
-          "id": "m00qyupgEwVN6Nim",
-          "name": "Green Fire - Whatsapp"
+          "id": "y4QR4nygt9F9YhH8",
+          "name": "Univision DTV Whatsapp"
         }
       }
     },
@@ -321,11 +298,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -368,
-        224
+        0,
+        0
       ],
       "typeVersion": 1,
-      "id": "029646e0-b9fe-4da8-8c9d-3cf7462dd434",
+      "id": "7f53ad47-0944-4356-a409-5894cc4d016c",
       "name": "Sticky Note"
     },
     {
@@ -333,10 +310,10 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -448,
-        1680
+        -16,
+        976
       ],
-      "id": "e96c3750-a659-4ded-bf83-b5eca53ac338",
+      "id": "c86ad733-5eac-4465-a2d6-f4333d887986",
       "name": "When clicking ‘Test workflow’"
     },
     {
@@ -346,44 +323,45 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        352,
-        624
+        656,
+        416
       ],
-      "id": "292df775-4265-443d-83d2-2e88f62d89aa",
+      "id": "4b9d9d29-c0aa-4b3c-b547-11e4cd80dd99",
       "name": "Code3"
     },
     {
       "parameters": {
-        "options": {}
+        "mode": "delete",
+        "deleteMode": "all"
       },
       "type": "@n8n/n8n-nodes-langchain.memoryManager",
       "typeVersion": 1.1,
       "position": [
-        -224,
-        1680
+        192,
+        976
       ],
-      "id": "e674c2cc-1c89-431a-8fb6-d0e6faeefbd0",
+      "id": "262bd5a4-950d-4343-9493-3d3a5d2ebf5e",
       "name": "Chat Memory Manager4"
     },
     {
       "parameters": {
         "sessionIdType": "customKey",
         "sessionKey": "5492214363975",
-        "contextWindowLength": 10
+        "contextWindowLength": 30
       },
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -96,
-        1920
+        320,
+        1216
       ],
-      "id": "1dee1f49-439e-40a1-b381-294eabcd183c",
+      "id": "590e0a62-765a-432a-99fe-096694afdc40",
       "name": "Simple Memory2"
     },
     {
       "parameters": {
         "operation": "send",
-        "phoneNumberId": "691649007368841",
+        "phoneNumberId": "802227299632271",
         "recipientPhoneNumber": "542214363975",
         "textBody": "=Hola, gracias por escribir. Te comento que no está permitido enviar archivos multimedia (imágenes, videos, audios, etc.) por esta vía.\n\nPodés contarme lo que necesitás de forma escrita: una descripción, tu consulta o los datos que quieras compartir. Así podré ayudarte sin inconvenientes.",
         "additionalFields": {}
@@ -391,16 +369,39 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        352,
-        928
+        656,
+        768
       ],
-      "id": "f2dc120e-a839-43b5-b2f2-d8cc5a7b0930",
+      "id": "05a0a4f7-bf0d-4721-9d6f-3cb33a6e322d",
       "name": "WhatsApp Business Cloud",
       "webhookId": "bce95f12-fff1-4734-a1b4-c4afdd307010",
       "credentials": {
         "whatsAppApi": {
-          "id": "m00qyupgEwVN6Nim",
-          "name": "Green Fire - Whatsapp"
+          "id": "y4QR4nygt9F9YhH8",
+          "name": "Univision DTV Whatsapp"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        688
+      ],
+      "id": "079ebedd-7f8d-4f7a-b29e-460a9cb2b252",
+      "name": "WhatsApp Trigger",
+      "webhookId": "8c24c65f-fb99-48fb-ae04-d18818f2dfc7",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "Ywpxn4VdDfBmXug7",
+          "name": "Univision DTV"
         }
       }
     },
@@ -409,16 +410,16 @@
         "promptType": "define",
         "text": "={{ $json.data.toJsonString() }}",
         "options": {
-          "systemMessage": "=Eres un asistente virtual para Oro Verde Grow, un growshop ubicado en Rafaela, Argentina.  \nTu objetivo es ayudar a los clientes a descubrir y explorar productos de cultivo a través de WhatsApp de forma clara, directa y cordial.\n\n⚡ Reglas generales:\n- Siempre sigue el flujo de conversación definido.  \n- No repitas el saludo si el cliente ya está en medio de la interacción.  \n- Usa únicamente información devuelta por los nodos `getCategories`,  `getProducts` y `createOrder`.  \n- Nunca inventes categorías, marcas, productos o precios. \n- Mensajes cortos, naturales y fáciles de leer, usando expresiones argentinas (ej: \"mirá\", \"dale\", \"fijate\").  \n- Agrupa máximo 5–7 productos por mensaje.  \n- Siempre cierra con una pregunta para mantener la conversación.\n\n⚡ Contexto del negocio:\n- Nombre: Oro Verde Grow  \n- Sitio web: https://oroverdegrow.ar  \n- Ubicación: Rafaela, Argentina  \n- Zona de atención: Rafaela y alrededores  \n- Productos principales: consultar en `getProducts`  \n\n⚡ Flujo de conversación:\n1. **Inicio / Saludo**  \n   - Saluda cordialmente\n   - Luego, pregunta en qué categoría de producto está interesado.  \n   - Usa el nodo `getCategories` para mostrar opciones.\n\n2. **Seleccionar categoría**  \n   - Una vez que el usuario elige una categoría, consulta por la marca de interés dentro de esa categoría.\n\n3. **Seleccionar marca**  \n   - Filtra marcas disponibles usando `getProducts` y pregunta cuál prefiere.\n\n4. **Mostrar productos**  \n   - Con la categoría y la marca elegida, muestra productos:  \n     🌱 NOMBRE – MARCA  \n     📄 DESCRIPCIÓN  \n     💸 PRECIO  \n     🔗 [Ver más en la web](https://oroverdegrow.ar/producto-slug)  \n   - Si hay combos, agregarlos después del listado.  \n   - Cierra con: \"¿Querés saber más sobre alguno o te paso otra opción?\"\n\n5. **Proceso de pedido**\n   - Cuando el cliente quiera hacer un pedido , inicia la recolección de datos:\n   a) Solicitar nombre: \"Perfecto! Para procesar tu pedido necesito algunos datos.\n¿Cuál es tu nombre completo?\"\n\n   b) Solicitar correo: \"Gracias [NOMBRE]. ¿Cuál es tu correo electrónico?\"\n\n   c) Solicitar número: \"Perfecto. ¿Cuál es tu número de teléfono?\"\n\n   d) Solicitar pedido: \"Excelente. Ahora contame qué productos querés pedir. Podés escribir:\n\n   - Nombres de productos específicos\n   - Cantidades\n   - Cualquier detalle especial\"\n   e) Confirmar pedido: \"Perfecto! Te confirmo tu pedido:\n\n  👤 Nombre: [NOMBRE]\n  📧 Correo: [CORREO]\n  📱 Teléfono: [NUMERO]\n  🛒 Pedido: [DETALLE_PEDIDO]\n\n  ¿Está todo correcto? Escribí 'SÍ' para confirmar o 'NO' para modificar algo.\"\n\n  f) Guardar en Google Sheets:\n\n  - Si confirma: usar `createOrder` con los datos recolectados\n  - Responder: \"¡Listo! Tu pedido fue registrado correctamente. Nos vamos a contactar pronto para coordinar la entrega. ¡Gracias por elegir Oro Verde Grow! 🌱\"\n  - Si no confirma: preguntar qué quiere modificar y volver al paso correspondiente\n\n6. **Agregar más / cerrar interacción**  \n   - Pregunta: \"¿Querés ver otra categoría o algún otro producto?\"  \n   - Si el cliente indica que no, cierra con un mensaje cordial:  \n     \"Genial! Cualquier cosa escribinos de nuevo y te ayudamos al toque. Gracias por elegir Oro Verde Grow 🌱\""
+          "systemMessage": "=Eres un asistente virtual para DIRECTV, un proveedor de televisión digital ubicado en Argentina.\nTu objetivo es ayudar a los clientes a contratar el servicio a través de WhatsApp de forma clara, directa y cordial.\n\n⚡ Reglas generales:\n- Siempre sigue el flujo de conversación definido.\n- No repitas el saludo si el cliente ya está en medio de la interacción.\n- Nunca inventes categorías, marcas, productos o precios.\n- Mensajes cortos, naturales y fáciles de leer, usando expresiones argentinas (ej: \"mirá\", \"dale\", \"fijate\").\n- Siempre cierra con una pregunta para mantener la conversación.\n- Guarda toda la información del cliente durante la conversación para generar el resumen final.\n- Utilizar nodo \"createLead\" luego de que el cliente haya proporcionado sus datos personales y el plan seleccionado\n\n⚡ Contexto del negocio:\n- Nombre: DIRECTV\n- Sitio web: https://www.directvla.com/ar\n- Ubicación: Argentina\n- Cobertura: Todo el territorio argentino, incluyendo áreas rurales y remotas\n\n⚡ Promociones generales:\n- 🎁 **1 MES GRATIS** adhiriéndose con tarjeta de crédito\n- 📺 **Todos los planes incluyen Prime Video y DGO**\n- 🏆 **Deportes exclusivos por DSPORTS:** LaLiga, Copa Sudamericana y más\n\n⚡ Planes disponibles:\n\n**SUPERLITE HD**\n- 💸 **Precio:** $27.900/mes\n- 📺 **108 canales**\n- 🔧 **Decodificador HD incluido**\n- 🎬 **Prime Video incluido**\n- 📱 **DIRECTV GO (DGO) incluido**\n- 🏆 **DSPORTS:** LaLiga, Copa Sudamericana y más\n- 🎁 **1 mes gratis con tarjeta de crédito**\n\n**PLATA HD con Disney+**\n- 💸 **Precio:** $34.100/mes\n- 📺 **164 canales**\n- 🔧 **Decodificador HD incluido**\n- 🎬 **Prime Video incluido**\n- 🏰 **Disney+ incluido**\n- 📱 **DIRECTV GO (DGO) incluido**\n- 🏆 **DSPORTS:** LaLiga, Copa Sudamericana y más\n- 🎁 **1 mes gratis con tarjeta de crédito**\n- ⭐ **BONUS:** 1 mes gratis de Universal+ + 2 meses 50% off\n\n**ORO HD con Disney+**\n- 💸 **Precio:** $39.700/mes\n- 📺 **230 canales**\n- 🔧 **Decodificador HD incluido**\n- 🎬 **Prime Video incluido**\n- 🏰 **Disney+ incluido**\n- 📱 **DIRECTV GO (DGO) incluido**\n- 🏆 **DSPORTS:** LaLiga, Copa Sudamericana y más\n- 🎁 **1 mes gratis con tarjeta de crédito**\n- ⭐ **BONUS:** Todos los beneficios del plan Plata HD + más canales\n\n**Canales exclusivos DIRECTV:**\n- DSPORTS: Partidos exclusivos de LaLiga de España y Copa Sudamericana\n- OnDIRECTV: Series y shows de música\n- DNEWS: Noticias y especiales de Latinoamérica\n\n**Beneficios incluidos en todos los planes:**\n- DIRECTV GO (DGO): Acceso a canales en vivo, películas y series en dispositivos móviles\n- Instalación técnica profesional gratuita\n- Antena, decodificador HD y control remoto incluidos\n- Cobertura satelital en toda Argentina\n- Prime Video incluido\n\n**Contenidos adicionales disponibles:**\n- Paquetes de fútbol local\n- HBO Pack\n- Universal+\n- Disney+\n- Otros contenidos premium\n\n⚡ Flujo de conversación:\n1. **Inicio / Saludo**\n   - Saluda cordialmente\n   - Pregunta si está interesado en contratar algún plan de DIRECTV\n\n2. **Presentar planes disponibles**\n   - Si la respuesta es afirmativa, presenta los planes disponibles:\n     📺 **SUPERLITE HD**\n     📺 **PLATA HD con Disney+**\n     📺 **ORO HD con Disney+**\n   - Pregunta si le interesa algún plan en particular\n\n3. **Detallar plan específico**\n   - Si quiere un plan en particular, presenta ese plan más detallado con:\n     📺 NOMBRE DEL PLAN\n     📄 DESCRIPCIÓN COMPLETA (canales, beneficios)\n     🎬 CONTENIDOS INCLUIDOS (Amazon Prime, DIRECTV GO, etc.)\n     🏆 CANALES EXCLUSIVOS (DSPORTS, OnDIRECTV, DNEWS)\n     ➕ CONTENIDOS ADICIONALES DISPONIBLES\n   - Pregunta si quiere avanzar con la contratación\n\n4. **Solicitar datos del cliente**\n   - Una vez que confirma interés, solicita:\n     👤 Nombre\n     👤 Apellido\n     📍 Localidad\n     📍 Provincia\n     📞 Número de teléfono\n     📧 Email\n\n5. **Mostrar resumen completo**\n   - Una vez que el cliente proporcione sus datos, muestra el resumen con el siguiente formato:\n     📺 **PLAN SELECCIONADO:** [nombre del plan]\n     📄 **INCLUYE:** [canales y beneficios del plan]\n     🎬 **CONTENIDOS:** [Amazon Prime, DIRECTV GO, etc.]\n     🏆 **EXCLUSIVOS:** DSPORTS, OnDIRECTV, DNEWS\n     \n     👤 DATOS DEL CLIENTE:\n     • Nombre: [nombre completo]\n     • Dirección: [dirección completa]\n     • Localidad: [localidad]\n     • Provincia: [provincia]\n     • Teléfono: [número]\n     • Email: [email]\n\n   - Ejecutar \"createLead\" para guardar la información personal y el plan seleccionado\n   \n   - Pregunta: \"¿Todos los datos son correctos? ¿Confirmás la contratación?\"\n\n6. **Cerrar interacción**\n   - Si confirma: \"¡Perfecto! En las próximas 24 horas te contactaremos para coordinar la instalación. ¡Gracias por elegir DIRECTV! 📺\"\n   - Si no confirma o hay cambios: volver al paso correspondiente para corregir\n   - Si decide no contratar: \"No hay problema. Cualquier cosa escribinos de nuevo y te ayudamos al toque. ¡Gracias por tu tiempo! 📺\"\n\n⚡ Notas importantes:\n- Mantén un registro de toda la información del cliente durante la conversación\n- Si el cliente abandona la conversación y vuelve, pregunta si quiere retomar donde quedaron\n- Siempre confirma los datos antes de finalizar\n- Menciona que la instalación es gratuita y profesional\n- Destaca la cobertura nacional, ideal para zonas rurales\n- Usa emojis para hacer la conversación más amigable\n- Para precios específicos, indica que se confirmarán al momento de la contratación"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        816,
-        624
+        992,
+        416
       ],
-      "id": "70c63367-e9da-49fd-9a0b-a72a59c3f02f",
+      "id": "21a5a752-274b-4bf2-833d-205be8a996c7",
       "name": "AI Agent"
     },
     {
@@ -436,15 +437,15 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        736,
-        864
+        944,
+        656
       ],
-      "id": "5b0635f2-dcbf-4f0f-a9df-8606132dedec",
+      "id": "100de853-c9cd-4ca5-ac6c-6c01eb49aa00",
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
-          "id": "Bq3GA8Z6Aqwtv5dl",
-          "name": "Green Fire - OpenIA"
+          "id": "trx3FQWo28MQZu8b",
+          "name": "Univision - Open AI"
         }
       }
     },
@@ -452,102 +453,35 @@
       "parameters": {
         "sessionIdType": "customKey",
         "sessionKey": "={{ $('Switch').item.json.messages[0].from }}",
-        "contextWindowLength": 10
+        "contextWindowLength": 15
       },
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        912,
-        864
+        1104,
+        656
       ],
-      "id": "d9142128-729b-4178-aa4f-7659c729485e",
+      "id": "f0c6adb3-3bb3-44b0-b0e5-b51142c5ee90",
       "name": "Simple Memory3"
     },
     {
       "parameters": {
-        "descriptionType": "manual",
-        "toolDescription": "=Create new order\n\nUse this tool to create order from Oro Verde Grow.\n\nBody contains:\n- name: Name from client\n- email: Email from client\n- phone: Phone from client\n- order: Order from client\n\nUsage:\nThis tool should be called whenever client provide all your data",
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "1NhyfNzx6j1dHQhWtl7NlzfUxZ495RYpr-glR2xGlxaM",
-          "mode": "list",
-          "cachedResultName": "Test Green Fire - Pedidos",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NhyfNzx6j1dHQhWtl7NlzfUxZ495RYpr-glR2xGlxaM/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": 133052478,
-          "mode": "list",
-          "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NhyfNzx6j1dHQhWtl7NlzfUxZ495RYpr-glR2xGlxaM/edit#gid=133052478"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "Nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre', ``, 'string') }}",
-            "Numero": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Numero', ``, 'string') }}",
-            "Correo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Correo', ``, 'string') }}",
-            "Pedido": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Pedido', ``, 'string') }}"
-          },
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "Nombre",
-              "displayName": "Nombre",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Numero",
-              "displayName": "Numero",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Correo",
-              "displayName": "Correo",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Pedido",
-              "displayName": "Pedido",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
+        "toolDescription": "Cuando el cliente proporcione sus datos personales y seleccione un plan,\ngenera un objeto JSON siguiendo estrictamente este contrato:\n\n{\n  \"email\": \"\",\n  \"first_name\": \"\",\n  \"last_name\": \"\",\n  \"phone\": \"\",\n  \"plan\": \"\",\n  \"source\": \"Meta Ads\",\n  \"status\": \"Prospecto\"\n}\n\n- No agregues ni quites propiedades.  \n- Rellena los valores con la información proporcionada.",
+        "method": "POST",
+        "url": "https://bff.scalix.neowyze.tech/api/leads",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('JSON', ``, 'json') }}",
         "options": {}
       },
-      "type": "n8n-nodes-base.googleSheetsTool",
-      "typeVersion": 4.7,
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
       "position": [
-        1104,
-        864
+        1264,
+        640
       ],
-      "id": "1cc4f9b0-50a4-4f2a-9992-a30e2f1021ed",
-      "name": "createOrder",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "kqgmSDLONnt16S11",
-          "name": "Green Fire - Google Sheets"
-        }
-      }
+      "id": "b1dbb005-cc37-48fb-ab54-52896132c70a",
+      "name": "createLead"
     }
   ],
   "pinData": {
@@ -589,6 +523,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-09-08T19:05:58.000Z",
-  "versionId": "3eb91df8-b9ac-41c0-9d41-1c3f21dbe028"
+  "updatedAt": "2025-09-09T12:26:56.000Z",
+  "versionId": "5bf59e15-94db-4b9c-a5fe-399134b297d5"
 }
