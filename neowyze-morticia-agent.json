@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "Basic LLM Chain",
+            "node": "Code1",
             "type": "main",
             "index": 0
           }
@@ -23,33 +23,22 @@
         ]
       ]
     },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Basic LLM Chain",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Basic LLM Chain": {
+    "Schedule Trigger": {
       "main": [
         [
           {
-            "node": "Send a message",
+            "node": "Code",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Schedule Trigger": {
+    "Code1": {
       "main": [
         [
           {
-            "node": "Code",
+            "node": "Send a message",
             "type": "main",
             "index": 0
           }
@@ -65,21 +54,6 @@
   },
   "name": "[NEOWYZE] Morticia Agent",
   "nodes": [
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "=Dado el siguiente input:\n- Días: {{ $json.dias.join(\", \") }}\n- Mes: {{ $json.mes }}\n\nGenera un mensaje corto y amigable para avisar a <@315334366827905024> que esos días específicos del input son feriados.\n\nRules:\n- Si hay un solo día, menciona el día singular.\n- Si hay varios días, menciona los días separados por comas.\n- Incluye al menos un emoji relacionado al final del mensaje (calendario, celebración, descanso, etc.).\n",
-        "batching": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.7,
-      "position": [
-        640,
-        -368
-      ],
-      "id": "de6a1c60-711e-41ea-965d-f33089342a13",
-      "name": "Basic LLM Chain"
-    },
     {
       "parameters": {
         "url": "https://faas-sfo3-7872a1dd.doserverless.co/api/v1/web/fn-fe75abe6-252d-47a3-92d8-df45dfcb2ef5/default/cf-argentina-holidays",
@@ -127,31 +101,6 @@
     },
     {
       "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-4.1-nano",
-          "mode": "list",
-          "cachedResultName": "gpt-4.1-nano"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        640,
-        -208
-      ],
-      "id": "779348d7-aed8-4dd8-b078-ba3d33d68893",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "WXcb81sSca2QEiC8",
-          "name": "Neowyze OpenAI Credentials"
-        }
-      }
-    },
-    {
-      "parameters": {
         "resource": "message",
         "guildId": {
           "__rl": true,
@@ -171,7 +120,7 @@
         "embeds": {
           "values": [
             {
-              "description": "={{ $json.text }}",
+              "description": "={{ $json.message }}",
               "color": "#E9C307"
             }
           ]
@@ -180,7 +129,7 @@
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        992,
+        848,
         -368
       ],
       "id": "850ea9c0-1425-4984-8c79-592c27302c39",
@@ -196,8 +145,8 @@
     {
       "parameters": {
         "content": "## Workflow Notificacion Feriados en Argentina",
-        "height": 416,
-        "width": 1200
+        "height": 288,
+        "width": 1104
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
@@ -213,8 +162,8 @@
         "rule": {
           "interval": [
             {
-              "field": "cronExpression",
-              "expression": "0 9 1-7 * 5"
+              "field": "months",
+              "triggerAtHour": 10
             }
           ]
         }
@@ -227,6 +176,19 @@
       ],
       "id": "37f22a4c-af55-48fc-9e37-b30fa8bbd98a",
       "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst diasArray = input.dias || [];\nconst mes = input.mes;\n\nif (!diasArray.length) {\n  return [{ message: `¡Hola <@315334366827905024>! Este mes de ${mes} no hay feriados 🎉` }];\n}\n\nif (diasArray.length === 1) {\n  return [{ message: `¡Hola <@315334366827905024>! El ${diasArray[0]} de ${mes} es feriado 📅` }];\n}\n\nreturn [{ message: `¡Hola <@315334366827905024>! Los días ${diasArray.join(\", \")} de ${mes} son feriados 🎊` }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        640,
+        -368
+      ],
+      "id": "707ab2bf-37da-4c04-b81e-469ffd3525db",
+      "name": "Code1"
     }
   ],
   "pinData": {},
@@ -242,6 +204,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-09-01T20:48:55.000Z",
-  "versionId": "bd4bd14b-c82a-4287-bac7-472e0d8cb317"
+  "updatedAt": "2025-09-10T04:02:53.000Z",
+  "versionId": "9dc31a57-c181-4873-8205-5521993ac9a7"
 }
