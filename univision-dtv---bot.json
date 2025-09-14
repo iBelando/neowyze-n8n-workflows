@@ -468,7 +468,7 @@
       "parameters": {
         "toolDescription": "Cuando el cliente proporcione sus datos personales y seleccione un plan,\ngenera un objeto JSON siguiendo estrictamente este contrato:\n\n{\n  \"email\": \"\",\n  \"first_name\": \"\",\n  \"last_name\": \"\",\n  \"phone\": \"\",\n  \"plan\": \"\",\n  \"source\": \"Meta Ads\",\n  \"status\": \"Prospecto\"\n}\n\n- No agregues ni quites propiedades.  \n- Rellena los valores con la información proporcionada.",
         "method": "POST",
-        "url": "https://bff.scalix.neowyze.tech/api/leads",
+        "url": "https://api.scalix.neowyze.tech/api/leads",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('JSON', ``, 'json') }}",
@@ -523,6 +523,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-09-12T13:37:15.000Z",
-  "versionId": "bc09cb98-1b2c-4a86-aa8f-2f5de766811b"
+  "updatedAt": "2025-09-14T18:46:07.000Z",
+  "versionId": "322e429a-ddc5-4237-97e8-7487c631b9e3"
 }
