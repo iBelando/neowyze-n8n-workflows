@@ -1,7 +1,84 @@
 {
   "active": true,
   "connections": {
-    "Verificación": {
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getCategories1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getProducts1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getMayoristas1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
       "main": [
         [
           {
@@ -12,414 +89,82 @@
         ]
       ]
     },
-    "WhatsApp Trigger": {
+    "If": {
       "main": [
         [
           {
-            "node": "Verifico si es un envío de mensajes",
+            "node": "AI Agent1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Switch": {
+    "Code": {
       "main": [
         [
           {
-            "node": "Code3",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "WhatsApp Business Cloud",
+            "node": "If1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Verifico si es un envío de mensajes": {
+    "If1": {
       "main": [
+        [],
         [
           {
-            "node": "Switch",
+            "node": "If",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "When clicking ‘Test workflow’": {
-      "main": [
-        [
-          {
-            "node": "Chat Memory Manager4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code3": {
-      "main": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Simple Memory2": {
-      "ai_memory": [
-        [
-          {
-            "node": "Chat Memory Manager4",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Simple Memory3": {
-      "ai_memory": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "AI Agent": {
-      "main": [
-        [
-          {
-            "node": "Envío mensaje de texto",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "createOrder": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
             "index": 0
           }
         ]
       ]
     }
   },
-  "createdAt": "2025-08-08T13:46:14.017Z",
-  "id": "WeH7E9vOope7OCJ2",
+  "createdAt": "2025-09-15T03:32:37.771Z",
+  "id": "10uKwDYWBg31lXB4",
   "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Green Fire - Bot",
+  "name": "Oro Verde - Bot",
   "nodes": [
     {
       "parameters": {
-        "path": "green-fire",
+        "httpMethod": "POST",
+        "path": "ff4e3e2a-ffb5-4291-aa30-916a867d2228",
         "responseMode": "responseNode",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        -304,
-        352
-      ],
-      "id": "d87035eb-8ff6-4bbe-965b-1009fb264cf9",
-      "name": "Verificación",
-      "webhookId": "6423f6bb-b3dc-4db4-a895-f9d8d9242688"
-    },
-    {
-      "parameters": {
-        "respondWith": "text",
-        "responseBody": "={{ $json.query['hub.challenge'] }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.1,
+      "typeVersion": 2.1,
       "position": [
         -48,
-        352
+        1120
       ],
-      "id": "e8e82475-a8aa-46b7-9464-df3919da999f",
-      "name": "Respond to Webhook"
-    },
-    {
-      "parameters": {
-        "updates": [
-          "messages"
-        ],
-        "options": {}
-      },
-      "type": "n8n-nodes-base.whatsAppTrigger",
-      "typeVersion": 1,
-      "position": [
-        -400,
-        912
-      ],
-      "id": "5677d084-810b-49ba-b146-8b30dc572d42",
-      "name": "WhatsApp Trigger",
-      "webhookId": "3583ec92-0977-436c-9056-486f674c0f7e",
-      "credentials": {
-        "whatsAppTriggerApi": {
-          "id": "wYASJpHv77iE8nCN",
-          "name": "Green Fire"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 2
-                },
-                "conditions": [
-                  {
-                    "id": "84103cd2-106a-4276-a311-958b928812e0",
-                    "leftValue": "={{ $json.messages[0].text.body }}",
-                    "rightValue": "",
-                    "operator": {
-                      "type": "string",
-                      "operation": "notEmpty",
-                      "singleValue": true
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 2
-                },
-                "conditions": [
-                  {
-                    "id": "723efa4e-bb2c-420b-93e8-9e0a3f554cd5",
-                    "leftValue": "={{ $json.messages[0].type }}",
-                    "rightValue": "text",
-                    "operator": {
-                      "type": "string",
-                      "operation": "notEquals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3.2,
-      "position": [
-        48,
-        800
-      ],
-      "id": "7778a14a-5120-4bf9-88ed-f2f357af93ab",
-      "name": "Switch"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "f9339f1e-3c29-4a43-b742-e343c225ebc1",
-              "leftValue": "={{ $json.messages[0] }}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "looseTypeValidation": true,
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        -176,
-        912
-      ],
-      "id": "a470d4c3-b166-4dc0-a369-35e6dc1b0bea",
-      "name": "Verifico si es un envío de mensajes"
-    },
-    {
-      "parameters": {
-        "operation": "send",
-        "phoneNumberId": "691649007368841",
-        "recipientPhoneNumber": "=542214363975",
-        "textBody": "={{$json.output}}",
-        "additionalFields": {}
-      },
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1,
-      "position": [
-        1264,
-        624
-      ],
-      "id": "cbeddf34-0a3c-4cfa-8b6f-23fc7e76665c",
-      "name": "Envío mensaje de texto",
-      "webhookId": "670adcb7-8150-4faf-8044-4d2bea064089",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "m00qyupgEwVN6Nim",
-          "name": "Green Fire - Whatsapp"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "content": "## Verificación\n**Acá se realiza la verificación del webhook**",
-        "height": 320,
-        "width": 620
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -368,
-        224
-      ],
-      "typeVersion": 1,
-      "id": "029646e0-b9fe-4da8-8c9d-3cf7462dd434",
-      "name": "Sticky Note"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -448,
-        1680
-      ],
-      "id": "e96c3750-a659-4ded-bf83-b5eca53ac338",
-      "name": "When clicking ‘Test workflow’"
-    },
-    {
-      "parameters": {
-        "jsCode": "const dbMessages = $input.first().json.messages.map(message => {\n    const key = Object.keys(message)[0];\n    const value = message[key];\n    \n    return {\n      role: key === \"human\" ? \"user\" : key,\n      content: value\n    };\n})\n\nconst messages = [...dbMessages, {\"role\": \"user\", \"content\": $('Switch').item.json.messages[0].text.body }]\n\nreturn {data: messages};"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        352,
-        624
-      ],
-      "id": "292df775-4265-443d-83d2-2e88f62d89aa",
-      "name": "Code3"
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryManager",
-      "typeVersion": 1.1,
-      "position": [
-        -224,
-        1680
-      ],
-      "id": "e674c2cc-1c89-431a-8fb6-d0e6faeefbd0",
-      "name": "Chat Memory Manager4"
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "5492214363975",
-        "contextWindowLength": 10
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        -96,
-        1920
-      ],
-      "id": "1dee1f49-439e-40a1-b381-294eabcd183c",
-      "name": "Simple Memory2"
-    },
-    {
-      "parameters": {
-        "operation": "send",
-        "phoneNumberId": "691649007368841",
-        "recipientPhoneNumber": "542214363975",
-        "textBody": "=Hola, gracias por escribir. Te comento que no está permitido enviar archivos multimedia (imágenes, videos, audios, etc.) por esta vía.\n\nPodés contarme lo que necesitás de forma escrita: una descripción, tu consulta o los datos que quieras compartir. Así podré ayudarte sin inconvenientes.",
-        "additionalFields": {}
-      },
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1,
-      "position": [
-        352,
-        928
-      ],
-      "id": "f2dc120e-a839-43b5-b2f2-d8cc5a7b0930",
-      "name": "WhatsApp Business Cloud",
-      "webhookId": "bce95f12-fff1-4734-a1b4-c4afdd307010",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "m00qyupgEwVN6Nim",
-          "name": "Green Fire - Whatsapp"
-        }
-      }
+      "id": "26d4aa1d-5ec7-41ff-99e6-a8c9593de605",
+      "name": "Webhook",
+      "webhookId": "ff4e3e2a-ffb5-4291-aa30-916a867d2228"
     },
     {
       "parameters": {
         "promptType": "define",
-        "text": "={{ $json.data.toJsonString() }}",
+        "text": "={{ $('Webhook').item.json.body.content }}",
         "options": {
-          "systemMessage": "=Eres un asistente virtual para Oro Verde Grow, un growshop ubicado en Rafaela, Argentina.  \nTu objetivo es ayudar a los clientes a descubrir y explorar productos de cultivo a través de WhatsApp de forma clara, directa y cordial.\n\n⚡ Reglas generales:\n- Siempre sigue el flujo de conversación definido.  \n- No repitas el saludo si el cliente ya está en medio de la interacción.  \n- Usa únicamente información devuelta por los nodos `getCategories`,  `getProducts` y `createOrder`.  \n- Nunca inventes categorías, marcas, productos o precios. \n- Mensajes cortos, naturales y fáciles de leer, usando expresiones argentinas (ej: \"mirá\", \"dale\", \"fijate\").  \n- Agrupa máximo 5–7 productos por mensaje.  \n- Siempre cierra con una pregunta para mantener la conversación.\n\n⚡ Contexto del negocio:\n- Nombre: Oro Verde Grow  \n- Sitio web: https://oroverdegrow.ar  \n- Ubicación: Rafaela, Argentina  \n- Zona de atención: Rafaela y alrededores  \n- Productos principales: consultar en `getProducts`  \n\n⚡ Flujo de conversación:\n1. **Inicio / Saludo**  \n   - Saluda cordialmente\n   - Luego, pregunta en qué categoría de producto está interesado.  \n   - Usa el nodo `getCategories` para mostrar opciones.\n\n2. **Seleccionar categoría**  \n   - Una vez que el usuario elige una categoría, consulta por la marca de interés dentro de esa categoría.\n\n3. **Seleccionar marca**  \n   - Filtra marcas disponibles usando `getProducts` y pregunta cuál prefiere.\n\n4. **Mostrar productos**  \n   - Con la categoría y la marca elegida, muestra productos:  \n     🌱 NOMBRE – MARCA  \n     📄 DESCRIPCIÓN  \n     💸 PRECIO  \n     🔗 [Ver más en la web](https://oroverdegrow.ar/producto-slug)  \n   - Si hay combos, agregarlos después del listado.  \n   - Cierra con: \"¿Querés saber más sobre alguno o te paso otra opción?\"\n\n5. **Proceso de pedido**\n   - Cuando el cliente quiera hacer un pedido , inicia la recolección de datos:\n   a) Solicitar nombre: \"Perfecto! Para procesar tu pedido necesito algunos datos.\n¿Cuál es tu nombre completo?\"\n\n   b) Solicitar correo: \"Gracias [NOMBRE]. ¿Cuál es tu correo electrónico?\"\n\n   c) Solicitar número: \"Perfecto. ¿Cuál es tu número de teléfono?\"\n\n   d) Solicitar pedido: \"Excelente. Ahora contame qué productos querés pedir. Podés escribir:\n\n   - Nombres de productos específicos\n   - Cantidades\n   - Cualquier detalle especial\"\n   e) Confirmar pedido: \"Perfecto! Te confirmo tu pedido:\n\n  👤 Nombre: [NOMBRE]\n  📧 Correo: [CORREO]\n  📱 Teléfono: [NUMERO]\n  🛒 Pedido: [DETALLE_PEDIDO]\n\n  ¿Está todo correcto? Escribí 'SÍ' para confirmar o 'NO' para modificar algo.\"\n\n  f) Guardar en Google Sheets:\n\n  - Si confirma: usar `createOrder` con los datos recolectados\n  - Responder: \"¡Listo! Tu pedido fue registrado correctamente. Nos vamos a contactar pronto para coordinar la entrega. ¡Gracias por elegir Oro Verde Grow! 🌱\"\n  - Si no confirma: preguntar qué quiere modificar y volver al paso correspondiente\n\n6. **Agregar más / cerrar interacción**  \n   - Pregunta: \"¿Querés ver otra categoría o algún otro producto?\"  \n   - Si el cliente indica que no, cierra con un mensaje cordial:  \n     \"Genial! Cualquier cosa escribinos de nuevo y te ayudamos al toque. Gracias por elegir Oro Verde Grow 🌱\""
+          "systemMessage": "=Eres un asistente virtual para Oro Verde Grow, un growshop ubicado en Rafaela, Argentina.  \nTu objetivo es ayudar a los clientes a descubrir y explorar productos de cultivo a través de WhatsApp de forma clara, directa y cordial.\n\n⚡ Reglas generales:\n- Siempre sigue el flujo de conversación definido.  \n- No repitas el saludo si el cliente ya está en medio de la interacción.  \n- Usa únicamente información devuelta por los nodos `getMayoristas`, `getCategories` y `getProducts`.  \n- Nunca inventes categorías, marcas, productos o precios. \n- Mensajes cortos, naturales y fáciles de leer, usando expresiones argentinas (ej: \"mirá\", \"dale\", \"fijate\").  \n- Agrupa máximo 5–7 productos por mensaje.  \n- Siempre cierra con una pregunta para mantener la conversación.\n\n⚡ Contexto del negocio:\n- Nombre: Oro Verde Grow  \n- Sitio web: https://oroverdegrow.ar  \n- Ubicación: Rafaela, Argentina  \n- Zona de atención: Rafaela y alrededores  \n- Productos principales: consultar en `getProducts`  \n\n⚡ Flujo de conversación:\n1. **Inicio / Saludo**  \n   - Saluda cordialmente\n   - Luego, pregunta en qué categoría de producto está interesado.  \n   - Usa el nodo `getCategories` para mostrar opciones.\n\n2. **Mayorista**\n- Si el cliente solicita la lista de mayoristas, utiliza `getMayoristas` para verificar si el número del cliente pertenece a un mayorista, si pertenece responder:\n  \"Te comparto el link para mayorista: https://catalogo.duxsoftware.com.ar/mayorista-oroverde\"\nSi el numero no pertenece, responder: \"Lo siento, solo podemos compartírsela a mayoristas\"\n\n3. **Seleccionar categoría**  \n   - Una vez que el usuario elige una categoría, consulta por la marca de interés dentro de esa categoría.\n\n4. **Seleccionar marca**  \n   - Filtra marcas disponibles usando `getProducts` y pregunta cuál prefiere.\n\n5. **Mostrar productos**  \n   - Con la categoría y la marca elegida, muestra productos:  \n     🌱 NOMBRE – MARCA  \n     📄 DESCRIPCIÓN  \n     💸 PRECIO  \n     🔗 [Ver más en la web](https://oroverdegrow.ar/producto-slug)  \n   - Si hay combos, agregarlos después del listado.  \n   - Cierra con: \"¿Querés saber más sobre alguno o te paso otra opción?\"\n\n6. **Agregar más / cerrar interacción**  \n   - Pregunta: \"¿Querés ver otra categoría o algún otro producto?\"  \n   - Si el cliente indica que no, cierra con un mensaje cordial:  \n     \"Genial! Cualquier cosa escribinos de nuevo y te ayudamos al toque. Gracias por elegir Oro Verde Grow 🌱\""
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        816,
-        624
+        1104,
+        1120
       ],
-      "id": "70c63367-e9da-49fd-9a0b-a72a59c3f02f",
-      "name": "AI Agent"
+      "id": "aece92e3-9b75-48f3-86b3-303da108b8ac",
+      "name": "AI Agent1"
     },
     {
       "parameters": {
@@ -436,149 +181,445 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        736,
-        864
+        1008,
+        1360
       ],
-      "id": "5b0635f2-dcbf-4f0f-a9df-8606132dedec",
-      "name": "OpenAI Chat Model",
+      "id": "01cbba4c-f950-4fc7-9bd0-4432d90c9ca7",
+      "name": "OpenAI Chat Model1",
       "credentials": {
         "openAiApi": {
-          "id": "Bq3GA8Z6Aqwtv5dl",
-          "name": "Green Fire - OpenIA"
+          "id": "EWsMqU8CMSqu4Q3V",
+          "name": "Oro Verde - Open AI"
         }
       }
     },
     {
       "parameters": {
         "sessionIdType": "customKey",
-        "sessionKey": "={{ $('Switch').item.json.messages[0].from }}",
-        "contextWindowLength": 10
+        "sessionKey": "={{ $('Webhook').item.json.body.id }}"
       },
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        912,
-        864
+        1200,
+        1360
       ],
-      "id": "d9142128-729b-4178-aa4f-7659c729485e",
-      "name": "Simple Memory3"
+      "id": "6864825e-79b2-4a20-a289-fa47df7baa1a",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Retrieve Categories Information\n\nUse this tool to get the list of product categories available in Oro Verde Grow.\n\nResponse contains:\n- id: Unique category ID\n- name: Category name\n- slug: URL-friendly slug\n- description: Category description\n- parent: Parent category ID (0 if top-level)\n- count: Number of products in this category\n- image: URL to category image\n- link: URL to category page\n- total_categories: Total number of categories\n\nUsage:\nThis tool should be called whenever you need to present the available categories to the user.",
+        "url": "https://oroverdegrow.ar/wp-json/oroverde/v1/categorias",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        1488,
+        1360
+      ],
+      "id": "bfe4b68d-eda8-4c29-bd63-6f153fe30fa5",
+      "name": "getCategories1"
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Retrieve Products Information\n\nUse this tool to get details about products in Oro Verde Grow.\n\nResponse contains:\n- id: Product ID\n- name: Product name\n- slug: URL-friendly slug\n- price: Product price\n- description: Product description\n- categories: List of categories the product belongs to\n- image: URL to product image\n- stock_status: Stock availability (e.g., \"instock\")\n- pagination:\n  - total_products: Total number of products matching the query\n  - total_pages: Number of pages\n  - current_page: Current page number\n  - products_per_page: Number of products per page\n\nUsage:\nThis tool should be called whenever you need to show products filtered by category and/or search term to the user.",
+        "url": "https://oroverdegrow.ar/wp-json/oroverde/v1/productos",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "categoria",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters0_Value', ``, 'string') }}"
+            },
+            {
+              "name": "busqueda",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters1_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        1664,
+        1360
+      ],
+      "id": "f1a105c6-4935-440f-888c-85cd4a51ebec",
+      "name": "getProducts1"
     },
     {
       "parameters": {
         "descriptionType": "manual",
-        "toolDescription": "=Create new order\n\nUse this tool to create order from Oro Verde Grow.\n\nBody contains:\n- name: Name from client\n- email: Email from client\n- phone: Phone from client\n- order: Order from client\n\nUsage:\nThis tool should be called whenever client provide all your data",
-        "operation": "append",
+        "toolDescription": "Retrieve Wholesalers Information\n\nUse this tool to find wholesalers from Oro Verde Grow.\n\nResponse contains:\n- phone: Phone number from wholesaler\n\nUsage:\nThis tool should be called whenever you need verify if client is a wholesaler",
         "documentId": {
           "__rl": true,
-          "value": "1NhyfNzx6j1dHQhWtl7NlzfUxZ495RYpr-glR2xGlxaM",
+          "value": "1QD-CBqfkORSmK0U_DtcpTzfAXeEkcicr63Ni3naO0JQ",
           "mode": "list",
-          "cachedResultName": "Test Green Fire - Pedidos",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NhyfNzx6j1dHQhWtl7NlzfUxZ495RYpr-glR2xGlxaM/edit?usp=drivesdk"
+          "cachedResultName": "Test Mayorista - Oro Verde",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QD-CBqfkORSmK0U_DtcpTzfAXeEkcicr63Ni3naO0JQ/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 133052478,
           "mode": "list",
           "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NhyfNzx6j1dHQhWtl7NlzfUxZ495RYpr-glR2xGlxaM/edit#gid=133052478"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QD-CBqfkORSmK0U_DtcpTzfAXeEkcicr63Ni3naO0JQ/edit#gid=133052478"
         },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "Nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre', ``, 'string') }}",
-            "Numero": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Numero', ``, 'string') }}",
-            "Correo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Correo', ``, 'string') }}",
-            "Pedido": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Pedido', ``, 'string') }}"
-          },
-          "matchingColumns": [],
-          "schema": [
+        "filtersUI": {
+          "values": [
             {
-              "id": "Nombre",
-              "displayName": "Nombre",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Numero",
-              "displayName": "Numero",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Correo",
-              "displayName": "Correo",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Pedido",
-              "displayName": "Pedido",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
+              "lookupColumn": "Telefono",
+              "lookupValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values0_Value', ``, 'string') }}"
             }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
+          ]
         },
         "options": {}
       },
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        1104,
-        864
+        1344,
+        1360
       ],
-      "id": "1cc4f9b0-50a4-4f2a-9992-a30e2f1021ed",
-      "name": "createOrder",
+      "id": "f8c4b9fc-b8f4-4f14-b682-0e41522d0401",
+      "name": "getMayoristas1",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "kqgmSDLONnt16S11",
-          "name": "Green Fire - Google Sheets"
+          "id": "tcYjJbLS3otsYnxI",
+          "name": "Oro Verde - Green Fire"
         }
       }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://app.chatwoot.com/api/v1/accounts/{{ $('Webhook').item.json.body.account.id }}/conversations/{{ $('Webhook').item.json.body.conversation.id }}/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "content",
+              "value": "={{ $json.output }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1664,
+        1120
+      ],
+      "id": "97adc6b4-175b-48c2-ac52-33de2dfdbaa8",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Xse6CKLEHcvWY1c0",
+          "name": "Chatwoot Oro Verde"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "30beb948-ad09-43ca-9256-3df3c545bb9e",
+              "leftValue": "={{ $('Webhook').item.json.body.message_type }}",
+              "rightValue": "incoming",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        784,
+        1136
+      ],
+      "id": "bcf8a571-c7eb-4898-bdeb-4526ac69f9f7",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1872,
+        1120
+      ],
+      "id": "c2177fd9-22b6-4c02-b22e-469402abd187",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const labels = $input.first().json.body.conversation.labels;\n\nconst result = labels.map(label => ({\n  label,\n  isHumano: label === \"humano\"\n}));\n\nreturn result;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        160,
+        1120
+      ],
+      "id": "d3c5b7b1-576b-45f9-aa81-a9ec5cbe597e",
+      "name": "Code",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d3c374bd-6095-47bd-81de-4f26af4a754d",
+              "leftValue": "={{ $json.isHumano }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "f4bb1546-3278-4b5e-a16e-fe30600a3540",
+              "leftValue": "={{ $json.isHumano }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        368,
+        1120
+      ],
+      "id": "7a1f4bc6-f29f-4473-848d-9268bb326f74",
+      "name": "If1"
     }
   ],
   "pinData": {
-    "When clicking ‘Test workflow’": [
+    "Webhook": [
       {
         "json": {
-          "messaging_product": "whatsapp",
-          "metadata": {
-            "display_phone_number": "15556644593",
-            "phone_number_id": "691649007368841"
+          "headers": {
+            "host": "n8n.neowyze.tech",
+            "user-agent": "rest-client/2.1.0 (linux x86_64) ruby/3.4.4p34",
+            "content-length": "3045",
+            "accept": "application/json",
+            "accept-encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+            "baggage": "sentry-trace_id=7787f471ae064d198b8f74ede37167cc,sentry-environment=production,sentry-release=59ba91473a66718195690af31f8cf689dbe15ad6,sentry-public_key=8e13c09a3ceb4e60bfe1bd84f799a3f8",
+            "content-type": "application/json",
+            "sentry-trace": "7787f471ae064d198b8f74ede37167cc-9d3a935b4d70457d",
+            "via": "1.1 Caddy",
+            "x-forwarded-for": "3.213.197.223",
+            "x-forwarded-host": "n8n.neowyze.tech",
+            "x-forwarded-proto": "https"
           },
-          "contacts": [
-            {
-              "profile": {
-                "name": "criisgese14"
+          "params": {},
+          "query": {},
+          "body": {
+            "account": {
+              "id": 134605,
+              "name": "Oro Verde"
+            },
+            "additional_attributes": {},
+            "content_attributes": {
+              "in_reply_to": null
+            },
+            "content_type": "text",
+            "content": "hola",
+            "conversation": {
+              "additional_attributes": {
+                "browser": {
+                  "device_name": "Unknown",
+                  "browser_name": "Chrome",
+                  "platform_name": "macOS",
+                  "browser_version": "140.0.0.0",
+                  "platform_version": "10.15.7"
+                },
+                "referer": "https://oroverdegrow.ar/",
+                "initiated_at": {
+                  "timestamp": "Sun Sep 14 2025 23:53:30 GMT-0300 (Argentina Standard Time)"
+                },
+                "browser_language": "es"
               },
-              "wa_id": "5492214363975"
-            }
-          ],
-          "messages": [
-            {
-              "from": "5492214363975",
-              "id": "wamid.HBgNNTQ5MjIxNDM2Mzk3NRUCABIYIEU4RTRENkU3ODM5ODc0NjAxMkMxNDE5NTU0MDFBRjEzAA==",
-              "timestamp": "1751983360",
-              "text": {
-                "body": "Buenas"
+              "can_reply": true,
+              "channel": "Channel::WebWidget",
+              "contact_inbox": {
+                "id": 482897273,
+                "contact_id": 484571801,
+                "inbox_id": 77015,
+                "source_id": "6f6133b0-effc-4a27-b35f-e10a2007d679",
+                "created_at": "2025-09-15T02:53:07.824Z",
+                "updated_at": "2025-09-15T02:53:07.824Z",
+                "hmac_verified": false,
+                "pubsub_token": "JxyNBLHBk2ehq6x8H7Qxnnau"
               },
-              "type": "text"
-            }
-          ],
-          "field": "messages"
+              "id": 1,
+              "inbox_id": 77015,
+              "messages": [
+                {
+                  "id": 276566646,
+                  "content": "hola",
+                  "account_id": 134605,
+                  "inbox_id": 77015,
+                  "conversation_id": 1,
+                  "message_type": 0,
+                  "created_at": 1757909909,
+                  "updated_at": "2025-09-15T04:18:29.918Z",
+                  "private": false,
+                  "status": "sent",
+                  "source_id": null,
+                  "content_type": "text",
+                  "content_attributes": {
+                    "in_reply_to": null
+                  },
+                  "sender_type": "Contact",
+                  "sender_id": 484571801,
+                  "external_source_ids": {},
+                  "additional_attributes": {},
+                  "processed_message_content": "hola",
+                  "sentiment": {},
+                  "conversation": {
+                    "assignee_id": 140222,
+                    "unread_count": 1,
+                    "last_activity_at": 1757909909,
+                    "contact_inbox": {
+                      "source_id": "6f6133b0-effc-4a27-b35f-e10a2007d679"
+                    }
+                  },
+                  "sender": {
+                    "additional_attributes": {
+                      "city": "Moreno",
+                      "country": "Argentina",
+                      "country_code": "AR",
+                      "created_at_ip": "181.94.93.180"
+                    },
+                    "custom_attributes": {},
+                    "email": null,
+                    "id": 484571801,
+                    "identifier": null,
+                    "name": "blue-sunset-122",
+                    "phone_number": null,
+                    "thumbnail": "",
+                    "blocked": false,
+                    "type": "contact"
+                  }
+                }
+              ],
+              "labels": [],
+              "meta": {
+                "sender": {
+                  "additional_attributes": {
+                    "city": "Moreno",
+                    "country": "Argentina",
+                    "country_code": "AR",
+                    "created_at_ip": "181.94.93.180"
+                  },
+                  "custom_attributes": {},
+                  "email": null,
+                  "id": 484571801,
+                  "identifier": null,
+                  "name": "blue-sunset-122",
+                  "phone_number": null,
+                  "thumbnail": "",
+                  "blocked": false,
+                  "type": "contact"
+                },
+                "assignee": {
+                  "id": 140222,
+                  "name": "Chatbot",
+                  "available_name": "Chatbot",
+                  "avatar_url": "",
+                  "type": "user",
+                  "availability_status": null,
+                  "thumbnail": ""
+                },
+                "team": null,
+                "hmac_verified": false
+              },
+              "status": "open",
+              "custom_attributes": {},
+              "snoozed_until": null,
+              "unread_count": 1,
+              "first_reply_created_at": null,
+              "priority": null,
+              "waiting_since": 1757904970,
+              "agent_last_seen_at": 1757909838,
+              "contact_last_seen_at": 1757909838,
+              "last_activity_at": 1757909909,
+              "timestamp": 1757909909,
+              "created_at": 1757904810,
+              "updated_at": 1757909909.9226744
+            },
+            "created_at": "2025-09-15T04:18:29.918Z",
+            "id": 276566646,
+            "inbox": {
+              "id": 77015,
+              "name": "Oro Verde Growshop"
+            },
+            "message_type": "incoming",
+            "private": false,
+            "sender": {
+              "account": {
+                "id": 134605,
+                "name": "Oro Verde"
+              },
+              "additional_attributes": {
+                "city": "Moreno",
+                "country": "Argentina",
+                "country_code": "AR",
+                "created_at_ip": "181.94.93.180"
+              },
+              "avatar": "",
+              "custom_attributes": {},
+              "email": null,
+              "id": 484571801,
+              "identifier": null,
+              "name": "blue-sunset-122",
+              "phone_number": null,
+              "thumbnail": "",
+              "blocked": false
+            },
+            "source_id": null,
+            "event": "message_created"
+          },
+          "webhookUrl": "https://n8n.neowyze.tech/webhook/ff4e3e2a-ffb5-4291-aa30-916a867d2228",
+          "executionMode": "production"
         }
       }
     ]
@@ -588,7 +629,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 2,
-  "updatedAt": "2025-09-08T19:05:58.000Z",
-  "versionId": "3eb91df8-b9ac-41c0-9d41-1c3f21dbe028"
+  "triggerCount": 1,
+  "updatedAt": "2025-09-15T04:22:16.000Z",
+  "versionId": "0893835b-c47a-4eb7-922b-e7d66201d772"
 }
