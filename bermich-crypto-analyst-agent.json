@@ -70,7 +70,7 @@
     },
     {
       "parameters": {
-        "url": "=https://api.kucoin.com/api/v1/market/candles?symbol={{ $json.chatInput.toUpperCase() }}-USDT&type=5min\n",
+        "url": "=https://api.kucoin.com/api/v1/market/candles?symbol={{ $json.chatInput.toUpperCase() }}-USDT&type=1hour\n",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -98,7 +98,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Analiza {{ $('When chat message received').item.json.chatInput.toUpperCase() }} en timeframe de 5 minutos con los siguientes datos:\n\nPrecio actual: {{ $json.lastClose }}\nEMA5: {{ $json.lastEma5 }} ({{ $json.emaSignalShort }}) \nEMA9: {{ $json.lastEma9 }} \nEMA21: {{ $json.lastEma21 }} \nRSI14: {{ $json.lastRsi14 }} ({{ $json.rsiSignalShort }}) Volumen: {{ $json.lastVolume }} (prom5: {{ $json.avgVolume5 }}, {{ $json.volumeSignal5 }}) \nMomentum corto: {{ $json.momentumShort }} \n\nDa una única recomendación inmediata en **exactamente uno** de estos tres formatos, sin agregar palabras adicionales ni explicaciones fuera del corchete: \n\n- Long en X con objetivo Y porque [razón concreta] \n- Short en X con objetivo Y porque [razón concreta] \n- Esperar en X porque [razón concreta] \n\nDonde: \n- X = {{ $json.lastClose }} \n- Y = resistencia cercana si es Long o soporte cercano si es Short. \n\n- Reglas: \n1. Si volumen < promedio5 → siempre \"Esperar\". \n2. Si RSI > 65 → \"Short\" (si EMA y Momentum no contradicen). \n3. Si RSI < 35 → \"Long\" (si EMA y Momentum no contradicen). \n4. Si RSI neutral: \n- Si EMA5 > EMA9 y Momentum > 0 → \"Long\". \n- Si EMA5 < EMA9 y Momentum < 0 → \"Short\". \n5. Solo \"Esperar\" si volumen es bajo o las señales son totalmente contradictorias. \n\nNo uses frases vagas como \"alrededor de la resistencia cercana\" → escribe siempre **solo \"resistencia cercana\" o \"soporte cercano\"**.",
+        "text": "=Analiza {{ $('When chat message received').item.json.chatInput.toUpperCase() }} en timeframe de 1 hora con los siguientes datos:\n\nPrecio actual: {{ $json.lastClose }}\nEMA5: {{ $json.lastEma5 }} ({{ $json.emaSignalShort }}) \nEMA9: {{ $json.lastEma9 }} \nEMA21: {{ $json.lastEma21 }} \nRSI14: {{ $json.lastRsi14 }} ({{ $json.rsiSignalShort }}) Volumen: {{ $json.lastVolume }} (prom5: {{ $json.avgVolume5 }}, {{ $json.volumeSignal5 }}) \nMomentum corto: {{ $json.momentumShort }} \n\nDa una única recomendación inmediata en **exactamente uno** de estos tres formatos, sin agregar palabras adicionales ni explicaciones fuera del corchete: \n\n- Long en X con objetivo Y porque [razón concreta] \n- Short en X con objetivo Y porque [razón concreta] \n- Esperar en X porque [razón concreta] \n\nDonde: \n- X = {{ $json.lastClose }} \n- Y = resistencia cercana si es Long o soporte cercano si es Short. \n\n- Reglas: \n1. Si volumen < promedio5 → siempre \"Esperar\". \n2. Si RSI > 65 → \"Short\" (si EMA y Momentum no contradicen). \n3. Si RSI < 35 → \"Long\" (si EMA y Momentum no contradicen). \n4. Si RSI neutral: \n- Si EMA5 > EMA9 y Momentum > 0 → \"Long\". \n- Si EMA5 < EMA9 y Momentum < 0 → \"Short\". \n5. Solo \"Esperar\" si volumen es bajo o las señales son totalmente contradictorias. \n\nNo uses frases vagas como \"alrededor de la resistencia cercana\" → escribe siempre **solo \"resistencia cercana\" o \"soporte cercano\"**.",
         "batching": {}
       },
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
@@ -143,6 +143,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-24T18:41:12.000Z",
-  "versionId": "846954dd-89a2-43bf-a60e-ebbf26ac1684"
+  "updatedAt": "2025-09-20T13:18:14.000Z",
+  "versionId": "f7383158-19d8-4523-821b-23e7c59411e9"
 }
