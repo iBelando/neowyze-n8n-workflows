@@ -1,84 +1,33 @@
 {
   "active": true,
   "connections": {
-    "Verificación": {
+    "When chat message received": {
       "main": [
         [
           {
-            "node": "Respond to Webhook",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Switch": {
+    "HTTP Request": {
       "main": [
         [
           {
-            "node": "Code3",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "WhatsApp Business Cloud",
+            "node": "Code",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Verifico si es un envío de mensajes": {
+    "Code": {
       "main": [
         [
           {
-            "node": "Switch",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "When clicking ‘Test workflow’": {
-      "main": [
-        [
-          {
-            "node": "Chat Memory Manager4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code3": {
-      "main": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Simple Memory2": {
-      "ai_memory": [
-        [
-          {
-            "node": "Chat Memory Manager4",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "WhatsApp Trigger": {
-      "main": [
-        [
-          {
-            "node": "Verifico si es un envío de mensajes",
+            "node": "Basic LLM Chain",
             "type": "main",
             "index": 0
           }
@@ -89,338 +38,77 @@
       "ai_languageModel": [
         [
           {
-            "node": "AI Agent",
+            "node": "Basic LLM Chain",
             "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Simple Memory3": {
-      "ai_memory": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "AI Agent": {
-      "main": [
-        [
-          {
-            "node": "Envío mensaje de texto",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "createLead": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
             "index": 0
           }
         ]
       ]
     }
   },
-  "createdAt": "2025-07-14T19:43:00.519Z",
-  "id": "v2iGG6OFDDSAWoQ9",
+  "createdAt": "2025-08-21T00:40:10.194Z",
+  "id": "IGfZZID7aGB2qpde",
   "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Univision Dtv - Bot",
+  "name": "[BerMich] Crypto Analyst Agent",
   "nodes": [
     {
       "parameters": {
-        "path": "univision",
-        "responseMode": "responseNode",
         "options": {}
       },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        64,
-        128
-      ],
-      "id": "e1cde871-9ad8-42a3-b747-fae31181f5a8",
-      "name": "Verificación",
-      "webhookId": "6423f6bb-b3dc-4db4-a895-f9d8d9242688"
-    },
-    {
-      "parameters": {
-        "respondWith": "text",
-        "responseBody": "={{ $json.query['hub.challenge'] }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.1,
-      "position": [
-        320,
-        128
-      ],
-      "id": "3358753b-889e-41bf-af9e-5c84ee9cfb36",
-      "name": "Respond to Webhook"
-    },
-    {
-      "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 2
-                },
-                "conditions": [
-                  {
-                    "id": "84103cd2-106a-4276-a311-958b928812e0",
-                    "leftValue": "={{ $json.messages[0].text.body }}",
-                    "rightValue": "",
-                    "operator": {
-                      "type": "string",
-                      "operation": "notEmpty",
-                      "singleValue": true
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 2
-                },
-                "conditions": [
-                  {
-                    "id": "36882f24-4999-4a65-90d3-50ae1da2faa1",
-                    "leftValue": "={{ $json.messages[0].type }}",
-                    "rightValue": "text",
-                    "operator": {
-                      "type": "string",
-                      "operation": "notEquals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3.2,
-      "position": [
-        400,
-        592
-      ],
-      "id": "78a38e10-933a-4504-8fbe-adc41c6636d5",
-      "name": "Switch"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "f9339f1e-3c29-4a43-b742-e343c225ebc1",
-              "leftValue": "={{ $json.messages[0] }}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "looseTypeValidation": true,
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        192,
-        688
-      ],
-      "id": "fc549229-c8c1-4582-afeb-6f6b42daa2c7",
-      "name": "Verifico si es un envío de mensajes"
-    },
-    {
-      "parameters": {
-        "operation": "send",
-        "phoneNumberId": "=763353423520906",
-        "recipientPhoneNumber": "={{$('Switch').item.json.messages[0].from}}",
-        "textBody": "={{$json.output}}",
-        "additionalFields": {}
-      },
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1,
-      "position": [
-        1536,
-        416
-      ],
-      "id": "c76a48a3-b66d-467b-82c9-c5c98cccb195",
-      "name": "Envío mensaje de texto",
-      "webhookId": "670adcb7-8150-4faf-8044-4d2bea064089",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "y4QR4nygt9F9YhH8",
-          "name": "Univision DTV Whatsapp"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "content": "## Verificación\n**Acá se realiza la verificación del webhook**",
-        "height": 320,
-        "width": 620
-      },
-      "type": "n8n-nodes-base.stickyNote",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
       "position": [
         0,
         0
       ],
-      "typeVersion": 1,
-      "id": "7f53ad47-0944-4356-a409-5894cc4d016c",
-      "name": "Sticky Note"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -16,
-        976
-      ],
-      "id": "c86ad733-5eac-4465-a2d6-f4333d887986",
-      "name": "When clicking ‘Test workflow’"
+      "id": "f5cd74cc-af89-476b-b3ae-8d62b9bdd26a",
+      "name": "When chat message received",
+      "webhookId": "69006327-09ab-4741-a867-e1f7efc03597"
     },
     {
       "parameters": {
-        "jsCode": "const dbMessages = $input.first().json.messages.map(message => {\n    const key = Object.keys(message)[0];\n    const value = message[key];\n    \n    return {\n      role: key === \"human\" ? \"user\" : key,\n      content: value\n    };\n})\n\nconst messages = [...dbMessages, {\"role\": \"user\", \"content\": $('Switch').item.json.messages[0].text.body }]\n\nreturn {data: messages};"
+        "url": "=https://api.kucoin.com/api/v1/market/candles?symbol={{ $json.chatInput.toUpperCase() }}-USDT&type=1hour\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "510fbb17-fab1-47c7-8206-4e6d1d8b41bf",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1) Ordenar cronológico (viejo -> nuevo)\nconst rows = items[0].json.data.slice().reverse();\n\n// 2) Mapear con el orden correcto de KuCoin: [t, open, close, high, low, volume, turnover]\nconst candles = rows.map(c => ({\n  time: Number(c[0]) * 1000,       // opcional: ms\n  open: Number(c[1]),\n  close: Number(c[2]),\n  high: Number(c[3]),\n  low: Number(c[4]),\n  volume: Number(c[5]),\n  turnover: Number(c[6])\n}));\n\nconst closes = candles.map(c => c.close);\nconst volumes = candles.map(c => c.volume);\n\n// EMA\nfunction ema(values, period) {\n  const k = 2 / (period + 1);\n  const seed = values.slice(0, period).reduce((a,b)=>a+b, 0) / period;\n  const out = new Array(values.length).fill(null);\n  out[period - 1] = seed;\n  for (let i = period; i < values.length; i++) {\n    out[i] = values[i] * k + out[i - 1] * (1 - k);\n  }\n  return out;\n}\n\n// RSI14\nfunction rsi(values, period = 14) {\n  const gains = [], losses = [];\n  for (let i = 1; i < values.length; i++) {\n    const ch = values[i] - values[i - 1];\n    gains.push(ch > 0 ? ch : 0);\n    losses.push(ch < 0 ? -ch : 0);\n  }\n  let avgG = gains.slice(0, period).reduce((a,b)=>a+b,0) / period;\n  let avgL = losses.slice(0, period).reduce((a,b)=>a+b,0) / period;\n  const out = new Array(values.length).fill(null);\n  for (let i = period; i < gains.length; i++) {\n    avgG = (avgG * (period - 1) + gains[i]) / period;\n    avgL = (avgL * (period - 1) + losses[i]) / period;\n    const rs = avgL === 0 ? Infinity : avgG / avgL;\n    out[i + 1] = 100 - (100 / (1 + rs));\n  }\n  return out;\n}\n\n// 3) Últimos valores (ya en cronológico)\nconst lastClose = closes.at(-1);\nconst lastEma5  = ema(closes, 5).at(-1);\nconst lastEma9  = ema(closes, 9).at(-1);\nconst lastEma21 = ema(closes, 21).at(-1);\nconst lastRsi14 = rsi(closes, 14).at(-1);\nconst lastVolume = volumes.at(-1);\n\n// Señales rápidas\nconst emaSignalShort =\n  lastEma5 > lastEma9 ? \"EMA5 > EMA9 → posible subida rápida\" :\n  lastEma5 < lastEma9 ? \"EMA5 < EMA9 → posible bajada rápida\" :\n  \"EMA5 ≈ EMA9 → indeciso\";\n\nconst rsiSignalShort =\n  lastRsi14 > 70 ? \"RSI14 sobre 70 → sobrecompra\" :\n  lastRsi14 < 30 ? \"RSI14 bajo 30 → sobreventa\" :\n  \"RSI14 neutral\";\n\nconst avgVolume5 = volumes.slice(-5).reduce((a,b)=>a+b,0) / 5;\nconst volumeSignal5 = lastVolume > avgVolume5 * 1.2\n  ? \"Volumen alto → impulso\"\n  : \"Volumen normal/bajo → sin impulso\";\n\nconst momentumShort = lastClose - (closes.slice(-4, -1).reduce((a,b)=>a+b,0) / 3);\n\n// --- Cálculo de soporte y resistencia (TP numérico) ---\nconst N = 20;\nconst closesN = closes.slice(-N);\nconst soporte = Math.min(...closesN);       // TP para Short\nconst resistencia = Math.max(...closesN);   // TP para Long\n\nreturn [{\n  json: {\n    lastClose,\n    lastEma5,\n    lastEma9,\n    lastEma21,\n    lastRsi14,\n    lastVolume,\n    avgVolume5,\n    momentumShort,\n    emaSignalShort,\n    rsiSignalShort,\n    volumeSignal5,\n    soporte,\n    resistencia\n  }\n}];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        656,
-        416
+        416,
+        0
       ],
-      "id": "4b9d9d29-c0aa-4b3c-b547-11e4cd80dd99",
-      "name": "Code3"
-    },
-    {
-      "parameters": {
-        "mode": "delete",
-        "deleteMode": "all"
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryManager",
-      "typeVersion": 1.1,
-      "position": [
-        192,
-        976
-      ],
-      "id": "262bd5a4-950d-4343-9493-3d3a5d2ebf5e",
-      "name": "Chat Memory Manager4"
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "5492214363975",
-        "contextWindowLength": 30
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        320,
-        1216
-      ],
-      "id": "590e0a62-765a-432a-99fe-096694afdc40",
-      "name": "Simple Memory2"
-    },
-    {
-      "parameters": {
-        "operation": "send",
-        "phoneNumberId": "802227299632271",
-        "recipientPhoneNumber": "542214363975",
-        "textBody": "=Hola, gracias por escribir. Te comento que no está permitido enviar archivos multimedia (imágenes, videos, audios, etc.) por esta vía.\n\nPodés contarme lo que necesitás de forma escrita: una descripción, tu consulta o los datos que quieras compartir. Así podré ayudarte sin inconvenientes.",
-        "additionalFields": {}
-      },
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1,
-      "position": [
-        656,
-        768
-      ],
-      "id": "05a0a4f7-bf0d-4721-9d6f-3cb33a6e322d",
-      "name": "WhatsApp Business Cloud",
-      "webhookId": "bce95f12-fff1-4734-a1b4-c4afdd307010",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "y4QR4nygt9F9YhH8",
-          "name": "Univision DTV Whatsapp"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "updates": [
-          "messages"
-        ],
-        "options": {}
-      },
-      "type": "n8n-nodes-base.whatsAppTrigger",
-      "typeVersion": 1,
-      "position": [
-        0,
-        688
-      ],
-      "id": "079ebedd-7f8d-4f7a-b29e-460a9cb2b252",
-      "name": "WhatsApp Trigger",
-      "webhookId": "8c24c65f-fb99-48fb-ae04-d18818f2dfc7",
-      "credentials": {
-        "whatsAppTriggerApi": {
-          "id": "Ywpxn4VdDfBmXug7",
-          "name": "Univision DTV"
-        }
-      }
+      "id": "bd598834-9868-47f7-955f-ab207850fc93",
+      "name": "Code"
     },
     {
       "parameters": {
         "promptType": "define",
-        "text": "={{ $json.data.toJsonString() }}",
-        "options": {
-          "systemMessage": "=Eres un asistente virtual para DIRECTV, un proveedor de televisión digital ubicado en Argentina.\nTu objetivo es ayudar a los clientes a contratar el servicio a través de WhatsApp de forma clara, directa y cordial.\n\n⚡ Reglas generales:\n- Siempre sigue el flujo de conversación definido.\n- No repitas el saludo si el cliente ya está en medio de la interacción.\n- Nunca inventes categorías, marcas, productos o precios.\n- Mensajes cortos, naturales y fáciles de leer, usando expresiones argentinas (ej: \"mirá\", \"dale\", \"fijate\").\n- Siempre cierra con una pregunta para mantener la conversación.\n- Guarda toda la información del cliente durante la conversación para generar el resumen final.\n- Utilizar nodo \"createLead\" luego de que el cliente haya proporcionado sus datos personales y el plan seleccionado\n\n⚡ Contexto del negocio:\n- Nombre: DIRECTV\n- Sitio web: https://www.directvla.com/ar\n- Ubicación: Argentina\n- Cobertura: Todo el territorio argentino, incluyendo áreas rurales y remotas\n\n⚡ Promociones generales:\n- 🎁 *1 MES GRATIS* adhiriéndose con tarjeta de crédito\n- 📺 *Todos los planes incluyen Prime Video y DGO*\n- 🏆 *Deportes exclusivos por DSPORTS:* LaLiga, Copa Sudamericana y más\n\n⚡ Planes disponibles:\n\n*SUPERLITE HD*\n- 💸 *Precio:* $27.900/mes\n- 📺 *108 canales*\n- 🔧 *Decodificador HD incluido*\n- 🎬 *Prime Video incluido*\n- 📱 *DIRECTV GO (DGO) incluido*\n- 🏆 *DSPORTS:** LaLiga, Copa Sudamericana y más\n- 🎁 *1 mes gratis con tarjeta de crédito*\n\n*PLATA HD con Disney+*\n- 💸 *Precio:* $34.100/mes\n- 📺 *164 canales*\n- 🔧 *Decodificador HD incluido*\n- 🎬 *Prime Video incluido*\n- 🏰 *Disney+ incluido*\n- 📱 *DIRECTV GO (DGO) incluido*\n- 🏆 *DSPORTS:* LaLiga, Copa Sudamericana y más\n- 🎁 *1 mes gratis con tarjeta de crédito*\n- ⭐ *BONUS:* 1 mes gratis de Universal+ + 2 meses 50% off\n\n*ORO HD con Disney+*\n- 💸 *Precio:* $39.700/mes\n- 📺 *230 canales*\n- 🔧 *Decodificador HD incluido*\n- 🎬 *Prime Video incluido*\n- 🏰 *Disney+ incluido*\n- 📱 *DIRECTV GO (DGO) incluido*\n- 🏆 *DSPORTS:* LaLiga, Copa Sudamericana y más\n- 🎁 *1 mes gratis con tarjeta de crédito*\n- ⭐ *BONUS:* Todos los beneficios del plan Plata HD + más canales\n\n*Canales exclusivos DIRECTV:*\n- DSPORTS: Partidos exclusivos de LaLiga de España y Copa Sudamericana\n- OnDIRECTV: Series y shows de música\n- DNEWS: Noticias y especiales de Latinoamérica\n\n*Beneficios incluidos en todos los planes:*\n- DIRECTV GO (DGO): Acceso a canales en vivo, películas y series en dispositivos móviles\n- Instalación técnica profesional gratuita\n- Antena, decodificador HD y control remoto incluidos\n- Cobertura satelital en toda Argentina\n- Prime Video incluido\n\n*Contenidos adicionales disponibles:*\n- Paquetes de fútbol local\n- HBO Pack\n- Universal+\n- Disney+\n- Otros contenidos premium\n\n⚡ Flujo de conversación:\n1. *Inicio / Saludo*\n   - Saluda cordialmente\n   - Pregunta si está interesado en contratar algún plan de DIRECTV\n\n2. *Presentar planes disponibles*\n   - Si la respuesta es afirmativa, presenta los planes disponibles:\n     📺 *SUPERLITE HD*\n     📺 *PLATA HD con Disney+*\n     📺 *ORO HD con Disney+*\n   - Pregunta si le interesa algún plan en particular\n\n3. *Detallar plan específico*\n   - Si quiere un plan en particular, presenta ese plan más detallado con:\n     📺 NOMBRE DEL PLAN\n     📄 DESCRIPCIÓN COMPLETA (canales, beneficios)\n     🎬 CONTENIDOS INCLUIDOS (Amazon Prime, DIRECTV GO, etc.)\n     🏆 CANALES EXCLUSIVOS (DSPORTS, OnDIRECTV, DNEWS)\n     ➕ CONTENIDOS ADICIONALES DISPONIBLES\n   - Pregunta si quiere avanzar con la contratación\n\n4. *Solicitar datos del cliente*\n   - Una vez que confirma interés, solicita:\n     👤 Nombre\n     👤 Apellido\n     📍 Localidad\n     📍 Provincia\n     📞 Número de teléfono\n     📧 Email\n\n5. *Mostrar resumen completo*\n   - Una vez que el cliente proporcione sus datos, muestra el resumen con el siguiente formato:\n     📺 *PLAN SELECCIONADO:* [nombre del plan]\n     📄 *INCLUYE:* [canales y beneficios del plan]\n     🎬 *CONTENIDOS:* [Amazon Prime, DIRECTV GO, etc.]\n     🏆 *EXCLUSIVOS:* DSPORTS, OnDIRECTV, DNEWS\n     \n     👤 DATOS DEL CLIENTE:\n     • Nombre: [nombre completo]\n     • Dirección: [dirección completa]\n     • Localidad: [localidad]\n     • Provincia: [provincia]\n     • Teléfono: [número]\n     • Email: [email]\n\n   - Ejecutar \"createLead\" para guardar la información personal y el plan seleccionado\n   \n   - Pregunta: \"¿Todos los datos son correctos? ¿Confirmás la contratación?\"\n\n6. *Cerrar interacción*\n   - Si confirma: \"¡Perfecto! En las próximas 24 horas te contactaremos para coordinar la instalación. ¡Gracias por elegir DIRECTV! 📺\"\n   - Si no confirma o hay cambios: volver al paso correspondiente para corregir\n   - Si decide no contratar: \"No hay problema. Cualquier cosa escribinos de nuevo y te ayudamos al toque. ¡Gracias por tu tiempo! 📺\"\n\n⚡ Notas importantes:\n- Mantén un registro de toda la información del cliente durante la conversación\n- Si el cliente abandona la conversación y vuelve, pregunta si quiere retomar donde quedaron\n- Siempre confirma los datos antes de finalizar\n- Menciona que la instalación es gratuita y profesional\n- Destaca la cobertura nacional, ideal para zonas rurales\n- Usa emojis para hacer la conversación más amigable\n- Para precios específicos, indica que se confirmarán al momento de la contratación"
-        }
+        "text": "=Analiza {{ $('When chat message received').item.json.chatInput.toUpperCase() }} en timeframe de 1 hora con los siguientes datos:\n\nPrecio actual: {{ $json.lastClose }}\nEMA5: {{ $json.lastEma5 }} ({{ $json.emaSignalShort }}) \nEMA9: {{ $json.lastEma9 }} \nEMA21: {{ $json.lastEma21 }} \nRSI14: {{ $json.lastRsi14 }} ({{ $json.rsiSignalShort }}) Volumen: {{ $json.lastVolume }} (prom5: {{ $json.avgVolume5 }}, {{ $json.volumeSignal5 }}) \nMomentum corto: {{ $json.momentumShort }} \n\nDa una única recomendación inmediata en **exactamente uno** de estos tres formatos, sin agregar palabras adicionales ni explicaciones fuera del corchete: \n\n- Long en X con objetivo Y porque [razón concreta] \n- Short en X con objetivo Y porque [razón concreta] \n- Esperar en X porque [razón concreta] \n\nDonde: \n- X = {{ $json.lastClose }} \n- Y = resistencia cercana si es Long o soporte cercano si es Short. \n\n- Reglas: \n1. Si volumen < promedio5 → siempre \"Esperar\". \n2. Si RSI > 65 → \"Short\" (si EMA y Momentum no contradicen). \n3. Si RSI < 35 → \"Long\" (si EMA y Momentum no contradicen). \n4. Si RSI neutral: \n- Si EMA5 > EMA9 y Momentum > 0 → \"Long\". \n- Si EMA5 < EMA9 y Momentum < 0 → \"Short\". \n5. Solo \"Esperar\" si volumen es bajo o las señales son totalmente contradictorias. \n\nNo uses frases vagas como \"alrededor de la resistencia cercana\" → escribe siempre **solo \"resistencia cercana\" o \"soporte cercano\"**.",
+        "batching": {}
       },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 2.2,
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
       "position": [
-        992,
-        416
+        624,
+        0
       ],
-      "id": "21a5a752-274b-4bf2-833d-205be8a996c7",
-      "name": "AI Agent"
+      "id": "ebf8d64c-069f-4f5c-af0e-cc6f18bddc67",
+      "name": "Basic LLM Chain"
     },
     {
       "parameters": {
@@ -430,99 +118,31 @@
           "mode": "list",
           "cachedResultName": "gpt-4.1-nano"
         },
-        "options": {
-          "maxTokens": 256
-        }
+        "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        944,
-        656
+        624,
+        160
       ],
-      "id": "100de853-c9cd-4ca5-ac6c-6c01eb49aa00",
+      "id": "bf9721c5-28d0-44dd-98ad-388ae5f1675a",
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
-          "id": "trx3FQWo28MQZu8b",
-          "name": "Univision - Open AI"
+          "id": "WXcb81sSca2QEiC8",
+          "name": "Neowyze OpenAI Credentials"
         }
       }
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $('Switch').item.json.messages[0].from }}",
-        "contextWindowLength": 15
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        1104,
-        656
-      ],
-      "id": "f0c6adb3-3bb3-44b0-b0e5-b51142c5ee90",
-      "name": "Simple Memory3"
-    },
-    {
-      "parameters": {
-        "toolDescription": "Cuando el cliente proporcione sus datos personales y seleccione un plan,\ngenera un objeto JSON siguiendo estrictamente este contrato:\n\n{\n  \"email\": \"\",\n  \"first_name\": \"\",\n  \"last_name\": \"\",\n  \"phone\": \"\",\n  \"plan\": \"\",\n  \"source\": \"Meta Ads\",\n  \"status\": \"Prospecto\"\n}\n\n- No agregues ni quites propiedades.  \n- Rellena los valores con la información proporcionada.",
-        "method": "POST",
-        "url": "https://api.scalix.neowyze.tech/api/leads",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('JSON', ``, 'json') }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequestTool",
-      "typeVersion": 4.2,
-      "position": [
-        1264,
-        640
-      ],
-      "id": "b1dbb005-cc37-48fb-ab54-52896132c70a",
-      "name": "createLead"
     }
   ],
-  "pinData": {
-    "When clicking ‘Test workflow’": [
-      {
-        "json": {
-          "messaging_product": "whatsapp",
-          "metadata": {
-            "display_phone_number": "15556644593",
-            "phone_number_id": "691649007368841"
-          },
-          "contacts": [
-            {
-              "profile": {
-                "name": "criisgese14"
-              },
-              "wa_id": "5492214363975"
-            }
-          ],
-          "messages": [
-            {
-              "from": "5492214363975",
-              "id": "wamid.HBgNNTQ5MjIxNDM2Mzk3NRUCABIYIEU4RTRENkU3ODM5ODc0NjAxMkMxNDE5NTU0MDFBRjEzAA==",
-              "timestamp": "1751983360",
-              "text": {
-                "body": "Buenas"
-              },
-              "type": "text"
-            }
-          ],
-          "field": "messages"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 2,
-  "updatedAt": "2025-09-14T18:46:07.000Z",
-  "versionId": "322e429a-ddc5-4237-97e8-7487c631b9e3"
+  "triggerCount": 1,
+  "updatedAt": "2025-09-24T00:13:22.000Z",
+  "versionId": "617f952c-9175-4870-bd57-820ffea219bf"
 }
